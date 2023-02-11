@@ -1,4 +1,4 @@
-const button = document.querySelector('#connect-button');
+const button = document.querySelector('connect-button');
 button.addEventListener('click', async () => {
   try {
     const device = await navigator.bluetooth.requestDevice({
