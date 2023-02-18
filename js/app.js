@@ -22,6 +22,20 @@ function connectionToggle() {
     document.getElementById('terminal').focus();
 }
 
+function sendInit() {
+    if (connected) {
+        nusSendString("rdac on");
+        nusSendString("pulses on");
+        nusSendString("utc t "
+            + currentdate.getHours() + " "
+            + currentdate.getMinutes() + " "
+            + currentdate.getSeconds()
+        );
+    } else {
+        window.term_.io.println('Must be connected to init!');
+    }
+}
+
 // Sets button to either Connect or Disconnect
 function setConnButtonState(enabled) {
     if (enabled) {
