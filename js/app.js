@@ -1,5 +1,7 @@
 'use strict';
 
+// ============ BLE enabled Single Page App ============================
+
 const bleNusServiceUUID  = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
 const bleNusCharRXUUID   = '6e400002-b5a3-f393-e0a9-e50e24dcca9e';
 const bleNusCharTXUUID   = '6e400003-b5a3-f393-e0a9-e50e24dcca9e';
@@ -24,8 +26,15 @@ function connectionToggle() {
 
 function sendInit() {
     if (connected) {
-        nusSendString("(room)\n");
-        window.term_.io.println('(room)\n');
+        var longCommentedulisp = '(defun set-val (type value) ' +
+           ' (progn ' +
+               ' (etlmock(eval type) value) ' +
+              '  (etlcreate(eval type)) ' +
+               ' (princ type)(princ " ")(princ value)(princ " ") ' +
+           ' ) ' +
+' ) ';
+        nusSendStrings(sendString);
+        nusSendStrings(xtractSExprs(stripComments(longcommentedulisp)));
         
      //   nusSendString("utc t "
      //       + currentdate.getHours() + " "
@@ -149,7 +158,8 @@ function handleNotifications(event) {
 }
 
 function nusSendString(s) {
-    if(bleDevice && bleDevice.gatt.connected) {
+    if (bleDevice && bleDevice.gatt.connected) {
+        window.term_.io.println(s);
         console.log("send: " + s);
         let val_arr = new Uint8Array(s.length)
         for (let i = 0; i < s.length; i++) {
@@ -171,18 +181,98 @@ function sendNextChunk(a) {
           }
       });
 }
+// ============ BLE enabled Single Page App ============================
 
 
+// ======================================= tim's ulisp to ble helpers ==========================================
 
+/*
+ * Design thinking: if i start with a long piece of commented ulisp longcommentedulisp
+ * longulispcode = stripComments(longcommentedulisp);
+ * sepxrs = extractSExprs(longulispcode)
+ * nusSendString(sexprs) will send the result
+ * 
+ * nusSendStrings(xtractSExprs(stripComments(longcommentedulisp)))
+ */
+
+/*
+ * use a forEach loop to step through an array of sExpr and send each sExpr individually
+ */
+function nusSendStrings(sExpr) {
+    sExpr.forEach((singleString) => {
+        // process each string here
+        nusSendString(singleString);
+    });
+}
+
+/*
+ * takes a string of Lisp code as input and returns an array of s-expressions 
+ *   (Lisp expressions surrounded by parentheses):
+ */
+
+function extractSExprs(str) {
+    let result = [];
+    let currentExpr = '';
+    let depth = 0;
+
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === '(') {
+            depth++;
+        } else if (str[i] === ')') {
+            depth--;
+            if (depth === 0) {
+                result.push(currentExpr);
+                currentExpr = '';
+            }
+        } else if (depth === 0) {
+            continue;
+        }
+
+        currentExpr += str[i];
+    }
+
+    return result;
+}
+
+/*
+ * takes a string as input and removes both single-line comments (denoted by ;) 
+ * and multi-line comments from the input string:
+ */
+
+function stripComments(str) {
+    let inComment = false;
+    let result = '';
+
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === '/' && str[i + 1] === '*') {
+            inComment = true;
+            i++;
+        } else if (str[i] === '*' && str[i + 1] === '/') {
+            inComment = false;
+            i++;
+        } else if (str[i] === ';') {
+            while (str[i] !== '\n') {
+                i++;
+            }
+        } else if (!inComment) {
+            result += str[i];
+        }
+    }
+
+    return result;
+}
+
+// ======================================= tim's ulisp to ble helpers ==========================================
+
+// =================================================================================
 function initContent(io) {
     io.println("\r\n\
-Welcome to Web Device CLI V0.1.0 (03/19/2019)\r\n\
-Copyright (C) 2019  makerdiary.\r\n\
+Welcome to LimbStim V0.1.0 (03/12/2023)\r\n\
 \r\n\
-This is a Web Command Line Interface via NUS (Nordic UART Service) using Web Bluetooth.\r\n\
+This is a modified Web Command Line Interface via NUS (Nordic UART Service) using Web Bluetooth.\r\n\
 \r\n\
-  * Source: https://github.com/makerdiary/web-device-cli\r\n\
-  * Live:   https://makerdiary.github.io/web-device-cli\r\n\
+  * Original Source: https://github.com/makerdiary/web-device-cli\r\n\
+
 ");
 }
 
