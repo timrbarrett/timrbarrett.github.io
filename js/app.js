@@ -35,7 +35,8 @@ function sendInit() {
 ' ) ';
         //nusSendStrings(sendString);
         //nusSendStrings(xtractSExprs(stripComments(longcommentedulisp)));
-        nusSendString(stripComments(longcommentedulisp));
+        //nusSendString(stripComments(longcommentedulisp));
+        nusSendString(longCommentedulisp);
      //   nusSendString("utc t "
      //       + currentdate.getHours() + " "
      //       + currentdate.getMinutes() + " "
