@@ -266,14 +266,13 @@ function stripComments(str) {
 
 // =================================================================================
 function initContent(io) {
-    io.println("\r\n\
-Welcome to LimbStim V0.1.0 (03/12/2023)\r\n\
-\r\n\
-This is a modified Web Command Line Interface via NUS (Nordic UART Service) using Web Bluetooth.\r\n\
-\r\n\
-  * Original Source: https://github.com/makerdiary/web-device-cli\r\n\
-
-");
+    io.println("\r\n\" +
+    "Welcome to LimbStim V0.1.0 (03/12/2023)\r\n\" +
+    "\r\n\" +
+    "This is a modified Web Command Line Interface via NUS (Nordic UART Service) using Web Bluetooth.\r\n\"+
+    "\r\n\" +
+    " * Original Source: https://github.com/makerdiary/web-device-cli\r\n\ " +
+    ")";
 }
 
 function setupHterm() {
