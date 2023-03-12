@@ -26,13 +26,14 @@ function connectionToggle() {
 
 function sendInit() {
     if (connected) {
-        var longCommentedulisp = '(defun set-val (type value) ' +
-           ' (progn ' +
-               ' (etlmock(eval type) value) ' +
-              '  (etlcreate(eval type)) ' +
-               ' (princ type)(princ " ")(princ value)(princ " ") ' +
-           ' ) ' +
-' ) ';
+        var longCommentedulisp =
+            '(defun set-val (type value)' +
+                '(progn ' +
+                    '(etlmock(eval type) value)' +
+                    '(etlcreate(eval type))' +
+                    '(princ type)(princ " ")(princ value)(princ " ") ' +
+                ') ' +
+            ') \n ';
         //nusSendStrings(sendString);
         //nusSendStrings(xtractSExprs(stripComments(longcommentedulisp)));
         //nusSendString(stripComments(longcommentedulisp));
