@@ -265,7 +265,7 @@ function stripComments(str) {
 // ======================================= tim's ulisp to ble helpers ==========================================
 
 // =================================================================================
-function initContent(io) {
+/*function initContent(io) {
     io.println('\r\n\' +
     'Welcome to LimbStim V0.1.0 (03/12/2023)\r\n\'
     '\r\n\' +
@@ -273,7 +273,7 @@ function initContent(io) {
     '\r\n\' +
     ' * Original Source: https://github.com/makerdiary/web-device-cli\r\n\ '+
     ')';
-}
+}*/
 
 function setupHterm() {
     const term = new hterm.Terminal();
@@ -284,7 +284,7 @@ function setupHterm() {
             nusSendString(string);
         };
         io.sendString = nusSendString;
-        initContent(io);
+        //initContent(io);
         this.setCursorVisible(true);
         this.keyboard.characterEncoding = 'raw';
     };
