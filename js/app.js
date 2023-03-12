@@ -24,16 +24,15 @@ function connectionToggle() {
 
 function sendInit() {
     if (connected) {
-        nusSendString("rdac on\r");
-        window.term_.io.println('rdac on');
-        nusSendString("pulses on\r");
-        window.term_.io.println('pulses on');
-        nusSendString("utc t "
-            + currentdate.getHours() + " "
-            + currentdate.getMinutes() + " "
-            + currentdate.getSeconds() + "\r"
-        );
-        window.term_.io.println('utc t message');
+        nusSendString("(room)\n");
+        window.term_.io.println('(room)\n');
+        
+     //   nusSendString("utc t "
+     //       + currentdate.getHours() + " "
+     //       + currentdate.getMinutes() + " "
+     //       + currentdate.getSeconds() + "\n"
+     //   );
+     //   window.term_.io.println('utc t message');
     } else {
         window.term_.io.println('Must be connected to init!');
     }
