@@ -33,7 +33,7 @@ function sendInit() {
                ' (princ type)(princ " ")(princ value)(princ " ") ' +
            ' ) ' +
 ' ) ';
-        nusSendStrings(sendString);
+        //nusSendStrings(sendString);
         nusSendStrings(xtractSExprs(stripComments(longcommentedulisp)));
         
      //   nusSendString("utc t "
