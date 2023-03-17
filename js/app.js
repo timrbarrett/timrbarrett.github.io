@@ -27,6 +27,7 @@ function initialisePressed() {
         nusSendString("(room)\n");
     }
 }
+
 // Sets button to either Connect or Disconnect
 function setConnButtonState(enabled) {
     if (enabled) {

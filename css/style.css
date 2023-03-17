@@ -39,7 +39,7 @@ body {
   cursor: pointer;
 }
 
-#initialisationButton {
+#initialiseButton {
     position: fixed;
     background-color: rgb(51,105,232);
     border: none;
@@ -50,7 +50,8 @@ body {
     text-align: center;
     text-decoration: none;
     font-size: 16px;
-    left: 15px;
+    left: 150px;
     top: 15px;
     cursor: pointer;
 }
+
