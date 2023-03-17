@@ -26,7 +26,7 @@ function connectionToggle() {
 
 function sendInit() {
     if (connected) {
-        longCommentedulisp = "(room) \n";
+        longCommentedulisp = '(room) \n';
         /*
         var longCommentedulisp =
             '(defun set-val (type value)' +
