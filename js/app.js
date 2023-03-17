@@ -22,8 +22,10 @@ function connectionToggle() {
     document.getElementById('terminal').focus();
 }
 
-function initialiseLimbstim() {
-    nusSendString("(room)\n");
+function initialisePressed() {
+    if (connected) {
+        nusSendString("(room)\n");
+    }
 }
 
 // Sets button to either Connect or Disconnect
