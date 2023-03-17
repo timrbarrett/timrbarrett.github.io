@@ -1,10 +1,8 @@
 'use strict';
 
-// ============ BLE enabled Single Page App ============================
-
-const bleNusServiceUUID  = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
-const bleNusCharRXUUID   = '6e400002-b5a3-f393-e0a9-e50e24dcca9e';
-const bleNusCharTXUUID   = '6e400003-b5a3-f393-e0a9-e50e24dcca9e';
+const bleNusServiceUUID = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
+const bleNusCharRXUUID = '6e400002-b5a3-f393-e0a9-e50e24dcca9e';
+const bleNusCharTXUUID = '6e400003-b5a3-f393-e0a9-e50e24dcca9e';
 const MTU = 20;
 
 var bleDevice;
@@ -26,27 +24,15 @@ function connectionToggle() {
 
 function sendInit() {
     if (connected) {
-        longCommentedulisp = "(room) \n";
-        /*
-        var longCommentedulisp =
-            '(defun set-val (type value)' +
-                '(progn ' +
-                    '(etlmock(eval type) value)' +
-                    '(etlcreate(eval type))' +
-                    '(princ type)(princ " ")(princ value)(princ " ") ' +
-                ') ' +
-            ') \n ';
-            */
-        //nusSendStrings(sendString);
-        //nusSendStrings(xtractSExprs(stripComments(longcommentedulisp)));
-        //nusSendString(stripComments(longcommentedulisp));
-        nusSendString(longCommentedulisp);
-     //   nusSendString("utc t "
-     //       + currentdate.getHours() + " "
-     //       + currentdate.getMinutes() + " "
-     //       + currentdate.getSeconds() + "\n"
-     //   );
-     //   window.term_.io.println('utc t message');
+        nusSendString("(room)\n");
+        window.term_.io.println('(room)\n');
+
+        //   nusSendString("utc t "
+        //       + currentdate.getHours() + " "
+        //       + currentdate.getMinutes() + " "
+        //       + currentdate.getSeconds() + "\n"
+        //   );
+        //   window.term_.io.println('utc t message');
     } else {
         window.term_.io.println('Must be connected to init!');
     }
@@ -64,9 +50,9 @@ function setConnButtonState(enabled) {
 function connect() {
     if (!navigator.bluetooth) {
         console.log('WebBluetooth API is not available.\r\n' +
-                    'Please make sure the Web Bluetooth flag is enabled.');
+            'Please make sure the Web Bluetooth flag is enabled.');
         window.term_.io.println('WebBluetooth API is not available on your browser.\r\n' +
-                    'Please make sure the Web Bluetooth flag is enabled.');
+            'Please make sure the Web Bluetooth flag is enabled.');
         return;
     }
     console.log('Requesting Bluetooth Device...');
@@ -75,57 +61,56 @@ function connect() {
         optionalServices: [bleNusServiceUUID],
         acceptAllDevices: true
     })
-    .then(device => {
-        bleDevice = device; 
-        console.log('Found ' + device.name);
-        console.log('Connecting to GATT Server...');
-        bleDevice.addEventListener('gattserverdisconnected', onDisconnected);
-        return device.gatt.connect();
-    })
-    .then(server => {
-        console.log('Locate NUS service');
-        return server.getPrimaryService(bleNusServiceUUID);
-    }).then(service => {
-        nusService = service;
-        console.log('Found NUS service: ' + service.uuid);
-    })
-    .then(() => {
-        console.log('Locate RX characteristic');
-        return nusService.getCharacteristic(bleNusCharRXUUID);
-    })
-    .then(characteristic => {
-        rxCharacteristic = characteristic;
-        console.log('Found RX characteristic');
-    })
-    .then(() => {
-        console.log('Locate TX characteristic');
-        return nusService.getCharacteristic(bleNusCharTXUUID);
-    })
-    .then(characteristic => {
-        txCharacteristic = characteristic;
-        console.log('Found TX characteristic');
-    })
-    .then(() => {
-        console.log('Enable notifications');
-        return txCharacteristic.startNotifications();
-    })
-    .then(() => {
-        console.log('Notifications started');
-        txCharacteristic.addEventListener('characteristicvaluechanged',
-                                          handleNotifications);
-        connected = true;
-        window.term_.io.println('\r\n' + bleDevice.name + ' Connected.');
-        nusSendString('\r');
-        setConnButtonState(true);
-    })
-    .catch(error => {
-        console.log('' + error);
-        window.term_.io.println('' + error);
-        if(bleDevice && bleDevice.gatt.connected)
-        {
-            bleDevice.gatt.disconnect();
-        }
-    });
+        .then(device => {
+            bleDevice = device;
+            console.log('Found ' + device.name);
+            console.log('Connecting to GATT Server...');
+            bleDevice.addEventListener('gattserverdisconnected', onDisconnected);
+            return device.gatt.connect();
+        })
+        .then(server => {
+            console.log('Locate NUS service');
+            return server.getPrimaryService(bleNusServiceUUID);
+        }).then(service => {
+            nusService = service;
+            console.log('Found NUS service: ' + service.uuid);
+        })
+        .then(() => {
+            console.log('Locate RX characteristic');
+            return nusService.getCharacteristic(bleNusCharRXUUID);
+        })
+        .then(characteristic => {
+            rxCharacteristic = characteristic;
+            console.log('Found RX characteristic');
+        })
+        .then(() => {
+            console.log('Locate TX characteristic');
+            return nusService.getCharacteristic(bleNusCharTXUUID);
+        })
+        .then(characteristic => {
+            txCharacteristic = characteristic;
+            console.log('Found TX characteristic');
+        })
+        .then(() => {
+            console.log('Enable notifications');
+            return txCharacteristic.startNotifications();
+        })
+        .then(() => {
+            console.log('Notifications started');
+            txCharacteristic.addEventListener('characteristicvaluechanged',
+                handleNotifications);
+            connected = true;
+            window.term_.io.println('\r\n' + bleDevice.name + ' Connected.');
+            nusSendString('\r');
+            setConnButtonState(true);
+        })
+        .catch(error => {
+            console.log('' + error);
+            window.term_.io.println('' + error);
+            if (bleDevice && bleDevice.gatt.connected) {
+                bleDevice.gatt.disconnect();
+            }
+        });
 }
 
 function disconnect() {
@@ -164,7 +149,6 @@ function handleNotifications(event) {
 
 function nusSendString(s) {
     if (bleDevice && bleDevice.gatt.connected) {
-        window.term_.io.println(s);
         console.log("send: " + s);
         let val_arr = new Uint8Array(s.length)
         for (let i = 0; i < s.length; i++) {
@@ -180,116 +164,31 @@ function nusSendString(s) {
 function sendNextChunk(a) {
     let chunk = a.slice(0, MTU);
     rxCharacteristic.writeValue(chunk)
-      .then(function() {
-          if (a.length > MTU) {
-              sendNextChunk(a.slice(MTU));
-          }
-      });
-}
-// ============ BLE enabled Single Page App ============================
-
-
-// ======================================= tim's ulisp to ble helpers ==========================================
-
-/*
- * Design thinking: if i start with a long piece of commented ulisp longcommentedulisp
- * longulispcode = stripComments(longcommentedulisp);
- * sepxrs = extractSExprs(longulispcode)
- * nusSendString(sexprs) will send the result
- * 
- * nusSendStrings(xtractSExprs(stripComments(longcommentedulisp)))
- */
-
-/*
- * use a forEach loop to step through an array of sExpr and send each sExpr individually
- */
-function nusSendStrings(sExpr) {
-    sExpr.forEach((singleString) => {
-        // process each string here
-        nusSendString(singleString);
-    });
-}
-
-/*
- * takes a string of Lisp code as input and returns an array of s-expressions 
- *   (Lisp expressions surrounded by parentheses):
- */
-
-function extractSExprs(str) {
-    let result = [];
-    let currentExpr = '';
-    let depth = 0;
-
-    for (let i = 0; i < str.length; i++) {
-        if (str[i] === '(') {
-            depth++;
-        } else if (str[i] === ')') {
-            depth--;
-            if (depth === 0) {
-                result.push(currentExpr);
-                currentExpr = '';
+        .then(function () {
+            if (a.length > MTU) {
+                sendNextChunk(a.slice(MTU));
             }
-        } else if (depth === 0) {
-            continue;
-        }
-
-        currentExpr += str[i];
-    }
-
-    return result;
+        });
 }
 
-/*
- * takes a string as input and removes both single-line comments (denoted by ;) 
- * and multi-line comments from the input string:
- */
 
-function stripComments(str) {
-    let inComment = false;
-    let result = '';
 
-    for (let i = 0; i < str.length; i++) {
-        if (str[i] === '/' && str[i + 1] === '*') {
-            inComment = true;
-            i++;
-        } else if (str[i] === '*' && str[i + 1] === '/') {
-            inComment = false;
-            i++;
-        } else if (str[i] === ';') {
-            while (str[i] !== '\n') {
-                i++;
-            }
-        } else if (!inComment) {
-            result += str[i];
-        }
-    }
-
-    return result;
+function initContent(io) {
+    io.println("\r\n\
+    version 0.0.1
+");
 }
-
-// ======================================= tim's ulisp to ble helpers ==========================================
-
-// =================================================================================
-/*function initContent(io) {
-    io.println('\r\n\' +
-    'Welcome to LimbStim V0.1.0 (03/12/2023)\r\n\'
-    '\r\n\' +
-    'This is a modified Web Command Line Interface via NUS (Nordic UART Service) using Web Bluetooth.\r\n\'+
-    '\r\n\' +
-    ' * Original Source: https://github.com/makerdiary/web-device-cli\r\n\ '+
-    ')';
-}*/
 
 function setupHterm() {
     const term = new hterm.Terminal();
 
-    term.onTerminalReady = function() {
+    term.onTerminalReady = function () {
         const io = this.io.push();
         io.onVTKeystroke = (string) => {
             nusSendString(string);
         };
         io.sendString = nusSendString;
-        //initContent(io);
+        initContent(io);
         this.setCursorVisible(true);
         this.keyboard.characterEncoding = 'raw';
     };
@@ -297,10 +196,10 @@ function setupHterm() {
     term.installKeyboard();
 
     term.contextMenu.setItems([
-        ['Terminal Reset', () => {term.reset(); initContent(window.term_.io);}],
-        ['Terminal Clear', () => {term.clearHome();}],
+        ['Terminal Reset', () => { term.reset(); initContent(window.term_.io); }],
+        ['Terminal Clear', () => { term.clearHome(); }],
         [hterm.ContextMenu.SEPARATOR],
-        ['GitHub', function() {
+        ['GitHub', function () {
             lib.f.openWindow('https://github.com/makerdiary/web-device-cli', '_blank');
         }],
     ]);
@@ -309,6 +208,6 @@ function setupHterm() {
     window.term_ = term;
 }
 
-window.onload = function() {
+window.onload = function () {
     lib.init(setupHterm);
 };
