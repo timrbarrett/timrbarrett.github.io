@@ -60,6 +60,7 @@ function initialisePressed() {
             "    ) " +
             ")"
         );
+        
     }
 }
 
@@ -137,7 +138,7 @@ function connect() {
                                           handleNotifications);
         connected = true;
         window.term_.io.println('\r\n' + bleDevice.name + ' Connected.');
-        nusSendString('\r');
+        //nusSendString('\r');
         setConnButtonState(true);
     })
     .catch(error => {
@@ -179,9 +180,16 @@ function handleNotifications(event) {
     // construct a string.
     let str = "";
     for (let i = 0; i < value.byteLength; i++) {
-        str += String.fromCharCode(value.getUint8(i));
+        
+        if (value.getUint8(i) == 10) {
+            window.term_.io.println(str);
+            //window.term_.io.println(' ');
+            str = "";
+        } else {
+            str += String.fromCharCode(value.getUint8(i));
+        }
     }
-    window.term_.io.print(str);
+    window.term_.io.println(str);
 }
 
 function nusSendString(s) {
@@ -228,7 +236,7 @@ async function sendManyValues(chunk) {
 
 function initContent(io) {
     io.println("\r\n\
-Welcome to Limbstim Control V0.0.1 (18th Mar 2023)\r\n\
+Welcome to Limbstim Control V0.0.3 (18th Mar 2023)\r\n\
 \r\n\
 This is a Web Command Line Interface via NUS (Nordic UART Service) using Web Bluetooth.\r\n\
 \r\n\
