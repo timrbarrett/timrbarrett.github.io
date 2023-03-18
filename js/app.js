@@ -96,7 +96,53 @@ function initialisePressed() {
             "   (aeq type 'etlcount 0 '(etlcount(eval type))) " +
             ") "
         );
-        
+
+        // tst-cl v1.0
+        nusSendString(
+            "(defun tst-cl(type) " +
+            "    (etlclear(eval type)) " +
+            "    (aeq type 'etlclear 0 '(etlcount(eval type))) " +
+            ")"
+        );
+
+        // tst-mo v1.0
+        nusSendString(
+            "(defun tst-mo(type) " +
+            "    (etlmock(eval type)(eval type)) " +
+            "    (aeq type 'etlmock 0 '(etlcount(eval type))) " +
+            ")"
+        );
+
+        // tst-cr v1.0
+        nusSendString(
+            "(defun tst-cr(type) " +
+            "    (etlcreate(eval type)) " +
+            "    (aeq type 'etlcreate 1 " +
+            "        '(etlcount (eval type)) " +
+            "    ) " +
+            ")"
+        );
+
+        // tst-ou v1.0
+        nusSendString(
+            "(defun tst-ou ( type ) " +
+            "    (unless " +
+            "        (teq(list type(eval type))(etloutput(eval type) 0)) " +
+            "        (progn " +
+            "            (princ(list type(eval type))) " +
+            "            (princ(etloutput(eval type) 0)) " +
+            "        ) " +
+            "    ) " +
+            ")" 
+        );
+
+        /*
+         
+        // tst-mo v1.0
+        nusSendString(
+        );
+
+        */
     }
 }
 
