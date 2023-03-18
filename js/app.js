@@ -69,6 +69,38 @@ function initialisePressed() {
             "(set-val 'c1fr 200)"
         );
 
+
+        // aeq v1.1
+        /*
+         * discovered if in the transfer is goes over 255 chars it silently stops working.
+         */
+        nusSendString(
+            "(defun aeq(t2 test exp got) " +
+            "   (unless " +
+            "       (teq exp (eval got)) " +
+            "       (progn " +
+            "           (push(list t2 test exp(eval got)) error-log) " +
+            "           (incf errs) " +
+            "           '(print-error t2 test exp got) " +
+            "           (princ t2) " +
+            "      ) " +
+            "  ) " +
+            ") "
+        );
+
+        // teq v1.1
+        nusSendString(
+            "(defun teq(a b) " +
+            " (cond " +
+            "   ((and(stringp a)(stringp b))(string = a b)) " +
+            "   ((and(atom a)(atom b))(eq a b)) " +
+            "   ((null a) nil)((null b) nil) " +
+            "   ((and(listp a)(listp b))(and " +
+            "      (teq(car a)(car b)) " +
+            "      (teq(cdr a)(cdr b)) " +
+            "t()))) ) "
+        );
+
         // test-1to5 v1.0
         /*
          * If you need to use the pound symbol in a string that is enclosed in backticks (```) 
@@ -303,7 +335,7 @@ let writeValueInProgress = false;
 
 async function sendManyValues(chunk) {
     while (writeValueInProgress) {
-        await new Promise(resolve => setTimeout(resolve, 1000)); // wait for 1 second
+        await new Promise(resolve => setTimeout(resolve, 1500)); // wait for 1.5 second
     }
     writeValueInProgress = true;
     try {
@@ -318,7 +350,7 @@ async function sendManyValues(chunk) {
 
 function initContent(io) {
     io.println("\r\n\
-Welcome to Limbstim Control V0.0.3 (18th Mar 2023)\r\n\
+Welcome to Limbstim Control V0.0.6 (18th Mar 2023)\r\n\
 \r\n\
 This is a Web Command Line Interface via NUS (Nordic UART Service) using Web Bluetooth.\r\n\
 \r\n\
