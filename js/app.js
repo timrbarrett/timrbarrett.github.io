@@ -24,7 +24,42 @@ function connectionToggle() {
 
 function initialisePressed() {
     if (connected) {
-        nusSendString("(room)\n");
+        //nusSendString("(room)\n");
+        /*nusSendString("(defun fndelt(type delta) ");
+        nusSendString(  "(progn ");
+        nusSendString(      "(etlmock(eval type) ");
+        nusSendString(          "(incf(car(cdr(etloutput(eval type) 0))) ");
+        nusSendString(              "delta ");
+        nusSendString(          ") ");
+        nusSendString(      ") ");
+        nusSendString(  "(etlcreate(eval type)) ");
+        nusSendString(")) \n");*/
+
+        nusSendString(
+            "(defun fndelta(type delta) " +
+            "   (progn " +
+            "       (etlmock(eval type) " +
+            "           (incf(car(cdr(etloutput(eval type) 0))) " +
+            "               delta " +
+            "           ) " +
+            "       ) " +
+            "       (etlcreate(eval type)) " +
+            "       (etloutput(eval type) 0) " +
+            "   )" +
+            ") \n");
+
+        // to include a double quote character in a string in js
+        // one needs to escape the double quotes
+        // https://stackoverflow.com/questions/10055773/double-quote-in-javascript-string
+        nusSendString(
+            "(defun set - val(type value) " +
+            "    (progn " +
+            "        (etlmock(eval type) value) " +
+            "        (etlcreate(eval type)) " +
+            "        (princ type)(princ \" \")(princ value)(princ \" \") " +
+            "    ) " +
+            ")"
+        );
     }
 }
 
@@ -150,14 +185,15 @@ function handleNotifications(event) {
 }
 
 function nusSendString(s) {
-    if(bleDevice && bleDevice.gatt.connected) {
+    if(bleDevice && bleDevice.gatt.connected ) {
         console.log("send: " + s);
         let val_arr = new Uint8Array(s.length)
         for (let i = 0; i < s.length; i++) {
             let val = s[i].charCodeAt(0);
             val_arr[i] = val;
         }
-        sendNextChunk(val_arr);
+        //sendNextChunk(val_arr);
+        sendManyValues(val_arr);
     } else {
         window.term_.io.println('Not connected to a device yet.');
     }
@@ -165,7 +201,7 @@ function nusSendString(s) {
 
 function sendNextChunk(a) {
     let chunk = a.slice(0, MTU);
-    rxCharacteristic.writeValue(chunk)
+    rxCharacteristic.writeValuewithResponse(chunk)
       .then(function() {
           if (a.length > MTU) {
               sendNextChunk(a.slice(MTU));
@@ -173,11 +209,26 @@ function sendNextChunk(a) {
       });
 }
 
+let writeValueInProgress = false;
+
+async function sendManyValues(chunk) {
+    while (writeValueInProgress) {
+        await new Promise(resolve => setTimeout(resolve, 1000)); // wait for 1 second
+    }
+    writeValueInProgress = true;
+    try {
+        await rxCharacteristic.writeValueWithResponse(chunk);
+        writeValueInProgress = false;
+    } catch (error) {
+        writeValueInProgress = false;
+        throw error;
+    }
+}
 
 
 function initContent(io) {
     io.println("\r\n\
-Welcome to Limbstim Control V0.1.0 (18th Mar 2023)\r\n\
+Welcome to Limbstim Control V0.0.1 (18th Mar 2023)\r\n\
 \r\n\
 This is a Web Command Line Interface via NUS (Nordic UART Service) using Web Bluetooth.\r\n\
 \r\n\
