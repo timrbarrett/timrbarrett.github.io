@@ -30,7 +30,13 @@ function initialisePressed() {
 
 function incc1mxPressed() {
     if (connected) {
-        nusSendString("(delta-val c1mx 8)\n");
+        nusSendString("(fndelta 'c1mx 8)\n");
+    }
+}
+
+function decc1mxPressed() {
+    if (connected) {
+        nusSendString("(fndelta 'c1mx -8)\n");
     }
 }
 // Sets button to either Connect or Disconnect
@@ -171,13 +177,11 @@ function sendNextChunk(a) {
 
 function initContent(io) {
     io.println("\r\n\
-Welcome to Web Device CLI V0.1.0 (03/19/2019)\r\n\
-Copyright (C) 2019  makerdiary.\r\n\
+Welcome to Limbstim Control V0.1.0 (18th Mar 2023)\r\n\
 \r\n\
 This is a Web Command Line Interface via NUS (Nordic UART Service) using Web Bluetooth.\r\n\
 \r\n\
-  * Source: https://github.com/makerdiary/web-device-cli\r\n\
-  * Live:   https://makerdiary.github.io/web-device-cli\r\n\
+  * Live:   https://timrbarrett.github.io/index\r\n\
 ");
 }
 
