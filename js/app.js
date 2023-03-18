@@ -68,6 +68,35 @@ function initialisePressed() {
             "(set-val 'c1hb 1) " +
             "(set-val 'c1fr 200)"
         );
+
+        // test-1to5 v1.0
+        /*
+         * If you need to use the pound symbol in a string that is enclosed in backticks (```) 
+         * for template literals, you can use the ${} syntax to insert the symbol:
+         */
+        nusSendString(
+            "(defun tests1to5 (type) " +
+            "   (progn " +
+            "        (princ \${'#'}\Newline) " + // need to escape the hash symbol
+            "        (tst - co type) " +
+            "        (tst - cl type) " +
+            "        (tst - mo type) " +
+            "        (tst - cr type) " +
+            "        (tst - ou type) " +
+            "        (tst - cl type) " +
+            "    )" +
+            ")"
+        );
+
+        
+        // tst-co v1.0
+        nusSendString(
+            "(defun tst-co(type) " +
+            "   (etlclear(eval type)) " +
+            "   (aeq type 'etlcount 0 '(etlcount(eval type))) " +
+            ") "
+        );
+        
     }
 }
 
