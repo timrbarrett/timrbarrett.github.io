@@ -52,15 +52,22 @@ function initialisePressed() {
         // one needs to escape the double quotes
         // https://stackoverflow.com/questions/10055773/double-quote-in-javascript-string
         nusSendString(
-            "(defun set - val(type value) " +
+            "(defun set-val(type value) " +
             "    (progn " +
             "        (etlmock(eval type) value) " +
             "        (etlcreate(eval type)) " +
-            "        (princ type)(princ \" \")(princ value)(princ \" \") " +
+            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
+            "        (etloutput(eval type) 0) " +
             "    ) " +
             ")"
         );
-        
+
+        nusSendString(
+            "(set-val 'c1mx 255) " +
+            "(set-val 'c1fi 127) " +
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1fr 200)"
+        );
     }
 }
 
