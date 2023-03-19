@@ -109,13 +109,13 @@ function initialisePressed() {
         nusSendString(
             "(defun tests1to5 (type) " +
             "   (progn " +
-            "        (princ \${'#'}\Newline) " + // need to escape the hash symbol
-            "        (tst - co type) " +
-            "        (tst - cl type) " +
-            "        (tst - mo type) " +
-            "        (tst - cr type) " +
-            "        (tst - ou type) " +
-            "        (tst - cl type) " +
+            //"        (princ \${'#'}\Newline) " + // need to escape the hash symbol
+            "        (tst-co type) " +
+            "        (tst-cl type) " +
+            "        (tst-mo type) " +
+            "        (tst-cr type) " +
+            "        (tst-ou type) " +
+            "        (tst-cl type) " +
             "    )" +
             ")"
         );
@@ -166,6 +166,41 @@ function initialisePressed() {
             "        ) " +
             "    ) " +
             ")" 
+        );
+
+        // tst-tst-1 v1.0
+        nusSendString(
+            "(defun tst-1 (type) " +
+            "    (if (> (etloutput(eval type) 0) -1) " +
+            "       (princ 'fail) " +
+            "       (princ 'pass) " +
+            "   ) " +
+            ")"
+        );
+
+        // test logs
+        nusSendString(
+            "(defvar errs 0) " +
+            "(defvar error-log()) " +
+            "(defvar pass-log()) "
+        );
+        
+        // # in ulisp must be entered as ${'#'} in js
+        // etl-tst v1.0
+        nusSendString(
+             "(defun etl-test(type-list) " +
+             "    (mapc tests1to5 type-list) " +
+             //"    (princ ${'#'}\Newline) " +
+             "    (princ error-log) " +
+             //"    (princ ${'#'}\Newline) " +
+             "    (princ errs) " +
+             //"     (princ ${'#'}\Newline)() " +
+             ") "
+        );
+
+        // regression test the basics of etl-types
+        nusSendString(
+            "(etl-test '(c1mx c1fi) )"
         );
 
         /*
@@ -335,7 +370,7 @@ let writeValueInProgress = false;
 
 async function sendManyValues(chunk) {
     while (writeValueInProgress) {
-        await new Promise(resolve => setTimeout(resolve, 1500)); // wait for 1.5 second
+        await new Promise(resolve => setTimeout(resolve, 300)); // wait for 0.5 second
     }
     writeValueInProgress = true;
     try {
