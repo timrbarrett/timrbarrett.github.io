@@ -191,7 +191,7 @@ function initialisePressed() {
              "(defun etl-test(type-list) " +
              "    (mapc tests1to5 type-list) " +
              //"    (princ ${'#'}\Newline) " +
-             "    (princ error-log) " +
+             "    (mapc princ error-log) " +
              //"    (princ ${'#'}\Newline) " +
              "    (princ errs) " +
              //"     (princ ${'#'}\Newline)() " +
@@ -199,9 +199,43 @@ function initialisePressed() {
         );
 
         // regression test the basics of etl-types
+
+        // 1 to 3 are triple types
+
+        // 4 to 8 
+        nusSendString( "(etl-test '(devros ) )" );
         nusSendString(
-            "(etl-test '(c1mx c1fi) )"
+            "(etl-test '( devthr ) )"
         );
+        nusSendString(
+            "(etl-test '(devgtt ) )"
+        );
+        nusSendString(
+            "(etl-test '(devris ) )"
+        );
+        nusSendString(
+            "(etl-test '(devutc ) )"
+        );
+        
+
+        // 9 to 13
+        nusSendString("(etl-test '( c1mx ) )" );
+        nusSendString("(etl-test '( c1pu ) )");
+        nusSendString("(etl-test '( c1fr ) )");
+        nusSendString("(etl-test '( c1fi ) )");
+        nusSendString("(etl-test '( c1hb ) )");
+
+        // 14 to 17
+        nusSendString("(etl-test '( c1wl ) )");
+        nusSendString("(etl-test '( c1pc ) )");
+        //nusSendString("(etl-test '( c1vp ) )");
+        //nusSendString("(etl-test '( c1vp ) )");
+
+        // 18 to 21
+        nusSendString("(etl-test '( c1op ) )");
+        nusSendString("(etl-test '( c1of ) )");
+        nusSendString("(etl-test '( c1tp ) )");
+        nusSendString("(etl-test '( c1si ) )");
 
         /*
          
@@ -210,6 +244,13 @@ function initialisePressed() {
         );
 
         */
+
+        nusSendString(
+            "(set-val 'c1mx 255) " +
+            "(set-val 'c1fi 127) " +
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1fr 200)"
+        );
     }
 }
 
