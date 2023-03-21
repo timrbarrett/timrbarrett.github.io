@@ -237,6 +237,9 @@ function initialisePressed() {
         nusSendString("(etl-test '( c1tp ) )");
         nusSendString("(etl-test '( c1si ) )");
 
+        nusSendString("(etl-test '( c1re ) )");
+        nusSendString("(etl-test '( c1tv ) )");
+
         /*
          
         // tst-mo v1.0
@@ -246,10 +249,10 @@ function initialisePressed() {
         */
 
         nusSendString(
-            "(set-val 'c1mx 255) " +
+            "(set-val 'c1mx 127) " +
             "(set-val 'c1fi 127) " +
             "(set-val 'c1hb 1) " +
-            "(set-val 'c1fr 200)"
+            "(set-val 'c1fr 10)"
         );
     }
 }
