@@ -1,0 +1,149 @@
+   in defn receive_c1fr
+   CH1_IN, // channel 0
+   FR1A, // channel 1
+   FR1B, // channel 2
+   NRF_DRV_PWM_PIN_NOT_USED, // channel 3  
+   Note: Do not use | NRF_DRV_PWM_PIN_INVERTED as this causes pin to be default high rather than low 
+   
+   static void pwm_handler(nrfx_pwm_evt_type_t event_type) {
+
+  extern pubsub_store<def_c1pc>                                               c1pc; // channel one pulse count
+  extern pubsub_store<def_c1pu>                                               c1pu; // channel one pulse width
+  extern pubsub_store<def_c1re>                                               c1re; // channel one pulse count 
+
+  NRF_LOG_INFO("pwm handler"); 
+
+  // update c1pc with most recent app timer tick value.
+  // followed by the cascade of activity after that.
+
+  // to be reinstated
+
+  //c1pc.etlmock(app_timer_cnt_get());
+  //c1pc.etlcreate();
+
+  // NRFX_PWM_EVT_FINISHED => The PWM sequence has completed all repeats.
+  if (event_type == NRFX_PWM_EVT_FINISHED) {
+
+    // establish new c1op will calculate c1in
+    // we have c1op[1] and c1in[1] in history
+    //
+    // execute from c1in[0] to c1in[1]
+    // set sequence and repeats.
+
+  }
+
+
+  if (c1pu.messageStore.size()==0) { 
+    NRF_LOG_INFO("no c1pu value to set pulse to"); 
+    return;
+  }
+  if (c1re.messageStore.size()==0) {
+    NRF_LOG_INFO("no c1re value defaulting to 1"); 
+    c1re.etlmock(1);
+    c1re.etlcreate();
+  }
+
+  uint16_t pwm_input = PWM_TOP_VALUE - 50;
+  if (c1pu.messageStore.current_size>0) {
+    pwm_input = (PWM_TOP_VALUE - c1pu.messageStore.at(0).data1);
+  }
+
+  //c1pu.messageStore.at(0).data1;
+  NRF_LOG_INFO("PWM_input %i",pwm_input);
+
+  //static nrf_pwm_values_common_t values0 [] = {(PWM_TOP_VALUE - LONGEST_PULSE),0x8000};  
+  //static nrf_pwm_values_common_t values0 [] = {(PWM_TOP_VALUE - c1pu.messageStore.at(0).data1)};
+
+  nrfx_pwm_stop(&pwm_instance, false); // immediate stop. 
+  //nrfx_pwm_uninit(&pwm_instance);
+
+  while(!nrfx_pwm_is_stopped(&pwm_instance)) ; // wait until true
+
+  if (c1pu.messageStore.current_size>0) {
+    pwm_input = (PWM_TOP_VALUE - c1pu.messageStore.at(0).data1);
+  }
+  //values0[0] = pwm_input; // redefine it... just the zeroth element
+  // 0 - 1st pulse, 1 - 1st pause, 2 2nd pulse, 3 - 2nd pause
+  // 4 - 3rd pulse, 5 - 3rd pause, 6 - 4th pulse, 7 - 4th pause
+  // 8 - 5th pulse, 9 - freq pause
+
+  // create individual waveforms
+  int NUM_STEPS =4;
+
+   // a pulse and a pause repeated with hb flipping between.
+   /*
+   typedef struct {
+    uint16_t channel_0;   ///< Duty cycle value for channel 0.
+    uint16_t channel_1;   ///< Duty cycle value for channel 1.
+    uint16_t channel_2;   ///< Duty cycle value for channel 2.
+    uint16_t counter_top; ///< Top value for the pulse generator counter.
+  } nrf_pwm_values_wave_form_t;
+    */
+                                       //ch0        ch1       ch2       countertop
+                                       // pulse     hb+       hb-       pause
+  nrf_pwm_values_wave_form_t step1 = {pwm_input,  0x8000,   0,        pwm_input     };
+  nrf_pwm_values_wave_form_t step2 = {0x8000,     0x8000,   0,        pwm_input*7 };
+  nrf_pwm_values_wave_form_t step3 = {pwm_input,  0,        0x8000,   pwm_input     };
+  nrf_pwm_values_wave_form_t step4 = {0x8000,     0,        0x8000,   pwm_input*7 };
+  // create an array of waveforms
+  nrf_pwm_values_wave_form_t waveforms[NUM_STEPS] = {step1, step2, step3, step4};
+
+  // define the values union and assign the array of waveforms to it
+  nrf_pwm_values_t values;
+  values.p_wave_form = waveforms;
+
+  nrf_pwm_sequence_t sequence0 = {values, NUM_STEPS, 0, 0 }; // value, length, repeat, end delay (was 2) --- This is where length is changed for above
+    
+  //nrfx_pwm_simple_playback(&pwm_instance, &sequence0, 1, NRFX_PWM_FLAG_STOP); // instance, sequ, repeats, loop or stop
+    //_LOOP will loop indefinitely _STOP stops
+
+    // update effective c1pu value
+    nrfx_pwm_sequence_update(&pwm_instance, 0, &sequence0); // update it
+    // void nrfx_pwm_sequence_length_update(nrfx_pwm_t const *p_instance, uint8_t seq_id, uint16_t length)
+    //nrfx_pwm_init(&pwm_instance, &pwm_config0, pwm_handler);   //Changed to config0 as defined above
+    
+      NRF_LOG_INFO("PWN single repeat");
+      nrfx_pwm_simple_playback(&pwm_instance, &sequence0, 1, NRFX_PWM_FLAG_STOP); 
+    
+    /*
+      nrfx_pwm_stop(&pwm_instance,false); // do not wait until sequence finishes
+      nrfx_pwm_is_stopped()
+
+      to change sequence0
+      NRFX_STATIC_INLINE void nrfx_pwm_sequence_update(nrfx_pwm_t const *p_instance, uint8_t seq_id, nrf_pwm_sequence_t const *p_sequence)?
+      Function for updating the sequence data during playback.
+
+          Parameters
+          p_instance – [in] Pointer to the driver instance structure.
+          seq_id – [in] Identifier of the sequence (0 or 1).
+          p_sequence – [in] Pointer to the new sequence definition.
+
+      to change value0
+      NRFX_STATIC_INLINE void nrfx_pwm_sequence_values_update(nrfx_pwm_t const *p_instance, uint8_t seq_id, nrf_pwm_values_t values)?
+      Function for updating the pointer to the duty cycle values in the specified sequence during playback.
+
+          Parameters
+          p_instance – [in] Pointer to the driver instance structure.
+         seq_id – [in] Identifier of the sequence (0 or 1).
+         values – [in] New pointer to the duty cycle values.
+
+      to change length_value within sequence0
+      NRFX_STATIC_INLINE void nrfx_pwm_sequence_length_update(nrfx_pwm_t const *p_instance, uint8_t seq_id, uint16_t length)?
+      Function for updating the number of duty cycle values in the specified sequence during playback.
+
+          Parameters
+          p_instance – [in] Pointer to the driver instance structure.
+          seq_id – [in] Identifier of the sequence (0 or 1).
+          length – [in] New number of the duty cycle values.
+
+      I don't think this will have an effect.
+      NRFX_STATIC_INLINE void nrfx_pwm_sequence_repeats_update(nrfx_pwm_t const *p_instance, uint8_t seq_id, uint32_t repeats)?
+      Function for updating the number of repeats for duty cycle values in the specified sequence during playback.
+
+          Parameters
+          p_instance – [in] Pointer to the driver instance structure.
+          seq_id – [in] Identifier of the sequence (0 or 1).
+          repeats – [in] New number of repeats.
+
+    */
+}

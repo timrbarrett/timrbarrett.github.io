@@ -271,7 +271,17 @@ function decc1mxPressed() {
         nusSendString("(fndelta 'c1mx -8)\n");
     }
 }
+function incxc1mxPressed() {
+    if (connected) {
+        nusSendString("(fndelta 'c1mx 1)\n");
+    }
+}
 
+function decxc1mxPressed() {
+    if (connected) {
+        nusSendString("(fndelta 'c1mx -1)\n");
+    }
+}
 function incc1puPressed() {
     if (connected) {
         nusSendString("(fndelta 'c1pu 8)\n");
@@ -296,6 +306,18 @@ function decc1rePressed() {
     }
 }
 
+function incc1tvPressed() {
+    if (connected) {
+        nusSendString("(fndelta 'c1tv 1000)\n");
+    }
+}
+
+function decc1tvPressed() {
+    if (connected) {
+        nusSendString("(fndelta 'c1tv -1000)\n");
+    }
+}
+
 function setupPressed() {
     if (connect) {
         nusSendString(
@@ -313,10 +335,13 @@ function setupPressed() {
             "(set-val 'c1mx 255) " +
             "(set-val 'c1fi 127) " +
             "(set-val 'c1hb 1) " +
-            "(set-val 'c1fr 200)"
+            "(set-val 'c1fr 200) " +
+            "(set-val 'c1tv 1600) "
         );
     } 
 }
+
+
 // Sets button to either Connect or Disconnect
 function setConnButtonState(enabled) {
     if (enabled) {
