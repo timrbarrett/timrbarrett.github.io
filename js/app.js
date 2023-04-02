@@ -332,11 +332,27 @@ function setupPressed() {
         );
 
         nusSendString(
-            "(set-val 'c1mx 255) " +
-            "(set-val 'c1fi 127) " +
+            "(defun fndelta(type delta) " +
+            "   (progn " +
+            "       (etlmock(eval type) " +
+            "           (incf(car(cdr(etloutput(eval type) 0))) " +
+            "               delta " +
+            "           ) " +
+            "       ) " +
+            "       (etlcreate(eval type)) " +
+            "       (etloutput(eval type) 0) " +
+            "   )" +
+            ") \n");
+
+        nusSendString(
+            "(set-val 'c1mx 51) " +
+            "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 1) " +
-            "(set-val 'c1fr 200) " +
-            "(set-val 'c1tv 1600) "
+            "(set-val 'c1fr 10) " +
+            "(set-val 'c1wl 10000) " +
+            "(set-val 'c1of 0) " +
+            "(set-val 'c1tv 1600) " +
+            "(set-val 'c1pu 500) "
         );
     } 
 }
