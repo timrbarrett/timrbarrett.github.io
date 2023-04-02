@@ -255,12 +255,11 @@ function initialisePressed() {
             "(set-val 'c1fr 10) " +
             "(set-val 'c1wl 10000) " +
             "(set-val 'c1of 0) " +
-            "(set-val 'c1fn 4) " +
             "(set-val 'c1pu 100)"
         );
     }
 }
-
+            //"(set-val 'c1fn 4) " +
 function incc1mxPressed() {
     if (connected) {
         nusSendString("(fndelta 'c1mx 8)\n");
@@ -297,6 +296,27 @@ function decc1rePressed() {
     }
 }
 
+function setupPressed() {
+    if (connect) {
+        nusSendString(
+            "(defun set-val(type value) " +
+            "    (progn " +
+            "        (etlmock(eval type) value) " +
+            "        (etlcreate(eval type)) " +
+            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
+            "        (etloutput(eval type) 0) " +
+            "    ) " +
+            ")"
+        );
+
+        nusSendString(
+            "(set-val 'c1mx 255) " +
+            "(set-val 'c1fi 127) " +
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1fr 200)"
+        );
+    } 
+}
 // Sets button to either Connect or Disconnect
 function setConnButtonState(enabled) {
     if (enabled) {
