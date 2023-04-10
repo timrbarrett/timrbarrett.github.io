@@ -38,7 +38,11 @@
         }
     </style>
     <body>
-        <div id="connection-panel" class="button-group" ">
+        <div id="mode-panel" class="button-group">
+            <button id="modeRelaxButton" type="button" class="button">Relax</button>
+            <button id="modeTrainButton" type="button" class="button">Train</button>
+        </div>
+        <div id="connection-panel" class="button-group">
             <button id="clientConnectButton" type="button" class="button" onclick="connectionToggle()">Connect</button>
             <button id="initialiseButton" type="button" class="button" onclick="initialisePressed()">Initialise</button>
             <button id="incc1mxButton" type="button" class="button" onclick="incc1mxPressed()">Inc c1mx</button>
@@ -51,6 +55,8 @@
             <button id="decc1reButton" type="button" class="button" onclick="decc1rePressed()">Dec c1re</button>
             <button id="incc1tvButton" type="button" class="button" onclick="incc1tvPressed()">Inc c1tv</button>
             <button id="decc1tvButton" type="button" class="button" onclick="decc1tvPressed()">Dec c1tv</button>
+            <button id="incc1frButton" type="button" class="button" onclick="incc1frPressed()">Inc c1fr</button>
+            <button id="decc1frButton" type="button" class="button" onclick="decc1frPressed()">Dec c1fr</button>
             <button id="setupButton" type="button" class="button" onclick="setupPressed()">Setup</button>
         </div>
 

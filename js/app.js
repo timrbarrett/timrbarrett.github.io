@@ -311,15 +311,27 @@ function incc1tvPressed() {
         nusSendString("(fndelta 'c1tv 1000)\n");
     }
 }
-
 function decc1tvPressed() {
     if (connected) {
         nusSendString("(fndelta 'c1tv -1000)\n");
     }
 }
 
+function decc1frPressed() {
+    if (connected) {
+        nusSendString("(fndelta 'c1fr -1000)\n");
+    }
+}
+
+function incc1frPressed() {
+    if (connected) {
+        nusSendString("(fndelta 'c1fr 1000)\n");
+    }
+}
+
+
 function setupPressed() {
-    if (connect) {
+    if (connected) {
         nusSendString(
             "(defun set-val(type value) " +
             "    (progn " +
@@ -348,6 +360,7 @@ function setupPressed() {
             "(set-val 'c1mx 51) " +
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 1) " +
+            "(set-val 'c1re 1) " +
             "(set-val 'c1fr 10) " +
             "(set-val 'c1wl 10000) " +
             "(set-val 'c1of 0) " +
