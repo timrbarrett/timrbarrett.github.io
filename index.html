@@ -49,14 +49,16 @@
     </style>
     <body>
         <div id="mode-panel" class="button-group">
-            <button id="modeRelaxButton" type="button" class="modebutton">Relax</button>
-            <button id="modeTrainButton" type="button" class="modebutton">Train</button>
+            <button id="clientConnectButton" type="button" class="modebutton" onclick="connectionToggle()">Connect</button>
+            <button id="modeRelaxButton" type="button" class="modebutton" onclick="relaxPressed()">Relax</button>
+            <button id="modeTrainButton" type="button" class="modebutton" onclick="trainPressed()">Train</button>
+
         </div>
         <div id="modeConnectionWhitespace" class="divider">
 
         </div>
         <div id="connection-panel" class="button-group">
-            <button id="clientConnectButton" type="button" class="button" onclick="connectionToggle()">Connect</button>
+
             <button id="initialiseButton" type="button" class="button" onclick="initialisePressed()">Initialise</button>
             <button id="incc1mxButton" type="button" class="button" onclick="incc1mxPressed()">Inc c1mx</button>
             <button id="decc1mxButton" type="button" class="button" onclick="decc1mxPressed()">Dec c1mx</button>

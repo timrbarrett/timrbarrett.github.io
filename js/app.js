@@ -369,8 +369,85 @@ function setupPressed() {
         );
     } 
 }
+function relaxPressed() {
+    if (connected) {
+        nusSendString(
+            "(defun set-val(type value) " +
+            "    (progn " +
+            "        (etlmock(eval type) value) " +
+            "        (etlcreate(eval type)) " +
+            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
+            "        (etloutput(eval type) 0) " +
+            "    ) " +
+            ")"
+        );
 
+        nusSendString(
+            "(defun fndelta(type delta) " +
+            "   (progn " +
+            "       (etlmock(eval type) " +
+            "           (incf(car(cdr(etloutput(eval type) 0))) " +
+            "               delta " +
+            "           ) " +
+            "       ) " +
+            "       (etlcreate(eval type)) " +
+            "       (etloutput(eval type) 0) " +
+            "   )" +
+            ") \n");
 
+        nusSendString(
+            "(set-val 'c1mx 51) " +
+            "(set-val 'c1fi 255) " +
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1re 2) " +
+            "(set-val 'c1fr 10) " +
+            "(set-val 'c1wl 10000) " +
+            "(set-val 'c1of 0) " +
+            "(set-val 'c1tv 1600) " +
+            "(set-val 'c1pu 500) "
+        );
+    }
+}
+
+function trainPressed() {
+    if (connected) {
+        nusSendString(
+            "(defun set-val(type value) " +
+            "    (progn " +
+            "        (etlmock(eval type) value) " +
+            "        (etlcreate(eval type)) " +
+            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
+            "        (etloutput(eval type) 0) " +
+            "    ) " +
+            ")"
+        );
+
+        nusSendString(
+            "(defun fndelta(type delta) " +
+            "   (progn " +
+            "       (etlmock(eval type) " +
+            "           (incf(car(cdr(etloutput(eval type) 0))) " +
+            "               delta " +
+            "           ) " +
+            "       ) " +
+            "       (etlcreate(eval type)) " +
+            "       (etloutput(eval type) 0) " +
+            "   )" +
+            ") \n");
+
+        nusSendString(
+            "(set-val 'c1mx 51) " +
+            "(set-val 'c1fi 255) " +
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1re 1) " +
+            "(set-val 'c1fr 10) " +
+            "(set-val 'c1wl 10000) " +
+            "(set-val 'c1of 0) " +
+            "(set-val 'c1tv 1600) " +
+            "(set-val 'c1pu 500) "
+        );
+    }
+}
 // Sets button to either Connect or Disconnect
 function setConnButtonState(enabled) {
     if (enabled) {
