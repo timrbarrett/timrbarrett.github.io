@@ -13,9 +13,9 @@ body {
 
 }
 #terminal {
-  display: block;
+  display:block;
   position: fixed;
-  top: 190px;
+  top: 50%;
   bottom: 5%;
   width: 100%;
 }
