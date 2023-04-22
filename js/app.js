@@ -420,6 +420,22 @@ function relaxPressed() {
             "(set-val 'c1fn 0)"
         );
     }
+
+    var connectionGroup = document.getElementById("connection-panel");
+    $(connectionGroup).find('button').each(function () {
+        // Do something with each button here
+        var buttonText = $(this).text();
+        console.log(buttonText); // Example: Log the text of each button
+
+        var activeDuringRelax = ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx']
+        if (activeDuringRelax.indexOf(buttonText) !== -1) {
+            console.log(buttonText + ' in'); $(this).show();
+        } else {
+            console.log(buttonText + ' out'); $(this).hide();
+        }
+    });
+
+
 }
 
 function m250x2uPressed() {
