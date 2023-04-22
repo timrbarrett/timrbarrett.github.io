@@ -15,7 +15,6 @@ body {
 #terminal {
   display:block;
   position: fixed;
-  top: 50%;
   bottom: 5%;
   width: 100%;
 }

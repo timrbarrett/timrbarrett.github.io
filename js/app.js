@@ -329,6 +329,17 @@ function incc1frPressed() {
     }
 }
 
+function decc1wlPressed() {
+    if (connected) {
+        nusSendString("(fndelta 'c1wl -1000)\n");
+    }
+}
+
+function incc1wlPressed() {
+    if (connected) {
+        nusSendString("(fndelta 'c1wl 1000)\n");
+    }
+}
 
 function setupPressed() {
     if (connected) {
@@ -395,21 +406,23 @@ function relaxPressed() {
             "   )" +
             ") \n");
 
+        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
         nusSendString(
             "(set-val 'c1mx 51) " +
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 1) " +
-            "(set-val 'c1re 2) " +
             "(set-val 'c1fr 10) " +
-            "(set-val 'c1wl 10000) " +
+            "(set-val 'c1wl 320000) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
-            "(set-val 'c1pu 500) "
+            "(set-val 'c1pu 500) " +
+            "(set-val 'c1re 0) " +
+            "(set-val 'c1fn 0)"
         );
     }
 }
 
-function trainPressed() {
+function m250x2uPressed() {
     if (connected) {
         nusSendString(
             "(defun set-val(type value) " +
@@ -435,17 +448,227 @@ function trainPressed() {
             "   )" +
             ") \n");
 
+        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
         nusSendString(
             "(set-val 'c1mx 51) " +
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 1) " +
-            "(set-val 'c1re 1) " +
             "(set-val 'c1fr 10) " +
-            "(set-val 'c1wl 10000) " +
+            "(set-val 'c1wl 320000) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
-            "(set-val 'c1pu 500) "
+            "(set-val 'c1pu 500) " +
+            "(set-val 'c1re 3) " +
+            "(set-val 'c1fn 0)"
         );
+    }
+}
+
+function m250x2bPressed() {
+    if (connected) {
+        nusSendString(
+            "(defun set-val(type value) " +
+            "    (progn " +
+            "        (etlmock(eval type) value) " +
+            "        (etlcreate(eval type)) " +
+            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
+            "        (etloutput(eval type) 0) " +
+            "    ) " +
+            ")"
+        );
+
+        nusSendString(
+            "(defun fndelta(type delta) " +
+            "   (progn " +
+            "       (etlmock(eval type) " +
+            "           (incf(car(cdr(etloutput(eval type) 0))) " +
+            "               delta " +
+            "           ) " +
+            "       ) " +
+            "       (etlcreate(eval type)) " +
+            "       (etloutput(eval type) 0) " +
+            "   )" +
+            ") \n");
+
+        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
+        nusSendString(
+            "(set-val 'c1mx 51) " +
+            "(set-val 'c1fi 255) " +
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1fr 10) " +
+            "(set-val 'c1wl 320000) " +
+            "(set-val 'c1of 0) " +
+            "(set-val 'c1tv 1600) " +
+            "(set-val 'c1pu 500) " +
+            "(set-val 'c1re 4) " +
+            "(set-val 'c1fn 0)"
+        );
+    }
+}
+
+function m125x4uPressed() {
+    if (connected) {
+        nusSendString(
+            "(defun set-val(type value) " +
+            "    (progn " +
+            "        (etlmock(eval type) value) " +
+            "        (etlcreate(eval type)) " +
+            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
+            "        (etloutput(eval type) 0) " +
+            "    ) " +
+            ")"
+        );
+
+        nusSendString(
+            "(defun fndelta(type delta) " +
+            "   (progn " +
+            "       (etlmock(eval type) " +
+            "           (incf(car(cdr(etloutput(eval type) 0))) " +
+            "               delta " +
+            "           ) " +
+            "       ) " +
+            "       (etlcreate(eval type)) " +
+            "       (etloutput(eval type) 0) " +
+            "   )" +
+            ") \n");
+
+        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
+        nusSendString(
+            "(set-val 'c1mx 51) " +
+            "(set-val 'c1fi 255) " +
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1fr 10) " +
+            "(set-val 'c1wl 320000) " +
+            "(set-val 'c1of 0) " +
+            "(set-val 'c1tv 1600) " +
+            "(set-val 'c1pu 500) " +
+            "(set-val 'c1re 5) " +
+            "(set-val 'c1fn 0)"
+        );
+    }
+}
+
+function m125x4bPressed() {
+    if (connected) {
+        nusSendString(
+            "(defun set-val(type value) " +
+            "    (progn " +
+            "        (etlmock(eval type) value) " +
+            "        (etlcreate(eval type)) " +
+            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
+            "        (etloutput(eval type) 0) " +
+            "    ) " +
+            ")"
+        );
+
+        nusSendString(
+            "(defun fndelta(type delta) " +
+            "   (progn " +
+            "       (etlmock(eval type) " +
+            "           (incf(car(cdr(etloutput(eval type) 0))) " +
+            "               delta " +
+            "           ) " +
+            "       ) " +
+            "       (etlcreate(eval type)) " +
+            "       (etloutput(eval type) 0) " +
+            "   )" +
+            ") \n");
+
+        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
+        nusSendString(
+            "(set-val 'c1mx 51) " +
+            "(set-val 'c1fi 255) " +
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1fr 10) " +
+            "(set-val 'c1wl 320000) " +
+            "(set-val 'c1of 0) " +
+            "(set-val 'c1tv 1600) " +
+            "(set-val 'c1pu 500) " +
+            "(set-val 'c1re 6) " +
+            "(set-val 'c1fn 0)"
+        );
+    }
+}
+function trainPressed() {
+    if (connected) {
+
+        // create a simple devfun defn
+        // set the safe values, start it executing.
+        nusSendString(
+            "(defun set-val(type value) " +
+            "    (progn " +
+            "        (etlmock(eval type) value) " +
+            "        (etlcreate(eval type)) " +
+            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
+            "        (etloutput(eval type) 0) " +
+            "    ) " +
+            ")"
+        );
+
+        nusSendString(
+            "(defun set-val3(type val1 val2 val3) " +
+            "    (progn " +
+            "        (etlmock(eval type) val1 val2 val3) " +
+            "        (etlcreate(eval type)) " +
+            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
+            "        (etloutput(eval type) 0) " +
+            "    ) " +
+            ")"
+        );
+
+        //      waveform
+        //
+        // 255     -----------
+        // 127    /           \
+        // 000   -             ------
+        //
+        //       00112233445566778899
+        //       05050505050505050505
+        //
+        nusSendString(
+            "(etlclear devfun) " +
+
+            // ramp up
+            "(set-val3 'devfun 0.00 c1fi 000) " +
+            "(set-val3 'devfun 0.05 c1fi 064) " +
+            "(set-val3 'devfun 0.10 c1fi 127) " +
+            "(set-val3 'devfun 0.15 c1fi 196) " +
+            "(set-val3 'devfun 0.25 c1fi 255) " +
+
+            // ramp dn
+         // "(set-val3 'devfun 0.60 c1fi 000) " +
+            "(set-val3 'devfun 0.65 c1fi 127) " +
+            "(set-val3 'devfun 0.75 c1fi 000) " +
+            "(set-val3 'devfun 0.99 c1fi 000) " 
+        );
+        nusSendString(
+            "(defun fndelta(type delta) " +
+            "   (progn " +
+            "       (etlmock(eval type) " +
+            "           (incf(car(cdr(etloutput(eval type) 0))) " +
+            "               delta " +
+            "           ) " +
+            "       ) " +
+            "       (etlcreate(eval type)) " +
+            "       (etloutput(eval type) 0) " +
+            "   )" +
+            ") \n");
+
+        nusSendString(
+            "(set-val 'c1mx 51) " +
+            "(set-val 'c1fi 255) " +
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1re 2) " +
+            "(set-val 'c1fr 10) " +
+            "(set-val 'c1wl 64000) " +
+            "(set-val 'c1of 0) " +
+            "(set-val 'c1tv 1600) " +
+            "(set-val 'c1pu 200) " +
+            "(set-val 'c1fn 4)"
+
+        );
+
+
     }
 }
 // Sets button to either Connect or Disconnect

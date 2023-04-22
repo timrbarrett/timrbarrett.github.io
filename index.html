@@ -20,6 +20,8 @@
         }
         .button-group {
             display: flex;
+            column-gap: 20px;
+            row-gap: 20px;
             justify-content:center;
             flex-wrap: wrap;
             border: 1px //solid #cccccc;
@@ -28,7 +30,7 @@
 
         }
         .button {
-            padding: 100px, 160px;
+            padding: 140px, 160px;
             outline: none;
             border: 8px 16px;
             cursor: pointer;
@@ -53,6 +55,10 @@
             <button id="clientConnectButton" type="button" class="modebutton" onclick="connectionToggle()">Connect</button>
             <button id="modeRelaxButton" type="button" class="modebutton" onclick="relaxPressed()">Relax</button>
             <button id="modeTrainButton" type="button" class="modebutton" onclick="trainPressed()">Train</button>
+            <button id="mode250x2uButton" type="button" class="modebutton" onclick="m250x2uPressed()">250x2u</button>
+            <button id="mode250x2bButton" type="button" class="modebutton" onclick="m250x2bPressed()">250x2b</button>
+            <button id="mode125x4uButton" type="button" class="modebutton" onclick="m125x4uPressed()">125x2u</button>
+            <button id="mode125x4bButton" type="button" class="modebutton" onclick="m125x4bPressed()">125x2b</button>
 
         </div>
         <div id="modeConnectionWhitespace" class="divider">
@@ -71,11 +77,13 @@
             <button id="decc1tvButton" type="button" class="button" onclick="decc1tvPressed()">Dec c1tv</button>
             <button id="incc1frButton" type="button" class="button" onclick="incc1frPressed()">Inc c1fr</button>
             <button id="decc1frButton" type="button" class="button" onclick="decc1frPressed()">Dec c1fr</button>
+            <button id="incc1wlButton" type="button" class="button" onclick="incc1wlPressed()">Inc c1wl</button>
+            <button id="decc1wlButton" type="button" class="button" onclick="decc1wlPressed()">Dec c1wl</button>
             <button id="initialiseButton" type="button" class="button" onclick="initialisePressed()">Initialise</button>
             <button id="setupButton" type="button" class="button" onclick="setupPressed()">Setup</button>
         </div>
 
-        //<div id='terminal' style="position:relative; width:100%; height:100%"></div>
+        //<div id='terminal' style="position:absolute; width:100%; height:50%"></div>
 
         <script src='./js/hterm_all.js'></script>
         <script src='./js/app.js'></script>
