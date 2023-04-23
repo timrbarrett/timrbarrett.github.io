@@ -24,16 +24,6 @@ function connectionToggle() {
 
 function initialisePressed() {
     if (connected) {
-        //nusSendString("(room)\n");
-        /*nusSendString("(defun fndelt(type delta) ");
-        nusSendString(  "(progn ");
-        nusSendString(      "(etlmock(eval type) ");
-        nusSendString(          "(incf(car(cdr(etloutput(eval type) 0))) ");
-        nusSendString(              "delta ");
-        nusSendString(          ") ");
-        nusSendString(      ") ");
-        nusSendString(  "(etlcreate(eval type)) ");
-        nusSendString(")) \n");*/
 
         nusSendString(
             "(defun fndelta(type delta) " +
@@ -421,23 +411,24 @@ function relaxPressed() {
         );
     }
 
-    var connectionGroup = document.getElementById("connection-panel");
+    revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx']);
+    
+}
+// use: revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx']);
+function revealButtons(divName, buttonsToReveal) {
+    var connectionGroup = document.getElementById(divName);
     $(connectionGroup).find('button').each(function () {
-        // Do something with each button here
-        var buttonText = $(this).text();
-        console.log(buttonText); // Example: Log the text of each button
 
-        var activeDuringRelax = ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx']
-        if (activeDuringRelax.indexOf(buttonText) !== -1) {
+        var buttonText = $(this).text();
+
+        if (buttonsToReveal.indexOf(buttonText) !== -1) {
             console.log(buttonText + ' in'); $(this).show();
         } else {
             console.log(buttonText + ' out'); $(this).hide();
         }
     });
 
-
 }
-
 function m250x2uPressed() {
     if (connected) {
         nusSendString(
@@ -477,6 +468,8 @@ function m250x2uPressed() {
             "(set-val 'c1re 3) " +
             "(set-val 'c1fn 0)"
         );
+
+        revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx']);
     }
 }
 
@@ -704,7 +697,7 @@ function connect() {
                     'Please make sure the Web Bluetooth flag is enabled.');
         return;
     }
-    console.log('Requesting Bluetooth Device...');
+    console.log('Requesting Bluetooth Device...'); // 1
     navigator.bluetooth.requestDevice({
         //filters: [{services: []}]
         optionalServices: [bleNusServiceUUID],
@@ -712,46 +705,60 @@ function connect() {
     })
     .then(device => {
         bleDevice = device; 
-        console.log('Found ' + device.name);
+        console.log('Found ' + device.name); //2
         console.log('Connecting to GATT Server...');
         bleDevice.addEventListener('gattserverdisconnected', onDisconnected);
         return device.gatt.connect();
     })
     .then(server => {
-        console.log('Locate NUS service');
+        console.log('Locate NUS service'); // 3
         return server.getPrimaryService(bleNusServiceUUID);
     }).then(service => {
         nusService = service;
-        console.log('Found NUS service: ' + service.uuid);
+        console.log('Found NUS service: ' + service.uuid); // 4
     })
     .then(() => {
-        console.log('Locate RX characteristic');
+        console.log('Locate RX characteristic'); //5
         return nusService.getCharacteristic(bleNusCharRXUUID);
     })
     .then(characteristic => {
         rxCharacteristic = characteristic;
-        console.log('Found RX characteristic');
+        console.log('Found RX characteristic'); //6
     })
     .then(() => {
-        console.log('Locate TX characteristic');
+        console.log('Locate TX characteristic'); //7
         return nusService.getCharacteristic(bleNusCharTXUUID);
     })
     .then(characteristic => {
         txCharacteristic = characteristic;
-        console.log('Found TX characteristic');
+        console.log('Found TX characteristic'); //8
     })
     .then(() => {
-        console.log('Enable notifications');
+        console.log('Enable notifications'); //9
         return txCharacteristic.startNotifications();
     })
     .then(() => {
-        console.log('Notifications started');
+        console.log('Notifications started'); //10
         txCharacteristic.addEventListener('characteristicvaluechanged',
                                           handleNotifications);
         connected = true;
         window.term_.io.println('\r\n' + bleDevice.name + ' Connected.');
         //nusSendString('\r');
         setConnButtonState(true);
+
+        // reveal only the relevant buttons
+        var connectionGroup = document.getElementById("mode-panel");
+        $(connectionGroup).find('button').each(function () {
+
+            var buttonText = $(this).text();
+
+            var activeDuringConnection = ['Relax', 'Train', '250x2u', '250x2b', '125x4u', '125x4b']
+            if (activeDuringConnection.indexOf(buttonText) !== -1) {
+                console.log(buttonText + ' in'); $(this).show();
+            } else {
+                console.log(buttonText + ' out'); $(this).hide();
+            }
+        });
     })
     .catch(error => {
         console.log('' + error);

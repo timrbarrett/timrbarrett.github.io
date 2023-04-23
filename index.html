@@ -53,34 +53,34 @@
     <body>
         <div id="mode-panel" class="button-group">
             <button id="clientConnectButton" type="button" class="modebutton" onclick="connectionToggle()">Connect</button>
-            <button id="modeRelaxButton" type="button" class="modebutton" onclick="relaxPressed()">Relax</button>
-            <button id="modeTrainButton" type="button" class="modebutton" onclick="trainPressed()">Train</button>
-            <button id="mode250x2uButton" type="button" class="modebutton" onclick="m250x2uPressed()">250x2u</button>
-            <button id="mode250x2bButton" type="button" class="modebutton" onclick="m250x2bPressed()">250x2b</button>
-            <button id="mode125x4uButton" type="button" class="modebutton" onclick="m125x4uPressed()">125x2u</button>
-            <button id="mode125x4bButton" type="button" class="modebutton" onclick="m125x4bPressed()">125x2b</button>
+            <button id="modeRelaxButton" type="button" class="modebutton" onclick="relaxPressed()" hidden>Relax</button>
+            <button id="modeTrainButton" type="button" class="modebutton" onclick="trainPressed()" hidden>Train</button>
+            <button id="mode250x2uButton" type="button" class="modebutton" onclick="m250x2uPressed()" hidden>250x2u</button>
+            <button id="mode250x2bButton" type="button" class="modebutton" onclick="m250x2bPressed()" hidden>250x2b</button>
+            <button id="mode125x4uButton" type="button" class="modebutton" onclick="m125x4uPressed()" hidden>125x4u</button>
+            <button id="mode125x4bButton" type="button" class="modebutton" onclick="m125x4bPressed()" hidden>125x4b</button>
 
         </div>
         <div id="modeConnectionWhitespace" class="divider">
 
         </div>
-        <div id="connection-panel" class="button-group">
-            <button id="incc1mxButton" type="button" class="button" onclick="incc1mxPressed()">Inc c1mx</button>
-            <button id="decc1mxButton" type="button" class="button" onclick="decc1mxPressed()">Dec c1mx</button>
-            <button id="incxc1mxButton" type="button" class="button" onclick="incxc1mxPressed()">Inc xc1mx</button>
-            <button id="decxc1mxButton" type="button" class="button" onclick="decxc1mxPressed()">Dec xc1mx</button>
-            <button id="incc1puButton" type="button" class="button" onclick="incc1puPressed()">Inc c1pu</button>
-            <button id="decc1puButton" type="button" class="button" onclick="decc1puPressed()">Dec c1pu</button>
-            <button id="incc1reButton" type="button" class="button" onclick="incc1rePressed()">Inc c1re</button>
-            <button id="decc1reButton" type="button" class="button" onclick="decc1rePressed()">Dec c1re</button>
-            <button id="incc1tvButton" type="button" class="button" onclick="incc1tvPressed()">Inc c1tv</button>
-            <button id="decc1tvButton" type="button" class="button" onclick="decc1tvPressed()">Dec c1tv</button>
-            <button id="incc1frButton" type="button" class="button" onclick="incc1frPressed()">Inc c1fr</button>
-            <button id="decc1frButton" type="button" class="button" onclick="decc1frPressed()">Dec c1fr</button>
-            <button id="incc1wlButton" type="button" class="button" onclick="incc1wlPressed()">Inc c1wl</button>
-            <button id="decc1wlButton" type="button" class="button" onclick="decc1wlPressed()">Dec c1wl</button>
-            <button id="initialiseButton" type="button" class="button" onclick="initialisePressed()">Initialise</button>
-            <button id="setupButton" type="button" class="button" onclick="setupPressed()">Setup</button>
+        <div id="adjustment-panel" class="button-group">
+            <button id="incc1mxButton" type="button" class="button" onclick="incc1mxPressed()" hidden>Inc c1mx</button>
+            <button id="decc1mxButton" type="button" class="button" onclick="decc1mxPressed()" hidden>Dec c1mx</button>
+            <button id="incxc1mxButton" type="button" class="button" onclick="incxc1mxPressed()" hidden>Inc xc1mx</button>
+            <button id="decxc1mxButton" type="button" class="button" onclick="decxc1mxPressed()" hidden>Dec xc1mx</button>
+            <button id="incc1puButton" type="button" class="button" onclick="incc1puPressed()" hidden>Inc c1pu</button>
+            <button id="decc1puButton" type="button" class="button" onclick="decc1puPressed()" hidden>Dec c1pu</button>
+            <button id="incc1reButton" type="button" class="button" onclick="incc1rePressed()" hidden>Inc c1re</button>
+            <button id="decc1reButton" type="button" class="button" onclick="decc1rePressed()" hidden>Dec c1re</button>
+            <button id="incc1tvButton" type="button" class="button" onclick="incc1tvPressed()" hidden>Inc c1tv</button>
+            <button id="decc1tvButton" type="button" class="button" onclick="decc1tvPressed()" hidden>Dec c1tv</button>
+            <button id="incc1frButton" type="button" class="button" onclick="incc1frPressed()" hidden>Inc c1fr</button>
+            <button id="decc1frButton" type="button" class="button" onclick="decc1frPressed()" hidden>Dec c1fr</button>
+            <button id="incc1wlButton" type="button" class="button" onclick="incc1wlPressed()" hidden>Inc c1wl</button>
+            <button id="decc1wlButton" type="button" class="button" onclick="decc1wlPressed()" hidden>Dec c1wl</button>
+            <button id="initialiseButton" type="button" class="button" onclick="initialisePressed()" hidden>Initialise</button>
+            <button id="setupButton" type="button" class="button" onclick="setupPressed()" hidden>Setup</button>
         </div>
 
 
