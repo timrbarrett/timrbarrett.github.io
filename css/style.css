@@ -22,3 +22,18 @@ body {
 #connection-panel {
   background: transparent;
 }
+
+.displayButton {
+    display: flex;
+    align-items: center;
+    background: #b6ff00;
+}
+
+
+.button__etltype,
+.button__value {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 24px;
+
+}

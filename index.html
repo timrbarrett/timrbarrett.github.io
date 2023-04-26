@@ -49,6 +49,13 @@
             height: 50px;
             background: #ffd800
         }
+        .displayButton {
+            display: flex;
+            height: 50px;
+            cursor: pointer;
+            -ms-transform: translateY(-50%);
+            transform: translateY(50%);
+        }
     </style>
     <body>
         <div id="mode-panel" class="button-group">
@@ -83,6 +90,12 @@
             <button id="setupButton" type="button" class="button" onclick="setupPressed()" hidden>Setup</button>
         </div>
 
+        <div id = "presentationPanel" class = "button-group">
+            <button id="c1mx" type="button" class="displayButton"> 
+                <span class="button__etltype">c1mx</span>
+                <span class="button__value">---</span>
+            </button>
+        </div>
 
         // define the buttons not to hide during relax mode
 

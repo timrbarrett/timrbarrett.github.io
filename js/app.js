@@ -792,6 +792,7 @@ function onDisconnected() {
     setConnButtonState(false);
 }
 
+// handleInbound text from limbstim
 function handleNotifications(event) {
     console.log('notification');
     let value = event.target.value;
@@ -802,14 +803,46 @@ function handleNotifications(event) {
         
         if (value.getUint8(i) == 10) {
             window.term_.io.println(str);
+            console.log(str);
+
+            const regex = /\((\w+)\s(\d+)\)/;
+            const match = regex.exec(str);
+
+            if (match) {
+                const variableOne = match[1]; // "c1mx"
+                const variableTwo = parseInt(match[2]); // 127
+                console.log(variableOne, variableTwo);
+
+                // get the button__value element by its class name
+                const buttonValueElement = document.querySelector('#c1mx .button__value');
+
+                // update the text content of the element
+                buttonValueElement.textContent = variableTwo;
+
+
+                // get an array of all the button elements in the button-group container
+                //const buttonElements = document.querySelectorAll('#presentationPanel .button-group button');
+                //console.log(buttonElements);
+                // loop through each button element and update its button__value text content
+                //buttonElements.forEach(buttonElement => {
+                 //   if (buttonElement.id === 'c1mx') {
+                 //       buttonElement.querySelector('.button__value').textContent = variableTwo;
+                 //   } 
+                //});
+            } else {
+                console.log("No match found.");
+            }
             //window.term_.io.println(' ');
             str = "";
         } else {
             str += String.fromCharCode(value.getUint8(i));
         }
     }
-    window.term_.io.println(str);
+
+    //window.term_.io.println(str);
+
 }
+
 
 function nusSendString(s) {
     if(bleDevice && bleDevice.gatt.connected ) {
