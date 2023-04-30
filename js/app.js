@@ -272,6 +272,30 @@ function decxc1mxPressed() {
         nusSendString("(fndelta 'c1mx -1)\n");
     }
 }
+
+function incc1fiPressed() {
+    if (connected) {
+        nusSendString("(fndelta 'c1fi 8)\n");
+    }
+}
+
+function decc1fiPressed() {
+    if (connected) {
+        nusSendString("(fndelta 'c1fi -8)\n");
+    }
+}
+function incxc1fiPressed() {
+    if (connected) {
+        nusSendString("(fndelta 'c1fi 1)\n");
+    }
+}
+
+function decxc1fiPressed() {
+    if (connected) {
+        nusSendString("(fndelta 'c1fi -1)\n");
+    }
+}
+
 function incc1puPressed() {
     if (connected) {
         nusSendString("(fndelta 'c1pu 8)\n");
@@ -411,7 +435,8 @@ function relaxPressed() {
         );
     }
 
-    revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx']);
+    revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
+                                       'Inc c1fi', 'Dec c1fi', 'Inc xc1fi', 'Dec xc1fi'    ]);
     
 }
 // use: revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx']);
@@ -615,16 +640,43 @@ function trainPressed() {
         );
 
         nusSendString(
-            "(defun set-val3(type val1 val2 val3) " +
+            "(defun set-val3(phase type activation) " +
             "    (progn " +
-            "        (etlmock(eval type) val1 val2 val3) " +
-            "        (etlcreate(eval type)) " +
-            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
-            "        (etloutput(eval type) 0) " +
+            "        (etlmock devfun phase type activation) " +
+            "        (etlcreate devfun) " +
+            "        (etloutput devfun 0) " +
             "    ) " +
             ")"
         );
+        nusSendString(
+            "(etlclear devfun) "
+        );
 
+        nusSendString(
+            "(set-val3  0.00 c1hb 1) " +
+            "(set-val3 0.04 c1fi 180) " +
+            "(set-val3  0.08 c1fi 235) " +
+            "(set-val3  0.17 c1fi 250) " +
+            "(set-val3  0.25 c1fi 255) " +
+            "(set-val3  0.33 c1fi 250) " +
+            "(set-val3  0.42 c1fi 235) " +
+            "(set-val3  0.50 c1fi 180) "
+        );
+
+        nusSendString(
+            "(set-val3 0.50 c1hb 2) " +
+            "(set-val3 0.54 c1fi 180) " +
+            "(set-val3  0.58 c1fi 235) " +
+            "(set-val3  0.67 c1fi 250) " +
+            "(set-val3  0.75 c1fi 255) " +
+            "(set-val3  0.83 c1fi 250) " +
+            "(set-val3  0.92 c1fi 235) " +
+            "(set-val3  0.96 c1fi 180) "
+
+        );
+
+        
+        
         //      waveform
         //
         // 255     -----------
@@ -634,22 +686,8 @@ function trainPressed() {
         //       00112233445566778899
         //       05050505050505050505
         //
-        nusSendString(
-            "(etlclear devfun) " +
 
-            // ramp up
-            "(set-val3 'devfun 0.00 c1fi 000) " +
-            "(set-val3 'devfun 0.05 c1fi 064) " +
-            "(set-val3 'devfun 0.10 c1fi 127) " +
-            "(set-val3 'devfun 0.15 c1fi 196) " +
-            "(set-val3 'devfun 0.25 c1fi 255) " +
 
-            // ramp dn
-         // "(set-val3 'devfun 0.60 c1fi 000) " +
-            "(set-val3 'devfun 0.65 c1fi 127) " +
-            "(set-val3 'devfun 0.75 c1fi 000) " +
-            "(set-val3 'devfun 0.99 c1fi 000) " 
-        );
         nusSendString(
             "(defun fndelta(type delta) " +
             "   (progn " +
@@ -669,15 +707,16 @@ function trainPressed() {
             "(set-val 'c1hb 1) " +
             "(set-val 'c1re 2) " +
             "(set-val 'c1fr 10) " +
-            "(set-val 'c1wl 64000) " +
+            "(set-val 'c1wl 2666) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
             "(set-val 'c1pu 200) " +
-            "(set-val 'c1fn 4)"
+            "(set-val 'c1fn 4) "
 
         );
 
-
+        revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
+            'Inc c1wl', 'Dec c1wl', 'Inc c1re', 'Dec c1re' ]);
     }
 }
 // Sets button to either Connect or Disconnect
