@@ -52,13 +52,14 @@ function initialisePressed() {
             ")"
         );
 
+        /*
         nusSendString(
             "(set-val 'c1mx 255) " +
             "(set-val 'c1fi 127) " +
             "(set-val 'c1hb 1) " +
             "(set-val 'c1fr 200)"
         );
-
+        */
 
         // aeq v1.1
         /*
@@ -193,27 +194,37 @@ function initialisePressed() {
         // 1 to 3 are triple types
 
         // 4 to 8 
-        nusSendString( "(etl-test '(devros ) )" );
+        nusSendString("(etl-test '(devros) ) ");
+
+        // why is symbol table full?
+        /*nusSendString("(test1to5 '(devros) ) ");
+        nusSendString("(tst-co type) ");
+        nusSendString("(tst-cl type) ");
+        nusSendString("(tst-mo type) ");
+        nusSendString("(tst-cr type) ");
+        nusSendString("(tst-ou type) ");
+        nusSendString("(tst-cl type) ");*/
+
         nusSendString(
-            "(etl-test '( devthr ) )"
+            "(etl-test '( devthr ) ) "
         );
         nusSendString(
-            "(etl-test '(devgtt ) )"
+            "(etl-test '(devgtt ) ) "
         );
         nusSendString(
-            "(etl-test '(devris ) )"
+            "(etl-test '(devris ) ) "
         );
         nusSendString(
-            "(etl-test '(devutc ) )"
+            "(etl-test '(devutc ) ) "
         );
         
 
         // 9 to 13
-        nusSendString("(etl-test '( c1mx ) )" );
-        nusSendString("(etl-test '( c1pu ) )");
-        nusSendString("(etl-test '( c1fr ) )");
-        nusSendString("(etl-test '( c1fi ) )");
-        nusSendString("(etl-test '( c1hb ) )");
+        nusSendString("(etl-test '( c1mx ) ) " );
+        nusSendString("(etl-test '( c1pu ) ) ");
+        nusSendString("(etl-test '( c1fr ) ) ");
+        nusSendString("(etl-test '( c1fi ) ) ");
+        nusSendString("(etl-test '( c1hb ) ) ");
 
         // 14 to 17
         nusSendString("(etl-test '( c1wl ) )");
@@ -229,6 +240,7 @@ function initialisePressed() {
 
         nusSendString("(etl-test '( c1re ) )");
         nusSendString("(etl-test '( c1tv ) )");
+        nusSendString("(etl-test '( c1in ) )"); // why does this respond withh (c1in 24)(nil 0)
 
         /*
          
@@ -238,6 +250,7 @@ function initialisePressed() {
 
         */
 
+        /*
         nusSendString(
             "(set-val 'c1mx 127) " +
             "(set-val 'c1fi 255) " +
@@ -247,6 +260,8 @@ function initialisePressed() {
             "(set-val 'c1of 0) " +
             "(set-val 'c1pu 100)"
         );
+        */
+
     }
 }
             //"(set-val 'c1fn 4) " +
@@ -686,7 +701,7 @@ function trainPressed() {
         //       00112233445566778899
         //       05050505050505050505
         //
-
+          // c1tp = 19 c1in = 24
 
         nusSendString(
             "(defun fndelta(type delta) " +
@@ -791,7 +806,7 @@ function connect() {
 
             var buttonText = $(this).text();
 
-            var activeDuringConnection = ['Relax', 'Train', '250x2u', '250x2b', '125x4u', '125x4b']
+            var activeDuringConnection = ['Relax', 'Train', '250x2u', '250x2b', '125x4u', '125x4b', 'Initialise']
             if (activeDuringConnection.indexOf(buttonText) !== -1) {
                 console.log(buttonText + ' in'); $(this).show();
             } else {
