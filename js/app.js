@@ -370,6 +370,20 @@ function incc1wlPressed() {
     }
 }
 
+function decc1pcPressed() {
+    if (connected) {
+        nusSendString("(fndelta 'c1pc -1000)\n");
+        nusSendString("(etloutput c1in 0) ");
+    }
+}
+
+function incc1pcPressed() {
+    if (connected) {
+        nusSendString("(fndelta 'c1pc 1000)\n");
+        nusSendString("(etloutput c1in 0) ");
+    }
+}
+
 function setupPressed() {
     if (connected) {
         nusSendString(
@@ -668,7 +682,7 @@ function trainPressed() {
         );
 
         nusSendString(
-            "(set-val3  0.00 c1hb 1) " +
+            "(set-val3  0.00 c1hb 1) " + // 0 
             "(set-val3 0.04 c1fi 180) " +
             "(set-val3  0.08 c1fi 235) " +
             "(set-val3  0.17 c1fi 250) " +
@@ -721,17 +735,19 @@ function trainPressed() {
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 1) " +
             "(set-val 'c1re 2) " +
-            "(set-val 'c1fr 10) " +
+            "(set-val 'c1fr 10) " + // this starts PWM loop going
+            "(set-val 'c1pc 0)" +
             "(set-val 'c1wl 2666) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
-            "(set-val 'c1pu 200) " +
-            "(set-val 'c1fn 4) "
+            "(set-val 'c1pu 200)  " +
+            "(set-val 'c1fn 4) "  // this starts the op, of, tp, in cascade going
+
 
         );
 
         revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
-            'Inc c1wl', 'Dec c1wl', 'Inc c1re', 'Dec c1re' ]);
+            'Inc c1wl', 'Dec c1wl', 'Inc c1re', 'Dec c1re', 'Inc c1wl', 'Dec c1wl', 'Inc c1pc', 'Dec c1pc',  ]);
     }
 }
 // Sets button to either Connect or Disconnect

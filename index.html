@@ -9,9 +9,7 @@
         <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-
         <link rel="shortcut icon" href="./img/favicon.png">
-
         <link href="./css/style.css" rel="stylesheet" type='text/css'>
     </head>
     <style>
@@ -27,24 +25,17 @@
             border: 1px //solid #cccccc;
             border-radius: 4px;
             overflow: visible;
-
         }
         .button {
-            //padding: 140px, 160px;
             outline: none;
-            //border: 8px 16px;
             cursor: pointer;
-            //border-right: 10px solid #cccccc;
             width:  75px;
             height: 50px;
             background: #088bfa
         }
         .modebutton {
-            //padding: 160px, 160px;
             outline: none;
-            //border: 4px;
             cursor: pointer;
-            //border-right: 10px solid #cccccc;
             width: 75px;
             height: 50px;
             background: #ffd800
@@ -87,6 +78,9 @@
             <button id="incc1wlButton" type="button" class="button" onclick="incc1wlPressed()" hidden>Inc c1wl</button>
             <button id="decc1wlButton" type="button" class="button" onclick="decc1wlPressed()" hidden>Dec c1wl</button>
 
+            <button id="incc1pcButton" type="button" class="button" onclick="incc1pcPressed()" hidden>Inc c1pc</button>
+            <button id="decc1pcButton" type="button" class="button" onclick="decc1pcPressed()" hidden>Dec c1pc</button>
+
             <button id="incc1fiButton" type="button" class="button" onclick="incc1fiPressed()" hidden>Inc c1fi</button>
             <button id="decc1fiButton" type="button" class="button" onclick="decc1fiPressed()" hidden>Dec c1fi</button>
             <button id="incxc1fiButton" type="button" class="button" onclick="incxc1fiPressed()" hidden>Inc xc1fi</button>
@@ -102,16 +96,6 @@
                 <span class="button__value">---</span>
             </button>
         </div>
-
-        // define the buttons not to hide during relax mode
-
-
-        <ul id="activeDuringRelax">
-            <li>incc1mxButton</li>
-            <li>decc1mxButton</li>
-            <li>incxc1mxButton</li>
-            <li>decxc1mxButton</li>
-        </ul>
 
         //<div id='terminal' style="position:absolute; width:100%; height:50%"></div>
 
