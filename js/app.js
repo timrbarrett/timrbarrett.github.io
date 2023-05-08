@@ -384,6 +384,40 @@ function incc1pcPressed() {
     }
 }
 
+function setc1hbto1Pressed() {
+    if (connected) {
+        nusSendString(
+            "(defun set-val(type value) " +
+            "    (progn " +
+            "        (etlmock(eval type) value) " +
+            "        (etlcreate(eval type)) " +
+            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
+            "        (etloutput(eval type) 0) " +
+            "    ) " +
+            ")"
+        );
+        nusSendString("(set-val 'c1hb 1)\n");
+        nusSendString("(etloutput c1hb 0) ");
+    }
+}
+
+function setc1hbto2Pressed() {
+    if (connected) {
+        nusSendString(
+            "(defun set-val(type value) " +
+            "    (progn " +
+            "        (etlmock(eval type) value) " +
+            "        (etlcreate(eval type)) " +
+            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
+            "        (etloutput(eval type) 0) " +
+            "    ) " +
+            ")"
+        );
+        nusSendString("(set-val 'c1hb 2)\n");
+        nusSendString("(etloutput c1hb 0) ");
+    }
+}
+
 function setupPressed() {
     if (connected) {
         nusSendString(
@@ -682,25 +716,25 @@ function trainPressed() {
         );
 
         nusSendString(
-            "(set-val3  0.00 c1hb 1) " + // 0 
-            "(set-val3 0.04 c1fi 180) " +
+            "(set-val3  0.00 c1re 7) " + // 0 
+            "(set-val3 0.04 c1fi 160) " +
             "(set-val3  0.08 c1fi 235) " +
             "(set-val3  0.17 c1fi 250) " +
             "(set-val3  0.25 c1fi 255) " +
             "(set-val3  0.33 c1fi 250) " +
             "(set-val3  0.42 c1fi 235) " +
-            "(set-val3  0.50 c1fi 180) "
+            "(set-val3  0.50 c1fi 160) "
         );
 
         nusSendString(
-            "(set-val3 0.50 c1hb 2) " +
-            "(set-val3 0.54 c1fi 180) " +
+            "(set-val3 0.50 c1re 8) " +
+            "(set-val3 0.54 c1fi 160) " +
             "(set-val3  0.58 c1fi 235) " +
             "(set-val3  0.67 c1fi 250) " +
             "(set-val3  0.75 c1fi 255) " +
             "(set-val3  0.83 c1fi 250) " +
             "(set-val3  0.92 c1fi 235) " +
-            "(set-val3  0.96 c1fi 180) "
+            "(set-val3  0.96 c1fi 160) "
 
         );
 
@@ -733,21 +767,22 @@ function trainPressed() {
         nusSendString(
             "(set-val 'c1mx 51) " +
             "(set-val 'c1fi 255) " +
-            "(set-val 'c1hb 1) " +
+            //"(set-val 'c1hb 1) " +
             "(set-val 'c1re 2) " +
             "(set-val 'c1fr 10) " + // this starts PWM loop going
-            "(set-val 'c1pc 0)" +
+            // "(set-val 'c1pc 0)" +
             "(set-val 'c1wl 2666) " +
             "(set-val 'c1of 0) " +
-            "(set-val 'c1tv 1600) " +
-            "(set-val 'c1pu 200)  " +
+            // "(set-val 'c1tv 1600) " +
+            //"(set-val 'c1pu 200)  " +
             "(set-val 'c1fn 4) "  // this starts the op, of, tp, in cascade going
 
 
         );
 
         revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
-            'Inc c1wl', 'Dec c1wl', 'Inc c1re', 'Dec c1re', 'Inc c1wl', 'Dec c1wl', 'Inc c1pc', 'Dec c1pc',  ]);
+            'Inc c1wl', 'Dec c1wl', 'Inc c1re', 'Dec c1re', 'Inc c1wl', 'Dec c1wl', 'Inc c1pc', 'Dec c1pc',
+            'Set c1hb=1', 'Set c1hb=2'        ]);
     }
 }
 // Sets button to either Connect or Disconnect
