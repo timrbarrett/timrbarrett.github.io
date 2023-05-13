@@ -23,43 +23,11 @@ function connectionToggle() {
 }
 
 function initialisePressed() {
+
+    defineSetVal();
+    defineFndelta();
+
     if (connected) {
-
-        nusSendString(
-            "(defun fndelta(type delta) " +
-            "   (progn " +
-            "       (etlmock(eval type) " +
-            "           (incf(car(cdr(etloutput(eval type) 0))) " +
-            "               delta " +
-            "           ) " +
-            "       ) " +
-            "       (etlcreate(eval type)) " +
-            "       (etloutput(eval type) 0) " +
-            "   )" +
-            ") \n");
-
-        // to include a double quote character in a string in js
-        // one needs to escape the double quotes
-        // https://stackoverflow.com/questions/10055773/double-quote-in-javascript-string
-        nusSendString(
-            "(defun set-val(type value) " +
-            "    (progn " +
-            "        (etlmock(eval type) value) " +
-            "        (etlcreate(eval type)) " +
-            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
-            "        (etloutput(eval type) 0) " +
-            "    ) " +
-            ")"
-        );
-
-        /*
-        nusSendString(
-            "(set-val 'c1mx 255) " +
-            "(set-val 'c1fi 127) " +
-            "(set-val 'c1hb 1) " +
-            "(set-val 'c1fr 200)"
-        );
-        */
 
         // aeq v1.1
         /*
@@ -266,111 +234,130 @@ function initialisePressed() {
 }
             //"(set-val 'c1fn 4) " +
 function incc1mxPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1mx 8)\n");
     }
 }
 
 function decc1mxPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1mx -8)\n");
     }
 }
 function incxc1mxPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1mx 1)\n");
     }
 }
 
 function decxc1mxPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1mx -1)\n");
     }
 }
 
 function incc1fiPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1fi 8)\n");
     }
 }
 
 function decc1fiPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1fi -8)\n");
     }
 }
 function incxc1fiPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1fi 1)\n");
     }
 }
 
 function decxc1fiPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1fi -1)\n");
     }
 }
 
 function incc1puPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1pu 8)\n");
     }
 }
 
 function decc1puPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1pu -8)\n");
     }
 }
 
 function incc1rePressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1re 1)\n");
     }
 }
 
 function decc1rePressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1re -1)\n");
     }
 }
 
 function incc1tvPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1tv 1000)\n");
     }
 }
 function decc1tvPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1tv -1000)\n");
     }
 }
 
 function decc1frPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1fr -1000)\n");
     }
 }
 
 function incc1frPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1fr 1000)\n");
     }
 }
 
 function decc1wlPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1wl -1000)\n");
     }
 }
 
 function incc1wlPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1wl 1000)\n");
     }
 }
 
 function decc1pcPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1pc -1000)\n");
         nusSendString("(etloutput c1in 0) ");
@@ -378,6 +365,7 @@ function decc1pcPressed() {
 }
 
 function incc1pcPressed() {
+    defineFndelta();
     if (connected) {
         nusSendString("(fndelta 'c1pc 1000)\n");
         nusSendString("(etloutput c1in 0) ");
@@ -385,64 +373,35 @@ function incc1pcPressed() {
 }
 
 function setc1hbto1Pressed() {
+
+    defineSetVal();
+    defineFndelta();
+
     if (connected) {
-        nusSendString(
-            "(defun set-val(type value) " +
-            "    (progn " +
-            "        (etlmock(eval type) value) " +
-            "        (etlcreate(eval type)) " +
-            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
-            "        (etloutput(eval type) 0) " +
-            "    ) " +
-            ")"
-        );
+        
         nusSendString("(set-val 'c1hb 1)\n");
         nusSendString("(etloutput c1hb 0) ");
     }
 }
 
 function setc1hbto2Pressed() {
+
+    defineSetVal();
+    defineFndelta();
+
     if (connected) {
-        nusSendString(
-            "(defun set-val(type value) " +
-            "    (progn " +
-            "        (etlmock(eval type) value) " +
-            "        (etlcreate(eval type)) " +
-            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
-            "        (etloutput(eval type) 0) " +
-            "    ) " +
-            ")"
-        );
+        
         nusSendString("(set-val 'c1hb 2)\n");
         nusSendString("(etloutput c1hb 0) ");
     }
 }
 
 function setupPressed() {
-    if (connected) {
-        nusSendString(
-            "(defun set-val(type value) " +
-            "    (progn " +
-            "        (etlmock(eval type) value) " +
-            "        (etlcreate(eval type)) " +
-            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
-            "        (etloutput(eval type) 0) " +
-            "    ) " +
-            ")"
-        );
 
-        nusSendString(
-            "(defun fndelta(type delta) " +
-            "   (progn " +
-            "       (etlmock(eval type) " +
-            "           (incf(car(cdr(etloutput(eval type) 0))) " +
-            "               delta " +
-            "           ) " +
-            "       ) " +
-            "       (etlcreate(eval type)) " +
-            "       (etloutput(eval type) 0) " +
-            "   )" +
-            ") \n");
+    defineSetVal();
+    defineFndelta();
+
+    if (connected) {
 
         nusSendString(
             "(set-val 'c1mx 51) " +
@@ -458,30 +417,11 @@ function setupPressed() {
     } 
 }
 function relaxPressed() {
-    if (connected) {
-        nusSendString(
-            "(defun set-val(type value) " +
-            "    (progn " +
-            "        (etlmock(eval type) value) " +
-            "        (etlcreate(eval type)) " +
-            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
-            "        (etloutput(eval type) 0) " +
-            "    ) " +
-            ")"
-        );
 
-        nusSendString(
-            "(defun fndelta(type delta) " +
-            "   (progn " +
-            "       (etlmock(eval type) " +
-            "           (incf(car(cdr(etloutput(eval type) 0))) " +
-            "               delta " +
-            "           ) " +
-            "       ) " +
-            "       (etlcreate(eval type)) " +
-            "       (etloutput(eval type) 0) " +
-            "   )" +
-            ") \n");
+    defineSetVal();
+    defineFndelta();
+
+    if (connected) {
 
         // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
         nusSendString(
@@ -502,6 +442,136 @@ function relaxPressed() {
                                        'Inc c1fi', 'Dec c1fi', 'Inc xc1fi', 'Dec xc1fi'    ]);
     
 }
+
+function defineSetVal() {
+    if (connected) {
+        nusSendString(
+            "(defun set-val(type value) " +
+            "    (progn " +
+            "        (etlmock(eval type) value) " +
+            "        (etlcreate(eval type)) " +
+            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
+            "        (etloutput(eval type) 0) " +
+            "    ) " +
+            ")"
+        );
+    }
+}
+function defineFndelta() {
+    if (connected) {
+
+        nusSendString(
+            "(defun fndelta(type delta) " +
+            "   (progn " +
+            "       (etlmock(eval type) " +
+            "           (incf(car(cdr(etloutput(eval type) 0))) " +
+            "               delta " +
+            "           ) " +
+            "       ) " +
+            "       (etlcreate(eval type)) " +
+            "       (etloutput(eval type) 0) " +
+            "   )" +
+            ") \n");
+    }
+}
+function gaitTAPressed() {
+
+    defineSetVal();
+    defineFndelta();
+
+    if (connected) {
+        
+        nusSendString(
+            "(defun set-val3(phase type activation) " +
+            "    (progn " +
+            "        (etlmock devfun phase type activation) " +
+            "        (etlcreate devfun) " +
+            "        (etloutput devfun 0) " +
+            "    ) " +
+            ")"
+        );
+        nusSendString(
+            "(etlclear devfun) "
+        );
+
+        nusSendString(
+            "(set-val3  0.00 c1fi 4) " + // 0 
+            "(set-val3  0.05 c1fi 3) " +
+            "(set-val3  0.10 c1fi 7) " +
+            "(set-val3  0.15 c1fi 75) " +
+            "(set-val3  0.20 c1fi 112) "
+        );
+
+        nusSendString(
+            "(set-val3  0.25 c1fi 98) " +
+            "(set-val3  0.30 c1fi 75) " +
+            "(set-val3  0.35 c1fi 45) " +
+            "(set-val3  0.40 c1fi 32) " +
+            "(set-val3  0.45 c1fi 40) "
+        );
+
+        nusSendString(
+            "(set-val3  0.50 c1fi 71) " +
+            "(set-val3  0.55 c1fi 142) " +
+            "(set-val3  0.60 c1fi 245) " +
+            "(set-val3  0.65 c1fi 255) " +
+            "(set-val3  0.70 c1fi 134) "
+        );
+
+        nusSendString(
+            "(set-val3  0.75 c1fi 45) " +
+            "(set-val3  0.80 c1fi 3) " +
+            "(set-val3  0.85 c1fi 3) " +
+            "(set-val3  0.90 c1fi 5) " +
+            "(set-val3  0.95 c1fi 5) " 
+        );
+
+        nusSendString(
+            "(set-val 'c1of 0) " +
+            "(set-val 'c1fn 4) " +
+            "(set-val 'c1wl 8000) " +
+            "(set-val 'c1re 3)"
+        );
+        
+        nusSendString(
+            "(set-val 'c1mx 100) " +
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1pu 200) " +
+            "(set-val 'c1fr 100)"
+        );
+
+        nusSendString(
+            "(set-val 'devthr 16330) " +
+            "(set-val 'c1pc 1) " +
+            "(set-val 'c1of 0) " +
+            "(set-val 'c1fn 4) " +
+            "(set-val 'c1wl 120) " +
+            "(cpp 1 3 1) "
+        );
+        
+        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
+        nusSendString(
+            "(set-val 'c1mx 127) " +
+            "(set-val 'c1fi 255) " +
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1fr 10) " +
+            "(set-val 'c1wl 320000) " +
+            "(set-val 'c1of 0) " +
+            "(set-val 'c1tv 1600) " +
+            "(set-val 'c1pu 500) " +
+            "(set-val 'c1re 2) " +
+            "(set-val 'c1fn 4)"
+        );
+
+        
+    }
+
+    revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
+        'Inc c1wl', 'Dec c1wl', 'Inc c1re', 'Dec c1re', 'Inc c1wl', 'Dec c1wl', 'Inc c1pc', 'Dec c1pc',
+        'Set c1hb=1', 'Set c1hb=2']);
+
+}
+
 // use: revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx']);
 function revealButtons(divName, buttonsToReveal) {
     var connectionGroup = document.getElementById(divName);
@@ -518,30 +588,11 @@ function revealButtons(divName, buttonsToReveal) {
 
 }
 function m250x2uPressed() {
-    if (connected) {
-        nusSendString(
-            "(defun set-val(type value) " +
-            "    (progn " +
-            "        (etlmock(eval type) value) " +
-            "        (etlcreate(eval type)) " +
-            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
-            "        (etloutput(eval type) 0) " +
-            "    ) " +
-            ")"
-        );
 
-        nusSendString(
-            "(defun fndelta(type delta) " +
-            "   (progn " +
-            "       (etlmock(eval type) " +
-            "           (incf(car(cdr(etloutput(eval type) 0))) " +
-            "               delta " +
-            "           ) " +
-            "       ) " +
-            "       (etlcreate(eval type)) " +
-            "       (etloutput(eval type) 0) " +
-            "   )" +
-            ") \n");
+    defineSetVal();
+    defineFndelta();
+
+    if (connected) {
 
         // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
         nusSendString(
@@ -562,30 +613,11 @@ function m250x2uPressed() {
 }
 
 function m250x2bPressed() {
-    if (connected) {
-        nusSendString(
-            "(defun set-val(type value) " +
-            "    (progn " +
-            "        (etlmock(eval type) value) " +
-            "        (etlcreate(eval type)) " +
-            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
-            "        (etloutput(eval type) 0) " +
-            "    ) " +
-            ")"
-        );
 
-        nusSendString(
-            "(defun fndelta(type delta) " +
-            "   (progn " +
-            "       (etlmock(eval type) " +
-            "           (incf(car(cdr(etloutput(eval type) 0))) " +
-            "               delta " +
-            "           ) " +
-            "       ) " +
-            "       (etlcreate(eval type)) " +
-            "       (etloutput(eval type) 0) " +
-            "   )" +
-            ") \n");
+    defineSetVal();
+    defineFndelta();
+
+    if (connected) {
 
         // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
         nusSendString(
@@ -604,30 +636,11 @@ function m250x2bPressed() {
 }
 
 function m125x4uPressed() {
-    if (connected) {
-        nusSendString(
-            "(defun set-val(type value) " +
-            "    (progn " +
-            "        (etlmock(eval type) value) " +
-            "        (etlcreate(eval type)) " +
-            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
-            "        (etloutput(eval type) 0) " +
-            "    ) " +
-            ")"
-        );
 
-        nusSendString(
-            "(defun fndelta(type delta) " +
-            "   (progn " +
-            "       (etlmock(eval type) " +
-            "           (incf(car(cdr(etloutput(eval type) 0))) " +
-            "               delta " +
-            "           ) " +
-            "       ) " +
-            "       (etlcreate(eval type)) " +
-            "       (etloutput(eval type) 0) " +
-            "   )" +
-            ") \n");
+    defineSetVal();
+    defineFndelta();
+
+    if (connected) {
 
         // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
         nusSendString(
@@ -646,30 +659,11 @@ function m125x4uPressed() {
 }
 
 function m125x4bPressed() {
-    if (connected) {
-        nusSendString(
-            "(defun set-val(type value) " +
-            "    (progn " +
-            "        (etlmock(eval type) value) " +
-            "        (etlcreate(eval type)) " +
-            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
-            "        (etloutput(eval type) 0) " +
-            "    ) " +
-            ")"
-        );
 
-        nusSendString(
-            "(defun fndelta(type delta) " +
-            "   (progn " +
-            "       (etlmock(eval type) " +
-            "           (incf(car(cdr(etloutput(eval type) 0))) " +
-            "               delta " +
-            "           ) " +
-            "       ) " +
-            "       (etlcreate(eval type)) " +
-            "       (etloutput(eval type) 0) " +
-            "   )" +
-            ") \n");
+    defineSetVal();
+    defineFndelta();
+
+    if (connected) {
 
         // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
         nusSendString(
@@ -687,20 +681,11 @@ function m125x4bPressed() {
     }
 }
 function trainPressed() {
-    if (connected) {
 
-        // create a simple devfun defn
-        // set the safe values, start it executing.
-        nusSendString(
-            "(defun set-val(type value) " +
-            "    (progn " +
-            "        (etlmock(eval type) value) " +
-            "        (etlcreate(eval type)) " +
-            //"        (princ type)(princ \" \")(princ value)(princ \" \") " +
-            "        (etloutput(eval type) 0) " +
-            "    ) " +
-            ")"
-        );
+    defineSetVal();
+    defineFndelta();
+
+    if (connected) {
 
         nusSendString(
             "(defun set-val3(phase type activation) " +
@@ -738,8 +723,6 @@ function trainPressed() {
 
         );
 
-        
-        
         //      waveform
         //
         // 255     -----------
@@ -752,29 +735,12 @@ function trainPressed() {
           // c1tp = 19 c1in = 24
 
         nusSendString(
-            "(defun fndelta(type delta) " +
-            "   (progn " +
-            "       (etlmock(eval type) " +
-            "           (incf(car(cdr(etloutput(eval type) 0))) " +
-            "               delta " +
-            "           ) " +
-            "       ) " +
-            "       (etlcreate(eval type)) " +
-            "       (etloutput(eval type) 0) " +
-            "   )" +
-            ") \n");
-
-        nusSendString(
             "(set-val 'c1mx 51) " +
             "(set-val 'c1fi 255) " +
-            //"(set-val 'c1hb 1) " +
             "(set-val 'c1re 2) " +
             "(set-val 'c1fr 10) " + // this starts PWM loop going
-            // "(set-val 'c1pc 0)" +
             "(set-val 'c1wl 2666) " +
             "(set-val 'c1of 0) " +
-            // "(set-val 'c1tv 1600) " +
-            //"(set-val 'c1pu 200)  " +
             "(set-val 'c1fn 4) "  // this starts the op, of, tp, in cascade going
 
 
@@ -857,7 +823,7 @@ function connect() {
 
             var buttonText = $(this).text();
 
-            var activeDuringConnection = ['Relax', 'Train', '250x2u', '250x2b', '125x4u', '125x4b', 'Initialise']
+            var activeDuringConnection = ['Relax', 'Train', 'GaitTA', '250x2u', '250x2b', '125x4u', '125x4b', 'Initialise']
             if (activeDuringConnection.indexOf(buttonText) !== -1) {
                 console.log(buttonText + ' in'); $(this).show();
             } else {
