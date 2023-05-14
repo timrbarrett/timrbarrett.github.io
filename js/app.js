@@ -22,6 +22,7 @@ function connectionToggle() {
     document.getElementById('terminal').focus();
 }
 
+
 function initialisePressed() {
 
     defineSetVal();
@@ -396,6 +397,16 @@ function setc1hbto2Pressed() {
     }
 }
 
+function imuOnPressed() {
+    if (connected) {
+        nusSendString("(cpp 1 3 1) ");
+    }
+}
+function imuOffPressed() {
+    if (connected) {
+        nusSendString("(cpp 1 3 0) ");
+    }
+}
 function setupPressed() {
 
     defineSetVal();
@@ -443,6 +454,13 @@ function relaxPressed() {
     
 }
 
+function allPressed() {
+    revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
+        'Inc c1pu', 'Dec c1pu', 'Inc c1re', 'Dec c1re', 'Inc c1tv', 'Dec c1tv',
+        'Inc c1fr', 'Dec c1fr', 'Inc c1wl', 'Dec c1wl', 'Inc c1pc', 'Dec c1pc',
+        'Set c1hb=1', 'Set c1hb=2', 'IMU On', 'IMU Off',
+        'Inc c1fi', 'Dec c1fi', 'Inc xc1fi', 'Dec xc1fi',    ]);
+}
 function defineSetVal() {
     if (connected) {
         nusSendString(
@@ -545,10 +563,9 @@ function gaitTAPressed() {
             "(set-val 'c1pc 1) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1fn 4) " +
-            "(set-val 'c1wl 120) " +
-            "(cpp 1 3 1) "
+            "(set-val 'c1wl 120) " 
         );
-        
+        // +"(cpp 1 3 1) "
         // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
         nusSendString(
             "(set-val 'c1mx 127) " +
@@ -559,7 +576,7 @@ function gaitTAPressed() {
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
             "(set-val 'c1pu 500) " +
-            "(set-val 'c1re 2) " +
+            "(set-val 'c1re 7) " +
             "(set-val 'c1fn 4)"
         );
 
@@ -823,7 +840,7 @@ function connect() {
 
             var buttonText = $(this).text();
 
-            var activeDuringConnection = ['Relax', 'Train', 'GaitTA', '250x2u', '250x2b', '125x4u', '125x4b', 'Initialise']
+            var activeDuringConnection = ['Relax', 'Train', 'GaitTA', '250x2u', '250x2b', '125x4u', '125x4b', 'Initialise', 'All Params']
             if (activeDuringConnection.indexOf(buttonText) !== -1) {
                 console.log(buttonText + ' in'); $(this).show();
             } else {
