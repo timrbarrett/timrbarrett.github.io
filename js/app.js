@@ -544,13 +544,15 @@ function gaitTAPressed() {
             "(set-val3  0.95 c1fi 5) " 
         );
 
+        // setup waveform 5
         nusSendString(
             "(set-val 'c1of 0) " +
             "(set-val 'c1fn 4) " +
             "(set-val 'c1wl 8000) " +
             "(set-val 'c1re 3)"
         );
-        
+
+        // setup waveform 6
         nusSendString(
             "(set-val 'c1mx 100) " +
             "(set-val 'c1hb 1) " +
@@ -558,12 +560,14 @@ function gaitTAPressed() {
             "(set-val 'c1fr 100)"
         );
 
+        // initialise 7
         nusSendString(
             "(set-val 'devthr 16330) " +
             "(set-val 'c1pc 1) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1fn 4) " +
-            "(set-val 'c1wl 120) " 
+            "(set-val 'c1wl 120) " +
+            "(cpp 1 3 1) "
         );
         // +"(cpp 1 3 1) "
         // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
