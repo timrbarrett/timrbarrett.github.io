@@ -882,6 +882,7 @@ function onDisconnected() {
     connected = false;
     window.term_.io.println('\r\n' + bleDevice.name + ' Disconnected.');
     setConnButtonState(false);
+    location.reload();
 }
 
 // handleInbound text from limbstim
