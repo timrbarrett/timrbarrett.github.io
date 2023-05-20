@@ -372,7 +372,20 @@ function incc1pcPressed() {
         nusSendString("(etloutput c1in 0) ");
     }
 }
+function setoptto0Pressed() {
 
+    if (connected) {
+        nusSendString("(cpp 1 29 0) ");
+    }
+}
+
+function setoptto1Pressed() {
+
+    if (connected) {
+        nusSendString("(cpp 1 29 1) ");
+    }
+}
+//setoptto0Pressed
 function setc1hbto1Pressed() {
 
     defineSetVal();
@@ -459,7 +472,7 @@ function allPressed() {
         'Inc c1pu', 'Dec c1pu', 'Inc c1re', 'Dec c1re', 'Inc c1tv', 'Dec c1tv',
         'Inc c1fr', 'Dec c1fr', 'Inc c1wl', 'Dec c1wl', 'Inc c1pc', 'Dec c1pc',
         'Set c1hb=1', 'Set c1hb=2', 'IMU On', 'IMU Off',
-        'Inc c1fi', 'Dec c1fi', 'Inc xc1fi', 'Dec xc1fi',    ]);
+        'Inc c1fi', 'Dec c1fi', 'Inc xc1fi', 'Dec xc1fi', 'Set opt0', 'Set opt1']);
 }
 function defineSetVal() {
     if (connected) {
