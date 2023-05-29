@@ -1,0 +1,10 @@
+[
+    {
+        "id": "button1",
+        "text": "This is button 1."
+    },
+    {
+        "id": "button2",
+        "text": "This is button 2."
+    }
+]

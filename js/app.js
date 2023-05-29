@@ -357,6 +357,32 @@ function incc1wlPressed() {
     }
 }
 
+function decc1ofPressed() {
+    defineFndelta();
+    if (connected) {
+        nusSendString("(fndelta 'c1of -.1)\n");
+    }
+}
+
+function incc1ofPressed() {
+    defineFndelta();
+    if (connected) {
+        nusSendString("(fndelta 'c1of .1)\n");
+    }
+}
+function incxc1ofPressed() {
+    defineFndelta();
+    if (connected) {
+        nusSendString("(fndelta 'c1of 0.01)\n");
+    }
+}
+
+function decxc1ofPressed() {
+    defineFndelta();
+    if (connected) {
+        nusSendString("(fndelta 'c1of -0.01)\n");
+    }
+}
 function decc1pcPressed() {
     defineFndelta();
     if (connected) {
@@ -601,8 +627,7 @@ function gaitTAPressed() {
     }
 
     revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
-        'Inc c1wl', 'Dec c1wl', 'Inc c1re', 'Dec c1re', 'Inc c1wl', 'Dec c1wl', 'Inc c1pc', 'Dec c1pc',
-        'Set c1hb=1', 'Set c1hb=2']);
+        'Inc c1of', 'Dec c1of', 'Inc xc1of', 'Dec xc1of',]);
 
 }
 
@@ -857,7 +882,9 @@ function connect() {
 
             var buttonText = $(this).text();
 
-            var activeDuringConnection = ['Relax', 'Train', 'GaitTA', '250x2u', '250x2b', '125x4u', '125x4b', 'Initialise', 'All Params']
+            var activeDuringConnection = ['Relax', 'Train', 'GaitTA',
+                //'250x2u', '250x2b', '125x4u', '125x4b', 'Initialise', 
+                'All Params']
             if (activeDuringConnection.indexOf(buttonText) !== -1) {
                 console.log(buttonText + ' in'); $(this).show();
             } else {
