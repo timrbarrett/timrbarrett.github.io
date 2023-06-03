@@ -493,12 +493,45 @@ function relaxPressed() {
     
 }
 
+function c1oftestPressed() {
+    defineSetVal();
+    defineTestval();
+    defineR2c1s();
+
+    if (connected) {
+        nusSendString(
+            "(r2c1s 'c1op 0.5 'c1of 0.0 'c1tp 0.5) " +
+            "(r2c1s 'c1op 0.5 'c1of 0.2 'c1tp 0.7) " +
+            "(r2c1s 'c1op 0.5 'c1of 0.25 'c1tp 0.75) " +
+
+            // test negative c1of [0.0 to -1.0]
+            "(r2c1s 'c1op 0.5 'c1of -0.5 'c1tp 0.0) " + // does net zero trip us up?
+            "(r2c1s 'c1op 0.5 'c1of -0.6 'c1tp 0.9) " + // does net -ve result in +ve?
+            "(r2c1s 'c1op 0.5 'c1of -0.7 'c1tp 0.8) " // consistently?
+        );
+
+        nusSendString(
+             "(r2c1s 'c1op 0.0 'c1of -0.2 'c1tp 0.8) " + // start at zero, can of be -ve and result in +ve? // 
+
+            // test c1of much greater than 1.0
+            "(r2c1s 'c1op 0.9 'c1of 1.5 'c1tp 0.4) " + // 2.4 
+            "(r2c1s 'c1op 0.3 'c1of 17.5 'c1tp 0.8) " + // 17.8
+
+            // test c1of much less than -1.0
+            "(r2c1s 'c1op 0.5 'c1of 0.0 'c1tp 0.5) " +
+            "(r2c1s 'c1op 0.5 'c1of 0.5 'c1tp 0.0) " +
+            "(r2c1s 'c1op 0.5 'c1of 0.5 'c1tp 0.0) " // 
+            //*/
+        );
+    }
+}
 function allPressed() {
     revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
         'Inc c1pu', 'Dec c1pu', 'Inc c1re', 'Dec c1re', 'Inc c1tv', 'Dec c1tv',
         'Inc c1fr', 'Dec c1fr', 'Inc c1wl', 'Dec c1wl', 'Inc c1pc', 'Dec c1pc',
         'Set c1hb=1', 'Set c1hb=2', 'IMU On', 'IMU Off',
-        'Inc c1fi', 'Dec c1fi', 'Inc xc1fi', 'Dec xc1fi', 'Set opt0', 'Set opt1']);
+        'Inc c1fi', 'Dec c1fi', 'Inc xc1fi', 'Dec xc1fi', 'Set opt0', 'Set opt1',
+        'c1oftest'    ]);
 }
 function defineSetVal() {
     if (connected) {
@@ -531,6 +564,68 @@ function defineFndelta() {
             ") \n");
     }
 }
+function defineTestval() {
+
+    /*
+    (defun test-val (e-t va)
+      (cond
+        ((= 0 (etlcount (eval e-t))) (if (eq va 'no-record)(list e-t 'n-r-pass)(list e-t 'n-r-fail)))
+        ((not (eq va (cadr (etloutput (eval e-t) 0)))) (list (etloutput (eval e-t) 0) 'exp va))
+        (t (list e-t va 'pass))
+      )
+    ) 
+
+(defun test-val (etl-t va)
+(cond
+
+((= 0 (etlcount (eval etl-t))) (if (eq va 'no-record)(list etl-t 'n-r-pass)))
+
+((not (eq va (cadr (etloutput (eval etl-t) 0)))) (list (etloutput (eval etl-t) 0) 'expected va))
+
+(t (list etl-t va 'pass))
+
+)
+)
+
+(defun close-enough (a b &optional (tolerance 0.0001))
+  (< (abs (- a b)) tolerance))
+    */
+
+    if (connected) {
+        nusSendString(
+            "(defun test-val(e-t va) " +
+            "  (cond " +
+//            "    ( (= 0 (etlcount (eval etl-t))) (if (eq va 'no-record)(list etl-t 'n-r-pass))) " +
+            "    ((not (eq va (cadr (etloutput (eval e-t) 0)))) (list (etloutput (eval e-t) 0) 'expected va)) " +
+            "    (t (list e-t va 'pass)) " +
+            "  ) " +
+            ") "
+        );
+    }
+}
+
+function defineR2c1s() {
+
+    //defineSetVal();
+    //defineTestval();
+
+    if (connected) {
+        nusSendString(
+            "(defun r2c1s(etl1 val1 etl2 val2 etl3 val3) " +
+            " (progn " +
+            "  (etlclear(eval etl1))(etlclear(eval etl2))(etlclear(eval etl3)) " +
+            "  (set-val etl1 val1) " +
+            "  (set-val etl2 val2) " +
+            "  (test-val etl3 val3) " +
+  //          "    (princ '>) " +
+  //          "  (etloutput(eval etl3) 0) " +
+  //          "  (princ val3) " +
+            " ) " +
+            ") "
+        );
+    }
+}
+
 function gaitTAPressed() {
 
     defineSetVal();
@@ -972,7 +1067,7 @@ function handleNotifications(event) {
         }
     }
 
-    //window.term_.io.println(str);
+    window.term_.io.print(str);
 
 }
 
