@@ -383,19 +383,19 @@ function decxc1ofPressed() {
         nusSendString("(fndelta 'c1of -0.01)\n");
     }
 }
-function decc1pcPressed() {
+function decdevthrPressed() {
     defineFndelta();
     if (connected) {
-        nusSendString("(fndelta 'c1pc -1000)\n");
-        nusSendString("(etloutput c1in 0) ");
+        nusSendString("(fndelta 'devthr -100)\n");
+        nusSendString("(etloutput devthr 0) ");
     }
 }
 
-function incc1pcPressed() {
+function incdevthrPressed() {
     defineFndelta();
     if (connected) {
-        nusSendString("(fndelta 'c1pc 1000)\n");
-        nusSendString("(etloutput c1in 0) ");
+        nusSendString("(fndelta 'devthr 100)\n");
+        nusSendString("(etloutput devthr 0) ");
     }
 }
 function setoptto0Pressed() {
