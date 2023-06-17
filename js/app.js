@@ -198,38 +198,20 @@ function initialisePressed() {
         // 14 to 17
         nusSendString("(etl-test '( c1wl ) )");
         nusSendString("(etl-test '( c1pc ) )");
-        //nusSendString("(etl-test '( c1vp ) )");
-        //nusSendString("(etl-test '( c1vp ) )");
+
 
         // 18 to 21
         nusSendString("(etl-test '( c1op ) )");
         nusSendString("(etl-test '( c1of ) )");
         nusSendString("(etl-test '( c1tp ) )");
-        nusSendString("(etl-test '( c1si ) )");
+        //nusSendString("(etl-test '( c1si ) )");
 
         nusSendString("(etl-test '( c1re ) )");
-        nusSendString("(etl-test '( c1tv ) )");
+        //nusSendString("(etl-test '( c1tv ) )");
         nusSendString("(etl-test '( c1in ) )"); // why does this respond withh (c1in 24)(nil 0)
 
-        /*
-         
-        // tst-mo v1.0
-        nusSendString(
-        );
-
-        */
-
-        /*
-        nusSendString(
-            "(set-val 'c1mx 127) " +
-            "(set-val 'c1fi 255) " +
-            "(set-val 'c1hb 1) " +
-            "(set-val 'c1fr 10) " +
-            "(set-val 'c1wl 10000) " +
-            "(set-val 'c1of 0) " +
-            "(set-val 'c1pu 100)"
-        );
-        */
+        nusSendString("(etl-test '( c2mx ) )");
+        nusSendString("(etl-test '( c2fi ) )");
 
     }
 }
@@ -530,6 +512,7 @@ function allPressed() {
         'Inc c1pu', 'Dec c1pu', 'Inc c1re', 'Dec c1re', 'Inc c1tv', 'Dec c1tv',
         'Inc c1fr', 'Dec c1fr', 'Inc c1wl', 'Dec c1wl', 'Inc c1pc', 'Dec c1pc',
         'Set c1hb=1', 'Set c1hb=2', 'IMU On', 'IMU Off',
+        'Inc c1of', 'Dec c1of', 'Inc xc1of', 'Dec xc1of',
         'Inc c1fi', 'Dec c1fi', 'Inc xc1fi', 'Dec xc1fi', 'Set opt0', 'Set opt1',
         'c1oftest'    ]);
 }
@@ -978,7 +961,8 @@ function connect() {
             var buttonText = $(this).text();
 
             var activeDuringConnection = ['Relax', 'Train', 'GaitTA',
-                //'250x2u', '250x2b', '125x4u', '125x4b', 'Initialise', 
+                //'250x2u', '250x2b', '125x4u', '125x4b', 
+                'Initialise',
                 'All Params']
             if (activeDuringConnection.indexOf(buttonText) !== -1) {
                 console.log(buttonText + ' in'); $(this).show();
