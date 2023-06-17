@@ -212,7 +212,30 @@ function initialisePressed() {
 
         nusSendString("(etl-test '( c2mx ) )");
         nusSendString("(etl-test '( c2fi ) )");
+        nusSendString("(etl-test '( c2fr ) )");
 
+        /*  Values are established
+            evidence (pprintall) excerpt is 
+            (defvar c2fi '26)
+            (defvar c2mx '25)
+        */
+        /*  11:38 but *something* is off etloutput somehow, and perhaps etlmock and etlcreate
+            (c1re 21)(c1re 21)0=0
+            >
+            (c1in 24)(c1in 24)0=0
+            >
+            (c2mx 25)(nil 0)0=0
+            >
+            (c2fi 26)(nil 0)0=0
+            >
+
+            Fixed it
+            11:57
+            (c2mx 25)(c2mx 25)0=0
+            >
+            (c2fi 26)(c2fi 26)0=0
+>
+         */
     }
 }
             //"(set-val 'c1fn 4) " +
