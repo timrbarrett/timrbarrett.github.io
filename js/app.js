@@ -484,6 +484,7 @@ function relaxPressed() {
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 1) " +
             "(set-val 'c1fr 10) " +
+            "(set-val 'c2fr 10) " +
             "(set-val 'c1wl 320000) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
