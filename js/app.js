@@ -391,7 +391,7 @@ function decxc1ofPressed() {
 function decdevthrPressed() {
     defineFndelta();
     if (connected) {
-        nusSendString("(fndelta 'devthr -100)\n");
+        nusSendString("(fndelta 'devthr -1)\n");
         nusSendString("(etloutput devthr 0) ");
     }
 }
@@ -399,8 +399,10 @@ function decdevthrPressed() {
 function incdevthrPressed() {
     defineFndelta();
     if (connected) {
-        nusSendString("(fndelta 'devthr 100)\n");
+        nusSendString("(fndelta 'devthr 1)\n");
         nusSendString("(etloutput devthr 0) ");
+        nusSendString("(dotimes (x 25) "+
+           " (princ (etloutput devmea (- 25 x)))) ");
     }
 }
 function setoptto0Pressed() {
@@ -532,9 +534,9 @@ function c1oftestPressed() {
     }
 }
 function allPressed() {
-    revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
+    revealButtons("adjustment-panel", ['Inc devthr', 'Dec devthr', 'Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
         'Inc c1pu', 'Dec c1pu', 'Inc c1re', 'Dec c1re', 'Inc c1tv', 'Dec c1tv',
-        'Inc c1fr', 'Dec c1fr', 'Inc c1wl', 'Dec c1wl', 'Inc c1pc', 'Dec c1pc',
+        'Inc c1fr', 'Dec c1fr', 'Inc c1wl', 'Dec c1wl', 
         'Set c1hb=1', 'Set c1hb=2', 'IMU On', 'IMU Off',
         'Inc c1of', 'Dec c1of', 'Inc xc1of', 'Dec xc1of',
         'Inc c1fi', 'Dec c1fi', 'Inc xc1fi', 'Dec xc1fi', 'Set opt0', 'Set opt1',
@@ -703,7 +705,7 @@ function gaitTAPressed() {
 
         // initialise 7
         nusSendString(
-            "(set-val 'devthr 16330) " +
+            "(set-val 'devthr 43) " +
             "(set-val 'c1pc 1) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1fn 4) " +
