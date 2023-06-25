@@ -391,7 +391,7 @@ function decxc1ofPressed() {
 function decdevthrPressed() {
     defineFndelta();
     if (connected) {
-        nusSendString("(fndelta 'devthr -1)\n");
+        nusSendString("(fndelta 'devthr -10)\n");
         nusSendString("(etloutput devthr 0) ");
     }
 }
@@ -399,7 +399,7 @@ function decdevthrPressed() {
 function incdevthrPressed() {
     defineFndelta();
     if (connected) {
-        nusSendString("(fndelta 'devthr 1)\n");
+        nusSendString("(fndelta 'devthr 10)\n");
         nusSendString("(etloutput devthr 0) ");
         nusSendString("(dotimes (x 25) "+
            " (princ (etloutput devmea (- 25 x)))) ");
@@ -705,7 +705,7 @@ function gaitTAPressed() {
 
         // initialise 7
         nusSendString(
-            "(set-val 'devthr 43) " +
+            "(set-val 'devthr 240) " +
             "(set-val 'c1pc 1) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1fn 4) " +
