@@ -491,13 +491,14 @@ function relaxPressed() {
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
             "(set-val 'c1pu 500) " +
-            "(set-val 'c1re 0) " +
+            "(set-val 'c1re 3) " +
             "(set-val 'c1fn 0)"
         );
     }
 
     revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
-                                       'Inc c1fi', 'Dec c1fi', 'Inc xc1fi', 'Dec xc1fi'    ]);
+        'Inc c1fi', 'Dec c1fi', 'Inc xc1fi', 'Dec xc1fi'
+        'Inc c1re', 'Dec c1re',     ]);
     
 }
 
