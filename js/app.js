@@ -735,7 +735,7 @@ function gaitTAPressed() {
 
         // initialise 7
         nusSendString(
-            "(set-val 'devthr 17240) " +
+            "(set-val 'devthr 1240) " +
             "(set-val 'c1pc 1) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1fn 4) " +
