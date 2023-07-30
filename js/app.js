@@ -266,6 +266,34 @@ function decxc1mxPressed() {
     }
 }
 
+// channel two
+
+function incc2mxPressed() {
+    defineFndelta();
+    if (connected) {
+        nusSendString("(fndelta 'c2mx 8)\n");
+    }
+}
+
+function decc2mxPressed() {
+    defineFndelta();
+    if (connected) {
+        nusSendString("(fndelta 'c2mx -8)\n");
+    }
+}
+function incxc2mxPressed() {
+    defineFndelta();
+    if (connected) {
+        nusSendString("(fndelta 'c2mx 1)\n");
+    }
+}
+
+function decxc2mxPressed() {
+    defineFndelta();
+    if (connected) {
+        nusSendString("(fndelta 'c2mx -1)\n");
+    }
+}
 function incc1fiPressed() {
     defineFndelta();
     if (connected) {
@@ -497,7 +525,9 @@ function relaxPressed() {
     }
 
     revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
-                                       'Inc c1fi', 'Dec c1fi', 'Inc xc1fi', 'Dec xc1fi'    ]);
+        'Inc c2mx', 'Dec c2mx', 'Inc xc2mx', 'Dec xc2mx',
+        'Inc c1fi', 'Dec c1fi', 'Inc xc1fi', 'Dec xc1fi',
+    ]);
     
 }
 
@@ -705,7 +735,7 @@ function gaitTAPressed() {
 
         // initialise 7
         nusSendString(
-            "(set-val 'devthr 240) " +
+            "(set-val 'devthr 17240) " +
             "(set-val 'c1pc 1) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1fn 4) " +
