@@ -29,11 +29,10 @@ body {
     background: #b6ff00;
 }
 
-
 .button__etltype,
 .button__value {
     display: inline-flex;
     align-items: center;
-    padding: 0 24px;
+    padding: 0 12px;
 
 }

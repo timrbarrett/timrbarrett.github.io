@@ -531,6 +531,72 @@ function relaxPressed() {
     
 }
 
+function ch1Pressed() {
+    defineSetVal();
+    defineFndelta();
+
+    if (connected) {
+        nusSendString(
+            "(defvar app-val) "
+        );
+    }
+
+    revealButtons("adjustment-panel", ['+1', '-1', '+10', '-10']);
+}
+function appTypeplus1Pressed() {
+    if (connected) {
+        nusSendString(
+            "(fndelta app-val 1) " +
+            "(etloutput app-val 0) "
+        );
+    }
+}
+function appTypeminus1Pressed() {
+    if (connected) {
+        nusSendString(
+            "(fndelta app-val -1) " +
+            "(etloutput app-val 0) "
+        );
+    }
+}
+function appTypeplus10Pressed() {
+    if (connected) {
+        nusSendString(
+            "(fndelta app-val 10) " +
+            "(etloutput app-val 0) "
+        );
+    }
+}
+function appTypeminus10Pressed() {
+    if (connected) {
+        nusSendString(
+            "(fndelta app-val -10) " +
+            "(etloutput app-val 0) "
+        );
+    }
+}
+function appTypeTocmxPressed() {
+    if (connected) {
+        nusSendString(
+            "(defvar app-val c1mx) " 
+        );
+    }
+}
+
+function c1mxPressed() {
+    if (connected) {
+        nusSendString(
+            "(defvar app-val c1mx) "
+        );
+    }
+}
+function c1puPressed() {
+    if (connected) {
+        nusSendString(
+            "(defvar app-val c1pu) "
+        );
+    }
+}
 function c1oftestPressed() {
     defineSetVal();
     defineTestval();
@@ -1018,7 +1084,7 @@ function connect() {
 
             var activeDuringConnection = ['Relax', 'Train', 'GaitTA',
                 //'250x2u', '250x2b', '125x4u', '125x4b', 
-                'Initialise',
+                'Initialise', 'ch1',
                 'All Params']
             if (activeDuringConnection.indexOf(buttonText) !== -1) {
                 console.log(buttonText + ' in'); $(this).show();
@@ -1082,7 +1148,7 @@ function handleNotifications(event) {
                 console.log(variableOne, variableTwo);
 
                 // get the button__value element by its class name
-                const buttonValueElement = document.querySelector('#c1mx .button__value');
+                const buttonValueElement = document.querySelector('#'+match[1]+' .button__value');
 
                 // update the text content of the element
                 buttonValueElement.textContent = variableTwo;

@@ -29,7 +29,7 @@
         .button {
             outline: none;
             cursor: pointer;
-            width:  75px;
+            width:  50px;
             height: 50px;
             background: #088bfa
         }
@@ -60,6 +60,7 @@
             <button id="mode125x4bButton" type="button" class="modebutton" onclick="m125x4bPressed()" hidden>125x4b</button>
             <button id="initialiseButton" type="button" class="modebutton" onclick="initialisePressed()" hidden>Initialise</button>
             <button id="AllButton" type="button" class="modebutton" onclick="allPressed()" hidden>All Params</button>
+            <button id="ch1Button" type="button" class="modebutton" onclick="ch1Pressed()" hidden>ch1</button>
         </div>
         <div id="modeConnectionWhitespace" class="divider">
 
@@ -112,12 +113,23 @@
             <button id="setupButton" type="button" class="button" onclick="setupPressed()" hidden>Setup</button>
 
             <button id="c1oftestButton" type="button" class="button" onclick="c1oftestPressed()" hidden>c1oftest</button>
+
+            <button id="appTypeplus1Button" type="button" class="button" onclick="appTypeplus1Pressed()" hidden>+1</button>
+            <button id="appTypeminus1Button" type="button" class="button" onclick="appTypeminus1Pressed()" hidden>-1</button>
+            <button id="appTypeplus10Button" type="button" class="button" onclick="appTypeplus10Pressed()" hidden>+10</button>
+            <button id="appTypeminus10Button" type="button" class="button" onclick="appTypeminus10Pressed()" hidden>-10</button>
+
+            <button id="appTypeTocmxPressed" type="button" class="button" onclick="appTypeTocmxPressed()" hidden>cmx</button>
         </div>
 
 
-        <div id = "presentationPanel" class = "button-group">
-            <button id="c1mx" type="button" class="displayButton"> 
-                <span class="button__etltype">c1mx</span>
+        <div id="presentationPanel" class="button-group">
+            <button id="c1mx" type="button" class="displayButton">
+                <span class="button__etltype" onclick="c1mxPressed()">c1mx</span>
+                <span class="button__value">---</span>
+            </button>
+            <button id="c1pu" type="button" class="displayButton">
+                <span class="button__etltype" onclick="c1puPressed()">c1pu</span>
                 <span class="button__value">---</span>
             </button>
         </div>
