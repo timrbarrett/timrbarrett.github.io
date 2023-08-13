@@ -597,6 +597,20 @@ function c1puPressed() {
         );
     }
 }
+function c1rePressed() {
+    if (connected) {
+        nusSendString(
+            "(defvar app-val c1re) "
+        );
+    }
+}
+function c1frPressed() {
+    if (connected) {
+        nusSendString(
+            "(defvar app-val c1fr) "
+        );
+    }
+}
 function c1oftestPressed() {
     defineSetVal();
     defineTestval();
