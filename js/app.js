@@ -597,6 +597,7 @@ function c1puPressed() {
         );
     }
 }
+
 function c1rePressed() {
     if (connected) {
         nusSendString(
@@ -611,6 +612,7 @@ function c1frPressed() {
         );
     }
 }
+
 function c1oftestPressed() {
     defineSetVal();
     defineTestval();
