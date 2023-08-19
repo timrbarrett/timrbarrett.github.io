@@ -612,7 +612,13 @@ function c1frPressed() {
         );
     }
 }
-
+function c1hbPressed() {
+    if (connected) {
+        nusSendString(
+            "(defvar app-val c1hb) "
+        );
+    }
+}
 function c1oftestPressed() {
     defineSetVal();
     defineTestval();
