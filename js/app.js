@@ -491,9 +491,10 @@ function setupPressed() {
         nusSendString(
             "(set-val 'c1mx 51) " +
             "(set-val 'c1fi 255) " +
+            "(set-val 'c1pu 500) " +
+            "(set-val 'c1fr 10) " +
             "(set-val 'c1hb 1) " +
             "(set-val 'c1re 1) " +
-            "(set-val 'c1fr 10) " +
             "(set-val 'c1wl 10000) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
@@ -512,15 +513,18 @@ function relaxPressed() {
         nusSendString(
             "(set-val 'c1mx 51) " +
             "(set-val 'c1fi 255) " +
-            "(set-val 'c1hb 1) " +
             "(set-val 'c1fr 10) " +
-            "(set-val 'c2fr 10) " +
-            "(set-val 'c1wl 320000) " +
-            "(set-val 'c1of 0) " +
-            "(set-val 'c1tv 1600) " +
-            "(set-val 'c1pu 500) " +
-            "(set-val 'c1re 0) " +
-            "(set-val 'c1fn 0)"
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1re 1) " +
+            "(set-val 'c1pu 500) " 
+  
+            //+
+
+            //"(set-val 'c1wl 320000) " +
+            //"(set-val 'c1of 0) " +
+            //"(set-val 'c1tv 1600) " +
+
+            //"(set-val 'c1fn 0)"
         );
     }
 
@@ -541,7 +545,7 @@ function ch1Pressed() {
         );
     }
 
-    revealButtons("adjustment-panel", ['+1', '-1', '+10', '-10']);
+    revealButtons("adjustment-panel", ['+1', '-1', '+10', '-10', '+100', '-100']);
 }
 function appTypeplus1Pressed() {
     if (connected) {
@@ -571,6 +575,23 @@ function appTypeminus10Pressed() {
     if (connected) {
         nusSendString(
             "(fndelta app-val -10) " +
+            "(etloutput app-val 0) "
+        );
+    }
+}
+
+function appTypeplus100Pressed() {
+    if (connected) {
+        nusSendString(
+            "(fndelta app-val 100) " +
+            "(etloutput app-val 0) "
+        );
+    }
+}
+function appTypeminus100Pressed() {
+    if (connected) {
+        nusSendString(
+            "(fndelta app-val -100) " +
             "(etloutput app-val 0) "
         );
     }
@@ -1166,15 +1187,21 @@ function handleNotifications(event) {
 
             if (match) {
                 const variableOne = match[1]; // "c1mx"
-                const variableTwo = parseInt(match[2]); // 127
+                const variableTwo = parseInt(match[2]).toString().padStart(3, '0'); // 127
                 console.log(variableOne, variableTwo);
 
+                
                 // get the button__value element by its class name
                 const buttonValueElement = document.querySelector('#'+match[1]+' .button__value');
+                //const newSpanValueElement = document.querySelector('#' + match[1] + ' .displaybutton');
 
+                setInterval(function () {
+                    buttonValueElement.bold = (buttonValueElement.bold == 0 ? 1 : 0);
+                }, 500);
                 // update the text content of the element
                 buttonValueElement.textContent = variableTwo;
-
+                //const parentElementconst = buttonValueElement.parentElement();
+                //parentElementconst.style.borderColor = "red";
 
                 // get an array of all the button elements in the button-group container
                 //const buttonElements = document.querySelectorAll('#presentationPanel .button-group button');
@@ -1187,6 +1214,7 @@ function handleNotifications(event) {
                 //});
             } else {
                 console.log("No match found.");
+                console.log(str);
             }
             //window.term_.io.println(' ');
             str = "";
@@ -1244,7 +1272,7 @@ async function sendManyValues(chunk) {
 
 function initContent(io) {
     io.println("\r\n\
-Welcome to Limbstim Control V0.0.6 (18th Mar 2023)\r\n\
+Welcome to Limbstim Control V0.0.7 (20th Aug 2023)\r\n\
 \r\n\
 This is a Web Command Line Interface via NUS (Nordic UART Service) using Web Bluetooth.\r\n\
 \r\n\
