@@ -525,7 +525,7 @@ function relaxPressed() {
         );
 
         showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
-        showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb','c1re','c1pu']);
+        showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb','c1re','c1pu','c1of']);
 
     }
 
@@ -550,8 +550,24 @@ function ch1Pressed() {
         );
     }
 
-    showOnly("adjustment-panel", ['+1', '-1', '+10', '-10', '+100', '-100']);
-    showOnly("presentation-panel", ['c1mx', 'c1pu']);
+    showOnly("adjustment-panel", ['appTypepluspoint1Button', 'appTypeminuspoint1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
+    showOnly("presentation-panel", ['c1mx', 'c1pu', 'c1of']);
+}
+function appTypepluspoint1Pressed() {
+    if (connected) {
+        nusSendString(
+            "(fndelta app-val 0.1) " +
+            "(etloutput app-val 0) "
+        );
+    }
+}
+function appTypeminuspoint1Pressed() {
+    if (connected) {
+        nusSendString(
+            "(fndelta app-val -0.1) " +
+            "(etloutput app-val 0) "
+        );
+    }
 }
 function appTypeplus1Pressed() {
     if (connected) {
@@ -650,7 +666,7 @@ function c1rePressed() {
         );
     }
     setActiveETLType('c1re');
-    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
+    showOnly("adjustment-panel", ['appTypepluspoint1Button', 'appTypeminuspoint1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
 }
 function c1frPressed() {
     if (connected) {
@@ -670,6 +686,17 @@ function c1hbPressed() {
     setActiveETLType('c1hb');
     showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button']);
 }
+function c1ofPressed() {
+    if (connected) {
+        nusSendString(
+            "(defvar app-val c1of) " +
+            "(set-val c1of 0.0) "
+        );
+    }
+    setActiveETLType('c1of');
+    showOnly("adjustment-panel", ['appTypepluspoint1Button', 'appTypeminuspoint1Button']);
+}
+
 function c1oftestPressed() {
     defineSetVal();
     defineTestval();
@@ -1230,7 +1257,7 @@ function interpretUlisp(str) {
     if (match) {
         const variableOne = match[1]; // "c1mx"
         const variableTwo = parseInt(match[2]).toString().padStart(3, '0'); // 127
-
+        // parseFloat(match[2]).toString().padStart(3, '0');
         console.log('*'+variableOne, variableTwo+'*');
 
         // get the button__value element by its class name
