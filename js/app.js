@@ -606,20 +606,26 @@ function appTypeTocmxPressed() {
     }
 }
 
+function setActiveETLType(etl) {
+
+    var allDisplayButtons = document.getElementsByClassName('displayButton');
+
+    for (var i = 0, size = allDisplayButtons.length; i < size; i++) {
+        allDisplayButtons[i].style.background = '#b6ff00';
+        console.log(i);
+    }
+
+    var buttonEtltypeElement = document.getElementById(etl).style.background = '#00ff00';
+
+}
+
 function c1mxPressed() {
     if (connected) {
         nusSendString(
             "(defvar app-val c1mx) "
         );
     }
-    var allDisplayButtons = document.getElementsByClassName('displayButton');
-    /*
-    $(allDisplayButtons).each(function () {
-        $(this).style.background = '#cfff00';
-    });
-    */
-    //resetDisplayButtonsToDefault();
-    var buttonEtltypeElement = document.getElementById('c1mx').style.background = '#00ff00';
+    setActiveETLType('c1mx');
 }
 function c1puPressed() {
     if (connected) {
@@ -627,6 +633,7 @@ function c1puPressed() {
             "(defvar app-val c1pu) "
         );
     }
+    setActiveETLType('c1pu');
 }
 
 function c1rePressed() {
@@ -635,6 +642,7 @@ function c1rePressed() {
             "(defvar app-val c1re) "
         );
     }
+    setActiveETLType('c1re');
 }
 function c1frPressed() {
     if (connected) {
@@ -642,6 +650,7 @@ function c1frPressed() {
             "(defvar app-val c1fr) "
         );
     }
+    setActiveETLType('c1fr');
 }
 function c1hbPressed() {
     if (connected) {
@@ -649,6 +658,7 @@ function c1hbPressed() {
             "(defvar app-val c1hb) "
         );
     }
+    setActiveETLType('c1hb');
 }
 function c1oftestPressed() {
     defineSetVal();
