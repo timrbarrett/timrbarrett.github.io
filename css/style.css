@@ -24,6 +24,10 @@ body {
   background: transparent;
 }
 
+#presentation-panel .displayButton {
+    display: none; // have the green display buttons default to hidden
+}
+
 .displayButton {
     display: flex;
     align-items: center;

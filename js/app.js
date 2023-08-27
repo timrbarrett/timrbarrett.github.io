@@ -631,6 +631,7 @@ function c1mxPressed() {
         );
     }
     setActiveETLType('c1mx');
+    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button', 'appTypeplus100Button', 'appTypeminus100Button']);
 }
 function c1puPressed() {
     if (connected) {
@@ -639,6 +640,7 @@ function c1puPressed() {
         );
     }
     setActiveETLType('c1pu');
+    showOnly("adjustment-panel", ['appTypeplus10Button', 'appTypeminus10Button', 'appTypeplus100Button', 'appTypeminus100Button']);
 }
 
 function c1rePressed() {
@@ -648,6 +650,7 @@ function c1rePressed() {
         );
     }
     setActiveETLType('c1re');
+    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
 }
 function c1frPressed() {
     if (connected) {
@@ -656,6 +659,7 @@ function c1frPressed() {
         );
     }
     setActiveETLType('c1fr');
+    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
 }
 function c1hbPressed() {
     if (connected) {
@@ -664,6 +668,7 @@ function c1hbPressed() {
         );
     }
     setActiveETLType('c1hb');
+    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button']);
 }
 function c1oftestPressed() {
     defineSetVal();
@@ -1190,6 +1195,8 @@ function connect() {
             bleDevice.gatt.disconnect();
         }
     });
+
+
 }
 
 function disconnect() {
@@ -1224,27 +1231,13 @@ function interpretUlisp(str) {
         const variableOne = match[1]; // "c1mx"
         const variableTwo = parseInt(match[2]).toString().padStart(3, '0'); // 127
 
-        console.log(variableOne, variableTwo);
+        console.log('*'+variableOne, variableTwo+'*');
 
         // get the button__value element by its class name
         const buttonValueElement = document.querySelector('#' + match[1] + ' .button__value');
         // update the text content of the element
         buttonValueElement.textContent = variableTwo;
-
-        // process send: (defvar app-val c1mx) 
-        if (match[1] = 'defvar') {
-            var first = match[2].substr(0, 7);
-            var second = match[2].substr(match[2].length - 1);
-            /*
-            if (first = 'app-val') {
-                console.log(match[1], 'defvar', first, 'app-val', 'second' + second);
-                if (second = 9) 
-                var buttonEtltypeElement = document.getElementById('' + second + '').style.background = '#00ff00';
-            }
-            */
-        }
         
-
     } else {
         console.log("No match found.");
         console.log(str);
