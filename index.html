@@ -14,7 +14,7 @@
     </head>
     <style>
         .divider {
-            height: 10px;
+            height: 50px;
         }
         .button-group {
             display: flex;
@@ -28,20 +28,31 @@
         }
         .button {
             outline: none;
+            font-family: Arial,Helvetica,sans-serif;
+            font-size: 36px;
             cursor: pointer;
-            width:  100px;
+            width: 100px;
             height: 100px;
-            background: #088bfa
+            background: #3498db; // Peter river light blue 
+            font-weight: bold;
+            
+                //#2980b9;
+            // belize hole dark blue
         }
         .modebutton {
             outline: none;
+            font-family: Arial,Helvetica,sans-serif;
+            font-size: 16px;
             cursor: pointer;
             width: 75px;
             height: 50px;
-            background: #ffd800
+            background: #f1c40f;
+            // sunflower yellow
         }
         .displayButton {
             display: flex;
+            font-family: Arial,Helvetica,sans-serif;
+            font-size: 16px;
             height: 50px;
             cursor: pointer;
             -ms-transform: translateY(-50%);
@@ -62,9 +73,33 @@
             <button id="AllButton" type="button" class="modebutton" onclick="allPressed()" hidden>All Params</button>
             <button id="ch1Button" type="button" class="modebutton" onclick="ch1Pressed()" hidden>ch1</button>
         </div>
-        <div id="modeConnectionWhitespace" class="divider">
 
+        <div id="presentationPanel" class="button-group">
+            <button id="c1mx" type="button" class="displayButton">
+                <span class="button__etltype" onclick="c1mxPressed()">c1mx</span>
+                <span class="button__value">---</span>
+            </button>
+            <button id="c1pu" type="button" class="displayButton">
+                <span class="button__etltype" onclick="c1puPressed()">c1pu</span>
+                <span class="button__value">---</span>
+            </button>
+            <button id="c1fr" type="button" class="displayButton">
+                <span class="button__etltype" onclick="c1frPressed()">c1fr</span>
+                <span class="button__value">---</span>
+            </button>
+            <button id="c1re" type="button" class="displayButton">
+                <span class="button__etltype" onclick="c1rePressed()">c1re</span>
+                <span class="button__value">---</span>
+            </button>
+            <button id="c1hb" type="button" class="displayButton">
+                <span class="button__etltype" onclick="c1hbPressed()">c1hb</span>
+                <span class="button__value">---</span>
+            </button>
         </div>
+
+        <div id="modeConnectionWhitespace" class="divider">
+        </div>
+
         <div id="adjustment-panel" class="button-group">
             <button id="incc1mxButton" type="button" class="button" onclick="incc1mxPressed()" hidden>Inc c1mx</button>
             <button id="decc1mxButton" type="button" class="button" onclick="decc1mxPressed()" hidden>Dec c1mx</button>
@@ -125,29 +160,7 @@
         </div>
 
 
-        <div id="presentationPanel" class="button-group">
-            <button id="c1mx" type="button" class="displayButton">
-                <span class="button__etltype" onclick="c1mxPressed()">c1mx</span>
-                <span class="button__value">---</span>
-            </button>
-            <button id="c1pu" type="button" class="displayButton">
-                <span class="button__etltype" onclick="c1puPressed()">c1pu</span>
-                <span class="button__value">---</span>
-            </button>
-            <button id="c1fr" type="button" class="displayButton">
-                <span class="button__etltype" onclick="c1frPressed()">c1fr</span>
-                <span class="button__value">---</span>
-            </button>
-            <button id="c1re" type="button" class="displayButton">
-                <span class="button__etltype" onclick="c1rePressed()">c1re</span>
-                <span class="button__value">---</span>
-            </button>
-            <button id="c1hb" type="button" class="displayButton">
-                <span class="button__etltype" onclick="c1hbPressed()">c1hb</span>
-                <span class="button__value">---</span>
-            </button>
-        </div>
-        //<div id='terminal' style="position:absolute; width:100%; height:50%"></div>
+        <div id='terminal' style="position:absolute; width:100%; height:25%"></div>
 
         <script src='./js/hterm_all.js'></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

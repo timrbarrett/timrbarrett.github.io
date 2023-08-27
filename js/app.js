@@ -215,7 +215,10 @@ function initialisePressed() {
         nusSendString("(etl-test '( c2mx ) )");
         nusSendString("(etl-test '( c2fi ) )");
         nusSendString("(etl-test '( c2fr ) )");
-        
+        nusSendString("(etl-test '( c2fn ) )");
+        nusSendString("(etl-test '( c2pu ) )");
+        nusSendString("(etl-test '( c2re ) ) ");
+
         /*  Values are established
             evidence (pprintall) excerpt is 
             (defvar c2fi '26)
@@ -611,12 +614,13 @@ function setActiveETLType(etl) {
     var allDisplayButtons = document.getElementsByClassName('displayButton');
 
     for (var i = 0, size = allDisplayButtons.length; i < size; i++) {
-        allDisplayButtons[i].style.background = '#b6ff00';
+        //allDisplayButtons[i].style.background = '#b6ff00';
+        allDisplayButtons[i].style.border = "thin dashed #27ae60"; // Nefertitus
         console.log(i);
     }
 
-    var buttonEtltypeElement = document.getElementById(etl).style.background = '#00ff00';
-
+    //var buttonEtltypeElement = document.getElementById(etl).style.background = '#00ff00';
+    var buttonEtltypeElement = document.getElementById(etl).style.border = "thick solid #2ecc71"; // Emerald
 }
 
 function c1mxPressed() {

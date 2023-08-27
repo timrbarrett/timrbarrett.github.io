@@ -9,13 +9,14 @@ body {
   overflow: hidden;
   margin: 0px;
   padding: 0px;
-  background: #101010;
+  background: rgb(4 4 4 / 1); 
+  //#2c3e50; // Midnight //#34495e; // wet asphalt
 
 }
 #terminal {
   display:block;
   position: fixed;
-  bottom: 5%;
+  bottom: 1%;
   width: 100%;
 }
 
@@ -26,7 +27,7 @@ body {
 .displayButton {
     display: flex;
     align-items: center;
-    background: #b6ff00;
+    background: #27ae60; // Nephritis
 }
 
 .button__etltype,
