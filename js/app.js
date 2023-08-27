@@ -522,21 +522,21 @@ function relaxPressed() {
             "(set-val 'c1hb 1) " +
             "(set-val 'c1re 1) " +
             "(set-val 'c1pu 500) " 
-  
-            //+
-
-            //"(set-val 'c1wl 320000) " +
-            //"(set-val 'c1of 0) " +
-            //"(set-val 'c1tv 1600) " +
-
-            //"(set-val 'c1fn 0)"
         );
+
+        showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
+        showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb','c1re','c1pu']);
+
     }
 
+    c1mxPressed();
+
+    /*
     revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
         'Inc c2mx', 'Dec c2mx', 'Inc xc2mx', 'Dec xc2mx',
         'Inc c1fi', 'Dec c1fi', 'Inc xc1fi', 'Dec xc1fi',
     ]);
+    */
     
 }
 
@@ -550,7 +550,8 @@ function ch1Pressed() {
         );
     }
 
-    revealButtons("adjustment-panel", ['+1', '-1', '+10', '-10', '+100', '-100']);
+    showOnly("adjustment-panel", ['+1', '-1', '+10', '-10', '+100', '-100']);
+    showOnly("presentation-panel", ['c1mx', 'c1pu']);
 }
 function appTypeplus1Pressed() {
     if (connected) {
@@ -902,16 +903,37 @@ function gaitTAPressed() {
 function revealButtons(divName, buttonsToReveal) {
     var connectionGroup = document.getElementById(divName);
     $(connectionGroup).find('button').each(function () {
-
-        var buttonText = $(this).text();
-
-        if (buttonsToReveal.indexOf(buttonText) !== -1) {
-            console.log(buttonText + ' in'); $(this).show();
+        
+        var elementName = $(this).text().replace(/^\s+|\s+$/gm, '');
+        var elementtoshow = document.getElementById(elementName);
+        if (buttonsToReveal.indexOf(elementName) !== -1) {
+            console.log('[' + elementName + ']' + ' in'); elementtoshow.style.visibility = 'show';
+            //show();
         } else {
-            console.log(buttonText + ' out'); $(this).hide();
+            console.log('[' + elementName + ']' + ' out'); elementtoshow.style.visibility = 'hidden';
         }
     });
 
+}
+
+function showOnly(divname, idsToShow) {
+    const container = document.getElementById(divname);
+    const allButtons = container.getElementsByTagName('button');
+
+    for (let i = 0; i < allButtons.length; i++) {
+        allButtons[i].style.display = 'none';
+    }
+
+    for (let i = 0; i < idsToShow.length; i++) {
+        const id = idsToShow[i];
+        const element = document.getElementById(id);
+
+        if (element) {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
 }
 function m250x2uPressed() {
 
@@ -1213,12 +1235,13 @@ function interpretUlisp(str) {
         if (match[1] = 'defvar') {
             var first = match[2].substr(0, 7);
             var second = match[2].substr(match[2].length - 1);
-
+            /*
             if (first = 'app-val') {
                 console.log(match[1], 'defvar', first, 'app-val', 'second' + second);
                 if (second = 9) 
                 var buttonEtltypeElement = document.getElementById('' + second + '').style.background = '#00ff00';
             }
+            */
         }
         
 
