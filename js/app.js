@@ -166,7 +166,8 @@ function initialisePressed() {
         nusSendString("(etl-test '(devros) ) ");
 
         // why is symbol table full?
-        /*nusSendString("(test1to5 '(devros) ) ");
+        /*
+        nusSendString("(test1to5 '(devros) ) ");
         nusSendString("(tst-co type) ");
         nusSendString("(tst-cl type) ");
         nusSendString("(tst-mo type) ");
@@ -190,8 +191,9 @@ function initialisePressed() {
 
         // 9 to 13
         nusSendString("(etl-test '( c1mx ) ) " );
-        nusSendString("(etl-test '( c1pu ) ) ");
-        nusSendString("(etl-test '( c1fr ) ) ");
+        //nusSendString("(etl-test '( c1pu ) ) ");
+        
+        //nusSendString("(etl-test '( c1fr ) ) ");
         nusSendString("(etl-test '( c1fi ) ) ");
         nusSendString("(etl-test '( c1hb ) ) ");
 
@@ -213,7 +215,7 @@ function initialisePressed() {
         nusSendString("(etl-test '( c2mx ) )");
         nusSendString("(etl-test '( c2fi ) )");
         nusSendString("(etl-test '( c2fr ) )");
-
+        
         /*  Values are established
             evidence (pprintall) excerpt is 
             (defvar c2fi '26)
@@ -610,6 +612,14 @@ function c1mxPressed() {
             "(defvar app-val c1mx) "
         );
     }
+    var allDisplayButtons = document.getElementsByClassName('displayButton');
+    /*
+    $(allDisplayButtons).each(function () {
+        $(this).style.background = '#cfff00';
+    });
+    */
+    //resetDisplayButtonsToDefault();
+    var buttonEtltypeElement = document.getElementById('c1mx').style.background = '#00ff00';
 }
 function c1puPressed() {
     if (connected) {
@@ -1169,6 +1179,41 @@ function onDisconnected() {
     location.reload();
 }
 
+
+function interpretUlisp(str) {
+    const regex = /\((\w+)\s(\d+)\)/;
+    const match = regex.exec(str);
+
+    if (match) {
+        const variableOne = match[1]; // "c1mx"
+        const variableTwo = parseInt(match[2]).toString().padStart(3, '0'); // 127
+
+        console.log(variableOne, variableTwo);
+
+        // get the button__value element by its class name
+        const buttonValueElement = document.querySelector('#' + match[1] + ' .button__value');
+        // update the text content of the element
+        buttonValueElement.textContent = variableTwo;
+
+        // process send: (defvar app-val c1mx) 
+        if (match[1] = 'defvar') {
+            var first = match[2].substr(0, 7);
+            var second = match[2].substr(match[2].length - 1);
+
+            if (first = 'app-val') {
+                console.log(match[1], 'defvar', first, 'app-val', 'second' + second);
+                if (second = 9) 
+                var buttonEtltypeElement = document.getElementById('' + second + '').style.background = '#00ff00';
+            }
+        }
+        
+
+    } else {
+        console.log("No match found.");
+        console.log(str);
+    }
+}
+
 // handleInbound text from limbstim
 function handleNotifications(event) {
     console.log('notification');
@@ -1182,41 +1227,8 @@ function handleNotifications(event) {
             window.term_.io.println(str);
             console.log(str);
 
-            const regex = /\((\w+)\s(\d+)\)/;
-            const match = regex.exec(str);
+            interpretUlisp(str);
 
-            if (match) {
-                const variableOne = match[1]; // "c1mx"
-                const variableTwo = parseInt(match[2]).toString().padStart(3, '0'); // 127
-                console.log(variableOne, variableTwo);
-
-                
-                // get the button__value element by its class name
-                const buttonValueElement = document.querySelector('#'+match[1]+' .button__value');
-                //const newSpanValueElement = document.querySelector('#' + match[1] + ' .displaybutton');
-
-                setInterval(function () {
-                    buttonValueElement.bold = (buttonValueElement.bold == 0 ? 1 : 0);
-                }, 500);
-                // update the text content of the element
-                buttonValueElement.textContent = variableTwo;
-                //const parentElementconst = buttonValueElement.parentElement();
-                //parentElementconst.style.borderColor = "red";
-
-                // get an array of all the button elements in the button-group container
-                //const buttonElements = document.querySelectorAll('#presentationPanel .button-group button');
-                //console.log(buttonElements);
-                // loop through each button element and update its button__value text content
-                //buttonElements.forEach(buttonElement => {
-                 //   if (buttonElement.id === 'c1mx') {
-                 //       buttonElement.querySelector('.button__value').textContent = variableTwo;
-                 //   } 
-                //});
-            } else {
-                console.log("No match found.");
-                console.log(str);
-            }
-            //window.term_.io.println(' ');
             str = "";
         } else {
             str += String.fromCharCode(value.getUint8(i));
