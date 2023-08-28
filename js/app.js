@@ -127,7 +127,7 @@ function relaxPressed() {
         );
 
         showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
-        showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of']);
+        showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'devthr']);
 
     }
 
@@ -232,7 +232,7 @@ function gaitTAPressed() {
     }
 
     //showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
-    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'c1wl']);
+    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'c1wl', 'devthr']);
 
 }
 function initialisePressed() {
@@ -1196,7 +1196,7 @@ function trainPressed() {
         );
 
         nusSendString(
-            "(set-val3  0.00 c1re 7) " + // 0 
+            "(set-val3  0.00 c1hb 1) " + // 0 
             "(set-val3 0.04 c1fi 160) " +
             "(set-val3  0.08 c1fi 235) " +
             "(set-val3  0.17 c1fi 250) " +
@@ -1207,7 +1207,7 @@ function trainPressed() {
         );
 
         nusSendString(
-            "(set-val3 0.50 c1re 8) " +
+            "(set-val3 0.50 c1hb 2) " +
             "(set-val3 0.54 c1fi 160) " +
             "(set-val3  0.58 c1fi 235) " +
             "(set-val3  0.67 c1fi 250) " +
