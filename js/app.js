@@ -908,7 +908,7 @@ function c1wlPressed() {
     setActiveETLType('c1wl');
     showOnly("adjustment-panel", ['appTypeplus100Button', 'appTypeminus100Button']);
 }
-function devthPressed() {
+function devthrPressed() {
     if (connected) {
         nusSendString(
             "(defvar app-val devthr) "
