@@ -22,7 +22,219 @@ function connectionToggle() {
     document.getElementById('terminal').focus();
 }
 
+/**************************************************************************************************************
+ *  Yellow button definitions 
+ **************************************************************************************************************/
 
+function connect() {
+    if (!navigator.bluetooth) {
+        console.log('WebBluetooth API is not available.\r\n' +
+            'Please make sure the Web Bluetooth flag is enabled.');
+        window.term_.io.println('WebBluetooth API is not available on your browser.\r\n' +
+            'Please make sure the Web Bluetooth flag is enabled.');
+        return;
+    }
+    console.log('Requesting Bluetooth Device...'); // 1
+    navigator.bluetooth.requestDevice({
+        //filters: [{services: []}]
+        optionalServices: [bleNusServiceUUID],
+        acceptAllDevices: true
+    })
+        .then(device => {
+            bleDevice = device;
+            console.log('Found ' + device.name); //2
+            console.log('Connecting to GATT Server...');
+            bleDevice.addEventListener('gattserverdisconnected', onDisconnected);
+            return device.gatt.connect();
+        })
+        .then(server => {
+            console.log('Locate NUS service'); // 3
+            return server.getPrimaryService(bleNusServiceUUID);
+        }).then(service => {
+            nusService = service;
+            console.log('Found NUS service: ' + service.uuid); // 4
+        })
+        .then(() => {
+            console.log('Locate RX characteristic'); //5
+            return nusService.getCharacteristic(bleNusCharRXUUID);
+        })
+        .then(characteristic => {
+            rxCharacteristic = characteristic;
+            console.log('Found RX characteristic'); //6
+        })
+        .then(() => {
+            console.log('Locate TX characteristic'); //7
+            return nusService.getCharacteristic(bleNusCharTXUUID);
+        })
+        .then(characteristic => {
+            txCharacteristic = characteristic;
+            console.log('Found TX characteristic'); //8
+        })
+        .then(() => {
+            console.log('Enable notifications'); //9
+            return txCharacteristic.startNotifications();
+        })
+        .then(() => {
+            console.log('Notifications started'); //10
+            txCharacteristic.addEventListener('characteristicvaluechanged',
+                handleNotifications);
+            connected = true;
+            window.term_.io.println('\r\n' + bleDevice.name + ' Connected.');
+            //nusSendString('\r');
+            setConnButtonState(true);
+
+            // reveal only the relevant buttons
+            var connectionGroup = document.getElementById("mode-panel");
+            $(connectionGroup).find('button').each(function () {
+
+                var buttonText = $(this).text();
+
+                var activeDuringConnection = ['Relax', 'Train', 'GaitTA',
+                    //'250x2u', '250x2b', '125x4u', '125x4b', 
+                    'Initialise', 'ch1',
+                    'All Params']
+                if (activeDuringConnection.indexOf(buttonText) !== -1) {
+                    console.log(buttonText + ' in'); $(this).show();
+                } else {
+                    console.log(buttonText + ' out'); $(this).hide();
+                }
+            });
+        })
+        .catch(error => {
+            console.log('' + error);
+            window.term_.io.println('' + error);
+            if (bleDevice && bleDevice.gatt.connected) {
+                bleDevice.gatt.disconnect();
+            }
+        });
+}
+
+function relaxPressed() {
+
+    defineSetVal();
+    defineFndelta();
+
+    if (connected) {
+
+        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
+        nusSendString(
+            "(set-val 'c1mx 51) " +
+            "(set-val 'c1fi 255) " +
+            "(set-val 'c1fr 10) " +
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1re 1) " +
+            "(set-val 'c1pu 500) "
+        );
+
+        showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
+        showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of']);
+
+    }
+
+    c1mxPressed();
+
+}
+
+function gaitTAPressed() {
+
+    defineSetVal();
+    defineFndelta();
+
+    if (connected) {
+
+        nusSendString(
+            "(defun set-val3(phase type activation) " +
+            "    (progn " +
+            "        (etlmock devfun phase type activation) " +
+            "        (etlcreate devfun) " +
+            "        (etloutput devfun 0) " +
+            "    ) " +
+            ")"
+        );
+        nusSendString(
+            "(etlclear devfun) "
+        );
+
+        nusSendString(
+            "(set-val3  0.00 c1fi 4) " + // 0 
+            "(set-val3  0.05 c1fi 3) " +
+            "(set-val3  0.10 c1fi 7) " +
+            "(set-val3  0.15 c1fi 75) " +
+            "(set-val3  0.20 c1fi 112) "
+        );
+
+        nusSendString(
+            "(set-val3  0.25 c1fi 98) " +
+            "(set-val3  0.30 c1fi 75) " +
+            "(set-val3  0.35 c1fi 45) " +
+            "(set-val3  0.40 c1fi 32) " +
+            "(set-val3  0.45 c1fi 40) "
+        );
+
+        nusSendString(
+            "(set-val3  0.50 c1fi 71) " +
+            "(set-val3  0.55 c1fi 142) " +
+            "(set-val3  0.60 c1fi 245) " +
+            "(set-val3  0.65 c1fi 255) " +
+            "(set-val3  0.70 c1fi 134) "
+        );
+
+        nusSendString(
+            "(set-val3  0.75 c1fi 45) " +
+            "(set-val3  0.80 c1fi 3) " +
+            "(set-val3  0.85 c1fi 3) " +
+            "(set-val3  0.90 c1fi 5) " +
+            "(set-val3  0.95 c1fi 5) "
+        );
+
+        // setup waveform 5
+        nusSendString(
+            "(set-val 'c1of 0) " +
+            "(set-val 'c1fn 4) " +
+            "(set-val 'c1wl 8000) " +
+            "(set-val 'c1re 3)"
+        );
+
+        // setup waveform 6
+        nusSendString(
+            "(set-val 'c1mx 100) " +
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1pu 200) " +
+            "(set-val 'c1fr 100)"
+        );
+
+        // initialise 7
+        nusSendString(
+            "(set-val 'devthr 1240) " +
+            "(set-val 'c1pc 1) " +
+            "(set-val 'c1of 0) " +
+            "(set-val 'c1fn 4) " +
+            "(set-val 'c1wl 120) " +
+            "(cpp 1 3 1) "
+        );
+        // +"(cpp 1 3 1) "
+        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
+        nusSendString(
+            "(set-val 'c1mx 127) " +
+            "(set-val 'c1fi 255) " +
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1fr 10) " +
+            "(set-val 'c1wl 320000) " +
+            "(set-val 'c1of 0) " +
+            "(set-val 'c1tv 1600) " +
+            "(set-val 'c1pu 500) " +
+            "(set-val 'c1re 7) " +
+            "(set-val 'c1fn 4)"
+        );
+
+        c1mxPressed();
+
+    }
+
+    //showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
+    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'c1wl']);
+
+}
 function initialisePressed() {
 
     defineSetVal();
@@ -243,7 +455,33 @@ function initialisePressed() {
          */
     }
 }
-            //"(set-val 'c1fn 4) " +
+
+function allPressed() {
+    if (connected) {
+        nusSendString(
+            "(pprintall) "
+        );
+    }
+}
+
+function ch1Pressed() {
+    defineSetVal();
+    defineFndelta();
+
+    if (connected) {
+        nusSendString(
+            "(defvar app-val) "
+        );
+    }
+
+    showOnly("adjustment-panel", ['appTypepluspoint1Button', 'appTypeminuspoint1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
+    showOnly("presentation-panel", ['c1mx', 'c1pu', 'c1of']);
+}
+
+
+/***********************************************************************************************************************************************
+ * Superceeded Green button definitions  
+ ***********************************************************************************************************************************************/
 function incc1mxPressed() {
     defineFndelta();
     if (connected) {
@@ -507,52 +745,11 @@ function setupPressed() {
         );
     } 
 }
-function relaxPressed() {
 
-    defineSetVal();
-    defineFndelta();
+/****************************************************************************************
+ * blue button definitions
+ *****************************************************************************************/
 
-    if (connected) {
-
-        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
-        nusSendString(
-            "(set-val 'c1mx 51) " +
-            "(set-val 'c1fi 255) " +
-            "(set-val 'c1fr 10) " +
-            "(set-val 'c1hb 1) " +
-            "(set-val 'c1re 1) " +
-            "(set-val 'c1pu 500) " 
-        );
-
-        showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
-        showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb','c1re','c1pu','c1of']);
-
-    }
-
-    c1mxPressed();
-
-    /*
-    revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
-        'Inc c2mx', 'Dec c2mx', 'Inc xc2mx', 'Dec xc2mx',
-        'Inc c1fi', 'Dec c1fi', 'Inc xc1fi', 'Dec xc1fi',
-    ]);
-    */
-    
-}
-
-function ch1Pressed() {
-    defineSetVal();
-    defineFndelta();
-
-    if (connected) {
-        nusSendString(
-            "(defvar app-val) "
-        );
-    }
-
-    showOnly("adjustment-panel", ['appTypepluspoint1Button', 'appTypeminuspoint1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
-    showOnly("presentation-panel", ['c1mx', 'c1pu', 'c1of']);
-}
 function appTypepluspoint1Pressed() {
     if (connected) {
         nusSendString(
@@ -626,6 +823,9 @@ function appTypeTocmxPressed() {
     }
 }
 
+/*
+ * Put a subtle border around active green display button
+ */
 function setActiveETLType(etl) {
 
     var allDisplayButtons = document.getElementsByClassName('displayButton');
@@ -640,6 +840,9 @@ function setActiveETLType(etl) {
     var buttonEtltypeElement = document.getElementById(etl).style.border = "thick solid #2ecc71"; // Emerald
 }
 
+/******************************************************************************************************************************************************************************
+ * Green buttons pressed
+ ******************************************************************************************************************************************************************************/
 function c1mxPressed() {
     if (connected) {
         nusSendString(
@@ -666,7 +869,7 @@ function c1rePressed() {
         );
     }
     setActiveETLType('c1re');
-    showOnly("adjustment-panel", ['appTypepluspoint1Button', 'appTypeminuspoint1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
+    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
 }
 function c1frPressed() {
     if (connected) {
@@ -695,6 +898,24 @@ function c1ofPressed() {
     }
     setActiveETLType('c1of');
     showOnly("adjustment-panel", ['appTypepluspoint1Button', 'appTypeminuspoint1Button']);
+}
+function c1wlPressed() {
+    if (connected) {
+        nusSendString(
+            "(defvar app-val c1wl) "
+        );
+    }
+    setActiveETLType('c1wl');
+    showOnly("adjustment-panel", ['appTypeplus100Button', 'appTypeminus100Button']);
+}
+function devthPressed() {
+    if (connected) {
+        nusSendString(
+            "(defvar app-val devthr) "
+        );
+    }
+    setActiveETLType('devthr');
+    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button', 'appTypeplus100Button', 'appTypeminus100Button']);
 }
 
 function c1oftestPressed() {
@@ -729,15 +950,7 @@ function c1oftestPressed() {
         );
     }
 }
-function allPressed() {
-    revealButtons("adjustment-panel", ['Inc devthr', 'Dec devthr', 'Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
-        'Inc c1pu', 'Dec c1pu', 'Inc c1re', 'Dec c1re', 'Inc c1tv', 'Dec c1tv',
-        'Inc c1fr', 'Dec c1fr', 'Inc c1wl', 'Dec c1wl', 
-        'Set c1hb=1', 'Set c1hb=2', 'IMU On', 'IMU Off',
-        'Inc c1of', 'Dec c1of', 'Inc xc1of', 'Dec xc1of',
-        'Inc c1fi', 'Dec c1fi', 'Inc xc1fi', 'Dec xc1fi', 'Set opt0', 'Set opt1',
-        'c1oftest'    ]);
-}
+
 function defineSetVal() {
     if (connected) {
         nusSendString(
@@ -831,106 +1044,6 @@ function defineR2c1s() {
     }
 }
 
-function gaitTAPressed() {
-
-    defineSetVal();
-    defineFndelta();
-
-    if (connected) {
-        
-        nusSendString(
-            "(defun set-val3(phase type activation) " +
-            "    (progn " +
-            "        (etlmock devfun phase type activation) " +
-            "        (etlcreate devfun) " +
-            "        (etloutput devfun 0) " +
-            "    ) " +
-            ")"
-        );
-        nusSendString(
-            "(etlclear devfun) "
-        );
-
-        nusSendString(
-            "(set-val3  0.00 c1fi 4) " + // 0 
-            "(set-val3  0.05 c1fi 3) " +
-            "(set-val3  0.10 c1fi 7) " +
-            "(set-val3  0.15 c1fi 75) " +
-            "(set-val3  0.20 c1fi 112) "
-        );
-
-        nusSendString(
-            "(set-val3  0.25 c1fi 98) " +
-            "(set-val3  0.30 c1fi 75) " +
-            "(set-val3  0.35 c1fi 45) " +
-            "(set-val3  0.40 c1fi 32) " +
-            "(set-val3  0.45 c1fi 40) "
-        );
-
-        nusSendString(
-            "(set-val3  0.50 c1fi 71) " +
-            "(set-val3  0.55 c1fi 142) " +
-            "(set-val3  0.60 c1fi 245) " +
-            "(set-val3  0.65 c1fi 255) " +
-            "(set-val3  0.70 c1fi 134) "
-        );
-
-        nusSendString(
-            "(set-val3  0.75 c1fi 45) " +
-            "(set-val3  0.80 c1fi 3) " +
-            "(set-val3  0.85 c1fi 3) " +
-            "(set-val3  0.90 c1fi 5) " +
-            "(set-val3  0.95 c1fi 5) " 
-        );
-
-        // setup waveform 5
-        nusSendString(
-            "(set-val 'c1of 0) " +
-            "(set-val 'c1fn 4) " +
-            "(set-val 'c1wl 8000) " +
-            "(set-val 'c1re 3)"
-        );
-
-        // setup waveform 6
-        nusSendString(
-            "(set-val 'c1mx 100) " +
-            "(set-val 'c1hb 1) " +
-            "(set-val 'c1pu 200) " +
-            "(set-val 'c1fr 100)"
-        );
-
-        // initialise 7
-        nusSendString(
-            "(set-val 'devthr 1240) " +
-            "(set-val 'c1pc 1) " +
-            "(set-val 'c1of 0) " +
-            "(set-val 'c1fn 4) " +
-            "(set-val 'c1wl 120) " +
-            "(cpp 1 3 1) "
-        );
-        // +"(cpp 1 3 1) "
-        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
-        nusSendString(
-            "(set-val 'c1mx 127) " +
-            "(set-val 'c1fi 255) " +
-            "(set-val 'c1hb 1) " +
-            "(set-val 'c1fr 10) " +
-            "(set-val 'c1wl 320000) " +
-            "(set-val 'c1of 0) " +
-            "(set-val 'c1tv 1600) " +
-            "(set-val 'c1pu 500) " +
-            "(set-val 'c1re 7) " +
-            "(set-val 'c1fn 4)"
-        );
-
-        
-    }
-
-    revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
-        'Inc c1of', 'Dec c1of', 'Inc xc1of', 'Dec xc1of',]);
-
-}
-
 // use: revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx']);
 function revealButtons(divName, buttonsToReveal) {
     var connectionGroup = document.getElementById(divName);
@@ -961,8 +1074,10 @@ function showOnly(divname, idsToShow) {
         const element = document.getElementById(id);
 
         if (element) {
+            console.log('showOnly-display' + id);
             element.style.display = 'block';
         } else {
+            console.log('showOnly-hide' + id);
             element.style.display = 'none';
         }
     }
@@ -1140,91 +1255,6 @@ function setConnButtonState(enabled) {
     }
 }
 
-function connect() {
-    if (!navigator.bluetooth) {
-        console.log('WebBluetooth API is not available.\r\n' +
-                    'Please make sure the Web Bluetooth flag is enabled.');
-        window.term_.io.println('WebBluetooth API is not available on your browser.\r\n' +
-                    'Please make sure the Web Bluetooth flag is enabled.');
-        return;
-    }
-    console.log('Requesting Bluetooth Device...'); // 1
-    navigator.bluetooth.requestDevice({
-        //filters: [{services: []}]
-        optionalServices: [bleNusServiceUUID],
-        acceptAllDevices: true
-    })
-    .then(device => {
-        bleDevice = device; 
-        console.log('Found ' + device.name); //2
-        console.log('Connecting to GATT Server...');
-        bleDevice.addEventListener('gattserverdisconnected', onDisconnected);
-        return device.gatt.connect();
-    })
-    .then(server => {
-        console.log('Locate NUS service'); // 3
-        return server.getPrimaryService(bleNusServiceUUID);
-    }).then(service => {
-        nusService = service;
-        console.log('Found NUS service: ' + service.uuid); // 4
-    })
-    .then(() => {
-        console.log('Locate RX characteristic'); //5
-        return nusService.getCharacteristic(bleNusCharRXUUID);
-    })
-    .then(characteristic => {
-        rxCharacteristic = characteristic;
-        console.log('Found RX characteristic'); //6
-    })
-    .then(() => {
-        console.log('Locate TX characteristic'); //7
-        return nusService.getCharacteristic(bleNusCharTXUUID);
-    })
-    .then(characteristic => {
-        txCharacteristic = characteristic;
-        console.log('Found TX characteristic'); //8
-    })
-    .then(() => {
-        console.log('Enable notifications'); //9
-        return txCharacteristic.startNotifications();
-    })
-    .then(() => {
-        console.log('Notifications started'); //10
-        txCharacteristic.addEventListener('characteristicvaluechanged',
-                                          handleNotifications);
-        connected = true;
-        window.term_.io.println('\r\n' + bleDevice.name + ' Connected.');
-        //nusSendString('\r');
-        setConnButtonState(true);
-
-        // reveal only the relevant buttons
-        var connectionGroup = document.getElementById("mode-panel");
-        $(connectionGroup).find('button').each(function () {
-
-            var buttonText = $(this).text();
-
-            var activeDuringConnection = ['Relax', 'Train', 'GaitTA',
-                //'250x2u', '250x2b', '125x4u', '125x4b', 
-                'Initialise', 'ch1',
-                'All Params']
-            if (activeDuringConnection.indexOf(buttonText) !== -1) {
-                console.log(buttonText + ' in'); $(this).show();
-            } else {
-                console.log(buttonText + ' out'); $(this).hide();
-            }
-        });
-    })
-    .catch(error => {
-        console.log('' + error);
-        window.term_.io.println('' + error);
-        if(bleDevice && bleDevice.gatt.connected)
-        {
-            bleDevice.gatt.disconnect();
-        }
-    });
-
-
-}
 
 function disconnect() {
     if (!bleDevice) {
@@ -1295,7 +1325,6 @@ function handleNotifications(event) {
     window.term_.io.print(str);
 
 }
-
 
 function nusSendString(s) {
     if(bleDevice && bleDevice.gatt.connected ) {
