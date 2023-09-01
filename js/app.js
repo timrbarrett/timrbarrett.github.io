@@ -831,13 +831,11 @@ function setActiveETLType(etl) {
     var allDisplayButtons = document.getElementsByClassName('displayButton');
 
     for (var i = 0, size = allDisplayButtons.length; i < size; i++) {
-        //allDisplayButtons[i].style.background = '#b6ff00';
-        allDisplayButtons[i].style.border = "thin dashed #27ae60"; // Nefertitus
-        console.log(i);
+        allDisplayButtons[i].style.border = "thick solid #27ae60"; // Nefertitus
+        //console.log(i);
     }
 
-    //var buttonEtltypeElement = document.getElementById(etl).style.background = '#00ff00';
-    var buttonEtltypeElement = document.getElementById(etl).style.border = "thick solid #2ecc71"; // Emerald
+    var buttonEtltypeElement = document.getElementById(etl).style.border = "thick solid #f1c40f"; // Sunflower Yellow
 }
 
 /******************************************************************************************************************************************************************************
@@ -1074,10 +1072,10 @@ function showOnly(divname, idsToShow) {
         const element = document.getElementById(id);
 
         if (element) {
-            console.log('showOnly-display' + id);
+            //console.log('showOnly-display' + id);
             element.style.display = 'block';
         } else {
-            console.log('showOnly-hide' + id);
+            //console.log('showOnly-hide' + id);
             element.style.display = 'none';
         }
     }
@@ -1284,11 +1282,16 @@ function interpretUlisp(str) {
     const regex = /\((\w+)\s(\d+)\)/;
     const match = regex.exec(str);
 
+    /*
+     * handle well formed ulisp expressions in the form (function function-body)
+     * function will be in match[1]
+     * function body, which might be many elements will be in match[2]
+     */
     if (match) {
         const variableOne = match[1]; // "c1mx"
         const variableTwo = parseInt(match[2]).toString().padStart(3, '0'); // 127
         // parseFloat(match[2]).toString().padStart(3, '0');
-        console.log('*'+variableOne, variableTwo+'*');
+        console.log('receive: '+variableOne, variableTwo);
 
         // get the button__value element by its class name
         const buttonValueElement = document.querySelector('#' + match[1] + ' .button__value');
@@ -1296,14 +1299,21 @@ function interpretUlisp(str) {
         buttonValueElement.textContent = variableTwo;
         
     } else {
-        console.log("No match found.");
-        console.log(str);
+        /*
+         * suppress the responses to green buttons being selected
+         * and suppress the standard ulisp > response too.
+         */
+        if (str == '=app-val' || str == ">") {
+        } else {
+            console.log("No match found.");
+            console.log(str);
+        } 
     }
 }
 
 // handleInbound text from limbstim
 function handleNotifications(event) {
-    console.log('notification');
+    //console.log('notification');
     let value = event.target.value;
     // Convert raw data bytes to character values and use these to 
     // construct a string.
@@ -1312,7 +1322,7 @@ function handleNotifications(event) {
         
         if (value.getUint8(i) == 10) {
             window.term_.io.println(str);
-            console.log(str);
+            //console.log(str);
 
             interpretUlisp(str);
 
@@ -1370,7 +1380,7 @@ async function sendManyValues(chunk) {
 
 function initContent(io) {
     io.println("\r\n\
-Welcome to Limbstim Control V0.0.7 (20th Aug 2023)\r\n\
+Welcome to Limbstim Control V0.0.7 (1st Sep 2023)\r\n\
 \r\n\
 This is a Web Command Line Interface via NUS (Nordic UART Service) using Web Bluetooth.\r\n\
 \r\n\

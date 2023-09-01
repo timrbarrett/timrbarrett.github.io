@@ -16,8 +16,8 @@ body {
 #terminal {
   display:block;
   position: fixed;
-  bottom: 1%;
   width: 100%;
+  bottom: 0%;
 }
 
 #connection-panel {
@@ -31,7 +31,7 @@ body {
 .displayButton {
     display: flex;
     align-items: center;
-    background: #27ae60; // Nephritis
+    background: #27ae60; // Nephritis dark green
 }
 
 .button__etltype,
@@ -39,5 +39,4 @@ body {
     display: inline-flex;
     align-items: center;
     padding: 0 12px;
-
 }

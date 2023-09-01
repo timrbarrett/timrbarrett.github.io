@@ -75,29 +75,29 @@
         </div>
 
         <div id="presentation-panel" class="button-group">
-            <button id="c1mx" type="button" class="displayButton" hidden>
-                <span class="button__etltype" onclick="c1mxPressed()">c1mx</span><span class="button__value">---</span>c1mx
+            <button id="c1mx" type="button" class="displayButton" onclick="c1mxPressed()" hidden>
+                <span class="button__etltype">c1mx</span><span class="button__value">---</span>V
             </button>
-            <button id="c1pu" type="button" class="displayButton" hidden>
-                <span class="button__etltype" onclick="c1puPressed()">c1pu</span><span class="button__value">---</span>c1pu
+            <button id="c1pu" type="button" class="displayButton" onclick="c1puPressed()" hidden>
+                <span class="button__etltype">c1pu</span><span class="button__value">---</span>us
             </button>
-            <button id="c1fr" type="button" class="displayButton" hidden>
-                <span class="button__etltype" onclick="c1frPressed()">c1fr</span><span class="button__value">---</span>c1fr
+            <button id="c1fr" type="button" class="displayButton" onclick="c1frPressed()" hidden>
+                <span class="button__etltype">c1fr</span><span class="button__value">---</span>Hz
             </button>
-            <button id="c1re" type="button" class="displayButton" hidden>
-                <span class="button__etltype" onclick="c1rePressed()">c1re</span><span class="button__value">---</span>c1re
+            <button id="c1re" type="button" class="displayButton" onclick="c1rePressed()" hidden>
+                <span class="button__etltype" >c1re</span><span class="button__value">---</span>times
             </button>
-            <button id="c1hb" type="button" class="displayButton" hidden>
-                <span class="button__etltype" onclick="c1hbPressed()">c1hb</span><span class="button__value">---</span>c1hb
+            <button id="c1hb" type="button" class="displayButton" onclick="c1hbPressed()" hidden>
+                <span class="button__etltype">c1hb</span><span class="button__value">---</span>
             </button>
-            <button id="c1of" type="button" class="displayButton" hidden>
-                <span class="button__etltype" onclick="c1ofPressed()">c1of</span><span class="button__value">---</span>c1of
+            <button id="c1of" type="button" class="displayButton" onclick="c1ofPressed()" hidden>
+                <span class="button__etltype">c1of</span><span class="button__value">---</span>
             </button>
-            <button id="c1wl" type="button" class="displayButton" hidden>
-                <span class="button__etltype" onclick="c1wlPressed()">c1wl</span><span class="button__value">---</span>c1wl
+            <button id="c1wl" type="button" class="displayButton" onclick="c1wlPressed()" hidden>
+                <span class="button__etltype">c1wl</span><span class="button__value">---</span>c1wl
             </button>
-            <button id="devthr" type="button" class="displayButton" hidden>
-                <span class="button__etltype" onclick="devthrPressed()">devthr</span><span class="button__value">---</span>devthr
+            <button id="devthr" type="button" class="displayButton" onclick="devthrPressed()" hidden>
+                <span class="button__etltype">devthr</span><span class="button__value">---</span>devthr
             </button>
         </div>
 
@@ -153,20 +153,23 @@
 
             <button id="c1oftestButton" type="button" class="button" onclick="c1oftestPressed()" hidden>c1oftest</button>
 
-            <button id="appTypepluspoint1Button" type="button" class="button" onclick="appTypepluspoint1Pressed()" hidden>+.1</button>
             <button id="appTypeminuspoint1Button" type="button" class="button" onclick="appTypeminuspoint1Pressed()" hidden>-.1</button>
-            <button id="appTypeplus1Button" type="button" class="button" onclick="appTypeplus1Pressed()" hidden>+1</button>
+            <button id="appTypepluspoint1Button" type="button" class="button" onclick="appTypepluspoint1Pressed()" hidden>+.1</button>
+
             <button id="appTypeminus1Button" type="button" class="button" onclick="appTypeminus1Pressed()" hidden>-1</button>
-            <button id="appTypeplus10Button" type="button" class="button" onclick="appTypeplus10Pressed()" hidden>+10</button>
+            <button id="appTypeplus1Button" type="button" class="button" onclick="appTypeplus1Pressed()" hidden>+1</button>
+
             <button id="appTypeminus10Button" type="button" class="button" onclick="appTypeminus10Pressed()" hidden>-10</button>
-            <button id="appTypeplus100Button" type="button" class="button" onclick="appTypeplus100Pressed()" hidden>+100</button>
+            <button id="appTypeplus10Button" type="button" class="button" onclick="appTypeplus10Pressed()" hidden>+10</button>
+
             <button id="appTypeminus100Button" type="button" class="button" onclick="appTypeminus100Pressed()" hidden>-100</button>
+            <button id="appTypeplus100Button" type="button" class="button" onclick="appTypeplus100Pressed()" hidden>+100</button>
 
             <button id="appTypeTocmxPressed" type="button" class="button" onclick="appTypeTocmxPressed()" hidden>cmx</button>
         </div>
 
 
-        <div id='terminal' style="position:absolute; width:100%; height:25%"></div>
+        <div id='terminal' style="position:absolute; width:100%; height:20%"></div>
 
         <script src='./js/hterm_all.js'></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
