@@ -205,34 +205,34 @@ function gaitTAPressed() {
 
         // initialise 7
         nusSendString(
-            "(set-val 'devthr 1240) " +
+            "(set-val 'devthr 3240) " +
             "(set-val 'c1pc 1) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1fn 4) " +
             "(set-val 'c1wl 120) " +
             "(cpp 1 3 1) "
         );
-        // +"(cpp 1 3 1) "
+        
         // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
         nusSendString(
             "(set-val 'c1mx 127) " +
             "(set-val 'c1fi 255) " +
-            "(set-val 'c1hb 1) " +
-            "(set-val 'c1fr 10) " +
-            "(set-val 'c1wl 320000) " +
+            "(set-val 'c1hb 3) " +
+            "(set-val 'c1fr 200) " +
+            "(set-val 'c1wl 32000) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
-            "(set-val 'c1pu 500) " +
-            "(set-val 'c1re 7) " +
+            "(set-val 'c1pu 140) " +
+            "(set-val 'c1re 4) " +
             "(set-val 'c1fn 4)"
         );
 
-        c1mxPressed();
+
 
     }
 
-    //showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
     showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'c1wl', 'devthr']);
+    c1mxPressed();
 
 }
 function initialisePressed() {
