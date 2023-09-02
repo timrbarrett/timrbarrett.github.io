@@ -749,7 +749,22 @@ function setupPressed() {
 /****************************************************************************************
  * blue button definitions
  *****************************************************************************************/
-
+function appTypepluspoint01Pressed() {
+    if (connected) {
+        nusSendString(
+            "(fndelta app-val 0.01) " +
+            "(etloutput app-val 0) "
+        );
+    }
+}
+function appTypeminuspoint01Pressed() {
+    if (connected) {
+        nusSendString(
+            "(fndelta app-val -0.01) " +
+            "(etloutput app-val 0) "
+        );
+    }
+}
 function appTypepluspoint1Pressed() {
     if (connected) {
         nusSendString(
@@ -895,7 +910,7 @@ function c1ofPressed() {
         );
     }
     setActiveETLType('c1of');
-    showOnly("adjustment-panel", ['appTypepluspoint1Button', 'appTypeminuspoint1Button']);
+    showOnly("adjustment-panel", ['appTypepluspoint01Button', 'appTypeminuspoint01Button', 'appTypepluspoint1Button', 'appTypeminuspoint1Button']);
 }
 function c1wlPressed() {
     if (connected) {
