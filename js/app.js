@@ -13,6 +13,9 @@ var txCharacteristic;
 
 var connected = false;
 
+var ulisp_head = '';
+var ulisp_body = '';
+
 function connectionToggle() {
     if (connected) {
         disconnect();
@@ -123,7 +126,7 @@ function relaxPressed() {
             "(set-val 'c1fr 10) " +
             "(set-val 'c1hb 1) " +
             "(set-val 'c1re 1) " +
-            "(set-val 'c1pu 500) "
+            "(set-val 'c1pu 500) \n"
         );
 
         showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
@@ -979,8 +982,51 @@ function defineSetVal() {
     }
 }
 function defineFndelta() {
+    defineSetVal();
     if (connected) {
 
+        /*
+         *  I want to determine the current value of [etl]type
+         *  compare the current value and -delta to see if we're in danger of wraparound
+         */
+
+        /*
+        nusSendString(
+            "(car(cdr(etloutput(eval type) 0))) "
+        );
+        */
+
+        // ulisp_head and ulisp_body should now have values
+        //window.term_.io.print('ulisp_head: ' + ulisp_head);
+        //window.term_.io.print('ulisp_tail: ' + ulisp_tail);
+
+        /*
+         * OK I can't intercept in the way that I wanted because we only know what etl-type and delta are requested 
+         * once the request has been made.
+         * 
+         * I need to figure out a way to do this in the ulsip definition and execution of the ulisp code.
+         */
+
+        /*
+         * I'm thinking adding a let statement
+         * 
+         * let special form
+         * Syntax: (let ((var value) … ) forms*)
+         * Declares local variables, and evaluates forms with those local variables.
+         * In its simplest form you can declare a list of one or more variables which will be initialised to nil, 
+         * and these can then be used in the subsequent forms:
+         *
+         * (let (a b)
+         *  (setq a 1)
+         *  (setq b 2)
+         *  (* a a b))
+         *  
+         * so for this example  (let (etl_value)
+         *                          (etl_value (car(cdr(etloutput(eval type) 0))) )***)
+         *                          all my prior code goes in ***
+         */
+
+        /* ulisp code before
         nusSendString(
             "(defun fndelta(type delta) " +
             "   (progn " +
@@ -993,6 +1039,65 @@ function defineFndelta() {
             "       (etloutput(eval type) 0) " +
             "   )" +
             ") \n");
+            */
+
+        /*
+        nusSendString(
+            "(defun fndelta(type delta) " +
+                "(let(etl_value) " +
+                    " (setq etl_value (car(cdr(etloutput(eval type) 0)))) " +
+                    " (progn " +
+                        " (etlmock(eval type) " +
+                            " (incf etl_value " +
+                                " delta " +
+                            " ) " + // incf
+                        " ) " + // mock
+                        " (etlcreate(eval type)) " +
+                        " (etloutput(eval type) 0) " +
+                    " ) " + // progn
+                " )" + // let
+            ") \n"); // defun
+        */
+
+        /* 
+         * 
+         * OK that now works as expected in ulisp 
+         * to keep this to under 256 characters I need to create two new defuns
+         * one to check the value vs the delta check-delta (value delta)
+         * the other to execute the change. exec-delta (type delta)
+         * 
+         */
+
+        
+        nusSendString(
+            "(defun check-delta-safe (value delta) " +
+            //" (progn "
+                " (princ 'check-delta-safe ) " +
+                " (princ \" \" ) " +
+                " (princ etl-value)" +
+                " (princ delta) " +
+                " ( and " +
+                " (if (< delta 0) 1 ) " + // + if delta is less than zero - ie negative.
+                " ) " +
+                    //(and(< delta 0)(> (- 0 delta) value)) 1 0) " +
+            //" ) " + // progn
+            ") "); // defun
+    
+        nusSendString(
+            "(defun fndelta(type delta) " +
+                "(let(etl-value new-value) " +
+                    " (setq etl-value (car(cdr(etloutput(eval type) 0))) " +
+                        " new-value (incf etl-value delta) " +
+                     ") " +
+            "( if (check-delta-safe etl-value delta) " +
+                        " (set-val type new-value) " +
+                       // " (set-val type (- etl-value 1 ) ) " +
+                    ") " + // if statement
+                ") " + // let statement
+            ") \n"); // defun fndelta
+
+        //                        " (incf (car(cdr(etloutput(eval type) 0))) " +
+        //                              " delta " +
     }
 }
 function defineTestval() {
@@ -1303,15 +1408,15 @@ function interpretUlisp(str) {
      * function body, which might be many elements will be in match[2]
      */
     if (match) {
-        const variableOne = match[1]; // "c1mx"
-        const variableTwo = parseInt(match[2]).toString().padStart(3, '0'); // 127
+        ulisp_head = match[1]; // "c1mx"
+        ulisp_body = parseInt(match[2]).toString().padStart(3, '0'); // 127
         // parseFloat(match[2]).toString().padStart(3, '0');
-        console.log('receive: '+variableOne, variableTwo);
+        console.log('receive: ' + ulisp_head, ulisp_body);
 
         // get the button__value element by its class name
         const buttonValueElement = document.querySelector('#' + match[1] + ' .button__value');
         // update the text content of the element
-        buttonValueElement.textContent = variableTwo;
+        buttonValueElement.textContent = ulisp_body;
         
     } else {
         /*
