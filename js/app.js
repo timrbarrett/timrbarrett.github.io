@@ -1068,30 +1068,41 @@ function defineFndelta() {
          * 
          */
 
-        
+        /*
+         * Testing "connect" > "Relax" > c1mx defaults to 051
+         * +1 > 052 correct
+         * -1 > 051 correct
+         * +10 > 061 correct
+         * -10 > 051 correct
+         * -100 > 051 correct |-100| > 051 so stop
+         * +100 > 151 correct 
+         * -100 > 151 fail |-100| is not > 151
+         * -10 > 141 correct 
+         * */
         nusSendString(
             "(defun check-delta-safe (value delta) " +
-            //" (progn "
-                " (princ 'check-delta-safe ) " +
-                " (princ \" \" ) " +
-                " (princ etl-value)" +
-                " (princ delta) " +
-                " ( and " +
-                " (if (< delta 0) 1 ) " + // + if delta is less than zero - ie negative.
-                " ) " +
-                    //(and(< delta 0)(> (- 0 delta) value)) 1 0) " +
-            //" ) " + // progn
+                //" (princ 'check-delta-safe ) " +
+                // " (princ \" \" ) " +
+                //" (princ (< delta 0))" +
+                //" (princ (> (- 0 delta) value) ) " +
+                //" (princ (- 0 delta) ) " +
+                //" (princ value ) " +
+                " ( if " +
+                    " ( not ( and " +
+                        " (< delta 0) " + // if delta is less than zero - ie negative be true
+                        " (> (- 0 delta) value) " + // if -delta gt value be true
+                    " ) ) " + // and not
+                " 1 ) " + // if
             ") "); // defun
     
         nusSendString(
             "(defun fndelta(type delta) " +
                 "(let(etl-value new-value) " +
                     " (setq etl-value (car(cdr(etloutput(eval type) 0))) " +
-                        " new-value (incf etl-value delta) " +
+                        //" new-value (incf etl-value delta) " +
                      ") " +
             "( if (check-delta-safe etl-value delta) " +
-                        " (set-val type new-value) " +
-                       // " (set-val type (- etl-value 1 ) ) " +
+                        " (set-val type (+ etl-value delta) ) " +
                     ") " + // if statement
                 ") " + // let statement
             ") \n"); // defun fndelta
