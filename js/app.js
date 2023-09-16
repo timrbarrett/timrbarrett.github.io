@@ -248,6 +248,9 @@ function initialisePressed() {
         // aeq v1.1
         /*
          * discovered if in the transfer is goes over 255 chars it silently stops working.
+         * 
+         * exp is plain text
+         * got is quoted text that gets evaluated
          */
         nusSendString(
             "(defun aeq(t2 test exp got) " +
@@ -267,13 +270,13 @@ function initialisePressed() {
         nusSendString(
             "(defun teq(a b) " +
             " (cond " +
-            "   ((and(stringp a)(stringp b))(string = a b)) " +
+            "   ((and(stringp a)(stringp b))(string= a b)) " +
             "   ((and(atom a)(atom b))(eq a b)) " +
             "   ((null a) nil)((null b) nil) " +
-            "   ((and(listp a)(listp b))(and " +
+            "   ( t (and(listp a)(listp b))(and " +
             "      (teq(car a)(car b)) " +
             "      (teq(cdr a)(cdr b)) " +
-            "t()))) ) "
+            "))) ) "
         );
 
         // test-1to5 v1.0
@@ -333,13 +336,10 @@ function initialisePressed() {
         // tst-ou v1.0
         nusSendString(
             "(defun tst-ou ( type ) " +
-            "    (unless " +
-            "        (teq(list type(eval type))(etloutput(eval type) 0)) " +
-            "        (progn " +
-            "            (princ(list type(eval type))) " +
-            "            (princ(etloutput(eval type) 0)) " +
-            "        ) " +
-            "    ) " +
+
+            " (aeq type 'tst-ou  (list type (eval type)) " +
+            " ' (etloutput (eval type) 0 ) " +
+        "        ) " +
             ")" 
         );
 
@@ -366,9 +366,9 @@ function initialisePressed() {
              "(defun etl-test(type-list) " +
              "    (mapc tests1to5 type-list) " +
              //"    (princ ${'#'}\Newline) " +
-             "    (mapc princ error-log) " +
+             //"    (mapc princ error-log) " +
              //"    (princ ${'#'}\Newline) " +
-             "    (princ errs) " +
+             //"    (princ errs) " +
              //"     (princ ${'#'}\Newline)() " +
              ") "
         );
@@ -434,6 +434,14 @@ function initialisePressed() {
         nusSendString("(etl-test '( c2pu ) )");
         nusSendString("(etl-test '( c2re ) ) ");
 
+        nusSendString("(etl-test '( c2hb ) )");
+        nusSendString("(etl-test '( c2wl ) )");
+        nusSendString("(etl-test '( c2fn ) )");
+        nusSendString("(etl-test '( c2in ) )");
+        nusSendString("(princ errs )");
+        nusSendString("    (mapc princ error-log) ");
+        nusSendString("(pprint c2in )");
+        nusSendString(" (etloutput c2in 0 ) ");
         /*  Values are established
             evidence (pprintall) excerpt is 
             (defvar c2fi '26)
