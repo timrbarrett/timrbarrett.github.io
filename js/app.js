@@ -278,18 +278,22 @@ function initialisePressed() {
          */
         /*
         nusSendString(
-            "(defvar fuzz-factor 0.001) " +
-            "(defun approx-equal (x y) " +
-                " (< (/ (abs (- x y))" +
-                " (max (abs x) (abs y))) " +
-            " fuzz-factor)) " 
-            //" ) "
+            "(defvar fuzz-factor 0.001) ");
+
+        nusSendString(
+            "(defun approx-equal (x y) " + // 1
+            "  (< (/ " + // 2
+            "        (abs(- x y)) " + // 0
+            "        (max (abs x) (abs y)) " + // 0
+            "     ) " + // -1
+            "  fuzz-factor) " + // -1
+            ") " // -1
         );
         */
         nusSendString(
             " (defun xeq (a b) " +
             "   (cond " +
-                    " ( (and(integerp a)(floatp b)) (approx-equal a b) ) " +
+                    " ( (and(integerp a)(floatp b)) (= a b) ) " +
                     " ((eq 1 1) (eq a b )) " +
                 " ) " +
             " ) "
