@@ -246,11 +246,18 @@ function initialisePressed() {
     if (connected) {
 
         // aeq v1.1
+
         /*
          * discovered if in the transfer is goes over 255 chars it silently stops working.
          * 
          * exp is plain text
          * got is quoted text that gets evaluated
+         * 
+         * t2 is the label for the test usually the etl-type involved
+         * test the type of test being attempted
+         * exp is the expected result
+         * got is what actually got returned by the test execution
+         * 
          */
         nusSendString(
             "(defun aeq(t2 test exp got) " +
@@ -266,12 +273,34 @@ function initialisePressed() {
             ") "
         );
 
+        /*
+         * this allows 10 to pass a compare to 10.0
+         */
+        /*
+        nusSendString(
+            "(defvar fuzz-factor 0.001) " +
+            "(defun approx-equal (x y) " +
+                " (< (/ (abs (- x y))" +
+                " (max (abs x) (abs y))) " +
+            " fuzz-factor)) " 
+            //" ) "
+        );
+        */
+        nusSendString(
+            " (defun xeq (a b) " +
+            "   (cond " +
+            //        " (and (integerp a) (floatp b) (approx-equal a b) ) " +
+                    " ((eq 1 1) (eq a b )) " +
+                " ) " +
+            " ) "
+        );
+       
         // teq v1.1
         nusSendString(
             "(defun teq(a b) " +
             " (cond " +
             "   ((and(stringp a)(stringp b))(string= a b)) " +
-            "   ((and(atom a)(atom b))(eq a b)) " +
+            "   ((and(atom a)(atom b))(xeq a b)) " + // fl-n-int-
             "   ((null a) nil)((null b) nil) " +
             "   ( t (and(listp a)(listp b))(and " +
             "      (teq(car a)(car b)) " +
@@ -326,10 +355,13 @@ function initialisePressed() {
         // tst-cr v1.0
         nusSendString(
             "(defun tst-cr(type) " +
+            //"    (etlclear (eval type))" +
             "    (etlcreate(eval type)) " +
             "    (aeq type 'etlcreate 1 " +
             "        '(etlcount (eval type)) " +
             "    ) " +
+            //" (princ (etloutput(eval type) 0)) " +
+            //" (princ (etloutput(eval type) 1)) " +
             ")"
         );
 
@@ -376,9 +408,9 @@ function initialisePressed() {
         // regression test the basics of etl-types
 
         // 1 to 3 are triple types
-
+        
         // 4 to 8 
-        nusSendString("(etl-test '(devros) ) ");
+
 
         // why is symbol table full?
         /*
@@ -389,81 +421,74 @@ function initialisePressed() {
         nusSendString("(tst-cr type) ");
         nusSendString("(tst-ou type) ");
         nusSendString("(tst-cl type) ");*/
+        var device_tests = false;
+        var channel1_tests = true;
+        var channel2_tests = true;
+        var output_errors = true;
+        var pprintall_output = false;
 
-        nusSendString(
-            "(etl-test '( devthr ) ) "
-        );
-        nusSendString(
-            "(etl-test '(devgtt ) ) "
-        );
-        nusSendString(
-            "(etl-test '(devris ) ) "
-        );
-        nusSendString(
-            "(etl-test '(devutc ) ) "
-        );
-        
+        if (device_tests) {
+            nusSendString("(etl-test '(devros) ) ");
+            nusSendString(
+                "(etl-test '( devthr ) ) "
+            );
+            nusSendString(
+                "(etl-test '(devgtt ) ) "
+            );
+            nusSendString(
+                "(etl-test '(devris ) ) " // no point
+            );
+            nusSendString(
+                "(etl-test '(devutc ) ) " // no point in testing these
+            );
+        }
 
-        // 9 to 13
-        nusSendString("(etl-test '( c1mx ) ) " );
-        //nusSendString("(etl-test '( c1pu ) ) ");
-        
-        //nusSendString("(etl-test '( c1fr ) ) ");
-        nusSendString("(etl-test '( c1fi ) ) ");
-        nusSendString("(etl-test '( c1hb ) ) ");
+        if (channel1_tests) {
 
-        // 14 to 17
-        nusSendString("(etl-test '( c1wl ) )");
-        nusSendString("(etl-test '( c1pc ) )");
+            // put these in alphabetical order
+            nusSendString("(etl-test '( c1fi ) ) ");
+            nusSendString("(etl-test '( c1fn ) )");
+            nusSendString("(etl-test '( c1fr ) ) ");
 
+            nusSendString("(etl-test '( c1hb ) ) ");
+            nusSendString("(etl-test '( c1in ) )");
+            nusSendString("(etl-test '( c1mx ) ) ");
 
-        // 18 to 21
-        nusSendString("(etl-test '( c1op ) )");
-        nusSendString("(etl-test '( c1of ) )");
-        nusSendString("(etl-test '( c1tp ) )");
-        //nusSendString("(etl-test '( c1si ) )");
+            nusSendString("(etl-test '( c1of ) )");
+            nusSendString("(etl-test '( c1op ) )");
 
-        nusSendString("(etl-test '( c1re ) )");
-        //nusSendString("(etl-test '( c1tv ) )");
-        nusSendString("(etl-test '( c1in ) )"); // why does this respond withh (c1in 24)(nil 0)
+            nusSendString("(etl-test '( c1pu ) ) ");
+            nusSendString("(etl-test '( c1pc ) )");
 
-        nusSendString("(etl-test '( c2mx ) )");
-        nusSendString("(etl-test '( c2fi ) )");
-        nusSendString("(etl-test '( c2fr ) )");
-        nusSendString("(etl-test '( c2fn ) )");
-        nusSendString("(etl-test '( c2pu ) )");
-        nusSendString("(etl-test '( c2re ) ) ");
+            nusSendString("(etl-test '( c1re ) )");
+            nusSendString("(etl-test '( c1tp ) )");
+            nusSendString("(etl-test '( c1wl ) )");
+            
+        }
 
-        nusSendString("(etl-test '( c2hb ) )");
-        nusSendString("(etl-test '( c2wl ) )");
-        nusSendString("(etl-test '( c2fn ) )");
-        nusSendString("(etl-test '( c2in ) )");
-        nusSendString("(princ errs )");
-        nusSendString("    (mapc princ error-log) ");
-        nusSendString("(pprint c2in )");
-        nusSendString(" (etloutput c2in 0 ) ");
-        /*  Values are established
-            evidence (pprintall) excerpt is 
-            (defvar c2fi '26)
-            (defvar c2mx '25)
-        */
-        /*  11:38 but *something* is off etloutput somehow, and perhaps etlmock and etlcreate
-            (c1re 21)(c1re 21)0=0
-            >
-            (c1in 24)(c1in 24)0=0
-            >
-            (c2mx 25)(nil 0)0=0
-            >
-            (c2fi 26)(nil 0)0=0
-            >
+        if (channel2_tests) {
+            nusSendString("(etl-test '( c2mx ) )");
+            nusSendString("(etl-test '( c2fi ) )");
+            nusSendString("(etl-test '( c2fr ) )");
+            nusSendString("(etl-test '( c2fn ) )");
+            nusSendString("(etl-test '( c2pu ) )");
+            nusSendString("(etl-test '( c2re ) ) ");
 
-            Fixed it
-            11:57
-            (c2mx 25)(c2mx 25)0=0
-            >
-            (c2fi 26)(c2fi 26)0=0
->
-         */
+            nusSendString("(etl-test '( c2hb ) )");
+            nusSendString("(etl-test '( c2wl ) )");
+            //nusSendString("(etl-test '( c2fn ) )");
+            nusSendString("(etl-test '( c2in ) )");
+        }
+
+        if (output_errors) {
+            nusSendString("(princ errs )");
+            nusSendString("    (mapc princ error-log) ");
+        }
+
+        if (pprintall_output) {
+            nusSendString("(pprintall )");
+        }
+
     }
 }
 
