@@ -289,7 +289,7 @@ function initialisePressed() {
         nusSendString(
             " (defun xeq (a b) " +
             "   (cond " +
-            //        " (and (integerp a) (floatp b) (approx-equal a b) ) " +
+                    " ( (and(integerp a)(floatp b)) (approx-equal a b) ) " +
                     " ((eq 1 1) (eq a b )) " +
                 " ) " +
             " ) "
