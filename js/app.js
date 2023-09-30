@@ -320,6 +320,7 @@ function initialisePressed() {
         nusSendString(
             "(defun tests1to5 (type) " +
             "   (progn " +
+            "        (princ type) " +
             //"        (princ \${'#'}\Newline) " + // need to escape the hash symbol
             "        (tst-co type) " +
             "        (tst-cl type) " +
@@ -450,38 +451,22 @@ function initialisePressed() {
         if (channel1_tests) {
 
             // put these in alphabetical order
-            nusSendString("(etl-test '( c1fi ) ) ");
-            nusSendString("(etl-test '( c1fn ) )");
-            nusSendString("(etl-test '( c1fr ) ) ");
-
-            nusSendString("(etl-test '( c1hb ) ) ");
-            nusSendString("(etl-test '( c1in ) )");
-            nusSendString("(etl-test '( c1mx ) ) ");
-
-            nusSendString("(etl-test '( c1of ) )");
-            nusSendString("(etl-test '( c1op ) )");
-
-            nusSendString("(etl-test '( c1pu ) ) ");
-            nusSendString("(etl-test '( c1pc ) )");
-
-            nusSendString("(etl-test '( c1re ) )");
-            nusSendString("(etl-test '( c1tp ) )");
-            nusSendString("(etl-test '( c1wl ) )");
+            nusSendString("(etl-test '( c1fi c1fn c1fr ) ) ");
+            nusSendString("(etl-test '( c1hb c1in c1mx ) ) ");
+            nusSendString("(etl-test '( c1of c1op ) )");
+            nusSendString("(etl-test '( c1pc c1pu ) ) ");
+            nusSendString("(etl-test '( c1re c1tp c1wl ) )");
             
         }
 
         if (channel2_tests) {
-            nusSendString("(etl-test '( c2mx ) )");
-            nusSendString("(etl-test '( c2fi ) )");
-            nusSendString("(etl-test '( c2fr ) )");
-            nusSendString("(etl-test '( c2fn ) )");
-            nusSendString("(etl-test '( c2pu ) )");
-            nusSendString("(etl-test '( c2re ) ) ");
 
-            nusSendString("(etl-test '( c2hb ) )");
-            nusSendString("(etl-test '( c2wl ) )");
-            //nusSendString("(etl-test '( c2fn ) )");
-            nusSendString("(etl-test '( c2in ) )");
+            nusSendString("(etl-test '( c2fi c2fn c2fr ) )");
+            nusSendString("(etl-test '( c2hb c2in c2mx ) )");
+            nusSendString("(etl-test '( c2of c2op ) )");
+            nusSendString("(etl-test '( c2pu ) )");
+            nusSendString("(etl-test '( c2re c2tp c2wl ) )");
+
         }
 
         if (output_errors) {
