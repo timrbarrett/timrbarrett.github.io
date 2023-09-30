@@ -412,20 +412,6 @@ function initialisePressed() {
 
         // regression test the basics of etl-types
 
-        // 1 to 3 are triple types
-        
-        // 4 to 8 
-
-
-        // why is symbol table full?
-        /*
-        nusSendString("(test1to5 '(devros) ) ");
-        nusSendString("(tst-co type) ");
-        nusSendString("(tst-cl type) ");
-        nusSendString("(tst-mo type) ");
-        nusSendString("(tst-cr type) ");
-        nusSendString("(tst-ou type) ");
-        nusSendString("(tst-cl type) ");*/
         var device_tests = false;
         var channel1_tests = true;
         var channel2_tests = true;
@@ -433,19 +419,13 @@ function initialisePressed() {
         var pprintall_output = false;
 
         if (device_tests) {
+
             nusSendString("(etl-test '(devros) ) ");
-            nusSendString(
-                "(etl-test '( devthr ) ) "
-            );
-            nusSendString(
-                "(etl-test '(devgtt ) ) "
-            );
-            nusSendString(
-                "(etl-test '(devris ) ) " // no point
-            );
-            nusSendString(
-                "(etl-test '(devutc ) ) " // no point in testing these
-            );
+            nusSendString("(etl-test '(devthr) ) ");
+            nusSendString("(etl-test '(devgtt) ) ");
+            nusSendString("(etl-test '(devris) ) ");
+            nusSendString("(etl-test '(devutc) ) ");
+
         }
 
         if (channel1_tests) {
@@ -456,7 +436,12 @@ function initialisePressed() {
             nusSendString("(etl-test '( c1of c1op ) )");
             nusSendString("(etl-test '( c1pc c1pu ) ) ");
             nusSendString("(etl-test '( c1re c1tp c1wl ) )");
-            
+
+            def_ch_tests();
+            nusSendString("(ch-tests-1 c1wl)");
+            nusSendString("(ch-tests-1 c2wl)");
+            undef_ch_tests();
+
         }
 
         if (channel2_tests) {
@@ -471,7 +456,7 @@ function initialisePressed() {
 
         if (output_errors) {
             nusSendString("(princ errs )");
-            nusSendString("    (mapc princ error-log) ");
+            nusSendString("(mapc princ error-log) ");
         }
 
         if (pprintall_output) {
@@ -481,6 +466,23 @@ function initialisePressed() {
     }
 }
 
+function def_ch_tests() {
+
+    // test single devris message is ignored
+    nusSendString("(defun ch-tests-1 (ch-type) ");
+    nusSendString("(progn ");
+    nusSendString("(etlclear ch-type) ");
+    nusSendString("(etlclear devris) ");
+    nusSendString("(etlmock devris 1000) ");
+    nusSendString("(etlcreate devris) ");
+    nusSendString("(aeq 'receive-devris-b 'one-devris-message-should-have-zero-c?wl-created 0 (etlcount ch-type) ) ");
+    nusSendString(") ) ");
+
+}
+
+function undef_ch_tests() {
+    nusSendString("(makunbound 'ch-tests-1) ");
+}
 function allPressed() {
     if (connected) {
         nusSendString(
