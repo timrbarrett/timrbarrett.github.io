@@ -412,19 +412,24 @@ function initialisePressed() {
 
         // regression test the basics of etl-types
 
-        var device_tests = false;
-        var channel1_tests = true;
-        var channel2_tests = true;
+        var device_tests = true;
+        var channel1_tests = false;
+        var channel2_tests = false;
         var output_errors = true;
         var pprintall_output = false;
 
         if (device_tests) {
 
-            nusSendString("(etl-test '(devros) ) ");
-            nusSendString("(etl-test '(devthr) ) ");
-            nusSendString("(etl-test '(devgtt) ) ");
-            nusSendString("(etl-test '(devris) ) ");
-            nusSendString("(etl-test '(devutc) ) ");
+            //nusSendString("(etl-test '(devros) ) ");
+            //nusSendString("(etl-test '(devthr) ) ");
+            //nusSendString("(etl-test '(devgtt) ) ");
+            //nusSendString("(etl-test '(devris) ) ");
+            //nusSendString("(etl-test '(devutc dvwl) ) ");
+
+            def_ch_tests();
+            nusSendString("(ch-tests-a dvwl)");
+            nusSendString("(ch-tests-b dvwl)");
+            undef_ch_tests();
 
         }
 
@@ -435,12 +440,7 @@ function initialisePressed() {
             nusSendString("(etl-test '( c1hb c1in c1mx ) ) ");
             nusSendString("(etl-test '( c1of c1op ) )");
             nusSendString("(etl-test '( c1pc c1pu ) ) ");
-            nusSendString("(etl-test '( c1re c1tp c1wl ) )");
-
-            def_ch_tests();
-            nusSendString("(ch-tests-1 c1wl)");
-            nusSendString("(ch-tests-1 c2wl)");
-            undef_ch_tests();
+            nusSendString("(etl-test '( c1re c1tp ) )");
 
         }
 
@@ -454,6 +454,8 @@ function initialisePressed() {
 
         }
 
+        nusSendString("(princ (etloutput dvwl 0 )) ");
+
         if (output_errors) {
             nusSendString("(princ errs )");
             nusSendString("(mapc princ error-log) ");
@@ -464,24 +466,37 @@ function initialisePressed() {
         }
 
     }
+
+    showOnly("presentation-panel", ['etlcl', 'etlco', 'etlcr', 'etlmo', 'etlou', 'c1mx', 'c1pu', 'c1of']);
+
 }
 
 function def_ch_tests() {
 
     // test single devris message is ignored
-    nusSendString("(defun ch-tests-1 (ch-type) ");
+    nusSendString("(defun ch-tests-a (ch-type) ");
     nusSendString("(progn ");
     nusSendString("(etlclear ch-type) ");
     nusSendString("(etlclear devris) ");
     nusSendString("(etlmock devris 1000) ");
     nusSendString("(etlcreate devris) ");
-    nusSendString("(aeq 'receive-devris-b 'one-devris-message-should-have-zero-c?wl-created 0 (etlcount ch-type) ) ");
+    nusSendString("(aeq 'receive-devris-a 'one-devris-message-should-have-zero-c?wl-created 0 (etlcount ch-type) ) ");
+    nusSendString(") ) ");
+
+    // test c1wl gets set to the difference between gen 0 and gen 1 devris
+    nusSendString("(defun ch-tests-b (ch-type) ");
+    nusSendString("(progn ");
+    nusSendString("  (set-val 'devris 7500)");
+    nusSendString("  (set-val 'devris 8000)");
+    nusSendString("  (princ (etloutput ch-type 0)) ");
+    //nusSendString("(aeq 'receive-devris-b 'two-devris-messages-should-create-c?wl-with-abs-diff 500 (cadr(etloutput ch-type 0)) ) ");
     nusSendString(") ) ");
 
 }
 
 function undef_ch_tests() {
-    nusSendString("(makunbound 'ch-tests-1) ");
+    nusSendString("(makunbound 'ch-tests-a) ");
+    nusSendString("(makunbound 'ch-tests-b) ");
 }
 function allPressed() {
     if (connected) {
@@ -505,7 +520,72 @@ function ch1Pressed() {
     showOnly("presentation-panel", ['c1mx', 'c1pu', 'c1of']);
 }
 
-
+function etlcoPressed() {
+    if (connected) {
+        nusSendString(
+            "(with-output-to-string (str) (princ (car (etloutput app-val 0)) str) " + // start with etl-type as "c1xx"
+            "(princ \" etlcount \" str)" + // then the descriptor
+            "(princ(etlcount app-val) str)) " // then the result
+        )
+    }
+}
+function etlclPressed() {
+    if (connected) {
+        // result "c1of etlcount 1"
+        nusSendString(
+            "(etlclear app-val) " +
+            "(with-output-to-string (str)" +
+            //"  (princ(car(etloutput app-val 0)) str) " + // start with etl-type as "c1xx"
+            // can't grab the descriptor as there are no records
+            "  (princ \" etlclear then etlcount means count is \" str)" + // then the descriptor
+            "  (princ(etlcount app-val) str)" +
+            " ) " // then the result
+        );
+    }
+}
+function etlcrPressed() {
+    if (connected) {
+        // result "c1of etlcount 1"
+        nusSendString(
+            "(etlcreate app-val) " +
+            "(with-output-to-string (str)" +
+            "  (princ(car(etloutput app-val 0)) str) " + // start with etl-type as "c1xx"
+            "  (princ \" etlcreate \" str)" + // then the descriptor
+            "  (princ(etloutput app-val 0) str)" +
+            " ) " // then the result
+        );
+    }
+}
+function etlmoPressed() {
+    if (connected) {
+        // result "c1of etlcount 1"
+        nusSendString(
+            "(etlmock app-val app-val) " +
+            "(with-output-to-string (str)" +
+            // can't grab the descriptor as there are no records
+            // line may fail if there are no records
+            "  (princ(car(etloutput app-val 0)) str) " + // start with etl-type as "c1xx"
+            "  (princ \" etlmock \" str)" + // then the descriptor
+            "  (princ app-val str)" +
+            " ) " // then the result
+        );
+    }
+}
+function etlouPressed() {
+    if (connected) {
+        // result "c1of etlcount 1"
+        nusSendString(
+            "(etlmock app-val app-val) " +
+            "(with-output-to-string (str)" +
+            // can't grab the descriptor as there are no records
+            // line may fail if there are no records
+            "  (princ(car(etloutput app-val 0)) str) " + // start with etl-type as "c1xx"
+            "  (princ \" etloutput \" str)" + // then the descriptor
+            "  (princ (etloutput app-val 0) str)" +
+            " ) " // then the result
+        );
+    }
+}
 /***********************************************************************************************************************************************
  * Superceeded Green button definitions  
  ***********************************************************************************************************************************************/
