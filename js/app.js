@@ -194,7 +194,7 @@ function gaitTAPressed() {
         nusSendString(
             "(set-val 'c1of 0) " +
             "(set-val 'c1fn 4) " +
-            "(set-val 'c1wl 8000) " +
+            "(set-val 'dvwl 8000) " + // problem
             "(set-val 'c1re 3)"
         );
 
@@ -208,11 +208,11 @@ function gaitTAPressed() {
 
         // initialise 7
         nusSendString(
-            "(set-val 'devthr 3240) " +
+            "(set-val 'devthr 3240) " + // problem!
             "(set-val 'c1pc 1) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1fn 4) " +
-            "(set-val 'c1wl 120) " +
+            "(set-val 'dvwl 120) " +
             "(cpp 1 3 1) "
         );
         
@@ -222,9 +222,9 @@ function gaitTAPressed() {
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 3) " +
             "(set-val 'c1fr 200) " +
-            "(set-val 'c1wl 32000) " +
+            "(set-val 'dvwl 32000) " +
             "(set-val 'c1of 0) " +
-            "(set-val 'c1tv 1600) " +
+            //"(set-val 'c1tv 1600) " + // problem
             "(set-val 'c1pu 140) " +
             "(set-val 'c1re 4) " +
             "(set-val 'c1fn 4)"
