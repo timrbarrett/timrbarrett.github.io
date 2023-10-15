@@ -234,7 +234,7 @@ function gaitTAPressed() {
 
     }
 
-    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'dvwl', 'devthr']);
+    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'c1wl', 'devthr']);
     c1mxPressed();
 
 }
@@ -1019,13 +1019,13 @@ function c1ofPressed() {
     setActiveETLType('c1of');
     showOnly("adjustment-panel", ['appTypepluspoint01Button', 'appTypeminuspoint01Button', 'appTypepluspoint1Button', 'appTypeminuspoint1Button']);
 }
-function dvwlPressed() {
+function c1wlPressed() {
     if (connected) {
         nusSendString(
-            "(defvar app-val dvwl) "
+            "(defvar app-val c1wl) "
         );
     }
-    setActiveETLType('dvwl');
+    setActiveETLType('c1wl');
     showOnly("adjustment-panel", ['appTypeplus100Button', 'appTypeminus100Button']);
 }
 function devthrPressed() {
