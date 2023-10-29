@@ -194,7 +194,7 @@ function gaitTAPressed() {
         nusSendString(
             "(set-val 'c1of 0) " +
             "(set-val 'c1fn 4) " +
-            "(set-val 'c1wl 8000) " +
+            "(set-val 'dvwl 8000) " +
             "(set-val 'c1re 3)"
         );
 
@@ -212,7 +212,7 @@ function gaitTAPressed() {
             "(set-val 'c1pc 1) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1fn 4) " +
-            "(set-val 'c1wl 120) " +
+            "(set-val 'dvwl 120) " +
             "(cpp 1 3 1) "
         );
         
@@ -222,7 +222,7 @@ function gaitTAPressed() {
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 3) " +
             "(set-val 'c1fr 200) " +
-            "(set-val 'c1wl 32000) " +
+            "(set-val 'dvwl 32000) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
             "(set-val 'c1pu 140) " +
@@ -234,7 +234,7 @@ function gaitTAPressed() {
 
     }
 
-    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'c1wl', 'devthr']);
+    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'dvwl', 'devthr']);
     c1mxPressed();
 
 }
@@ -246,11 +246,11 @@ function initialisePressed() {
     if (connected) {
 
         var device_tests = false;
-        var channel1_tests = false;
-        var channel2_tests = false;
+        var channel1_tests = true;
+        var channel2_tests = true;
         var output_errors = true;
         var pprintall_output = true;
-        var any_testing = false;
+        var any_testing = true;
 
         if (any_testing) {
 
@@ -469,7 +469,7 @@ function initialisePressed() {
         if (pprintall_output) {
             nusSendString("(pprintall )");
             //nusSendString("(pprint 'dvwl )");
-            //nusSendString("(pprint 'c1wl )");
+            //nusSendString("(pprint 'dvwl )");
             //nusSendString("(pprint 'c1mx )");
         }
 
@@ -491,7 +491,7 @@ function def_ch_tests() {
     nusSendString("(aeq 'receive-devris-a 'one-devris-message-should-have-zero-c?wl-created 0 (etlcount ch-type) ) ");
     nusSendString(") ) ");
 
-    // test c1wl gets set to the difference between gen 0 and gen 1 devris
+    // test dvwl gets set to the difference between gen 0 and gen 1 devris
     nusSendString("(defun ch-tests-b (ch-type) ");
     nusSendString("(progn ");
     nusSendString("  (set-val 'devris 7500)");
@@ -600,17 +600,22 @@ function acctestsPressed() {
 
         // - [ ] every centihzpulse that three acc values are stored => dvac
         // - [] clear dvac
-        nusSendString(" ( etlclear devacc ) ");
+        nusSendString(" ( defvar app-val 1 ) "); // 1=devacc
+        //nusSendString("(cpp 1 3 1) ");
+        //etlclPressed(); 
+
         // - [] confirm dvac count is zero
-        nusSendString(" ( etlcount devacc ) ");
+        //etlcoPressed(); // results in "Error: can't take car: -1"
+
         // - [] mock 10 10 10
-        nusSendString(" ( etlmock devacc 10 10 10 ) ");
+        //nusSendString(" ( etlmock devacc 10 10 10 ) ");
         // - [] create a centihzpulse
         nusSendString(" ( etlcreate devchp ) ");
+        // this triggers etlcr and create_centiHzPulse() in jtag viewer.
         // - [] confirm dvac count is one
-        nusSendString(" ( etlcount devacc ) ");
+        //nusSendString(" ( etlcount devacc ) ");
         // - [] confirm values are 10 10 10
-        nusSendString(" ( etloutput devacc 0 ) ");
+        //nusSendString(" ( etloutput devacc 0 ) ");
     }
 }
 /***********************************************************************************************************************************************
@@ -753,17 +758,17 @@ function incc1frPressed() {
     }
 }
 
-function decc1wlPressed() {
+function decdvwlPressed() {
     defineFndelta();
     if (connected) {
-        nusSendString("(fndelta 'c1wl -1000)\n");
+        nusSendString("(fndelta 'dvwl -1000)\n");
     }
 }
 
-function incc1wlPressed() {
+function incdvwlPressed() {
     defineFndelta();
     if (connected) {
-        nusSendString("(fndelta 'c1wl 1000)\n");
+        nusSendString("(fndelta 'dvwl 1000)\n");
     }
 }
 
@@ -872,7 +877,7 @@ function setupPressed() {
             "(set-val 'c1fr 10) " +
             "(set-val 'c1hb 1) " +
             "(set-val 'c1re 1) " +
-            "(set-val 'c1wl 10000) " +
+            "(set-val 'dvwl 10000) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
             "(set-val 'c1pu 500) "
@@ -1046,13 +1051,13 @@ function c1ofPressed() {
     setActiveETLType('c1of');
     showOnly("adjustment-panel", ['appTypepluspoint01Button', 'appTypeminuspoint01Button', 'appTypepluspoint1Button', 'appTypeminuspoint1Button']);
 }
-function c1wlPressed() {
+function dvwlPressed() {
     if (connected) {
         nusSendString(
-            "(defvar app-val c1wl) "
+            "(defvar app-val dvwl) "
         );
     }
-    setActiveETLType('c1wl');
+    setActiveETLType('dvwl');
     showOnly("adjustment-panel", ['appTypeplus100Button', 'appTypeminus100Button']);
 }
 function devthrPressed() {
@@ -1380,7 +1385,7 @@ function m250x2bPressed() {
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 1) " +
             "(set-val 'c1fr 10) " +
-            "(set-val 'c1wl 320000) " +
+            "(set-val 'dvwl 320000) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
             "(set-val 'c1pu 500) " +
@@ -1403,7 +1408,7 @@ function m125x4uPressed() {
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 1) " +
             "(set-val 'c1fr 10) " +
-            "(set-val 'c1wl 320000) " +
+            "(set-val 'dvwl 320000) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
             "(set-val 'c1pu 500) " +
@@ -1426,7 +1431,7 @@ function m125x4bPressed() {
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 1) " +
             "(set-val 'c1fr 10) " +
-            "(set-val 'c1wl 320000) " +
+            "(set-val 'dvwl 320000) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
             "(set-val 'c1pu 500) " +
@@ -1494,7 +1499,7 @@ function trainPressed() {
             "(set-val 'c1fi 255) " +
             "(set-val 'c1re 2) " +
             "(set-val 'c1fr 10) " + // this starts PWM loop going
-            "(set-val 'c1wl 2666) " +
+            "(set-val 'dvwl 2666) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1fn 4) "  // this starts the op, of, tp, in cascade going
 
@@ -1502,7 +1507,7 @@ function trainPressed() {
         );
 
         revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
-            'Inc c1wl', 'Dec c1wl', 'Inc c1re', 'Dec c1re', 'Inc c1wl', 'Dec c1wl', 'Inc c1pc', 'Dec c1pc',
+            'Inc dvwl', 'Dec dvwl', 'Inc c1re', 'Dec c1re', 'Inc dvwl', 'Dec dvwl', 'Inc c1pc', 'Dec c1pc',
             'Set c1hb=1', 'Set c1hb=2'        ]);
     }
 }
