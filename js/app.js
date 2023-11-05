@@ -193,6 +193,7 @@ function gaitTAPressed() {
         // setup waveform 5
         nusSendString(
             "(set-val 'c1of 0) " +
+            "(etloutput c1of 0) " +
             "(set-val 'c1fn 4) " +
             "(set-val 'dvwl 8000) " +
             "(set-val 'c1re 3)"
@@ -211,9 +212,10 @@ function gaitTAPressed() {
             "(set-val 'devthr 3240) " +
             "(set-val 'c1pc 1) " +
             "(set-val 'c1of 0) " +
+            "(etloutput c1of 0) " +
             "(set-val 'c1fn 4) " +
-            "(set-val 'dvwl 120) " +
-            "(cpp 1 3 1) "
+            "(set-val 'dvwl 120) " //+
+            //"(cpp 1 3 1) "
         );
         
         // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
@@ -224,7 +226,8 @@ function gaitTAPressed() {
             "(set-val 'c1fr 200) " +
             "(set-val 'dvwl 32000) " +
             "(set-val 'c1of 0) " +
-            "(set-val 'c1tv 1600) " +
+            "(etloutput c1of 0) " +
+            //"(set-val 'c1tv 1600) " +
             "(set-val 'c1pu 140) " +
             "(set-val 'c1re 4) " +
             "(set-val 'c1fn 4)"
@@ -473,6 +476,9 @@ function initialisePressed() {
             //nusSendString("(pprint 'c1mx )");
         }
 
+        nusSendString(
+            "(defvar app-val c1of) "
+        );
     }
     showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
     showOnly("presentation-panel", ['etlcl', 'etlco', 'etlcr', 'etlmo', 'etlou', 'acctests', 'c1mx', 'c1pu', 'c1of']);
