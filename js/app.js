@@ -214,8 +214,8 @@ function gaitTAPressed() {
             "(set-val 'c1of 0) " +
             "(etloutput c1of 0) " +
             "(set-val 'c1fn 4) " +
-            "(set-val 'dvwl 120) " //+
-            //"(cpp 1 3 1) "
+            "(set-val 'dvwl 120) " +
+            "(cpp 1 3 1) "
         );
         
         // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
@@ -983,6 +983,22 @@ function appTypeTocmxPressed() {
     }
 }
 
+function createAccString(x, y, z) {
+    return 
+    " (etlmock devacc " + x + " " + y + " " + z + ") " +
+            " ( etlcreate devacc ) "
+}
+function appTypeStepPressed() {
+    if (connected) {
+        nusSendString(
+            "(cpp 1 3 0) " +
+            createAccString(2500, -370, 16083)+
+            createAccString(2527, -379, 16136)+
+            createAccString(2479, -355, 16112)+
+            createAccString(2494, -383, 16168)
+        );
+    }
+}
 /*
  * Put a subtle border around active green display button
  */
@@ -1073,7 +1089,7 @@ function devthrPressed() {
         );
     }
     setActiveETLType('devthr');
-    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button', 'appTypeplus100Button', 'appTypeminus100Button']);
+    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button', 'appTypeplus100Button', 'appTypeminus100Button', 'appTypeStepButton']);
 }
 
 function c1oftestPressed() {
