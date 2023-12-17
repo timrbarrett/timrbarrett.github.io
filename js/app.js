@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 const bleNusServiceUUID  = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
 const bleNusCharRXUUID   = '6e400002-b5a3-f393-e0a9-e50e24dcca9e';
@@ -991,12 +991,22 @@ function createAccString(x, y, z) {
 function appTypeStepPressed() {
     if (connected) {
         nusSendString(
-            "(cpp 1 3 0) " +
-            createAccString(2500, -370, 16083)+
-            createAccString(2527, -379, 16136)+
-            createAccString(2479, -355, 16112)+
-            createAccString(2494, -383, 16168)
+            //" (cpp 1 3 0) " +
+            //" (defvar time-now (cddr (etloutput devchn 0))) " +
+            //" (princ time-now) " +
+            " (etlmock devris 500) ( etlcreate devris ) " +
+            " (etlmock devris 49000) ( etlcreate devris ) " +
+            " "
         );
+    }
+}
+
+function appTypenoStepPressed() {
+    if (connected) {
+
+        // turn off auto creation of devacc records
+        nusSendString(
+            "(cpp 1 3 1) ");
     }
 }
 /*
@@ -1089,7 +1099,7 @@ function devthrPressed() {
         );
     }
     setActiveETLType('devthr');
-    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button', 'appTypeplus100Button', 'appTypeminus100Button', 'appTypeStepButton']);
+    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button', 'appTypeplus100Button', 'appTypeminus100Button', 'appTypeStepButton', 'appTypenoStepButton']);
 }
 
 function c1oftestPressed() {
@@ -1169,7 +1179,7 @@ function defineFndelta() {
          * I'm thinking adding a let statement
          * 
          * let special form
-         * Syntax: (let ((var value) � ) forms*)
+         * Syntax: (let ((var value) … ) forms*)
          * Declares local variables, and evaluates forms with those local variables.
          * In its simplest form you can declare a list of one or more variables which will be initialised to nil, 
          * and these can then be used in the subsequent forms:
@@ -1652,9 +1662,9 @@ function sendNextChunk(a) {
 
 let writeValueInProgress = false;
 
-async function sendManyValues(chunk) {
+ async function sendManyValues(chunk) {
     while (writeValueInProgress) {
-        await new Promise(resolve => setTimeout(resolve, 300)); // wait for 0.5 second
+        await new Promise(resolve => setTimeout(resolve, 100)); // wait for 0.5 second
     }
     writeValueInProgress = true;
     try {
@@ -1664,7 +1674,7 @@ async function sendManyValues(chunk) {
         writeValueInProgress = false;
         throw error;
     }
-}
+} 
 
 
 function initContent(io) {
