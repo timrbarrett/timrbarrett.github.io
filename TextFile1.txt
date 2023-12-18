@@ -11,3 +11,5 @@ c1tp0(etlcount (eval type))0(etlcount (eval type))0(etlcount (eval type))1(etlco
 c1pc0(etlcount (eval type))0(etlcount (eval type))0(etlcount (eval type))1(etlcount (eval type))(c1pc 15)(etloutput (eval type) 0)0(etlcount (eval type))=(c1pc)
 
 c1pu0(etlcount (eval type))0(etlcount (eval type))0(etlcount (eval type))1(etlcount (eval type))(c1pu 10)(etloutput (eval type) 0)0(etlcount (eval type))=(c1pu)
+
+undefined c2hb, c2of, c2tp

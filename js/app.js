@@ -452,13 +452,12 @@ function initialisePressed() {
             nusSendString(" (etlmock c1fr 100) ");
                 nusSendString(" (etlcreate c1fr) " );
 
-            //nusSendString("(etl-test '( c1hb c1in c1mx ) ) ");
-            //nusSendString("(etl-test '( c1of c1op ) )");
-            //nusSendString("(etl-test '( c1pc c1pu ) ) ");
-            //nusSendString("(etl-test '( c1re c1tp ) )");
-            //nusSendString("(etl-test '( c1pc ) )");
-            //nusSendString("(etl-test '( c1pu ) )");
+            nusSendString("(etl-test '( c1hb c1in c1mx ) ) ");
+            nusSendString("(etl-test '( c1of c1op ) )");
 
+            nusSendString("(etl-test '( c1re c1tp ) )");
+            nusSendString("(etl-test '( c1pu ) )");
+            nusSendString("(etl-test '( c1pc ) )");
 
         }
 
@@ -1674,7 +1673,7 @@ let writeValueInProgress = false;
 
  async function sendManyValues(chunk) {
     while (writeValueInProgress) {
-        await new Promise(resolve => setTimeout(resolve, 300)); // wait for 0.5 second
+        await new Promise(resolve => setTimeout(resolve, 1000)); // wait for 0.5 second
     }
     writeValueInProgress = true;
     try {
