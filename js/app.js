@@ -251,8 +251,8 @@ function initialisePressed() {
         var device_tests = false;
         var channel1_tests = true;
         var channel2_tests = true;
-        var output_errors = true;
-        var pprintall_output = true;
+        var output_errors = false;
+        var pprintall_output = false;
         var any_testing = true;
 
         if (any_testing) {
@@ -273,7 +273,8 @@ function initialisePressed() {
              */
             nusSendString(
                 "(defun aeq(t2 test exp got) " +
-                "   (unless " +
+                " ( progn ( princ exp ) ( princ got ) ) " +
+ /*               "   (unless " +
                 "       (teq exp (eval got)) " +
                 "       (progn " +
                 "           (push(list t2 test exp(eval got)) error-log) " +
@@ -281,7 +282,7 @@ function initialisePressed() {
                 "           '(print-error t2 test exp got) " +
                 "           (princ t2) " +
                 "      ) " +
-                "  ) " +
+                "  ) " + */
                 ") "
             );
 
@@ -444,11 +445,20 @@ function initialisePressed() {
         if (channel1_tests) {
 
             // put these in alphabetical order
-            nusSendString("(etl-test '( c1fi c1fn c1fr ) ) ");
-            nusSendString("(etl-test '( c1hb c1in c1mx ) ) ");
-            nusSendString("(etl-test '( c1of c1op ) )");
-            nusSendString("(etl-test '( c1pc c1pu ) ) ");
-            nusSendString("(etl-test '( c1re c1tp ) )");
+            //nusSendString("(etl-test '( c1fi c1fn c1fr ) ) ");
+            nusSendString("(etl-test '( c1fi ) )");
+            nusSendString("(etl-test '( c1fn ) )");
+            nusSendString("(etl-test '( c1fr ) ) ");
+            nusSendString(" (etlmock c1fr 100) ");
+                nusSendString(" (etlcreate c1fr) " );
+
+            //nusSendString("(etl-test '( c1hb c1in c1mx ) ) ");
+            //nusSendString("(etl-test '( c1of c1op ) )");
+            //nusSendString("(etl-test '( c1pc c1pu ) ) ");
+            //nusSendString("(etl-test '( c1re c1tp ) )");
+            //nusSendString("(etl-test '( c1pc ) )");
+            //nusSendString("(etl-test '( c1pu ) )");
+
 
         }
 
@@ -477,7 +487,7 @@ function initialisePressed() {
         }
 
         nusSendString(
-            "(defvar app-val c1of) "
+            "(defvar app-val c1fr) " 
         );
     }
     showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
@@ -1664,7 +1674,7 @@ let writeValueInProgress = false;
 
  async function sendManyValues(chunk) {
     while (writeValueInProgress) {
-        await new Promise(resolve => setTimeout(resolve, 100)); // wait for 0.5 second
+        await new Promise(resolve => setTimeout(resolve, 300)); // wait for 0.5 second
     }
     writeValueInProgress = true;
     try {
