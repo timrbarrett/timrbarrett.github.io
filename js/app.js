@@ -146,11 +146,11 @@ function gaitTAPressed() {
     if (connected) {
 
         nusSendString(
-            "(defun set-val3(phase type activation) " +
+            "(defun set-val3(channel phase type activation) " +
             "    (progn " +
-            "        (etlmock devfun phase type activation) " +
-            "        (etlcreate devfun) " +
-            "        (etloutput devfun 0) " +
+            "        (etlmock channel phase type activation) " +
+            "        (etlcreate channel) " +
+            "        (etloutput channel 0) " +
             "    ) " +
             ")"
         );
@@ -159,43 +159,75 @@ function gaitTAPressed() {
         );
 
         nusSendString(
-            "(set-val3  0.00 c1fi 4) " + // 0 
-            "(set-val3  0.05 c1fi 3) " +
-            "(set-val3  0.10 c1fi 7) " +
-            "(set-val3  0.15 c1fi 75) " +
-            "(set-val3  0.20 c1fi 112) "
+            "(set-val3 devfun 0.00 c1fi 4) " + // 0 
+            "(set-val3 devfun 0.05 c1fi 3) " +
+            "(set-val3 devfun 0.10 c1fi 7) " +
+            "(set-val3 devfun 0.15 c1fi 75) " +
+            "(set-val3 devfun 0.20 c1fi 112) "
         );
 
         nusSendString(
-            "(set-val3  0.25 c1fi 98) " +
-            "(set-val3  0.30 c1fi 75) " +
-            "(set-val3  0.35 c1fi 45) " +
-            "(set-val3  0.40 c1fi 32) " +
-            "(set-val3  0.45 c1fi 40) "
+            "(set-val3 devfun 0.25 c1fi 98) " +
+            "(set-val3 devfun 0.30 c1fi 75) " +
+            "(set-val3 devfun 0.35 c1fi 45) " +
+            "(set-val3 devfun 0.40 c1fi 32) " +
+            "(set-val3 devfun 0.45 c1fi 40) "
         );
 
         nusSendString(
-            "(set-val3  0.50 c1fi 71) " +
-            "(set-val3  0.55 c1fi 142) " +
-            "(set-val3  0.60 c1fi 245) " +
-            "(set-val3  0.65 c1fi 255) " +
-            "(set-val3  0.70 c1fi 134) "
+            "(set-val3 devfun 0.50 c1fi 71) " +
+            "(set-val3 devfun 0.55 c1fi 142) " +
+            "(set-val3 devfun 0.60 c1fi 245) " +
+            "(set-val3 devfun 0.65 c1fi 255) " +
+            "(set-val3 devfun 0.70 c1fi 134) "
         );
 
         nusSendString(
-            "(set-val3  0.75 c1fi 45) " +
-            "(set-val3  0.80 c1fi 3) " +
-            "(set-val3  0.85 c1fi 3) " +
-            "(set-val3  0.90 c1fi 5) " +
-            "(set-val3  0.95 c1fi 5) "
+            "(set-val3 devfun 0.75 c1fi 45) " +
+            "(set-val3 devfun 0.80 c1fi 3) " +
+            "(set-val3 devfun 0.85 c1fi 3) " +
+            "(set-val3 devfun 0.90 c1fi 5) " +
+            "(set-val3 devfun 0.95 c1fi 5) "
         );
 
+        nusSendString(
+            "(set-val3 c2fu 0.00 c1fi 4) " + // 0 
+            "(set-val3 c2fu 0.05 c1fi 3) " +
+            "(set-val3 c2fu 0.10 c1fi 7) " +
+            "(set-val3 c2fu 0.15 c1fi 75) " +
+            "(set-val3 c2fu 0.20 c1fi 112) "
+        );
+
+        nusSendString(
+            "(set-val3 c2fu 0.25 c1fi 98) " +
+            "(set-val3 c2fu 0.30 c1fi 75) " +
+            "(set-val3 c2fu 0.35 c1fi 45) " +
+            "(set-val3 c2fu 0.40 c1fi 32) " +
+            "(set-val3 c2fu 0.45 c1fi 40) "
+        );
+
+        nusSendString(
+            "(set-val3 c2fu 0.50 c1fi 71) " +
+            "(set-val3 c2fu 0.55 c1fi 142) " +
+            "(set-val3 c2fu 0.60 c1fi 245) " +
+            "(set-val3 c2fu 0.65 c1fi 255) " +
+            "(set-val3 c2fu 0.70 c1fi 134) "
+        );
+
+        nusSendString(
+            "(set-val3 c2fu 0.75 c1fi 45) " +
+            "(set-val3 c2fu 0.80 c1fi 3) " +
+            "(set-val3 c2fu 0.85 c1fi 3) " +
+            "(set-val3 c2fu 0.90 c1fi 5) " +
+            "(set-val3 c2fu 0.95 c1fi 5) "
+        );
+        
         // setup waveform 5
         nusSendString(
             "(set-val 'c1of 0) " +
-            "(etloutput c1of 0) " +
+            //"(etloutput c1of 0) " +
             "(set-val 'c1fn 4) " +
-            "(set-val 'dvwl 8000) " +
+            "(set-val 'c1wl 8000) " +
             "(set-val 'c1re 3)"
         );
 
@@ -211,10 +243,10 @@ function gaitTAPressed() {
         nusSendString(
             "(set-val 'devthr 3240) " +
             "(set-val 'c1pc 1) " +
-            "(set-val 'c1of 0) " +
-            "(etloutput c1of 0) " +
+            //"(set-val 'c1of 0) " +
+            //"(etloutput c1of 0) " +
             "(set-val 'c1fn 4) " +
-            "(set-val 'dvwl 120) " +
+            "(set-val 'c1wl 120) " +
             "(cpp 1 3 1) "
         );
         
@@ -224,16 +256,25 @@ function gaitTAPressed() {
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 3) " +
             "(set-val 'c1fr 200) " +
-            "(set-val 'dvwl 32000) " +
-            "(set-val 'c1of 0) " +
-            "(etloutput c1of 0) " +
-            //"(set-val 'c1tv 1600) " +
+            "(set-val 'c1wl 32000) " +
+            //"(set-val 'c1of 0) " +
+            //"(etloutput c1of 0) " +
             "(set-val 'c1pu 140) " +
             "(set-val 'c1re 4) " +
             "(set-val 'c1fn 4)"
         );
 
-
+        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
+        nusSendString(
+            "(set-val 'c2of 0) " +
+            "(set-val 'c2fn 4) " +
+            "(set-val 'c2hb 1) " +
+            "(set-val 'c2fr 10) " +
+            "(set-val 'c2wl 16000) " +
+            "(set-val 'c2pu 100) " +
+            "(set-val 'c2re 4) " +
+            "(set-val 'c2mx 100)"
+        );
 
     }
 
@@ -251,7 +292,7 @@ function initialisePressed() {
         var device_tests = false;
         var channel1_tests = true;
         var channel2_tests = true;
-        var output_errors = false;
+        var output_errors = true;
         var pprintall_output = false;
         var any_testing = true;
 
@@ -273,8 +314,8 @@ function initialisePressed() {
              */
             nusSendString(
                 "(defun aeq(t2 test exp got) " +
-                " ( progn ( princ exp ) ( princ got ) ) " +
- /*               "   (unless " +
+                //" ( progn ( princ exp ) ( princ got ) ) " +
+                "   (unless " +
                 "       (teq exp (eval got)) " +
                 "       (progn " +
                 "           (push(list t2 test exp(eval got)) error-log) " +
@@ -282,7 +323,7 @@ function initialisePressed() {
                 "           '(print-error t2 test exp got) " +
                 "           (princ t2) " +
                 "      ) " +
-                "  ) " + */
+                "  ) " +
                 ") "
             );
 
@@ -486,7 +527,7 @@ function initialisePressed() {
         }
 
         nusSendString(
-            "(defvar app-val c1fr) " 
+            "(defvar app-val c2tp) " 
         );
     }
     showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
@@ -1673,7 +1714,7 @@ let writeValueInProgress = false;
 
  async function sendManyValues(chunk) {
     while (writeValueInProgress) {
-        await new Promise(resolve => setTimeout(resolve, 1000)); // wait for 0.5 second
+        await new Promise(resolve => setTimeout(resolve, 250)); // wait for 0.5 second
     }
     writeValueInProgress = true;
     try {
@@ -1685,7 +1726,19 @@ let writeValueInProgress = false;
     }
 } 
 
+/*
+let writeValuePromise = Promise.resolve();
 
+async function sendManyValues(chunk) {
+  await writeValuePromise;
+  try {
+    writeValuePromise = rxCharacteristic.writeValueWithResponse(chunk);
+    await writeValuePromise;
+  } catch (error) {
+    throw error;
+  }
+}
+*/
 function initContent(io) {
     io.println("\r\n\
 Welcome to Limbstim Control V0.0.7 (1st Sep 2023)\r\n\
