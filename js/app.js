@@ -249,8 +249,8 @@ function initialisePressed() {
     if (connected) {
 
         var device_tests = false;
-        var channel1_tests = true;
-        var channel2_tests = true;
+        var channel1_tests = false;
+        var channel2_tests = false;
         var output_errors = false;
         var pprintall_output = false;
         var any_testing = true;
@@ -486,7 +486,7 @@ function initialisePressed() {
         }
 
         nusSendString(
-            "(defvar app-val c1fr) " 
+            "(defvar app-val dvll) " 
         );
     }
     showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
