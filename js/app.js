@@ -220,7 +220,7 @@ function gaitTAPressed() {
         
         // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
         nusSendString(
-            "(set-val 'c1mx 127) " +
+            "(set-val 'c1mx 105) " +
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 3) " +
             "(set-val 'c1fr 200) " +
@@ -228,8 +228,8 @@ function gaitTAPressed() {
             "(set-val 'c1of 0) " +
             "(etloutput c1of 0) " +
             //"(set-val 'c1tv 1600) " +
-            "(set-val 'c1pu 140) " +
-            "(set-val 'c1re 4) " +
+            "(set-val 'c1pu 250) " +
+            "(set-val 'c1re 2) " +
             "(set-val 'c1fn 4)"
         );
 
