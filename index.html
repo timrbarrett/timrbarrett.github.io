@@ -93,14 +93,14 @@
             <button id="c1of" type="button" class="displayButton" onclick="c1ofPressed()" hidden>
                 <span class="button__etltype">c1of</span><span class="button__value">---</span>
             </button>
-            <button id="c1wl" type="button" class="displayButton" onclick="c1wlPressed()" hidden>
-                <span class="button__etltype">c1wl</span><span class="button__value">---</span>c1wl
+            <button id="dvwl" type="button" class="displayButton" onclick="dvwlPressed()" hidden>
+                <span class="button__etltype">dvwl</span><span class="button__value">---</span>dvwl
             </button>
             <button id="devthr" type="button" class="displayButton" onclick="devthrPressed()" hidden>
                 <span class="button__etltype">devthr</span><span class="button__value">---</span>devthr
             </button>
-
-            <button id="etlcl" type="button" class="displayButton" onclick="etlclPressed()" hidden>
+            
+            <!--<button id="etlcl" type="button" class="displayButton" onclick="etlclPressed()" hidden>
                 <span class="button__etltype">etlcl</span><span class="button__value">---</span>
             </button>
             <button id="etlco" type="button" class="displayButton" onclick="etlcoPressed()" hidden>
@@ -114,13 +114,22 @@
             </button>
             <button id="etlou" type="button" class="displayButton" onclick="etlouPressed()" hidden>
                 <span class="button__etltype">etlou</span><span class="button__value">---</span>
-            </button>
+            </button>-->
+            
         </div>
 
         <div id="modeConnectionWhitespace" class="divider">
         </div>
 
         <div id="adjustment-panel" class="button-group">
+
+            <button id="etlcl" type="button" class="button" onclick="etlclPressed()" hidden>cl</button>
+            <button id="etlco" type="button" class="button" onclick="etlcoPressed()" hidden>co</button>
+            <button id="etlcr" type="button" class="button" onclick="etlcrPressed()" hidden>cr</button>
+            <button id="etlmo" type="button" class="button" onclick="etlmoPressed()" hidden>mo</button>
+            <button id="etlou" type="button" class="button" onclick="etlouPressed()" hidden>ou</button>
+            <button id="acctests" type="button" class="button" onclick="acctestsPressed()" hidden>acctests</button>
+
             <button id="incc1mxButton" type="button" class="button" onclick="incc1mxPressed()" hidden>Inc c1mx</button>
             <button id="decc1mxButton" type="button" class="button" onclick="decc1mxPressed()" hidden>Dec c1mx</button>
             <button id="incxc1mxButton" type="button" class="button" onclick="incxc1mxPressed()" hidden>Inc xc1mx</button>
@@ -184,7 +193,9 @@
             <button id="appTypeminus100Button" type="button" class="button" onclick="appTypeminus100Pressed()" hidden>-100</button>
             <button id="appTypeplus100Button" type="button" class="button" onclick="appTypeplus100Pressed()" hidden>+100</button>
 
-            <button id="appTypeTocmxPressed" type="button" class="button" onclick="appTypeTocmxPressed()" hidden>cmx</button>
+            <button id="appTypeTocmxButton" type="button" class="button" onclick="appTypeTocmxPressed()" hidden>cmx</button>
+            <button id="appTypeStepButton" type="button" class="button" onclick="appTypeStepPressed()" hidden>Step</button>
+            <button id="appTypenoStepButton" type="button" class="button" onclick="appTypenoStepPressed()" hidden>noStep</button>
         </div>
 
 

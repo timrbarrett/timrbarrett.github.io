@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 const bleNusServiceUUID  = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
 const bleNusCharRXUUID   = '6e400002-b5a3-f393-e0a9-e50e24dcca9e';
@@ -193,8 +193,11 @@ function gaitTAPressed() {
         // setup waveform 5
         nusSendString(
             "(set-val 'c1of 0) " +
+            "(etloutput c1of 0) " +
             "(set-val 'c1fn 4) " +
-            "(set-val 'dvwl 8000) " + // problem
+
+            "(set-val 'dvwl 8000) " +
+
             "(set-val 'c1re 3)"
         );
 
@@ -211,6 +214,7 @@ function gaitTAPressed() {
             "(set-val 'devthr 3240) " + // problem!
             "(set-val 'c1pc 1) " +
             "(set-val 'c1of 0) " +
+            "(etloutput c1of 0) " +
             "(set-val 'c1fn 4) " +
             "(set-val 'dvwl 120) " +
             "(cpp 1 3 1) "
@@ -218,15 +222,17 @@ function gaitTAPressed() {
         
         // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
         nusSendString(
-            "(set-val 'c1mx 127) " +
+            "(set-val 'c1mx 105) " +
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 3) " +
             "(set-val 'c1fr 200) " +
             "(set-val 'dvwl 32000) " +
             "(set-val 'c1of 0) " +
-            //"(set-val 'c1tv 1600) " + // problem
-            "(set-val 'c1pu 140) " +
-            "(set-val 'c1re 4) " +
+
+            "(etloutput c1of 0) " +
+            //"(set-val 'c1tv 1600) " +
+            "(set-val 'c1pu 290) " +
+            "(set-val 'c1re 2) " +
             "(set-val 'c1fn 4)"
         );
 
@@ -234,7 +240,7 @@ function gaitTAPressed() {
 
     }
 
-    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'c1wl', 'devthr']);
+    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'dvwl', 'devthr']);
     c1mxPressed();
 
 }
@@ -245,178 +251,184 @@ function initialisePressed() {
 
     if (connected) {
 
-        // aeq v1.1
-
-        /*
-         * discovered if in the transfer is goes over 255 chars it silently stops working.
-         * 
-         * exp is plain text
-         * got is quoted text that gets evaluated
-         * 
-         * t2 is the label for the test usually the etl-type involved
-         * test the type of test being attempted
-         * exp is the expected result
-         * got is what actually got returned by the test execution
-         * 
-         */
-        nusSendString(
-            "(defun aeq(t2 test exp got) " +
-            "   (unless " +
-            "       (teq exp (eval got)) " +
-            "       (progn " +
-            "           (push(list t2 test exp(eval got)) error-log) " +
-            "           (incf errs) " +
-            "           '(print-error t2 test exp got) " +
-            "           (princ t2) " +
-            "      ) " +
-            "  ) " +
-            ") "
-        );
-
-        /*
-         * this allows 10 to pass a compare to 10.0
-         */
-        /*
-        nusSendString(
-            "(defvar fuzz-factor 0.001) ");
-
-        nusSendString(
-            "(defun approx-equal (x y) " + // 1
-            "  (< (/ " + // 2
-            "        (abs(- x y)) " + // 0
-            "        (max (abs x) (abs y)) " + // 0
-            "     ) " + // -1
-            "  fuzz-factor) " + // -1
-            ") " // -1
-        );
-        */
-        nusSendString(
-            " (defun xeq (a b) " +
-            "   (cond " +
-                    " ( (and(integerp a)(floatp b)) (= a b) ) " +
-                    " ((eq 1 1) (eq a b )) " +
-                " ) " +
-            " ) "
-        );
-       
-        // teq v1.1
-        nusSendString(
-            "(defun teq(a b) " +
-            " (cond " +
-            "   ((and(stringp a)(stringp b))(string= a b)) " +
-            "   ((and(atom a)(atom b))(xeq a b)) " + // fl-n-int-
-            "   ((null a) nil)((null b) nil) " +
-            "   ( t (and(listp a)(listp b))(and " +
-            "      (teq(car a)(car b)) " +
-            "      (teq(cdr a)(cdr b)) " +
-            "))) ) "
-        );
-
-        // test-1to5 v1.0
-        /*
-         * If you need to use the pound symbol in a string that is enclosed in backticks (```) 
-         * for template literals, you can use the ${} syntax to insert the symbol:
-         */
-        nusSendString(
-            "(defun tests1to5 (type) " +
-            "   (progn " +
-            "        (princ type) " +
-            //"        (princ \${'#'}\Newline) " + // need to escape the hash symbol
-            "        (tst-co type) " +
-            "        (tst-cl type) " +
-            "        (tst-mo type) " +
-            "        (tst-cr type) " +
-            "        (tst-ou type) " +
-            "        (tst-cl type) " +
-            "    )" +
-            ")"
-        );
-
-        
-        // tst-co v1.0
-        nusSendString(
-            "(defun tst-co(type) " +
-            "   (etlclear(eval type)) " +
-            "   (aeq type 'etlcount 0 '(etlcount(eval type))) " +
-            ") "
-        );
-
-        // tst-cl v1.0
-        nusSendString(
-            "(defun tst-cl(type) " +
-            "    (etlclear(eval type)) " +
-            "    (aeq type 'etlclear 0 '(etlcount(eval type))) " +
-            ")"
-        );
-
-        // tst-mo v1.0
-        nusSendString(
-            "(defun tst-mo(type) " +
-            "    (etlmock(eval type)(eval type)) " +
-            "    (aeq type 'etlmock 0 '(etlcount(eval type))) " +
-            ")"
-        );
-
-        // tst-cr v1.0
-        nusSendString(
-            "(defun tst-cr(type) " +
-            //"    (etlclear (eval type))" +
-            "    (etlcreate(eval type)) " +
-            "    (aeq type 'etlcreate 1 " +
-            "        '(etlcount (eval type)) " +
-            "    ) " +
-            //" (princ (etloutput(eval type) 0)) " +
-            //" (princ (etloutput(eval type) 1)) " +
-            ")"
-        );
-
-        // tst-ou v1.0
-        nusSendString(
-            "(defun tst-ou ( type ) " +
-
-            " (aeq type 'tst-ou  (list type (eval type)) " +
-            " ' (etloutput (eval type) 0 ) " +
-        "        ) " +
-            ")" 
-        );
-
-        // tst-tst-1 v1.0
-        nusSendString(
-            "(defun tst-1 (type) " +
-            "    (if (> (etloutput(eval type) 0) -1) " +
-            "       (princ 'fail) " +
-            "       (princ 'pass) " +
-            "   ) " +
-            ")"
-        );
-
-        // test logs
-        nusSendString(
-            "(defvar errs 0) " +
-            "(defvar error-log()) " +
-            "(defvar pass-log()) "
-        );
-        
-        // # in ulisp must be entered as ${'#'} in js
-        // etl-tst v1.0
-        nusSendString(
-             "(defun etl-test(type-list) " +
-             "    (mapc tests1to5 type-list) " +
-             //"    (princ ${'#'}\Newline) " +
-             //"    (mapc princ error-log) " +
-             //"    (princ ${'#'}\Newline) " +
-             //"    (princ errs) " +
-             //"     (princ ${'#'}\Newline)() " +
-             ") "
-        );
-
-        // regression test the basics of etl-types
-
-        var device_tests = true;
+        var device_tests = false;
         var channel1_tests = false;
         var channel2_tests = false;
-        var output_errors = true;
+        var output_errors = false;
         var pprintall_output = false;
+        var any_testing = true;
+
+        if (any_testing) {
+
+            // aeq v1.1
+
+            /*
+             * discovered if in the transfer is goes over 255 chars it silently stops working.
+             * 
+             * exp is plain text
+             * got is quoted text that gets evaluated
+             * 
+             * t2 is the label for the test usually the etl-type involved
+             * test the type of test being attempted
+             * exp is the expected result
+             * got is what actually got returned by the test execution
+             * 
+             */
+            nusSendString(
+                "(defun aeq(t2 test exp got) " +
+                " ( progn ( princ exp ) ( princ got ) ) " +
+ /*               "   (unless " +
+                "       (teq exp (eval got)) " +
+                "       (progn " +
+                "           (push(list t2 test exp(eval got)) error-log) " +
+                "           (incf errs) " +
+                "           '(print-error t2 test exp got) " +
+                "           (princ t2) " +
+                "      ) " +
+                "  ) " + */
+                ") "
+            );
+
+            /*
+             * this allows 10 to pass a compare to 10.0
+             */
+            /*
+            nusSendString(
+                "(defvar fuzz-factor 0.001) ");
+    
+            nusSendString(
+                "(defun approx-equal (x y) " + // 1
+                "  (< (/ " + // 2
+                "        (abs(- x y)) " + // 0
+                "        (max (abs x) (abs y)) " + // 0
+                "     ) " + // -1
+                "  fuzz-factor) " + // -1
+                ") " // -1
+            );
+            */
+            nusSendString(
+                " (defun xeq (a b) " +
+                "   (cond " +
+                " ( (and(integerp a)(floatp b)) (= a b) ) " +
+                " ((eq 1 1) (eq a b )) " +
+                " ) " +
+                " ) "
+            );
+
+            // teq v1.1
+            nusSendString(
+                "(defun teq(a b) " +
+                " (cond " +
+                "   ((and(stringp a)(stringp b))(string= a b)) " +
+                "   ((and(atom a)(atom b))(xeq a b)) " + // fl-n-int-
+                "   ((null a) nil)((null b) nil) " +
+                "   ( t (and(listp a)(listp b))(and " +
+                "      (teq(car a)(car b)) " +
+                "      (teq(cdr a)(cdr b)) " +
+                "))) ) "
+            );
+
+            // test-1to5 v1.0
+            /*
+             * If you need to use the pound symbol in a string that is enclosed in backticks (```) 
+             * for template literals, you can use the ${} syntax to insert the symbol:
+             */
+            nusSendString(
+                "(defun tests1to5 (type) " +
+                "   (progn " +
+                "        (princ type) " +
+                //"        (princ \${'#'}\Newline) " + // need to escape the hash symbol
+                "        (tst-co type) " +
+                "        (tst-cl type) " +
+                "        (tst-mo type) " +
+                "        (tst-cr type) " +
+                "        (tst-ou type) " +
+                "        (tst-cl type) " +
+                "    )" +
+                ")"
+            );
+
+
+            // tst-co v1.0
+            nusSendString(
+                "(defun tst-co(type) " +
+                "   (etlclear(eval type)) " +
+                "   (aeq type 'etlcount 0 '(etlcount(eval type))) " +
+                ") "
+            );
+
+            // tst-cl v1.0
+            nusSendString(
+                "(defun tst-cl(type) " +
+                "    (etlclear(eval type)) " +
+                "    (aeq type 'etlclear 0 '(etlcount(eval type))) " +
+                ")"
+            );
+
+            // tst-mo v1.0
+            nusSendString(
+                "(defun tst-mo(type) " +
+                "    (etlmock(eval type)(eval type)) " +
+                "    (aeq type 'etlmock 0 '(etlcount(eval type))) " +
+                ")"
+            );
+
+            // tst-cr v1.0
+            nusSendString(
+                "(defun tst-cr(type) " +
+                //"    (etlclear (eval type))" +
+                "    (etlcreate(eval type)) " +
+                "    (aeq type 'etlcreate 1 " +
+                "        '(etlcount (eval type)) " +
+                "    ) " +
+                //" (princ (etloutput(eval type) 0)) " +
+                //" (princ (etloutput(eval type) 1)) " +
+                ")"
+            );
+
+            // tst-ou v1.0
+            nusSendString(
+                "(defun tst-ou ( type ) " +
+
+                " (aeq type 'tst-ou  (list type (eval type)) " +
+                " ' (etloutput (eval type) 0 ) " +
+                "        ) " +
+                ")"
+            );
+
+            // tst-tst-1 v1.0
+            nusSendString(
+                "(defun tst-1 (type) " +
+                "    (if (> (etloutput(eval type) 0) -1) " +
+                "       (princ 'fail) " +
+                "       (princ 'pass) " +
+                "   ) " +
+                ")"
+            );
+
+            // test logs
+            nusSendString(
+                "(defvar errs 0) " +
+                "(defvar error-log()) " +
+                "(defvar pass-log()) "
+            );
+
+            // # in ulisp must be entered as ${'#'} in js
+            // etl-tst v1.0
+            nusSendString(
+                "(defun etl-test(type-list) " +
+                "    (mapc tests1to5 type-list) " +
+                //"    (princ ${'#'}\Newline) " +
+                //"    (mapc princ error-log) " +
+                //"    (princ ${'#'}\Newline) " +
+                //"    (princ errs) " +
+                //"     (princ ${'#'}\Newline)() " +
+                ") "
+            );
+        }
+        // regression test the basics of etl-types
+
+
 
         if (device_tests) {
 
@@ -436,11 +448,19 @@ function initialisePressed() {
         if (channel1_tests) {
 
             // put these in alphabetical order
-            nusSendString("(etl-test '( c1fi c1fn c1fr ) ) ");
+            //nusSendString("(etl-test '( c1fi c1fn c1fr ) ) ");
+            nusSendString("(etl-test '( c1fi ) )");
+            nusSendString("(etl-test '( c1fn ) )");
+            nusSendString("(etl-test '( c1fr ) ) ");
+            nusSendString(" (etlmock c1fr 100) ");
+                nusSendString(" (etlcreate c1fr) " );
+
             nusSendString("(etl-test '( c1hb c1in c1mx ) ) ");
             nusSendString("(etl-test '( c1of c1op ) )");
-            nusSendString("(etl-test '( c1pc c1pu ) ) ");
+
             nusSendString("(etl-test '( c1re c1tp ) )");
+            nusSendString("(etl-test '( c1pu ) )");
+            nusSendString("(etl-test '( c1pc ) )");
 
         }
 
@@ -463,11 +483,17 @@ function initialisePressed() {
 
         if (pprintall_output) {
             nusSendString("(pprintall )");
+            //nusSendString("(pprint 'dvwl )");
+            //nusSendString("(pprint 'dvwl )");
+            //nusSendString("(pprint 'c1mx )");
         }
 
+        nusSendString(
+            "(defvar app-val dvll) " 
+        );
     }
-
-    showOnly("presentation-panel", ['etlcl', 'etlco', 'etlcr', 'etlmo', 'etlou', 'c1mx', 'c1pu', 'c1of']);
+    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
+    showOnly("presentation-panel", ['etlcl', 'etlco', 'etlcr', 'etlmo', 'etlou', 'acctests', 'c1mx', 'c1pu', 'c1of']);
 
 }
 
@@ -483,7 +509,7 @@ function def_ch_tests() {
     nusSendString("(aeq 'receive-devris-a 'one-devris-message-should-have-zero-c?wl-created 0 (etlcount ch-type) ) ");
     nusSendString(") ) ");
 
-    // test c1wl gets set to the difference between gen 0 and gen 1 devris
+    // test dvwl gets set to the difference between gen 0 and gen 1 devris
     nusSendString("(defun ch-tests-b (ch-type) ");
     nusSendString("(progn ");
     nusSendString("  (set-val 'devris 7500)");
@@ -584,6 +610,30 @@ function etlouPressed() {
             "  (princ (etloutput app-val 0) str)" +
             " ) " // then the result
         );
+    }
+}
+
+function acctestsPressed() {
+    if (connected) {
+
+        // - [ ] every centihzpulse that three acc values are stored => dvac
+        // - [] clear dvac
+        nusSendString(" ( defvar app-val 1 ) "); // 1=devacc
+        //nusSendString("(cpp 1 3 1) ");
+        //etlclPressed(); 
+
+        // - [] confirm dvac count is zero
+        //etlcoPressed(); // results in "Error: can't take car: -1"
+
+        // - [] mock 10 10 10
+        //nusSendString(" ( etlmock devacc 10 10 10 ) ");
+        // - [] create a centihzpulse
+        nusSendString(" ( etlcreate devchp ) ");
+        // this triggers etlcr and create_centiHzPulse() in jtag viewer.
+        // - [] confirm dvac count is one
+        //nusSendString(" ( etlcount devacc ) ");
+        // - [] confirm values are 10 10 10
+        //nusSendString(" ( etloutput devacc 0 ) ");
     }
 }
 /***********************************************************************************************************************************************
@@ -726,17 +776,17 @@ function incc1frPressed() {
     }
 }
 
-function decc1wlPressed() {
+function decdvwlPressed() {
     defineFndelta();
     if (connected) {
-        nusSendString("(fndelta 'c1wl -1000)\n");
+        nusSendString("(fndelta 'dvwl -1000)\n");
     }
 }
 
-function incc1wlPressed() {
+function incdvwlPressed() {
     defineFndelta();
     if (connected) {
-        nusSendString("(fndelta 'c1wl 1000)\n");
+        nusSendString("(fndelta 'dvwl 1000)\n");
     }
 }
 
@@ -845,7 +895,7 @@ function setupPressed() {
             "(set-val 'c1fr 10) " +
             "(set-val 'c1hb 1) " +
             "(set-val 'c1re 1) " +
-            "(set-val 'c1wl 10000) " +
+            "(set-val 'dvwl 10000) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
             "(set-val 'c1pu 500) "
@@ -945,6 +995,32 @@ function appTypeTocmxPressed() {
     }
 }
 
+function createAccString(x, y, z) {
+    return 
+    " (etlmock devacc " + x + " " + y + " " + z + ") " +
+            " ( etlcreate devacc ) "
+}
+function appTypeStepPressed() {
+    if (connected) {
+        nusSendString(
+            //" (cpp 1 3 0) " +
+            //" (defvar time-now (cddr (etloutput devchn 0))) " +
+            //" (princ time-now) " +
+            " (etlmock devris 500) ( etlcreate devris ) " +
+            " (etlmock devris 49000) ( etlcreate devris ) " +
+            " "
+        );
+    }
+}
+
+function appTypenoStepPressed() {
+    if (connected) {
+
+        // turn off auto creation of devacc records
+        nusSendString(
+            "(cpp 1 3 1) ");
+    }
+}
 /*
  * Put a subtle border around active green display button
  */
@@ -1019,13 +1095,13 @@ function c1ofPressed() {
     setActiveETLType('c1of');
     showOnly("adjustment-panel", ['appTypepluspoint01Button', 'appTypeminuspoint01Button', 'appTypepluspoint1Button', 'appTypeminuspoint1Button']);
 }
-function c1wlPressed() {
+function dvwlPressed() {
     if (connected) {
         nusSendString(
-            "(defvar app-val c1wl) "
+            "(defvar app-val dvwl) "
         );
     }
-    setActiveETLType('c1wl');
+    setActiveETLType('dvwl');
     showOnly("adjustment-panel", ['appTypeplus100Button', 'appTypeminus100Button']);
 }
 function devthrPressed() {
@@ -1035,7 +1111,7 @@ function devthrPressed() {
         );
     }
     setActiveETLType('devthr');
-    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button', 'appTypeplus100Button', 'appTypeminus100Button']);
+    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button', 'appTypeplus100Button', 'appTypeminus100Button', 'appTypeStepButton', 'appTypenoStepButton']);
 }
 
 function c1oftestPressed() {
@@ -1115,7 +1191,7 @@ function defineFndelta() {
          * I'm thinking adding a let statement
          * 
          * let special form
-         * Syntax: (let ((var value) � ) forms*)
+         * Syntax: (let ((var value) … ) forms*)
          * Declares local variables, and evaluates forms with those local variables.
          * In its simplest form you can declare a list of one or more variables which will be initialised to nil, 
          * and these can then be used in the subsequent forms:
@@ -1353,7 +1429,7 @@ function m250x2bPressed() {
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 1) " +
             "(set-val 'c1fr 10) " +
-            "(set-val 'c1wl 320000) " +
+            "(set-val 'dvwl 320000) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
             "(set-val 'c1pu 500) " +
@@ -1376,7 +1452,7 @@ function m125x4uPressed() {
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 1) " +
             "(set-val 'c1fr 10) " +
-            "(set-val 'c1wl 320000) " +
+            "(set-val 'dvwl 320000) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
             "(set-val 'c1pu 500) " +
@@ -1399,7 +1475,7 @@ function m125x4bPressed() {
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 1) " +
             "(set-val 'c1fr 10) " +
-            "(set-val 'c1wl 320000) " +
+            "(set-val 'dvwl 320000) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1tv 1600) " +
             "(set-val 'c1pu 500) " +
@@ -1467,7 +1543,7 @@ function trainPressed() {
             "(set-val 'c1fi 255) " +
             "(set-val 'c1re 2) " +
             "(set-val 'c1fr 10) " + // this starts PWM loop going
-            "(set-val 'c1wl 2666) " +
+            "(set-val 'dvwl 2666) " +
             "(set-val 'c1of 0) " +
             "(set-val 'c1fn 4) "  // this starts the op, of, tp, in cascade going
 
@@ -1475,7 +1551,7 @@ function trainPressed() {
         );
 
         revealButtons("adjustment-panel", ['Inc c1mx', 'Dec c1mx', 'Inc xc1mx', 'Dec xc1mx',
-            'Inc c1wl', 'Dec c1wl', 'Inc c1re', 'Dec c1re', 'Inc c1wl', 'Dec c1wl', 'Inc c1pc', 'Dec c1pc',
+            'Inc dvwl', 'Dec dvwl', 'Inc c1re', 'Dec c1re', 'Inc dvwl', 'Dec dvwl', 'Inc c1pc', 'Dec c1pc',
             'Set c1hb=1', 'Set c1hb=2'        ]);
     }
 }
@@ -1598,9 +1674,9 @@ function sendNextChunk(a) {
 
 let writeValueInProgress = false;
 
-async function sendManyValues(chunk) {
+ async function sendManyValues(chunk) {
     while (writeValueInProgress) {
-        await new Promise(resolve => setTimeout(resolve, 300)); // wait for 0.5 second
+        await new Promise(resolve => setTimeout(resolve, 1000)); // wait for 0.5 second
     }
     writeValueInProgress = true;
     try {
@@ -1610,7 +1686,7 @@ async function sendManyValues(chunk) {
         writeValueInProgress = false;
         throw error;
     }
-}
+} 
 
 
 function initContent(io) {
