@@ -228,7 +228,7 @@ function gaitTAPressed() {
             "(set-val 'c1of 0) " +
             "(etloutput c1of 0) " +
             //"(set-val 'c1tv 1600) " +
-            "(set-val 'c1pu 250) " +
+            "(set-val 'c1pu 290) " +
             "(set-val 'c1re 2) " +
             "(set-val 'c1fn 4)"
         );
