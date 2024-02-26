@@ -159,6 +159,39 @@ function gaitTAPressed() {
         );
 
         nusSendString(
+            "(set-val3  0.00 c1fi 36) " + // 0
+            "(set-val3  0.05 c1fi 35) " +
+            "(set-val3  0.10 c1fi 39) " +
+            "(set-val3  0.15 c1fi 98) " +
+            "(set-val3  0.20 c1fi 130) "
+        );
+
+        nusSendString(
+            "(set-val3  0.25 c1fi 118) " +
+            "(set-val3  0.30 c1fi 98) " +
+            "(set-val3  0.35 c1fi 72) " +
+            "(set-val3  0.40 c1fi 60) " +
+            "(set-val3  0.45 c1fi 67) "
+        );
+
+        nusSendString(
+            "(set-val3  0.50 c1fi 71) " +
+            "(set-val3  0.55 c1fi 142) " +
+            "(set-val3  0.60 c1fi 245) " +
+            "(set-val3  0.65 c1fi 255) " +
+            "(set-val3  0.70 c1fi 134) "
+        );
+
+        nusSendString(
+            "(set-val3  0.75 c1fi 94) " +
+            "(set-val3  0.80 c1fi 35) " +
+            "(set-val3  0.85 c1fi 35) " +
+            "(set-val3  0.90 c1fi 37) " +
+            "(set-val3  0.95 c1fi 37) "
+        );
+
+/*
+        nusSendString(
             "(set-val3  0.00 c1fi 4) " + // 0 
             "(set-val3  0.05 c1fi 3) " +
             "(set-val3  0.10 c1fi 7) " +
@@ -189,7 +222,12 @@ function gaitTAPressed() {
             "(set-val3  0.90 c1fi 5) " +
             "(set-val3  0.95 c1fi 5) "
         );
-
+*/
+        /*
+         *        (b-a)(x - min)
+            f(x) = --------------  + a
+                    max - min
+         * */
         // setup waveform 5
         nusSendString(
             "(set-val 'c1of 0) " +
