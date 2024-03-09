@@ -168,7 +168,7 @@ function gaitTAPressed() {
 
         nusSendString(
             "(set-val3 devfun 0.25 c1fi 98) " +
-            "(set-val3 devfun 0.30 c1fi 75) " +
+            "(set-val3 devfun 0.30 c1fi 73) " +
             "(set-val3 devfun 0.35 c1fi 45) " +
             "(set-val3 devfun 0.40 c1fi 32) " +
             "(set-val3 devfun 0.45 c1fi 40) "
@@ -191,35 +191,35 @@ function gaitTAPressed() {
         );
 
         nusSendString(
-            "(set-val3 c2fu 0.00 c2fi 4) " + // 0 
-            "(set-val3 c2fu 0.05 c2fi 3) " +
-            "(set-val3 c2fu 0.10 c2fi 7) " +
-            "(set-val3 c2fu 0.15 c2fi 75) " +
-            "(set-val3 c2fu 0.20 c2fi 112) "
+            "(set-val3 c2fu 0.00 c2fi 0) " + // 0 
+            "(set-val3 c2fu 0.05 c2fi 0) " +
+            "(set-val3 c2fu 0.10 c2fi 0) " +
+            "(set-val3 c2fu 0.15 c2fi 0) " +
+            "(set-val3 c2fu 0.20 c2fi 1) "
         );
 
         nusSendString(
-            "(set-val3 c2fu 0.25 c2fi 98) " +
-            "(set-val3 c2fu 0.30 c2fi 75) " +
-            "(set-val3 c2fu 0.35 c2fi 45) " +
-            "(set-val3 c2fu 0.40 c2fi 32) " +
-            "(set-val3 c2fu 0.45 c2fi 40) "
+            "(set-val3 c2fu 0.25 c2fi 1) " +
+            "(set-val3 c2fu 0.30 c2fi 3) " +
+            "(set-val3 c2fu 0.35 c2fi 7) " +
+            "(set-val3 c2fu 0.40 c2fi 123) " +
+            "(set-val3 c2fu 0.45 c2fi 255) "
         );
 
         nusSendString(
-            "(set-val3 c2fu 0.50 c2fi 71) " +
-            "(set-val3 c2fu 0.55 c2fi 142) " +
-            "(set-val3 c2fu 0.60 c2fi 245) " +
-            "(set-val3 c2fu 0.65 c2fi 255) " +
-            "(set-val3 c2fu 0.70 c2fi 134) "
+            "(set-val3 c2fu 0.50 c2fi 253) " +
+            "(set-val3 c2fu 0.55 c2fi 218) " +
+            "(set-val3 c2fu 0.60 c2fi 160) " +
+            "(set-val3 c2fu 0.65 c2fi 58) " +
+            "(set-val3 c2fu 0.70 c2fi 4) "
         );
 
         nusSendString(
-            "(set-val3 c2fu 0.75 c2fi 45) " +
-            "(set-val3 c2fu 0.80 c2fi 3) " +
-            "(set-val3 c2fu 0.85 c2fi 3) " +
-            "(set-val3 c2fu 0.90 c2fi 5) " +
-            "(set-val3 c2fu 0.95 c2fi 5) "
+            "(set-val3 c2fu 0.75 c2fi 0) " +
+            "(set-val3 c2fu 0.80 c2fi 0) " +
+            "(set-val3 c2fu 0.85 c2fi 0) " +
+            "(set-val3 c2fu 0.90 c2fi 0) " +
+            "(set-val3 c2fu 0.95 c2fi 0) "
         );
         
         // setup waveform 5
