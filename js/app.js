@@ -281,11 +281,11 @@ function gaitTAPressed() {
         nusSendString(
             "(set-val 'c2of 0) " +
             "(set-val 'c2fn 4) " +
-            "(set-val 'c2hb 1) " +
-            "(set-val 'c2fr 10) " +
+            "(set-val 'c2hb 3) " +
+            "(set-val 'c2fr 200) " +
             "(set-val 'c2wl 16000) " +
-            "(set-val 'c2pu 100) " +
-            "(set-val 'c2re 4) " +
+            "(set-val 'c2pu 250) " +
+            "(set-val 'c2re 2) " +
             "(set-val 'c2mx 100)"
         );
 
