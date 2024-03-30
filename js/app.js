@@ -591,8 +591,49 @@ function ch1Pressed() {
     defineFndelta();
 
     if (connected) {
+
+        /*
+            c1wl of 16384 denotes 1hz
+            having c1fr 100 denotes 100hz
+            having 0.09 allows 9 pulses to be sent
+            having 0.00 allows 0 pulses to be sent
+
+        */
         nusSendString(
-            "(defvar app-val) "
+            "(defvar app-val) " +
+            "(set-val 'c1wl 3278) " +
+            "(set-val 'c1fr 100) " +
+
+            "(set-val 'c1mx 100) " +
+            "(set-val 'c1hb 1) " 
+        );
+        nusSendString(
+            "(defun set-val3(channel phase type activation) " +
+            "    (progn " +
+            "        (etlmock channel phase type activation) " +
+            "        (etlcreate channel) " +
+            "        (etloutput channel 0) " +
+            "    ) " +
+            ")"
+        );
+        nusSendString(
+            "(etlclear devfun) "
+        );
+
+        /*
+            if a full phase is 0.2seconds
+            how long is 0.09 seconds in terms of a full phase
+            0.09/0.2 = 0.45
+        */ 
+        nusSendString(
+            "(set-val3 devfun 0.00 c1fi 255) " + // 0 
+            "(set-val3 devfun 0.45 c1fi 0) " 
+        );
+
+        nusSendString(
+            "(set-val 'c1of 0) " +
+            "(set-val 'c1fn 4) " +
+            "(set-val 'c1re 1)"
         );
     }
 

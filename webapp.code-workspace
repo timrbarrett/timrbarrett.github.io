@@ -1,0 +1,43 @@
+{
+	"folders": [
+		{
+			"path": "../workspace_1/ncs-example-application"
+		},
+		{
+			"name": "central_uart",
+			"path": "../workspace_1/nrf/samples/bluetooth/central_uart"
+		},
+		{
+			"name": "central_and_peripheral_hr",
+			"path": "../workspace_1/nrf/samples/bluetooth/central_and_peripheral_hr"
+		},
+		{
+			"name": "machine_learning",
+			"path": "../workspace_1/nrf/applications/machine_learning"
+		},
+		{
+			"name": "connectivity_bridge",
+			"path": "../workspace_1/nrf/applications/connectivity_bridge"
+		},
+		{
+			"name": "peripheral_uart",
+			"path": "../workspace_1/nrf/samples/bluetooth/peripheral_uart"
+		},
+		{
+			"name": "shell_bt_nus",
+			"path": "../workspace_1/nrf/samples/bluetooth/shell_bt_nus"
+		},
+		{
+			"name": "non_blocking",
+			"path": "../workspace_1/modules/hal/nordic/nrfx/samples/src/nrfx_spim/non_blocking"
+		}
+	],
+	"settings": {
+		"nrf-connect.applications": [
+			"${workspaceFolder}/app"
+		],
+		"files.associations": {
+			"nus_client.h": "c"
+		}
+	}
+}
