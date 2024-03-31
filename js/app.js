@@ -601,11 +601,13 @@ function ch1Pressed() {
         */
         nusSendString(
             "(defvar app-val) " +
-            "(set-val 'c1wl 3278) " +
+            "(set-val 'c1wl 163840) " +
             "(set-val 'c1fr 100) " +
+            "(set-val 'c1pu 100) " +
 
-            "(set-val 'c1mx 100) " +
-            "(set-val 'c1hb 1) " 
+            "(set-val 'c1mx 70) " +
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1mx 0)"
         );
         nusSendString(
             "(defun set-val3(channel phase type activation) " +
@@ -626,10 +628,21 @@ function ch1Pressed() {
             0.09/0.2 = 0.45
         */ 
         nusSendString(
-            "(set-val3 devfun 0.00 c1fi 255) " + // 0 
-            "(set-val3 devfun 0.45 c1fi 0) " 
+            "(set-val3 devfun 0.00 c1fi 170) " + // 0 
+            "(set-val3 devfun 0.0125 c1fi 0) " +
+            "(set-val3 devfun 0.10 c1fi 180) " + // 0 
+            "(set-val3 devfun 0.1125 c1fi 0) " +
+            "(set-val3 devfun 0.20 c1fi 190) " + // 0 
+            "(set-val3 devfun 0.2125 c1fi 0) " 
         );
-
+        nusSendString(
+            "(set-val3 devfun 0.30 c1fi 200) " + // 0 
+            "(set-val3 devfun 0.3125 c1fi 0) " +
+            "(set-val3 devfun 0.40 c1fi 210) " + // 0 
+            "(set-val3 devfun 0.4125 c1fi 0) " +
+            "(set-val3 devfun 0.50 c1fi 220) " + // 0 
+            "(set-val3 devfun 0.5125 c1fi 0) "
+        );
         nusSendString(
             "(set-val 'c1of 0) " +
             "(set-val 'c1fn 4) " +
