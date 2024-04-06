@@ -644,7 +644,7 @@ function ch1Pressed() {
             "(set-val3 devfun 0.5125 c1fi 0) "
         );
         nusSendString(
-            "(set-val 'c1of 0) " +
+            "(set-val 'c1of -0.4) " +
             "(set-val 'c1fn 4) " +
             "(set-val 'c1re 1)"
         );
