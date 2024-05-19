@@ -95,7 +95,7 @@ function connect() {
                 var activeDuringConnection = ['Relax', 'Train', 'GaitTA',
                     //'250x2u', '250x2b', '125x4u', '125x4b', 
                     'Initialise', 'ch1',
-                    'All Params']
+                    'All Params', 'calves']
                 if (activeDuringConnection.indexOf(buttonText) !== -1) {
                     console.log(buttonText + ' in'); $(this).show();
                 } else {
@@ -585,6 +585,163 @@ function allPressed() {
         );
     }
 }
+function calvesPressed() {
+
+    defineSetVal();
+    defineFndelta();
+
+    if (connected) {
+
+        nusSendString(
+            "(defun set-val3(channel phase type activation) " +
+            "    (progn " +
+            "        (etlmock channel phase type activation) " +
+            "        (etlcreate channel) " +
+            "        (etloutput channel 0) " +
+            "    ) " +
+            ")"
+        );
+        nusSendString(
+            "(etlclear devfun) "
+        );
+
+        nusSendString(
+            "(set-val3 devfun 0.00 c1fi 238) " + // 0 
+            "(set-val3 devfun 0.05 c1fi 254) " +
+            "(set-val3 devfun 0.10 c1fi 256) " +
+            "(set-val3 devfun 0.15 c1fi 169) " +
+            "(set-val3 devfun 0.20 c1fi 38) "
+
+        );
+
+        nusSendString(
+            "(set-val3 devfun 0.25 c1fi 1) " +
+            "(set-val3 devfun 0.30 c1fi 0) " +
+            "(set-val3 devfun 0.35 c1fi 0) " +
+            "(set-val3 devfun 0.40 c1fi 0) " +
+            "(set-val3 devfun 0.45 c1fi 0) "
+        );
+
+        nusSendString(
+            "(set-val3 devfun 0.50 c1fi 0) " +
+            "(set-val3 devfun 0.55 c1fi 1) " +
+            "(set-val3 devfun 0.60 c1fi 9) " +
+            "(set-val3 devfun 0.65 c1fi 30) " +
+            "(set-val3 devfun 0.70 c1fi 57) "
+        );
+
+        nusSendString(
+            "(set-val3 devfun 0.75 c1fi 85) " +
+            "(set-val3 devfun 0.80 c1fi 121) " +
+            "(set-val3 devfun 0.85 c1fi 163) " +
+            "(set-val3 devfun 0.90 c1fi 204) " +
+            "(set-val3 devfun 0.95 c1fi 227) "
+        );
+
+
+        /*
+         *        (b-a)(x - min)
+            f(x) = --------------  + a
+                    max - min
+         * */
+
+
+        nusSendString(
+            "(set-val3 c2fu 0.00 c2fi 0) " + // 0 
+            "(set-val3 c2fu 0.05 c2fi 1) " +
+            "(set-val3 c2fu 0.10 c2fi 9) " +
+            "(set-val3 c2fu 0.15 c2fi 30) " +
+            "(set-val3 c2fu 0.20 c2fi 57) "
+        );
+
+        nusSendString(
+            "(set-val3 c2fu 0.25 c2fi 85) " +
+            "(set-val3 c2fu 0.30 c2fi 121) " +
+            "(set-val3 c2fu 0.35 c2fi 163) " +
+            "(set-val3 c2fu 0.40 c2fi 204) " +
+            "(set-val3 c2fu 0.45 c2fi 227) "
+        );
+
+        nusSendString(
+            "(set-val3 c2fu 0.50 c2fi 238) " +
+            "(set-val3 c2fu 0.55 c2fi 254) " +
+            "(set-val3 c2fu 0.60 c2fi 256) " +
+            "(set-val3 c2fu 0.65 c2fi 169) " +
+            "(set-val3 c2fu 0.70 c2fi 38) "
+        );
+
+        nusSendString(
+            "(set-val3 c2fu 0.75 c2fi 1) " +
+            "(set-val3 c2fu 0.80 c2fi 0) " +
+            "(set-val3 c2fu 0.85 c2fi 0) " +
+            "(set-val3 c2fu 0.90 c2fi 0) " +
+            "(set-val3 c2fu 0.95 c2fi 0) "
+        );
+
+        // setup waveform 5
+        nusSendString(
+            "(set-val 'c1of 0) " +
+            //"(etloutput c1of 0) " +
+            "(set-val 'c1fn 4) " +
+
+            "(set-val 'c1wl 8000) " +
+
+            "(set-val 'c1re 3)"
+        );
+
+        // setup waveform 6
+        nusSendString(
+            "(set-val 'c1mx 100) " +
+            "(set-val 'c1hb 1) " +
+            "(set-val 'c1pu 200) " +
+            "(set-val 'c1fr 100)"
+        );
+
+        // initialise 7
+        nusSendString(
+            "(set-val 'devthr 3240) " + // problem!
+            "(set-val 'c1pc 1) " +
+            //"(set-val 'c1of 0) " +
+            //"(etloutput c1of 0) " +
+            "(set-val 'c1fn 4) " +
+            "(set-val 'c1wl 120) " +
+            "(cpp 1 3 1) "
+        );
+        
+        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
+        nusSendString(
+            "(set-val 'c1mx 105) " +
+            "(set-val 'c1fi 255) " +
+            "(set-val 'c1hb 3) " +
+            "(set-val 'c1fr 200) " +
+
+            "(set-val 'c1wl 32000) " +
+            //"(set-val 'c1of 0) " +
+            //"(etloutput c1of 0) " +
+            "(set-val 'c1pu 140) " +
+            "(set-val 'c1re 4) " +
+
+            "(set-val 'c1fn 4)"
+        );
+
+        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
+        nusSendString(
+            "(set-val 'c2of 0) " +
+            "(set-val 'c2fn 4) " +
+            "(set-val 'c2hb 3) " +
+            "(set-val 'c2fr 200) " +
+            "(set-val 'c2wl 32000) " +
+            "(set-val 'c2pu 250) " +
+            "(set-val 'c2re 2) " +
+            "(set-val 'c2mx 100)"
+        );
+
+    }
+
+    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'dvwl', 'devthr']);
+    c1mxPressed();
+
+}
 
 function ch1Pressed() {
     defineSetVal();
@@ -654,11 +811,45 @@ function ch1Pressed() {
             "(set-val 'c1re 1)"
         );
 
-        
+        nusSendString(
+            "(defvar app-val) " +
+            "(set-val 'c2wl 163840) " +
+            "(set-val 'c2fr 30) " +
+            "(set-val 'c2pu 100) " +
+
+            "(set-val 'c2mx 70) " +
+            "(set-val 'c2hb 1) " +
+            "(set-val 'c2mx 0)"
+        );
+        nusSendString(
+            "(set-val3 c2fu 0.00 c2fi 175) " + // 0 
+            "(set-val3 c2fu 0.0125 c2fi 0) " +
+            "(set-val3 c2fu 0.10 c2fi 191) " + // 0 
+            "(set-val3 c2fu 0.1125 c2fi 0) " +
+            "(set-val3 c2fu 0.20 c2fi 207) " + // 0 
+            "(set-val3 c2fu 0.2125 c12i 0) " 
+        );
+        nusSendString(
+            "(set-val3 c2fu 0.30 c2fi 223) " + // 0 
+            "(set-val3 c2fu 0.3125 c2fi 0) " +
+            "(set-val3 c2fu 0.40 c2fi 239) " + // 0 
+            "(set-val3 c2fu 0.4125 c2fi 0) " +
+            "(set-val3 c2fu 0.50 c2fi 255) " + // 0 
+            "(set-val3 c2fu 0.5125 c2fi 0) "
+        );
+        nusSendString(
+            "(set-val3 c2fu 0.70 c2fi 225) " + // 0 
+            "(set-val3 c2fu 0.90 c2fi 0) "
+        );
+        nusSendString(
+            "(set-val 'c2of -0.4) " +
+            "(set-val 'c2fn 4) " +
+            "(set-val 'c2re 1)"
+        );
     }
 
     showOnly("adjustment-panel", ['appTypepluspoint1Button', 'appTypeminuspoint1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
-    showOnly("presentation-panel", ['c1mx', 'c1pu', 'c1of']);
+    showOnly("presentation-panel", ['c1mx', 'c1pu', 'c1of', 'c2mx']);
 }
 
 function etlcoPressed() {
@@ -1163,6 +1354,16 @@ function c1mxPressed() {
     setActiveETLType('c1mx');
     showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button', 'appTypeplus100Button', 'appTypeminus100Button']);
 }
+function c2mxPressed() {
+    if (connected) {
+        nusSendString(
+            "(defvar app-val c2mx) "
+        );
+    }
+    setActiveETLType('c2mx');
+    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button', 'appTypeplus100Button', 'appTypeminus100Button']);
+}
+
 function c1puPressed() {
     if (connected) {
         nusSendString(
