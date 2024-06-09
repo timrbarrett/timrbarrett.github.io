@@ -247,12 +247,12 @@ function gaitTAPressed() {
             "(set-val 'c1mx 100) " +
             "(set-val 'c1hb 1) " +
             "(set-val 'c1pu 200) " +
-            "(set-val 'c1fr 100)"
+            "(set-val 'c1fr 30)"
         );
 
         // initialise 7
         nusSendString(
-            "(set-val 'devthr 3240) " + // problem!
+            "(set-val 'devthr 6100) " + // problem!
             "(set-val 'c1pc 1) " +
             //"(set-val 'c1of 0) " +
             //"(etloutput c1of 0) " +
@@ -266,7 +266,7 @@ function gaitTAPressed() {
             "(set-val 'c1mx 105) " +
             "(set-val 'c1fi 255) " +
             "(set-val 'c1hb 3) " +
-            "(set-val 'c1fr 200) " +
+            "(set-val 'c1fr 30) " +
 
             "(set-val 'c1wl 32000) " +
             //"(set-val 'c1of 0) " +
@@ -282,7 +282,7 @@ function gaitTAPressed() {
             "(set-val 'c2of 0) " +
             "(set-val 'c2fn 4) " +
             "(set-val 'c2hb 3) " +
-            "(set-val 'c2fr 200) " +
+            "(set-val 'c2fr 30) " +
             "(set-val 'c2wl 32000) " +
             "(set-val 'c2pu 250) " +
             "(set-val 'c2re 2) " +
