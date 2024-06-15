@@ -239,7 +239,8 @@ function gaitTAPressed() {
 
             "(set-val 'c1wl 8000) " +
 
-            "(set-val 'c1re 3)"
+            "(set-val 'c1re 3) " +
+            "(set-val 'dsns 1)"
         );
 
         // setup waveform 6
