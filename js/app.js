@@ -252,7 +252,7 @@ function gaitTAPressed() {
 
         // initialise 7
         nusSendString(
-            "(set-val 'devthr 6100) " + // problem!
+            "(set-val 'devthr 3250) " + // problem!
             "(set-val 'c1pc 1) " +
             //"(set-val 'c1of 0) " +
             //"(etloutput c1of 0) " +
