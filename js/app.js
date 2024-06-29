@@ -900,6 +900,31 @@ function testPressed() {
                     sendTestCommand("dsns", 0, "Step 3: dsns");
                     sendTestCommand("c1ac", 0, "Step 3: c1ac");
                     sendTestCommand("c1hb", 7, "Step 3: c1hb");
+                    sendTestCommand("devris", 3020, "Step 3: devris");
+                    times_test_pressed++;
+                    break;
+
+                case 3:
+                    // setup
+                    nusSendString("(set-val devris 4040) ");
+                    requestTestValues();
+            
+                    sendTestCommand("dsns", 1, "Step 4: dsns");
+                    sendTestCommand("c1ac", 1, "Step 4: c1ac");
+                    sendTestCommand("c1hb", 7, "Step 4: c1hb");
+                    sendTestCommand("devris", 4040, "Step 4: devris");
+                    times_test_pressed++;
+                    break;
+                
+                case 4:
+                    // setup
+                    nusSendString("(set-val devris 5080) ");
+                    requestTestValues();
+            
+                    sendTestCommand("dsns", 0, "Step 5: dsns");
+                    sendTestCommand("c1ac", 1, "Step 5: c1ac");
+                    sendTestCommand("c1hb", 7, "Step 5: c1hb");
+                    sendTestCommand("devris", 5080, "Step 5: devris");
                     times_test_pressed++;
                     break;
             }
