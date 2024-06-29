@@ -864,8 +864,8 @@ function testPressed() {
             case 0:
                 // setup
                 nusSendString(
-                    " (etlmock c1hb 7)  (etlcreate c1hb ) " +
-                    " (etlmock dsns 1)  (etlcreate dsns ) "
+                    " (etlmock c1hb 7) (etlcreate c1hb ) " +
+                    " (etlmock dsns 1) (etlcreate dsns ) "
                 );
                 // visualise
                 nusSendString(
@@ -873,25 +873,80 @@ function testPressed() {
                     " (etloutput dsns 0) " +
                     " (etloutput c1ac 0) " +
                     " (etloutput c1hb 0) " +
-                    // " (etloutput devgms 0 ) " +
                     " (etloutput devris 0 ) "
                 );
                 // test
                 nusSendString(
-                    " (princ 'Stepone ) " +
-                    " (princ (if (= (cadr (etloutput c1hb 0)) 7) t ()) ) ) " 
+                    " (concatenate 'string " +
+                        " \"Step 1: c1hb \"  " +
+                        " (if (= (cadr (etloutput c1hb 0)) 7) \"Pass\" \"Fail\") " +
+                    " ) "
                 );
-
-                */
                 times_test_pressed++;
                 break;
+
             case 1:
+                // setup
                 nusSendString(
-                    "(etlmock  c1re 2 ) " +
-                    "(etlcreate  c1re ) " +
-                    " (etloutput c1re 0) "
+                    " (etlmock devris 2010) (etlcreate devris ) " 
                 );
-                times_test_pressed=0;
+                // visualise
+                nusSendString(
+                    " (etloutput c1re 0) " +
+                    " (etloutput dsns 0) " +
+                    " (etloutput c1ac 0) " +
+                    " (etloutput c1hb 0) " +
+                    " (etloutput devris 0 ) "
+                );
+                // test
+                nusSendString(
+                    " (concatenate 'string " +
+                        " \"Step 2: devris \"  " +
+                        " (if (= (cadr (etloutput devris 0)) 2010) \"Pass\" \"Fail\") " +
+                    " ) "
+                );
+                nusSendString(
+                    " (concatenate 'string " +
+                        " \"Step 2: c1ac \"  " +
+                        " (if (= (cadr (etloutput c1ac 0)) 0) \"Pass\" \"Fail\") " +
+                    " ) "
+                );
+                times_test_pressed++;
+                break;
+            
+            case 2:
+                // setup
+                nusSendString(
+                    " (etlmock devris 3020) (etlcreate devris ) " 
+                );
+                // visualise
+                nusSendString(
+                    " (etloutput c1re 0) " +
+                    " (etloutput dsns 0) " +
+                    " (etloutput c1ac 0) " +
+                    " (etloutput c1hb 0) " +
+                    " (etloutput devris 0 ) "
+                );
+                // test
+                nusSendString(
+                    " (concatenate 'string " +
+                        " \"Step 3: dsns \"  " +
+                        " (if (= (cadr (etloutput dsns 0)) 0) \"Pass\" \"Fail\") " +
+                    " ) "
+                );
+                nusSendString(
+                    " (concatenate 'string " +
+                        " \"Step 3: c1ac \"  " +
+                        " (if (= (cadr (etloutput c1ac 0)) 0) \"Pass\" \"Fail\") " +
+                    " ) "
+                );
+                nusSendString(
+                    " (concatenate 'string " +
+                        " \"Step 3: c1hb \"  " +
+                        " (if (= (cadr (etloutput c1hb 7)) 0) \"Pass\" \"Fail\") " +
+                    " ) "
+                );
+                times_test_pressed++;
                 break;
             }
     }
