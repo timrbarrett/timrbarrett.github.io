@@ -855,7 +855,16 @@ function ch1Pressed() {
 }
 
 function sendTestCommand(mock, expectedValue, label) {
-    nusSendString(` (concatenate 'string "${label}" (if (= (cadr (etloutput ${mock} 0)) ${expectedValue}) "Pass" "Fail")) `);
+    nusSendString(` (concatenate 'string "${label} " (if (= (cadr (etloutput ${mock} 0)) ${expectedValue}) "Pass" "Fail")) `);
+}
+function requestTestValues() {
+    nusSendString(
+        "(etloutput c1re 0) " +
+        "(etloutput dsns 0) " +
+        "(etloutput c1ac 0) " +
+        "(etloutput c1hb 0) " +
+        "(etloutput devris 0)"
+    );
 }
 function testPressed() {
     if (connected) {
@@ -864,17 +873,8 @@ function testPressed() {
                 case 0:
                     // setup
                     nusSendString("(etlmock c1hb 7) (etlcreate c1hb ) (etlmock dsns 1) (etlcreate dsns )");
+                    requestTestValues();
             
-                    // visualise
-                    nusSendString(
-                        "(etloutput c1re 0) " +
-                        "(etloutput dsns 0) " +
-                        "(etloutput c1ac 0) " +
-                        "(etloutput c1hb 0) " +
-                        "(etloutput devris 0)"
-                    );
-            
-                    // test
                     sendTestCommand("c1hb", 7, "Step 1: c1hb");
                     times_test_pressed++;
                     break;
@@ -882,17 +882,8 @@ function testPressed() {
                 case 1:
                     // setup
                     nusSendString("(etlmock devris 2010) (etlcreate devris)");
+                    requestTestValues();
             
-                    // visualise
-                    nusSendString(
-                        "(etloutput c1re 0) " +
-                        "(etloutput dsns 0) " +
-                        "(etloutput c1ac 0) " +
-                        "(etloutput c1hb 0) " +
-                        "(etloutput devris 0)"
-                    );
-            
-                    // test
                     sendTestCommand("devris", 2010, "Step 2: devris");
                     sendTestCommand("c1ac", 0, "Step 2: c1ac");
                     times_test_pressed++;
@@ -901,17 +892,8 @@ function testPressed() {
                 case 2:
                     // setup
                     nusSendString("(etlmock devris 3020) (etlcreate devris)");
+                    requestTestValues();
             
-                    // visualise
-                    nusSendString(
-                        "(etloutput c1re 0) " +
-                        "(etloutput dsns 0) " +
-                        "(etloutput c1ac 0) " +
-                        "(etloutput c1hb 0) " +
-                        "(etloutput devris 0)"
-                    );
-            
-                    // test
                     sendTestCommand("dsns", 0, "Step 3: dsns");
                     sendTestCommand("c1ac", 0, "Step 3: c1ac");
                     sendTestCommand("c1hb", 0, "Step 3: c1hb");
