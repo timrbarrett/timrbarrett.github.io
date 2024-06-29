@@ -16,6 +16,8 @@ var connected = false;
 var ulisp_head = '';
 var ulisp_body = '';
 
+var times_test_pressed = 0;
+
 function connectionToggle() {
     if (connected) {
         disconnect();
@@ -95,7 +97,7 @@ function connect() {
                 var activeDuringConnection = ['Relax', 'Train', 'GaitTA',
                     //'250x2u', '250x2b', '125x4u', '125x4b', 
                     'Initialise', 'ch1',
-                    'All Params', 'calves']
+                    'All Params', 'calves', 'test']
                 if (activeDuringConnection.indexOf(buttonText) !== -1) {
                     console.log(buttonText + ' in'); $(this).show();
                 } else {
@@ -741,7 +743,6 @@ function calvesPressed() {
 
     showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'dvwl', 'devthr']);
     c1mxPressed();
-
 }
 
 function ch1Pressed() {
@@ -851,6 +852,50 @@ function ch1Pressed() {
 
     showOnly("adjustment-panel", ['appTypepluspoint1Button', 'appTypeminuspoint1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
     showOnly("presentation-panel", ['c1mx', 'c1pu', 'c1of', 'c2mx']);
+}
+
+function testPressed() {
+    if (connected) {
+        /*nusSendString(
+            "(etlmock c1fi 0 " +
+            " ) "
+        );*/
+        switch (times_test_pressed) {
+            case 0:
+                // setup
+                nusSendString(
+                    " (etlmock c1hb 7)  (etlcreate c1hb ) " +
+                    " (etlmock dsns 1)  (etlcreate dsns ) "
+                );
+                // visualise
+                nusSendString(
+                    " (etloutput c1re 0) " +
+                    " (etloutput dsns 0) " +
+                    " (etloutput c1ac 0) " +
+                    " (etloutput c1hb 0) " +
+                    // " (etloutput devgms 0 ) " +
+                    " (etloutput devris 0 ) "
+                );
+                // test
+                nusSendString(
+                    " (princ 'Stepone ) " +
+                    " (princ (if (= (cadr (etloutput c1hb 0)) 7) t ()) ) ) " 
+                );
+
+                */
+                times_test_pressed++;
+                break;
+            case 1:
+                nusSendString(
+                    "(etlmock  c1re 2 ) " +
+                    "(etlcreate  c1re ) " +
+                    " (etloutput c1re 0) "
+                );
+                times_test_pressed=0;
+                break;
+            }
+    }
+    showOnly("presentation-panel", ['dsns', 'c1ac', 'c1hb', 'devris', "c1re", "devgms"]);
 }
 
 function etlcoPressed() {
