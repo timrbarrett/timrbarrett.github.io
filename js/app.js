@@ -867,12 +867,15 @@ function requestTestValues() {
     );
 }
 function testPressed() {
+
+    defineSetVal();
+
     if (connected) {
 
         switch (times_test_pressed) {
                 case 0:
                     // setup
-                    nusSendString("(etlmock c1hb 7) (etlcreate c1hb ) (etlmock dsns 1) (etlcreate dsns )");
+                    nusSendString("(set-val 'c1hb 7) (set-val 'dsns 1) ");
                     requestTestValues();
             
                     sendTestCommand("c1hb", 7, "Step 1: c1hb");
@@ -881,7 +884,7 @@ function testPressed() {
             
                 case 1:
                     // setup
-                    nusSendString("(etlmock devris 2010) (etlcreate devris)");
+                    nusSendString("(set-val devris 2010) ");
                     requestTestValues();
             
                     sendTestCommand("devris", 2010, "Step 2: devris");
@@ -891,12 +894,12 @@ function testPressed() {
             
                 case 2:
                     // setup
-                    nusSendString("(etlmock devris 3020) (etlcreate devris)");
+                    nusSendString("(set-val devris 3020) ");
                     requestTestValues();
             
                     sendTestCommand("dsns", 0, "Step 3: dsns");
                     sendTestCommand("c1ac", 0, "Step 3: c1ac");
-                    sendTestCommand("c1hb", 0, "Step 3: c1hb");
+                    sendTestCommand("c1hb", 7, "Step 3: c1hb");
                     times_test_pressed++;
                     break;
             }
