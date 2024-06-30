@@ -294,7 +294,7 @@ function gaitTAPressed() {
 
     }
 
-    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'dvwl', 'devthr']);
+    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'dvwl', 'devthr', 'devgtt']);
     c1mxPressed();
 
 }
@@ -855,7 +855,7 @@ function ch1Pressed() {
 }
 
 function sendTestCommand(mock, expectedValue, label) {
-    nusSendString(` (concatenate 'string "${label} " (if (= (cadr (etloutput ${mock} 0)) ${expectedValue}) "Pass" "Fail")) `);
+    nusSendString(` (concatenate 'string "${label} " (if (= (cadr (etloutput ${mock} 0)) ${expectedValue}) "Pass" "Fail: expected ${expectedValue}")) `);
 }
 function requestTestValues() {
     nusSendString(
@@ -863,7 +863,8 @@ function requestTestValues() {
         "(etloutput dsns 0) " +
         "(etloutput c1ac 0) " +
         "(etloutput c1hb 0) " +
-        "(etloutput devris 0)"
+        "(etloutput devris 0) " +
+        "(etloutput devgtt 0) "
     );
 }
 function testPressed() {
@@ -884,33 +885,36 @@ function testPressed() {
             
                 case 1:
                     // setup
-                    nusSendString("(set-val devris 2010) ");
+                    nusSendString("(set-val devgtt 1) "); //a step
                     requestTestValues();
-            
-                    sendTestCommand("devris", 2010, "Step 2: devris");
+
+                    // a step has occured therefore dsns
+                    sendTestCommand("dsns", 0, "Step 2: dsns before");
+                    sendTestCommand("devgtt", 1, "Step 2: devgtt");  
                     sendTestCommand("c1ac", 0, "Step 2: c1ac");
                     times_test_pressed++;
                     break;
             
                 case 2:
                     // setup
-                    nusSendString("(set-val devris 3020) ");
+                    nusSendString("(set-val devgtt 1) "); // another step
                     requestTestValues();
             
-                    sendTestCommand("dsns", 0, "Step 3: dsns");
-                    sendTestCommand("c1ac", 0, "Step 3: c1ac");
                     sendTestCommand("c1hb", 7, "Step 3: c1hb");
-                    sendTestCommand("devris", 3020, "Step 3: devris");
+                    sendTestCommand("c1ac", 0, "Step 3: c1ac");
+                    sendTestCommand("dsns", 1, "Step 3: dsns");
+                    sendTestCommand("devgtt", 1, "Step 3: devgtt");
+
                     times_test_pressed++;
                     break;
 
                 case 3:
                     // setup
-                    nusSendString("(set-val devris 4040) ");
+                    nusSendString("(set-val devgtt 1) ");
                     requestTestValues();
             
-                    sendTestCommand("dsns", 1, "Step 4: dsns");
-                    sendTestCommand("c1ac", 1, "Step 4: c1ac");
+                    sendTestCommand("dsns", 0, "Step 4: dsns");
+                    sendTestCommand("c1ac", 0, "Step 4: c1ac");
                     sendTestCommand("c1hb", 7, "Step 4: c1hb");
                     sendTestCommand("devris", 4040, "Step 4: devris");
                     times_test_pressed++;
@@ -929,7 +933,7 @@ function testPressed() {
                     break;
             }
     }
-    showOnly("presentation-panel", ['dsns', 'c1ac', 'c1hb', 'devris', "c1re", "devgms"]);
+    showOnly("presentation-panel", ['dsns', 'c1ac', 'c1hb', 'devris', "c1re", "devgms", "devgtt"]);
 }
 
 function etlcoPressed() {
