@@ -886,6 +886,7 @@ function testPressed() {
                 case 1:
                     // setup
                     nusSendString("(set-val devgtt 1) "); //a step
+                    nusSendString("(etloutput devris 0) ");
                     requestTestValues();
 
                     // a step has occured therefore dsns
@@ -898,6 +899,7 @@ function testPressed() {
                 case 2:
                     // setup
                     nusSendString("(set-val devgtt 1) "); // another step
+                    nusSendString("(etloutput devris 0) ");
                     requestTestValues();
             
                     sendTestCommand("c1hb", 7, "Step 3: c1hb");
