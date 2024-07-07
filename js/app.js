@@ -807,8 +807,9 @@ function ch1Pressed() {
             "(set-val3 devfun 0.70 c1fi 225) " + // 0 
             "(set-val3 devfun 0.90 c1fi 0) "
         );
+        // -0.4 is the offset
         nusSendString(
-            "(set-val 'c1of -0.4) " +
+            "(set-val 'c1of 0) " +
             "(set-val 'c1fn 4) " +
             "(set-val 'c1re 1)"
         );
