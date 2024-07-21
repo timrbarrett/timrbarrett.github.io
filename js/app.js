@@ -294,7 +294,7 @@ function gaitTAPressed() {
 
     }
 
-    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'dvwl', 'devthr', 'devgtt']);
+    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'c2of', 'dvwl', 'devthr', 'devgtt']);
     c1mxPressed();
 
 }
@@ -807,9 +807,8 @@ function ch1Pressed() {
             "(set-val3 devfun 0.70 c1fi 225) " + // 0 
             "(set-val3 devfun 0.90 c1fi 0) "
         );
-        // -0.4 is the offset
         nusSendString(
-            "(set-val 'c1of 0) " +
+            "(set-val 'c1of -0.4) " +
             "(set-val 'c1fn 4) " +
             "(set-val 'c1re 1)"
         );
@@ -886,19 +885,21 @@ function testPressed() {
             
                 case 1:
                     // setup
+                    nusSendString("(set_val devris 2010) ");
                     nusSendString("(set-val devgtt 1) "); //a step
-                    nusSendString("(etloutput devris 0) ");
                     requestTestValues();
 
                     // a step has occured therefore dsns
                     sendTestCommand("dsns", 0, "Step 2: dsns before");
                     sendTestCommand("devgtt", 1, "Step 2: devgtt");  
                     sendTestCommand("c1ac", 0, "Step 2: c1ac");
+                    sendTestCommand("devris", 2010, "Step 3: devris");
                     times_test_pressed++;
                     break;
             
                 case 2:
                     // setup
+                    nusSendString("(set_val devris 3020) ");
                     nusSendString("(set-val devgtt 1) "); // another step
                     nusSendString("(etloutput devris 0) ");
                     requestTestValues();
@@ -907,7 +908,7 @@ function testPressed() {
                     sendTestCommand("c1ac", 0, "Step 3: c1ac");
                     sendTestCommand("dsns", 1, "Step 3: dsns");
                     sendTestCommand("devgtt", 1, "Step 3: devgtt");
-
+                    sendTestCommand("devris", 3020, "Step 3: devris");
                     times_test_pressed++;
                     break;
 
@@ -1496,7 +1497,17 @@ function c1ofPressed() {
         );
     }
     setActiveETLType('c1of');
-    showOnly("adjustment-panel", ['appTypepluspoint01Button', 'appTypeminuspoint01Button', 'appTypepluspoint1Button', 'appTypeminuspoint1Button']);
+    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
+}
+function c2ofPressed() {
+    if (connected) {
+        nusSendString(
+            "(defvar app-val c2of) " +
+            "(set-val c2of 0.0) "
+        );
+    }
+    setActiveETLType('c2of');
+    showOnly("adjustment-panel", ['appTypeplus1Button', 'appTypeminus1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
 }
 function dvwlPressed() {
     if (connected) {
