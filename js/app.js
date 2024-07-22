@@ -294,7 +294,7 @@ function gaitTAPressed() {
 
     }
 
-    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'c2of', 'dvwl', 'devthr', 'devgtt']);
+    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'c2of', 'dvwl'/*, 'devthr', 'devgtt'*/]);
     c1mxPressed();
 
 }
