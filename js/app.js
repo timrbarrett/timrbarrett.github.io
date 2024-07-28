@@ -361,35 +361,35 @@ function gaitTAPressed() {
 
 
         nusSendString(
-            "(set-val3 devfun 0.00 c1fi 0) " + // 0 
-            "(set-val3 devfun 0.05 c1fi 0) " +
-            "(set-val3 devfun 0.10 c1fi 0) " +
-            "(set-val3 devfun 0.15 c1fi 0) " +
-            "(set-val3 devfun 0.20 c1fi 1) "
+            "(set-val3 c2fu 0.00 c2fi 0) " + // 0 
+            "(set-val3 c2fu 0.05 c2fi 0) " +
+            "(set-val3 c2fu 0.10 c2fi 0) " +
+            "(set-val3 c2fu 0.15 c2fi 0) " +
+            "(set-val3 c2fu 0.20 c2fi 1) "
         );
 
         nusSendString(
-            "(set-val3 devfun 0.25 c1fi 1) " +
-            "(set-val3 devfun 0.30 c1fi 3) " +
-            "(set-val3 devfun 0.35 c1fi 7) " +
-            "(set-val3 devfun 0.40 c1fi 123) " +
-            "(set-val3 devfun 0.45 c1fi 255) "
+            "(set-val3 c2fu 0.25 c2fi 1) " +
+            "(set-val3 c2fu 0.30 c2fi 3) " +
+            "(set-val3 c2fu 0.35 c2fi 7) " +
+            "(set-val3 c2fu 0.40 c2fi 123) " +
+            "(set-val3 c2fu 0.45 c2fi 255) "
         );
 
         nusSendString(
-            "(set-val3 devfun 0.50 c1fi 253) " +
-            "(set-val3 devfun 0.55 c1fi 218) " +
-            "(set-val3 devfun 0.60 c1fi 160) " +
-            "(set-val3 devfun 0.65 c1fi 58) " +
-            "(set-val3 devfun 0.70 c1fi 4) "
+            "(set-val3 c2fu 0.50 c2fi 253) " +
+            "(set-val3 c2fu 0.55 c2fi 218) " +
+            "(set-val3 c2fu 0.60 c2fi 160) " +
+            "(set-val3 c2fu 0.65 c2fi 58) " +
+            "(set-val3 c2fu 0.70 c2fi 4) "
         );
 
         nusSendString(
-            "(set-val3 devfun 0.75 c1fi 0) " +
-            "(set-val3 devfun 0.80 c1fi 0) " +
-            "(set-val3 devfun 0.85 c1fi 0) " +
-            "(set-val3 devfun 0.90 c1fi 0) " +
-            "(set-val3 devfun 0.95 c1fi 0) "
+            "(set-val3 c2fu 0.75 c2fi 0) " +
+            "(set-val3 c2fu 0.80 c2fi 0) " +
+            "(set-val3 c2fu 0.85 c2fi 0) " +
+            "(set-val3 c2fu 0.90 c2fi 0) " +
+            "(set-val3 c2fu 0.95 c2fi 0) "
         );
 
         // setup waveform 5
@@ -441,14 +441,14 @@ function gaitTAPressed() {
 
         // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
         nusSendString(
-            "(set-val 'c2of 0) " +
+            "(set-val 'c2of 65) " +
             "(set-val 'c2fn 4) " +
             "(set-val 'c2hb 3) " +
             "(set-val 'c2fr 30) " +
             "(set-val 'c2wl 32000) " +
             "(set-val 'c2pu 250) " +
-            "(set-val 'c2re 2) " +
-            "(set-val 'c2mx 100)"
+            "(set-val 'c2re 5) " +
+            "(set-val 'c2mx 130)"
         );
 
     }
@@ -2277,7 +2277,7 @@ async function sendManyValues(chunk) {
 */
 function initContent(io) {
     io.println("\r\n\
-Welcome to Limbstim Control V0.0.7 (1st Sep 2023)\r\n\
+Welcome to Limbstim Control V0.0.8 (28th July 2024)\r\n\
 \r\n\
 This is a Web Command Line Interface via NUS (Nordic UART Service) using Web Bluetooth.\r\n\
 \r\n\
