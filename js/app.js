@@ -2117,7 +2117,7 @@ async function sendManyValues(chunk) {
 */
 function initContent(io) {
     io.println("\r\n\
-Welcome to Limbstim Control V0.0.7 (1st Sep 2023)\r\n\
+Welcome to Limbstim Control V0.0.8 (1st Sep 2023)\r\n\
 \r\n\
 This is a Web Command Line Interface via NUS (Nordic UART Service) using Web Bluetooth.\r\n\
 \r\n\
