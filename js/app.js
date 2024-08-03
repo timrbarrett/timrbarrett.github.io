@@ -139,7 +139,7 @@ function relaxPressed() {
     c1mxPressed();
 
 }
-/*
+
 function gaitTAPressed() {
 
     defineSetVal();
@@ -200,7 +200,7 @@ function gaitTAPressed() {
                     max - min
          * */
 
-/*
+
         nusSendString(
             "(set-val3 c2fu 0.00 c2fi 0) " + // 0 
             "(set-val3 c2fu 0.05 c2fi 0) " +
@@ -294,170 +294,10 @@ function gaitTAPressed() {
 
     }
 
-    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'c2of', 'dvwl'/*, 'devthr', 'devgtt'*//*]);
-    c1mxPressed();
-
-}
-*/
-function gaitTAPressed() {
-
-    defineSetVal();
-    defineFndelta();
-
-    if (connected) {
-
-        nusSendString(
-            "(defun set-val3(channel phase type activation) " +
-            "    (progn " +
-            "        (etlmock channel phase type activation) " +
-            "        (etlcreate channel) " +
-            "        (etloutput channel 0) " +
-            "    ) " +
-            ")"
-        );
-        nusSendString(
-            "(etlclear devfun) "
-        );
-/*
-        nusSendString(
-            "(set-val3 devfun 0.00 c1fi 4) " + // 0 
-            "(set-val3 devfun 0.05 c1fi 3) " +
-            "(set-val3 devfun 0.10 c1fi 7) " +
-            "(set-val3 devfun 0.15 c1fi 75) " +
-            "(set-val3 devfun 0.20 c1fi 112) "
-
-        );
-
-        nusSendString(
-            "(set-val3 devfun 0.25 c1fi 98) " +
-            "(set-val3 devfun 0.30 c1fi 73) " +
-            "(set-val3 devfun 0.35 c1fi 45) " +
-            "(set-val3 devfun 0.40 c1fi 32) " +
-            "(set-val3 devfun 0.45 c1fi 40) "
-        );
-
-        nusSendString(
-            "(set-val3 devfun 0.50 c1fi 71) " +
-            "(set-val3 devfun 0.55 c1fi 142) " +
-            "(set-val3 devfun 0.60 c1fi 245) " +
-            "(set-val3 devfun 0.65 c1fi 255) " +
-            "(set-val3 devfun 0.70 c1fi 134) "
-        );
-
-        nusSendString(
-            "(set-val3 devfun 0.75 c1fi 45) " +
-            "(set-val3 devfun 0.80 c1fi 3) " +
-            "(set-val3 devfun 0.85 c1fi 3) " +
-            "(set-val3 devfun 0.90 c1fi 5) " +
-            "(set-val3 devfun 0.95 c1fi 5) "
-        );
-*/
-
-        /*
-         *        (b-a)(x - min)
-            f(x) = --------------  + a
-                    max - min
-         * */
-
-
-        nusSendString(
-            "(set-val3 devfun 0.00 c1fi 0) " + // 0 
-            "(set-val3 devfun 0.05 c1fi 0) " +
-            "(set-val3 devfun 0.10 c1fi 0) " +
-            "(set-val3 devfun 0.15 c1fi 0) " +
-            "(set-val3 devfun 0.20 c1fi 1) "
-        );
-
-        nusSendString(
-            "(set-val3 devfun 0.25 c1fi 1) " +
-            "(set-val3 devfun 0.30 c1fi 3) " +
-            "(set-val3 devfun 0.35 c1fi 7) " +
-            "(set-val3 devfun 0.40 c1fi 123) " +
-            "(set-val3 devfun 0.45 c1fi 255) "
-        );
-
-        nusSendString(
-            "(set-val3 devfun 0.50 c1fi 253) " +
-            "(set-val3 devfun 0.55 c1fi 218) " +
-            "(set-val3 devfun 0.60 c1fi 160) " +
-            "(set-val3 devfun 0.65 c1fi 58) " +
-            "(set-val3 devfun 0.70 c1fi 4) "
-        );
-
-        nusSendString(
-            "(set-val3 devfun 0.75 c1fi 0) " +
-            "(set-val3 devfun 0.80 c1fi 0) " +
-            "(set-val3 devfun 0.85 c1fi 0) " +
-            "(set-val3 devfun 0.90 c1fi 0) " +
-            "(set-val3 devfun 0.95 c1fi 0) "
-        );
-
-        // setup waveform 5
-        nusSendString(
-            "(set-val 'c1of 0) " +
-            //"(etloutput c1of 0) " +
-            "(set-val 'c1fn 4) " +
-
-            "(set-val 'c1wl 8000) " +
-
-            "(set-val 'c1re 3) " +
-            "(set-val 'dsns 1)"
-        );
-
-        // setup waveform 6
-        nusSendString(
-            "(set-val 'c1mx 100) " +
-            "(set-val 'c1hb 1) " +
-            "(set-val 'c1pu 200) " +
-            "(set-val 'c1fr 30)"
-        );
-
-        // initialise 7
-        nusSendString(
-            "(set-val 'devthr 3250) " + // problem!
-            "(set-val 'c1pc 1) " +
-            //"(set-val 'c1of 0) " +
-            //"(etloutput c1of 0) " +
-            "(set-val 'c1fn 4) " +
-            "(set-val 'c1wl 120) " +
-            "(cpp 1 3 1) "
-        );
-        
-        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
-        nusSendString(
-            "(set-val 'c1mx 105) " +
-            "(set-val 'c1fi 255) " +
-            "(set-val 'c1hb 3) " +
-            "(set-val 'c1fr 30) " +
-
-            "(set-val 'c1wl 32000) " +
-            //"(set-val 'c1of 0) " +
-            //"(etloutput c1of 0) " +
-            "(set-val 'c1pu 140) " +
-            "(set-val 'c1re 4) " +
-
-            "(set-val 'c1fn 4)"
-        );
-
-        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
-        nusSendString(
-            "(set-val 'c2of 0) " +
-            "(set-val 'c2fn 4) " +
-            "(set-val 'c2hb 3) " +
-            "(set-val 'c2fr 30) " +
-            "(set-val 'c2wl 32000) " +
-            "(set-val 'c2pu 250) " +
-            "(set-val 'c2re 2) " +
-            "(set-val 'c2mx 100)"
-        );
-
-    }
-
     showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'c2of', 'dvwl'/*, 'devthr', 'devgtt'*/]);
     c1mxPressed();
 
 }
-
 function initialisePressed() {
 
     defineSetVal();
