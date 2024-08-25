@@ -708,7 +708,7 @@ function calvesPressed() {
             //"(etloutput c1of 0) " +
             "(set-val 'c1fn 4) " +
             "(set-val 'c1wl 120) " +
-            //"(cpp 1 3 1) "
+            "(cpp 1 3 1) "
         );
         
         // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
