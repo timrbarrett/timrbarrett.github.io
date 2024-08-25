@@ -10,9 +10,11 @@ body {
   margin: 0px;
   padding: 0px;
   background: rgb(4 4 4 / 1); 
-  //#2c3e50; // Midnight //#34495e; // wet asphalt
-
 }
+  /*#2c3e50; // Midnight //#34495e; // wet asphalt
+  */
+
+
 #terminal {
   display:block;
   position: fixed;
@@ -26,13 +28,13 @@ body {
 }
 
 #presentation-panel .displayButton {
-    display: none; // have the green display buttons default to hidden
+    display: none; /* have the green display buttons default to hidden */
 }
 
 .displayButton {
     display: flex;
     align-items: center;
-    background: #27ae60; // Nephritis dark green
+    background: #27ae60; /* Nephritis dark green */
 }
 
 .button__etltype,
