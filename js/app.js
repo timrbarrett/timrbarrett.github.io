@@ -97,7 +97,7 @@ function connect() {
                 var activeDuringConnection = ['Relax', 'Train', 'GaitTA',
                     //'250x2u', '250x2b', '125x4u', '125x4b', 
                     'Initialise', 'ch1',
-                    'All Params', 'plane', 'calves', 'test']
+                    'All Params', 'calves', 'test']
                 if (activeDuringConnection.indexOf(buttonText) !== -1) {
                     console.log(buttonText + ' in'); $(this).show();
                 } else {
@@ -235,7 +235,7 @@ function gaitTAPressed() {
 
         // setup waveform 5
         nusSendString(
-            "(set-val 'c1of 65) " +
+            "(set-val 'c1of 0) " +
             //"(etloutput c1of 0) " +
             "(set-val 'c1fn 4) " +
 
@@ -250,7 +250,7 @@ function gaitTAPressed() {
             "(set-val 'c1mx 100) " +
             "(set-val 'c1hb 1) " +
             "(set-val 'c1pu 200) " +
-            "(set-val 'c1fr 30)" 
+            "(set-val 'c1fr 30)"
         );
 
         // initialise 7
@@ -261,8 +261,6 @@ function gaitTAPressed() {
             //"(etloutput c1of 0) " +
             "(set-val 'c1fn 4) " +
             "(set-val 'c1wl 120) " +
-            "(set-val 'c1gd 1) " +
-            "(set-val 'c2gd 1) " +
             "(cpp 1 3 1) "
         );
         
@@ -284,7 +282,7 @@ function gaitTAPressed() {
 
         // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
         nusSendString(
-            "(set-val 'c2of 65) " +
+            "(set-val 'c2of 0) " +
             "(set-val 'c2fn 4) " +
             "(set-val 'c2hb 3) " +
             "(set-val 'c2fr 30) " +
@@ -748,219 +746,18 @@ function calvesPressed() {
 }
 
 function ch1Pressed() {
-
     defineSetVal();
     defineFndelta();
 
     if (connected) {
 
-        nusSendString(
-            "(defun set-val3(channel phase type activation) " +
-            "    (progn " +
-            "        (etlmock channel phase type activation) " +
-            "        (etlcreate channel) " +
-            "        (etloutput channel 0) " +
-            "    ) " +
-            ")"
-        );
-        nusSendString(
-            "(etlclear devfun) "
-        );
-
-        nusSendString(
-            "(set-val3 devfun 0.00 c1fi 175) " + // 0 
-            "(set-val3 devfun 0.0125 c1fi 0) " +
-            "(set-val3 devfun 0.10 c1fi 191) " + // 0 
-            "(set-val3 devfun 0.1125 c1fi 0) " +
-            "(set-val3 devfun 0.20 c1fi 207) " + // 0 
-            "(set-val3 devfun 0.2125 c1fi 0) " 
-        );
-        nusSendString(
-            "(set-val3 devfun 0.30 c1fi 223) " + // 0 
-            "(set-val3 devfun 0.3125 c1fi 0) " +
-            "(set-val3 devfun 0.40 c1fi 239) " + // 0 
-            "(set-val3 devfun 0.4125 c1fi 0) " +
-            "(set-val3 devfun 0.50 c1fi 255) " + // 0 
-            "(set-val3 devfun 0.5125 c1fi 0) "
-        );
-        nusSendString(
-            "(set-val3 devfun 0.70 c1fi 225) " + // 0 
-            "(set-val3 devfun 0.90 c1fi 0) "
-        );
         /*
-        nusSendString(
-            "(set-val3 devfun 0.00 c1fi 4) " + // 0 
-            "(set-val3 devfun 0.05 c1fi 3) " +
-            "(set-val3 devfun 0.10 c1fi 7) " +
-            "(set-val3 devfun 0.15 c1fi 75) " +
-            "(set-val3 devfun 0.20 c1fi 112) "
-
-        );
-
-        nusSendString(
-            "(set-val3 devfun 0.25 c1fi 98) " +
-            "(set-val3 devfun 0.30 c1fi 73) " +
-            "(set-val3 devfun 0.35 c1fi 45) " +
-            "(set-val3 devfun 0.40 c1fi 32) " +
-            "(set-val3 devfun 0.45 c1fi 40) "
-        );
-
-        nusSendString(
-            "(set-val3 devfun 0.50 c1fi 71) " +
-            "(set-val3 devfun 0.55 c1fi 142) " +
-            "(set-val3 devfun 0.60 c1fi 245) " +
-            "(set-val3 devfun 0.65 c1fi 255) " +
-            "(set-val3 devfun 0.70 c1fi 134) "
-        );
-
-        nusSendString(
-            "(set-val3 devfun 0.75 c1fi 45) " +
-            "(set-val3 devfun 0.80 c1fi 3) " +
-            "(set-val3 devfun 0.85 c1fi 3) " +
-            "(set-val3 devfun 0.90 c1fi 5) " +
-            "(set-val3 devfun 0.95 c1fi 5) "
-        );
-        */
-
-        /*
-         *        (b-a)(x - min)
-            f(x) = --------------  + a
-                    max - min
-         * */
-
-        /*
-        nusSendString(
-            "(set-val3 c2fu 0.00 c2fi 0) " + // 0 
-            "(set-val3 c2fu 0.05 c2fi 0) " +
-            "(set-val3 c2fu 0.10 c2fi 0) " +
-            "(set-val3 c2fu 0.15 c2fi 0) " +
-            "(set-val3 c2fu 0.20 c2fi 1) "
-        );
-
-        nusSendString(
-            "(set-val3 c2fu 0.25 c2fi 1) " +
-            "(set-val3 c2fu 0.30 c2fi 3) " +
-            "(set-val3 c2fu 0.35 c2fi 7) " +
-            "(set-val3 c2fu 0.40 c2fi 123) " +
-            "(set-val3 c2fu 0.45 c2fi 255) "
-        );
-
-        nusSendString(
-            "(set-val3 c2fu 0.50 c2fi 253) " +
-            "(set-val3 c2fu 0.55 c2fi 218) " +
-            "(set-val3 c2fu 0.60 c2fi 160) " +
-            "(set-val3 c2fu 0.65 c2fi 58) " +
-            "(set-val3 c2fu 0.70 c2fi 4) "
-        );
-
-        nusSendString(
-            "(set-val3 c2fu 0.75 c2fi 0) " +
-            "(set-val3 c2fu 0.80 c2fi 0) " +
-            "(set-val3 c2fu 0.85 c2fi 0) " +
-            "(set-val3 c2fu 0.90 c2fi 0) " +
-            "(set-val3 c2fu 0.95 c2fi 0) "
-        );
-        */
-
-        nusSendString(
-            "(set-val3 c2fu 0.00 c2fi 175) " + // 0 
-            "(set-val3 c2fu 0.0125 c2fi 0) " +
-            "(set-val3 c2fu 0.10 c2fi 191) " + // 0 
-            "(set-val3 c2fu 0.1125 c2fi 0) " +
-            "(set-val3 c2fu 0.20 c2fi 207) " + // 0 
-            "(set-val3 c2fu 0.2125 c12i 0) " 
-        );
-        nusSendString(
-            "(set-val3 c2fu 0.30 c2fi 223) " + // 0 
-            "(set-val3 c2fu 0.3125 c2fi 0) " +
-            "(set-val3 c2fu 0.40 c2fi 239) " + // 0 
-            "(set-val3 c2fu 0.4125 c2fi 0) " +
-            "(set-val3 c2fu 0.50 c2fi 255) " + // 0 
-            "(set-val3 c2fu 0.5125 c2fi 0) "
-        );
-        nusSendString(
-            "(set-val3 c2fu 0.70 c2fi 225) " + // 0 
-            "(set-val3 c2fu 0.90 c2fi 0) "
-        );
-
-        // setup waveform 5
-        nusSendString(
-            "(set-val 'c1of 0) " +
-            //"(etloutput c1of 0) " +
-            "(set-val 'c1fn 4) " +
-
-            "(set-val 'c1wl 8000) " +
-
-            "(set-val 'c1re 3) " +
-            "(set-val 'dsns 1)"
-        );
-
-        // setup waveform 6
-        nusSendString(
-            "(set-val 'c1mx 100) " +
-            "(set-val 'c1hb 1) " +
-            "(set-val 'c1pu 200) " +
-            "(set-val 'c1fr 30)"
-        );
-
-        // initialise 7
-        nusSendString(
-            "(set-val 'devthr 3250) " + // problem!
-            "(set-val 'c1pc 1) " +
-            //"(set-val 'c1of 0) " +
-            //"(etloutput c1of 0) " +
-            "(set-val 'c1fn 4) " +
-            "(set-val 'c1wl 120) " +
-            "(cpp 1 3 1) "
-        );
-        
-        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
-        nusSendString(
-            "(set-val 'c1mx 105) " +
-            "(set-val 'c1fi 255) " +
-            "(set-val 'c1hb 3) " +
-            "(set-val 'c1fr 30) " +
-
-            "(set-val 'c1wl 32000) " +
-            //"(set-val 'c1of 0) " +
-            //"(etloutput c1of 0) " +
-            "(set-val 'c1pu 140) " +
-            "(set-val 'c1re 4) " +
-
-            "(set-val 'c1fn 4)"
-        );
-
-        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
-        nusSendString(
-            "(set-val 'c2of 0) " +
-            "(set-val 'c2fn 4) " +
-            "(set-val 'c2hb 3) " +
-            "(set-val 'c2fr 30) " +
-            "(set-val 'c2wl 32000) " +
-            "(set-val 'c2pu 250) " +
-            "(set-val 'c2re 2) " +
-            "(set-val 'c2mx 100)"
-        );
-
-    }
-
-    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'c2of', 'dvwl'/*, 'devthr', 'devgtt'*/]);
-    c1mxPressed();
-
-
-/*
-    defineSetVal();
-    defineFndelta();
-
-    if (connected) {
-
-        
             c1wl of 16384 denotes 1hz
             having c1fr 100 denotes 100hz
             having 0.09 allows 9 pulses to be sent
             having 0.00 allows 0 pulses to be sent
 
-        
+        */
 
         nusSendString(
             "(defun set-val3(channel phase type activation) " +
@@ -975,11 +772,11 @@ function ch1Pressed() {
             "(etlclear devfun) "
         );
 
-    
+        /*
             if a full phase is 0.2seconds
             how long is 0.09 seconds in terms of a full phase
             0.09/0.2 = 0.45
-        
+        */ 
         nusSendString(
                 "(defvar app-val) " +
                 "(set-val 'c1wl 163840) " +
@@ -1055,168 +852,6 @@ function ch1Pressed() {
 
     showOnly("adjustment-panel", ['appTypepluspoint1Button', 'appTypeminuspoint1Button', 'appTypeplus10Button', 'appTypeminus10Button']);
     showOnly("presentation-panel", ['c1mx', 'c1pu', 'c1of', 'c2mx']);
-    */
-}
-
-function planePressed() {
-   
-    defineSetVal();
-    defineFndelta();
-
-    if (connected) {
-
-        nusSendString(
-            "(defun set-val3(channel phase type activation) " +
-            "    (progn " +
-            "        (etlmock channel phase type activation) " +
-            "        (etlcreate channel) " +
-            "        (etloutput channel 0) " +
-            "    ) " +
-            ")"
-        );
-        nusSendString(
-            "(etlclear devfun) "
-        );
-
-        nusSendString(
-            "(set-val3 devfun 0.00 c1fi 64) " + // 0 
-            "(set-val3 devfun 0.05 c1fi 128) " +
-            "(set-val3 devfun 0.10 c1fi 255) " +
-            //"(set-val3 devfun 0.15 c1fi 75) " +
-            "(set-val3 devfun 0.20 c1fi 255) "
-
-        );
-
-        nusSendString(
-            "(set-val3 devfun 0.25 c1fi 128) " +
-            "(set-val3 devfun 0.30 c1fi 64) " +
-            "(set-val3 devfun 0.35 c1fi 0) " +
-            "(set-val3 devfun 0.40 c1fi 0) " +
-            "(set-val3 devfun 0.45 c1fi 0) "
-        );
-
-    /*
-        nusSendString(
-            "(set-val3 devfun 0.50 c1fi 71) " +
-            "(set-val3 devfun 0.55 c1fi 142) " +
-            "(set-val3 devfun 0.60 c1fi 245) " +
-            "(set-val3 devfun 0.65 c1fi 255) " +
-            "(set-val3 devfun 0.70 c1fi 134) "
-        );
-        */
-        nusSendString(
-            "(set-val3 devfun 0.75 c1fi 0) " +
-            "(set-val3 devfun 0.80 c1fi 0) " +
-            "(set-val3 devfun 0.85 c1fi 0) " +
-            "(set-val3 devfun 0.90 c1fi 0) " +
-            "(set-val3 devfun 0.95 c1fi 0) "
-        );
-
-
-        /*
-         *        (b-a)(x - min)
-            f(x) = --------------  + a
-                    max - min
-         * */
-
-
-        nusSendString(
-            "(set-val3 c2fu 0.00 c2fi 0) " + // 0 
-            "(set-val3 c2fu 0.05 c2fi 0) " +
-            "(set-val3 c2fu 0.10 c2fi 0) " +
-            "(set-val3 c2fu 0.15 c2fi 0) " +
-            "(set-val3 c2fu 0.20 c2fi 0) "
-        );
-
-        nusSendString(
-            "(set-val3 c2fu 0.25 c2fi 0) " +
-            "(set-val3 c2fu 0.30 c2fi 0) " +
-            "(set-val3 c2fu 0.35 c2fi 0) " +
-            "(set-val3 c2fu 0.40 c2fi 0) " +
-            "(set-val3 c2fu 0.45 c2fi 0) "
-        );
-
-        nusSendString(
-            "(set-val3 c2fu 0.50 c2fi 64) " +
-            "(set-val3 c2fu 0.55 c2fi 128) " +
-            "(set-val3 c2fu 0.60 c2fi 255) " +
-            "(set-val3 c2fu 0.65 c2fi 255) " +
-            "(set-val3 c2fu 0.70 c2fi 128) "
-        );
-
-        nusSendString(
-            "(set-val3 c2fu 0.75 c2fi 64) " +
-            "(set-val3 c2fu 0.80 c2fi 0) " +
-            "(set-val3 c2fu 0.85 c2fi 0) " +
-            "(set-val3 c2fu 0.90 c2fi 0) " +
-            "(set-val3 c2fu 0.95 c2fi 0) "
-        );
-
-        // setup waveform 5
-        nusSendString(
-            "(set-val 'c1of 0) " +
-            //"(etloutput c1of 0) " +
-            "(set-val 'c1fn 4) " +
-
-            "(set-val 'c1wl 128000) " + // ignored
-
-            "(set-val 'c1re 3) " +
-            "(set-val 'dsns 1)"
-        );
-
-        // setup waveform 6
-        nusSendString(
-            "(set-val 'c1mx 100) " +
-            "(set-val 'c1hb 1) " +
-            "(set-val 'c1pu 200) " +
-            "(set-val 'c1fr 30)"
-        );
-
-        // initialise 7
-        nusSendString(
-            "(set-val 'devthr 3250) " + // problem!
-            "(set-val 'c1pc 1) " +
-            //"(set-val 'c1of 0) " +
-            //"(etloutput c1of 0) " +
-            "(set-val 'c1fn 4) " +
-            "(set-val 'c1wl 120) " +
-            "(cpp 1 3 1) "
-        );
-        
-        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
-        nusSendString(
-            "(set-val 'c1mx 105) " +
-            "(set-val 'c1fi 255) " +
-            "(set-val 'c1hb 3) " +
-            "(set-val 'c1fr 30) " +
-
-            "(set-val 'c1wl 163840o) " +
-            //"(set-val 'c1of 0) " +
-            //"(etloutput c1of 0) " +
-            "(set-val 'c1pu 140) " +
-            "(set-val 'c1re 4) " +
-
-            "(set-val 'c1fn 4)"
-        );
-
-        // Hypothesis: c1re 0 has to be after c1fr change for 500x1 to be loaded and effective.
-        nusSendString(
-            "(set-val 'c2of 0) " +
-            "(set-val 'c2fn 4) " +
-            "(set-val 'c2hb 3) " +
-            "(set-val 'c2fr 30) " +
-            "(set-val 'c2wl 32000) " +
-            "(set-val 'c2pu 250) " +
-            "(set-val 'c2re 2) " +
-            "(set-val 'c2mx 100)"
-        );
-
-    }
-
-    showOnly("presentation-panel", ['c1mx', 'c1fr', 'c1hb', 'c1re', 'c1pu', 'c1of', 'c2of', 'dvwl'/*, 'devthr', 'devgtt'*/]);
-    c1mxPressed();
-
-
 }
 
 function sendTestCommand(mock, expectedValue, label) {
@@ -1883,24 +1518,6 @@ function dvwlPressed() {
     setActiveETLType('dvwl');
     showOnly("adjustment-panel", ['appTypeplus100Button', 'appTypeminus100Button']);
 }
-function c1wlPressed() {
-    if (connected) {
-        nusSendString(
-            "(defvar app-val c1wl) "
-        );
-    }
-    setActiveETLType('c1wl');
-    showOnly("adjustment-panel", ['appTypeplus100Button', 'appTypeminus100Button']);
-}
-function c2wlPressed() {
-    if (connected) {
-        nusSendString(
-            "(defvar app-val c2wl) "
-        );
-    }
-    setActiveETLType('c2wl');
-    showOnly("adjustment-panel", ['appTypeplus100Button', 'appTypeminus100Button']);
-}
 function devthrPressed() {
     if (connected) {
         nusSendString(
@@ -2283,13 +1900,6 @@ function m125x4bPressed() {
 }
 function trainPressed() {
 
-    if (connected) {
-
-        nusSendString(
-             "(cpp 1 3 1) "
-        );
-    }
-    /*
     defineSetVal();
     defineFndelta();
 
@@ -2358,9 +1968,7 @@ function trainPressed() {
             'Inc dvwl', 'Dec dvwl', 'Inc c1re', 'Dec c1re', 'Inc dvwl', 'Dec dvwl', 'Inc c1pc', 'Dec c1pc',
             'Set c1hb=1', 'Set c1hb=2'        ]);
     }
-            */
 }
-
 // Sets button to either Connect or Disconnect
 function setConnButtonState(enabled) {
     if (enabled) {
@@ -2509,7 +2117,7 @@ async function sendManyValues(chunk) {
 */
 function initContent(io) {
     io.println("\r\n\
-Welcome to Limbstim Control V0.0.9 (26th Aug 2024)\r\n\
+Welcome to Limbstim Control V0.0.8 (1st Sep 2023)\r\n\
 \r\n\
 This is a Web Command Line Interface via NUS (Nordic UART Service) using Web Bluetooth.\r\n\
 \r\n\
