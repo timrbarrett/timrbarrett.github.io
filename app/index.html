@@ -31,11 +31,16 @@
 
   <title>flutter_application</title>
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0000ff">
-  <meta name="mobile-web-app-capable" content="yes">
-
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('flutter_service_worker.js?v=2705758983');
+      });
+    }
+  </script>
+  
 </body>
 </html>
