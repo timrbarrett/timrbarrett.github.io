@@ -58,6 +58,8 @@
           }
           deferredPrompt = null;
         });
+      } else {
+        console.log('No install prompt available');
       }
     }
   </script>
@@ -72,7 +74,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=3130082879').then(registration => {
+        navigator.serviceWorker.register('flutter_service_worker.js?v=3652255858').then(registration => {
           // Registration successful
         }).catch(error => {
           // Registration failed
