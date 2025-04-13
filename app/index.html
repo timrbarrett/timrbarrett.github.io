@@ -36,7 +36,7 @@
 
 <body>
   <script src="flutter_bootstrap.js" async></script>
-
+  <script src="main.dart.js" defer></script>
   <script>
     let deferredPrompt;
   
@@ -74,7 +74,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=1906002774').then(registration => {
+        navigator.serviceWorker.register('flutter_service_worker.js?v=3023067960').then(registration => {
           // Registration successful
         }).catch(error => {
           // Registration failed
