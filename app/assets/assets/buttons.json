@@ -1,0 +1,76 @@
+[
+    {
+      "name": "dacx",
+      "label": "dacx {{dacx}}",
+      "actions": [
+        {
+          "type": "SendStringOverNUS",
+          "values":[
+            "(list 'dacx (cadr (eou dacx 0)))",
+            "(list 'dacy (cadr (eou dacy 0)))",
+            "(list 'dacz (cadr (eou dacz 0)))"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hide dacx",
+      "label": "Hide dacx",
+      "actions": [
+        {
+          "type": "HideButton",
+          "name": "dacx"
+        },
+        {
+          "type": "HideButton",
+          "name": "Hide dacx"
+        }
+      ]
+    },
+    {
+      "name": "Reveal dacx",
+      "label": "Reveal dacx",
+      "actions": [
+        {
+          "type": "UnhideButton",
+          "name": "dacx"
+        },
+        {
+          "type": "UnhideButton",
+          "name": "Hide dacx"
+        }
+      ]
+    },
+    {
+      "name": "Create dacy",
+      "label": "Create dacy&z",
+      "actions": [
+        {
+          "type": "CreateButton",
+          "button": {
+            "name": "dacy",
+            "label": "dacy {{dacy}}",
+            "actions": [
+              {
+                "type": "SendStringOverNUS",
+                "value": "(list 'dacy (cadr (eou dacy 0)))"
+              }
+            ]
+          }
+        },
+        {
+          "type": "CreateButton",
+          "button": {
+            "name": "dacz",
+            "label": "dacz {{dacz}}",
+            "actions": [
+              {
+                "type": "SendStringOverNUS",
+                "value": "(list 'dacz (cadr (eou dacz 0)))"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
