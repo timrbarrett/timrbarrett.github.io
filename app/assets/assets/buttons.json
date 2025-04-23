@@ -5,10 +5,8 @@
       "actions": [
         {
           "type": "SendStringOverNUS",
-          "values":[
-            "(list 'dacx (cadr (eou dacx 0)))",
-            "(list 'dacy (cadr (eou dacy 0)))",
-            "(list 'dacz (cadr (eou dacz 0)))"
+          "value": [
+            "(list 'dacz (cadr (eou dacz 0)))\n"
           ]
         }
       ]
@@ -53,7 +51,7 @@
             "actions": [
               {
                 "type": "SendStringOverNUS",
-                "value": "(list 'dacy (cadr (eou dacy 0)))"
+                "value": "(list 'dacy (cadr (eou dacy 0)))\n"
               }
             ]
           }
@@ -66,10 +64,48 @@
             "actions": [
               {
                 "type": "SendStringOverNUS",
-                "value": "(list 'dacz (cadr (eou dacz 0)))"
+                "value": "(list 'dacz (cadr (eou dacz 0)))\n"
               }
             ]
           }
+        }
+      ]
+    },
+    {
+      "name": "dacy",
+      "label": "dacy {{dacy}}",
+      "actions": [
+        {
+          "type": "SendStringOverNUS",
+          "value": "(list 'dacy (cadr (eou dacy 0)))"
+        }
+      ]
+    },
+    {
+      "name": "dacz",
+      "label": "dacz {{dacz}}",
+      "actions": [
+        {
+          "type": "SendStringOverNUS",
+          "value": "(list 'dacz (cadr (eou dacz 0)))"
+        }
+      ]
+    },
+    {
+      "name": "multi create",
+      "label": "multi",
+      "actions": [
+        {
+          "type": "SendStringOverNUS",
+          "value": "(eou dgyx 0)\n"
+        },
+        {
+          "type": "SendStringOverNUS",
+          "value": "(eou dgyy 0)\n"
+        },
+        {
+          "type": "SendStringOverNUS",
+          "value": "(eou dgyz 0)\n"
         }
       ]
     }
