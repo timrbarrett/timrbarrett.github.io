@@ -82902,12 +82902,12 @@ return A.P($async$uK,r)},
 K(a){var s,r=this,q=null,p=r.r,o=A.amO(p?B.EO:B.EN,q)
 p=p?"Disconnect":"Connect"
 s=t.p
-p=A.FG(A.b([A.Ii(q,o,q,new A.aco(r,a),q,p)],s),q,B.SD)
-s=A.b([B.yF,B.DZ,A.hh(!1,B.SL,q,q,B.aQ,q,q,q,q,r.gVy(),q,q),A.hh(!1,B.Sy,q,q,B.aQ,q,q,q,q,new A.acp(a),q,q),A.hh(!1,B.Sv,q,q,B.aQ,q,q,q,q,new A.acq(a),q,q),A.hh(!1,B.SK,q,q,B.aQ,q,q,q,q,new A.acr(a),q,q)],s)
+p=A.FG(A.b([A.Ii(q,o,q,new A.aco(r,a),q,p)],s),q,B.SQ)
+s=A.b([B.yF,B.DZ,A.hh(!1,B.SK,q,q,B.aQ,q,q,q,q,r.gVy(),q,q),A.hh(!1,B.Sy,q,q,B.aQ,q,q,q,q,new A.acp(a),q,q),A.hh(!1,B.Sv,q,q,B.aQ,q,q,q,q,new A.acq(a),q,q),A.hh(!1,B.SJ,q,q,B.aQ,q,q,q,q,new A.acr(a),q,q)],s)
 o=$.pP()
 if(o.a){o=o.b
 o=o!==B.nm&&o!==B.nn}else o=!1
-if(o)s.push(A.hh(!1,B.SF,q,q,B.aQ,q,q,q,q,new A.acs(r),q,q))
+if(o)s.push(A.hh(!1,B.SE,q,q,B.aQ,q,q,q,q,new A.acs(r),q,q))
 o=r.e
 if(o!=null)s.push(A.e1(o,q,q,q,B.Py,q,q))
 s.push(B.yF)
@@ -82985,7 +82985,7 @@ r.toString
 s=A.an1(new A.acC(),null,t.z)
 A.fM(r,!1).kI(s)},
 K(a){var s=null
-return A.L7(A.FG(A.b([A.Ii(s,B.EY,s,this.ga82(),s,"Render Buttons")],t.p),B.ng,B.SJ),new A.fZ($.h6(),new A.acG(),s,s,t.eN),A.ar0(B.EZ,!1,this.gaaF()),B.m0)}}
+return A.L7(A.FG(A.b([A.Ii(s,B.EY,s,this.ga82(),s,"Render Buttons")],t.p),B.ng,B.SI),new A.fZ($.h6(),new A.acG(),s,s,t.eN),A.ar0(B.EZ,!1,this.gaaF()),B.m0)}}
 A.acD.prototype={
 $1(a){return B.D_},
 $S:476}
@@ -83040,7 +83040,7 @@ this.aN()},
 K(a){var s,r=this,q=null,p=A.Qa($.h6().a,q,"  "),o=A.FG(q,q,B.SS),n=r.d
 n.sfK(0,p)
 s=t.p
-return A.L7(o,new A.cp(B.E4,A.nr(A.b([A.amB(A.anB(!0,B.cA,!1,q,!0,B.U,q,A.awq(),n,q,q,q,q,q,2,B.F8,B.an,!0,q,!0,q,!0,q,q,q,q,q,q,q,q,q,q,q,!1,"\u2022",q,q,q,q,q,!1,q,!1,q,!0,q,B.j8,q,q,B.cp,B.bO,q,q,q,q,q,q,q,B.aR,q,B.kM,q,q,q,q)),B.Nr,A.rK(A.b([A.a_V(B.F1,B.Sz,r.ga9N()),A.a_V(B.F2,B.SH,r.ga6O()),A.a_V(B.F5,B.SE,r.ga9L()),A.a_V(B.F3,B.SQ,r.ga6M())],s),B.aV,B.jT,B.d8)],s),B.aV,B.b5,B.d8),q),q,q)}}
+return A.L7(o,new A.cp(B.E4,A.nr(A.b([A.amB(A.anB(!0,B.cA,!1,q,!0,B.U,q,A.awq(),n,q,q,q,q,q,2,B.F8,B.an,!0,q,!0,q,!0,q,q,q,q,q,q,q,q,q,q,q,!1,"\u2022",q,q,q,q,q,!1,q,!1,q,!0,q,B.j8,q,q,B.cp,B.bO,q,q,q,q,q,q,q,B.aR,q,B.kM,q,q,q,q)),B.Nr,A.rK(A.b([A.a_V(B.F1,B.Sz,r.ga9N()),A.a_V(B.F2,B.SG,r.ga6O()),A.a_V(B.F5,B.SD,r.ga9L()),A.a_V(B.F3,B.SP,r.ga6M())],s),B.aV,B.jT,B.d8)],s),B.aV,B.b5,B.d8),q),q,q)}}
 A.afO.prototype={
 $1(a){return t.f.b(a)},
 $S:43}
@@ -83146,7 +83146,7 @@ return A.O(null,r)}})
 return A.P($async$Cm,r)},
 ab3(a,b){return A.awn(a,A.fQ("\\{\\{(.*?)\\}\\}",!0,!1),new A.ahC(b),null)},
 K(a){var s=null
-return A.L7(A.FG(s,s,B.SI),new A.fZ($.h6(),new A.ahG(this),s,s,t.eN),s,s)}}
+return A.L7(A.FG(s,s,B.SH),new A.fZ($.h6(),new A.ahG(this),s,s,t.eN),s,s)}}
 A.ahB.prototype={
 $0(){var s=this.c,r=this.a.d
 if(this.b){r.D(0,s)
@@ -83184,7 +83184,7 @@ $S:0}
 A.oZ.prototype={
 a8Z(){$.axJ().Qc("promptInstall")},
 K(a){var s=null
-return A.L7(A.FG(s,s,B.SA),A.no(A.nr(A.b([A.hh(!1,B.SP,s,s,B.aQ,s,s,s,s,this.ga8Y(),s,s),B.Ns,A.hh(!1,B.SB,s,s,B.aQ,s,s,s,s,new A.a8T(a),s,s),A.hh(!1,B.ST,s,s,B.aQ,s,s,s,s,new A.a8U(a),s,s)],t.p),B.aV,B.b5,B.bs),s,s),s,s)}}
+return A.L7(A.FG(s,s,B.SA),A.no(A.nr(A.b([A.hh(!1,B.SO,s,s,B.aQ,s,s,s,s,this.ga8Y(),s,s),B.Ns,A.hh(!1,B.SB,s,s,B.aQ,s,s,s,s,new A.a8T(a),s,s),A.hh(!1,B.ST,s,s,B.aQ,s,s,s,s,new A.a8U(a),s,s)],t.p),B.aV,B.b5,B.bs),s,s),s,s)}}
 A.a8T.prototype={
 $0(){A.a4I(this.a,"/json-config",t.X)},
 $S:0}
@@ -83219,7 +83219,7 @@ A.fM(r,!1).dN()}},
 K(a){var s=this,r=null,q=t.p,p=A.b([A.ata(s.e,B.Fa,new A.adp()),A.ata(s.f,B.F9,r),B.yE,A.hh(!1,B.z1,r,r,B.aQ,r,r,r,r,s.ga1r(),r,r),B.yE],q),o=s.r
 B.b.R(p,new A.ak(o,new A.adq(),A.a1(o).i("ak<1,h>")))
 p=A.nr(p,B.aV,B.b5,B.bs)
-return A.apG(A.b([A.a9V(B.z2,new A.adr(a),r),A.hh(!1,B.SM,r,r,B.aQ,r,r,r,r,s.gab1(),r,r)],q),new A.x2(p,B.ik,s.d),B.Su)}}
+return A.apG(A.b([A.a9V(B.z2,new A.adr(a),r),A.hh(!1,B.SL,r,r,B.aQ,r,r,r,r,s.gab1(),r,r)],q),new A.x2(p,B.ik,s.d),B.Su)}}
 A.adn.prototype={
 $1(a){return B.zF},
 $S:485}
@@ -87465,10 +87465,10 @@ B.He=A.b(s([B.Va,B.Vi,B.Vc,B.Vf,B.Vk,B.Vj,B.Vg,B.Ve,B.Vh,B.Vd,B.Vb]),A.aq("y<fl>
 B.jB=A.b(s([!0,!1]),t.HZ)
 B.SC=new A.bT("SendStringOverNUS",null,null,null,null,null,null,null,null)
 B.DK=new A.hW("SendStringOverNUS",B.SC,B.cm,null,t.b7)
-B.SN=new A.bT("HideButton",null,null,null,null,null,null,null,null)
-B.DI=new A.hW("HideButton",B.SN,B.cm,null,t.b7)
-B.SG=new A.bT("UnhideButton",null,null,null,null,null,null,null,null)
-B.DG=new A.hW("UnhideButton",B.SG,B.cm,null,t.b7)
+B.SM=new A.bT("HideButton",null,null,null,null,null,null,null,null)
+B.DI=new A.hW("HideButton",B.SM,B.cm,null,t.b7)
+B.SF=new A.bT("UnhideButton",null,null,null,null,null,null,null,null)
+B.DG=new A.hW("UnhideButton",B.SF,B.cm,null,t.b7)
 B.SR=new A.bT("CreateButton",null,null,null,null,null,null,null,null)
 B.DH=new A.hW("CreateButton",B.SR,B.cm,null,t.b7)
 B.Sx=new A.bT("ExpectText",null,null,null,null,null,null,null,null)
@@ -88807,8 +88807,8 @@ B.Ny=new A.jd(3,"hide")
 B.Wd=new A.jd(4,"remove")
 B.yJ=new A.jd(5,"timeout")
 B.Nz=new A.t2(null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.SO=new A.bT("\u2705 Loaded JSON into button configs",null,null,null,null,null,null,null,null)
-B.NA=new A.p3(B.SO,null,null,null,null,null,null,null,null,null,null,null,null,B.fg,null,null,null,B.U,null)
+B.SN=new A.bT("\u2705 Loaded JSON into button configs",null,null,null,null,null,null,null,null)
+B.NA=new A.p3(B.SN,null,null,null,null,null,null,null,null,null,null,null,null,B.fg,null,null,null,B.U,null)
 B.yK=new A.LN(0,"permissive")
 B.We=new A.LN(1,"normal")
 B.eI=new A.A_(null,null,null,null,!1)
@@ -89176,18 +89176,18 @@ B.Sy=new A.bT("Open setup screen",null,null,null,null,null,null,null,null)
 B.Sz=new A.bT("Save UI to Scratchpad",null,null,null,null,null,null,null,null)
 B.SA=new A.bT("Setup",null,null,null,null,null,null,null,null)
 B.SB=new A.bT("Open JSON Config",null,null,null,null,null,null,null,null)
-B.SD=new A.bT("Web Bluetooth App",null,null,null,null,null,null,null,null)
 B.z1=new A.bT("Add Action",null,null,null,null,null,null,null,null)
-B.SE=new A.bT("Save Scratchpad to File",null,null,null,null,null,null,null,null)
-B.SF=new A.bT("Install",null,null,null,null,null,null,null,null)
-B.SH=new A.bT("Update UI from Scratchpad",null,null,null,null,null,null,null,null)
-B.SI=new A.bT("Dynamic Buttons",null,null,null,null,null,null,null,null)
-B.SJ=new A.bT("Button Editor",null,null,null,null,null,null,null,null)
-B.SK=new A.bT("Open Rendered Buttons Screen",null,null,null,null,null,null,null,null)
-B.SL=new A.bT("Send Command",null,null,null,null,null,null,null,null)
-B.SM=new A.bT("Create",null,null,null,null,null,null,null,null)
-B.SP=new A.bT("Install App",null,null,null,null,null,null,null,null)
-B.SQ=new A.bT("Load Scratchpad from File",null,null,null,null,null,null,null,null)
+B.SD=new A.bT("Save Scratchpad to File",null,null,null,null,null,null,null,null)
+B.SE=new A.bT("Install",null,null,null,null,null,null,null,null)
+B.SG=new A.bT("Update UI from Scratchpad",null,null,null,null,null,null,null,null)
+B.SH=new A.bT("Dynamic Buttons",null,null,null,null,null,null,null,null)
+B.SI=new A.bT("Button Editor",null,null,null,null,null,null,null,null)
+B.SJ=new A.bT("Open Rendered Buttons Screen",null,null,null,null,null,null,null,null)
+B.SK=new A.bT("Send Command",null,null,null,null,null,null,null,null)
+B.SL=new A.bT("Create",null,null,null,null,null,null,null,null)
+B.SO=new A.bT("Install App",null,null,null,null,null,null,null,null)
+B.SP=new A.bT("Load Scratchpad from File",null,null,null,null,null,null,null,null)
+B.SQ=new A.bT("Web Bluetooth App 0.1",null,null,null,null,null,null,null,null)
 B.SS=new A.bT("JSON Config",null,null,null,null,null,null,null,null)
 B.z2=new A.bT("Cancel",null,null,null,null,null,null,null,null)
 B.ST=new A.bT("Create Buttons",null,null,null,null,null,null,null,null)
