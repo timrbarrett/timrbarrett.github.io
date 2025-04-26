@@ -67,15 +67,17 @@
     }
   </script>
   
-
   <script>
     function getLaunchMode() {
       return window.matchMedia('(display-mode: standalone)').matches ? 'standalone' : 'browser';
     }
   </script>
 
-
-
+<script>
+  function addGattServerDisconnectedListener(gattServer, callback) {
+    gattServer.device.addEventListener('gattserverdisconnected', callback);
+  }
+</script>
 
 </body>
 
