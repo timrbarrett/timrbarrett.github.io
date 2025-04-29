@@ -1,112 +1,228 @@
 [
-    {
-      "name": "dacx",
-      "label": "dacx {{dacx}}",
-      "actions": [
-        {
-          "type": "SendStringOverNUS",
-          "value": [
-            "(list 'dacz (cadr (eou dacz 0)))\n"
+  {
+    "name": "h",
+    "label": "h {{h}}"
+  },
+  {
+    "name": "p",
+    "label": "p {{p}}"
+  }, 
+  {
+    "name": "r",
+    "label": "r {{r}}"
+  },
+  {
+    "name": "y",
+    "label": "y {{y}}"
+  },
+  {
+    "name": "acc",
+    "label": "acc {{acc}}"
+  },
+  {
+    "name": "g",
+    "label": "g {{g}}"
+  },
+  {
+    "name": "m",
+    "label": "m {{m}}"
+  },
+  {
+    "name": "dacx",
+    "label": "dacx {{dacx}}",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": [
+          "(list 'dacz (cadr (eou dacz 0)))\n"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Hide dacx",
+    "label": "Hide dacx",
+    "actions": [
+      {
+        "type": "HideButton",
+        "name": "dacx"
+      },
+      {
+        "type": "HideButton",
+        "name": "Hide dacx"
+      }
+    ]
+  },
+  {
+    "name": "Reveal dacx",
+    "label": "Reveal dacx",
+    "actions": [
+      {
+        "type": "UnhideButton",
+        "name": "dacx"
+      },
+      {
+        "type": "UnhideButton",
+        "name": "Hide dacx"
+      }
+    ]
+  },
+  {
+    "name": "Create dacy",
+    "label": "Create dacy&z",
+    "actions": [
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "dacy",
+          "label": "dacy {{dacy}}",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(list 'dacy (cadr (eou dacy 0)))\n"
+            }
           ]
         }
-      ]
-    },
-    {
-      "name": "Hide dacx",
-      "label": "Hide dacx",
-      "actions": [
-        {
-          "type": "HideButton",
-          "name": "dacx"
-        },
-        {
-          "type": "HideButton",
-          "name": "Hide dacx"
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "dacz",
+          "label": "dacz {{dacz}}",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(list 'dacz (cadr (eou dacz 0)))\n"
+            }
+          ]
         }
-      ]
-    },
-    {
-      "name": "Reveal dacx",
-      "label": "Reveal dacx",
-      "actions": [
-        {
-          "type": "UnhideButton",
-          "name": "dacx"
-        },
-        {
-          "type": "UnhideButton",
-          "name": "Hide dacx"
-        }
-      ]
-    },
-    {
-      "name": "Create dacy",
-      "label": "Create dacy&z",
-      "actions": [
-        {
-          "type": "CreateButton",
-          "button": {
-            "name": "dacy",
-            "label": "dacy {{dacy}}",
-            "actions": [
-              {
-                "type": "SendStringOverNUS",
-                "value": "(list 'dacy (cadr (eou dacy 0)))\n"
-              }
-            ]
-          }
-        },
-        {
-          "type": "CreateButton",
-          "button": {
-            "name": "dacz",
-            "label": "dacz {{dacz}}",
-            "actions": [
-              {
-                "type": "SendStringOverNUS",
-                "value": "(list 'dacz (cadr (eou dacz 0)))\n"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "name": "dacy",
-      "label": "dacy {{dacy}}",
-      "actions": [
-        {
-          "type": "SendStringOverNUS",
-          "value": "(list 'dacy (cadr (eou dacy 0)))"
-        }
-      ]
-    },
-    {
-      "name": "dacz",
-      "label": "dacz {{dacz}}",
-      "actions": [
-        {
-          "type": "SendStringOverNUS",
-          "value": "(list 'dacz (cadr (eou dacz 0)))"
-        }
-      ]
-    },
-    {
-      "name": "multi create",
-      "label": "multi",
-      "actions": [
-        {
-          "type": "SendStringOverNUS",
-          "value": "(eou dgyx 0)\n"
-        },
-        {
-          "type": "SendStringOverNUS",
-          "value": "(eou dgyy 0)\n"
-        },
-        {
-          "type": "SendStringOverNUS",
-          "value": "(eou dgyz 0)\n"
-        }
-      ]
-    }
-  ]
+      }
+    ]
+  },
+  {
+    "name": "dacy",
+    "label": "dacy {{dacy}}",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(list 'dacy (cadr (eou dacy 0)))"
+      }
+    ]
+  },
+  {
+    "name": "dacz",
+    "label": "dacz {{dacz}}",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(list 'dacz (cadr (eou dacz 0)))"
+      }
+    ]
+  },
+  {
+    "name": "ch1",
+    "label": "ch1",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar app-val c1hb) (set-val app-val 1)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar app-val c1fi) (set-val app-val 255)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar app-val c1fr) (set-val app-val 10)\n"
+      }
+    ]
+  },
+  {
+    "name": "ch2",
+    "label": "ch2",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar app-val c2hb) (set-val app-val 1)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar app-val c2fi) (set-val app-val 255)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar app-val c2fr) (set-val app-val 10)\n"
+      }
+    ]
+  },
+  {
+    "name": "delta-fn",
+    "label": "delta-fn",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defun delta-fn (type delta) "
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "  (set-val "
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "    (eval type) "
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "    ( + ( cadr (etloutput (eval type) 0) ) "
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": ") ) \n"
+      }
+    ]
+  },
+  {
+    "name": "set-val",
+    "label": "set-val",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defun set-val (type value) "
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "  (progn "
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "    (etlmock (eval type) value) "
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "    (etlcreate (eval type) "
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": ") ) \n"
+      }
+    ]
+  },
+  {
+    "name": "ch3",
+    "label": "ch3",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar app-val c3hb) (set-val app-val  1)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar app-val c3fi) (set-val app-val  255)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar app-val c3fr) (set-val app-val  1)\n"
+      }
+    ]
+  }
+]
