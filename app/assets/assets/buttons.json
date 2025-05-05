@@ -16,8 +16,8 @@
     "label": "y {{y}}"
   },
   {
-    "name": "acc",
-    "label": "acc {{acc}}"
+    "name": "a",
+    "label": "a {{a}}"
   },
   {
     "name": "g",
@@ -100,22 +100,56 @@
     ]
   },
   {
-    "name": "dacy",
-    "label": "dacy {{dacy}}",
+    "name": "mag sample",
+    "label": "read mag x50",
     "actions": [
       {
         "type": "SendStringOverNUS",
-        "value": "(list 'dacy (cadr (eou dacy 0)))"
+        "value": "(mag_sample)\n"
       }
     ]
   },
   {
-    "name": "dacz",
-    "label": "dacz {{dacz}}",
+    "name": "mag avg",
+    "label": "mag avg",
     "actions": [
       {
         "type": "SendStringOverNUS",
-        "value": "(list 'dacz (cadr (eou dacz 0)))"
+        "value": "(mag_avg)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar cal-mag-data ())\n"
+      }
+    ]
+  },
+  {
+    "name": "def pub b4",
+    "label": "def pub b4",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defun send-b4 (coords) (mapcar (lambda (v) (cons 'b4 v)) coords))\n"
+      }
+    ]
+  },  
+  {
+    "name": "pub avg b4",
+    "label": "pub avg b4",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(send-b4 cal-mag-data)\n"
+      }
+    ]
+  },
+  {
+    "name": "pub avg b4",
+    "label": "pub sum b4",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(send-b4 mag_calib_coords)\n"
       }
     ]
   },
