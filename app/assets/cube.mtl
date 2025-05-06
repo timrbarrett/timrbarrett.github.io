@@ -1,0 +1,12 @@
+newmtl Textured
+Ka 1.000 1.000 1.000
+Kd 1.000 1.000 1.000
+Ks 0.000 0.000 0.000
+d 1.0
+map_Kd limbstim_texture.png
+
+newmtl Default
+Ka 0.051 0.278 0.631
+Kd 0.051 0.278 0.631
+Ks 0.0 0.0 0.0
+d 1.0
