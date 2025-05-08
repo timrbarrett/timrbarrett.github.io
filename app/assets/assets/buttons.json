@@ -40,16 +40,36 @@
     ]
   },
   {
-    "name": "Hide dacx",
-    "label": "Hide dacx",
+    "name": "Hide viz",
+    "label": "Hide viz",
     "actions": [
       {
         "type": "HideButton",
-        "name": "dacx"
+        "name": "h"
       },
       {
         "type": "HideButton",
-        "name": "Hide dacx"
+        "name": "p"
+      },
+      {
+        "type": "HideButton",
+        "name": "r"
+      },
+      {
+        "type": "HideButton",
+        "name": "y"
+      },
+      {
+        "type": "HideButton",
+        "name": "a"
+      },
+      {
+        "type": "HideButton",
+        "name": "g"
+      },
+      {
+        "type": "HideButton",
+        "name": "m"
       }
     ]
   },
@@ -93,6 +113,51 @@
             {
               "type": "SendStringOverNUS",
               "value": "(list 'dacz (cadr (eou dacz 0)))\n"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "cr dbsm",
+    "label": "cr dbsm",
+    "actions": [
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "dbsm 0",
+          "label": "dbsm 0",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 0.0) (ecr dbsm) (eou dbsm 0) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "dbsm 1",
+          "label": "dbsm 1",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 1.0) (ecr dbsm) (eou dbsm 0) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "dbsm 2",
+          "label": "dbsm 2",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 2.0) (ecr dbsm) (eou dbsm 0) \n"
             }
           ]
         }
