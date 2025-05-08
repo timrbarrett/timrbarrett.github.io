@@ -31,14 +31,15 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png" />
 
-  <title>flutter_application</title>
+  <title>Limbstim</title>
   <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
-  <script src="flutter_bootstrap.js" async></script>
-  <script src="main.dart.js" defer></script>
   <script src="flutter.js" defer></script>
+  <script src="flutter_bootstrap.js" defer></script>
+  <script src="main.dart.js" defer></script>
+
   
   <script>
     let deferredPrompt;
@@ -72,12 +73,6 @@
       return window.matchMedia('(display-mode: standalone)').matches ? 'standalone' : 'browser';
     }
   </script>
-
-<script>
-  function addGattServerDisconnectedListener(gattServer, callback) {
-    gattServer.device.addEventListener('gattserverdisconnected', callback);
-  }
-</script>
 
 </body>
 
