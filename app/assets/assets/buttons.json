@@ -131,8 +131,17 @@
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(emo dbsm 0.0) (ecr dbsm) (eou dbsm 0) \n"
+              "value": "(emo dbsm 0) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0) \n"
             }
+
           ]
         }
       },
@@ -144,7 +153,13 @@
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(emo dbsm 1.0) (ecr dbsm) (eou dbsm 0) \n"
+              "value": "(emo dbsm 1)  \n"
+            },{
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm) \n"
+            },{
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0) \n"
             }
           ]
         }
@@ -157,7 +172,36 @@
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(emo dbsm 2.0) (ecr dbsm) (eou dbsm 0) \n"
+              "value": "(emo dbsm 2) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "dbsm 3",
+          "label": "dbsm 3",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 3) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0) \n"
             }
           ]
         }
