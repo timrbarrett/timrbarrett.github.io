@@ -127,7 +127,7 @@
         "type": "CreateButton",
         "button": {
           "name": "dbsm 0",
-          "label": "dbsm 0",
+          "label": "stop",
           "actions": [
             {
               "type": "SendStringOverNUS",
@@ -149,7 +149,7 @@
         "type": "CreateButton",
         "button": {
           "name": "dbsm 1",
-          "label": "dbsm 1",
+          "label": "calib",
           "actions": [
             {
               "type": "SendStringOverNUS",
@@ -168,7 +168,7 @@
         "type": "CreateButton",
         "button": {
           "name": "dbsm 2",
-          "label": "dbsm 2",
+          "label": "visualise",
           "actions": [
             {
               "type": "SendStringOverNUS",
@@ -189,11 +189,32 @@
         "type": "CreateButton",
         "button": {
           "name": "dbsm 3",
-          "label": "dbsm 3",
+          "label": "sensors",
           "actions": [
             {
               "type": "SendStringOverNUS",
               "value": "(emo dbsm 3) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "dbsm 4",
+          "label": "AHRS",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 4) \n"
             },
             {
               "type": "SendStringOverNUS",
