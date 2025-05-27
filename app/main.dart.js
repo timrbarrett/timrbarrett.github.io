@@ -85591,7 +85591,7 @@ return A.K($async$$0,r)},
 $S:17}
 A.aeL.prototype={
 $2(a,b){var s,r,q=null,p=$.jS().x,o=this.a
-p=A.wb(A.b([new A.Bc(new A.aeI(),!1,new A.cu(p,A.m(p).i("cu<1>")),q,t.oJ),B.EZ,A.on(q,B.nu,q,o.gabE(),q,"Save Console Data"),A.on(q,B.Fl,q,new A.aeJ(a),q,q),A.on(q,B.Fh,q,new A.aeK(a),q,"Send Custom Command")],t.p),q,B.To)
+p=A.wb(A.b([new A.Bc(new A.aeI(),!1,new A.cu(p,A.m(p).i("cu<1>")),q,t.oJ),B.EZ,A.on(q,B.nu,q,o.gabE(),q,"Save Console Data"),A.on(q,B.Fl,q,new A.aeJ(a),q,q),A.on(q,B.Fh,q,new A.aeK(a),q,"Send Custom Command")],t.p),q,B.Tn)
 s=o.gace()
 r=o.ga2n()
 o=o.d
@@ -86188,7 +86188,7 @@ A.yi.prototype={
 af(){return new A.RA(B.i)}}
 A.RA.prototype={
 H(a){var s=this,r=null
-return A.ic(r,A.px(B.cu,A.b([new A.wR(new A.aie(s),r),A.zH(20,A.ey(!1,B.T5,r,r,B.aq,r,r,r,r,new A.aif(s),r,r),r,r,20,r,r,r),A.zH(20,A.ey(!1,B.Tn,r,r,B.aq,r,r,r,r,new A.aig(s),r,r),r,r,r,20,r,r)],t.p),B.H,B.cp,r),B.X,!1,r,r,r,r,r,r,r,r,r,r,r,new A.aih(s),new A.aii(s),r,r,r,r,r,r,r,r,r,r,r)},
+return A.ic(r,A.px(B.cu,A.b([new A.wR(new A.aie(s),r),A.zH(20,A.ey(!1,B.T5,r,r,B.aq,r,r,r,r,new A.aif(s),r,r),r,r,20,r,r,r),A.zH(20,A.ey(!1,B.To,r,r,B.aq,r,r,r,r,new A.aig(s),r,r),r,r,r,20,r,r)],t.p),B.H,B.cp,r),B.X,!1,r,r,r,r,r,r,r,r,r,r,r,new A.aih(s),new A.aii(s),r,r,r,r,r,r,r,r,r,r,r)},
 rV(){var s=this,r=s.r,q=Math.sin(s.f),p=Math.cos(s.e),o=Math.sin(s.e),n=Math.cos(s.f),m=Math.cos(s.e),l=s.d
 l===$&&A.a()
 l.b.a.dX(r*q*p,r*o,r*n*m)
@@ -92979,8 +92979,8 @@ B.Ti=new A.bE("Save",null,null,null,null,null,null,null,null)
 B.Tk=new A.bE("Install App",null,null,null,null,null,null,null,null)
 B.Tl=new A.bE("Calibration Point Cloud",null,null,null,null,null,null,null,null)
 B.Tm=new A.bE("Load Scratchpad from File",null,null,null,null,null,null,null,null)
-B.Tn=new A.bE("Zoom in",null,null,null,null,null,null,null,null)
-B.To=new A.bE("Web Bluetooth App 0.5",null,null,null,null,null,null,null,null)
+B.Tn=new A.bE("Web Bluetooth App 0.55",null,null,null,null,null,null,null,null)
+B.To=new A.bE("Zoom in",null,null,null,null,null,null,null,null)
 B.Tq=new A.bE("Edit Button JSON",null,null,null,null,null,null,null,null)
 B.Tr=new A.bE("JSON Config",null,null,null,null,null,null,null,null)
 B.hX=new A.bE("Cancel",null,null,null,null,null,null,null,null)
