@@ -615,6 +615,59 @@
     ]
   },
   {
+    "name": "dmrd 50",
+    "label": "dmrd 50",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(emo dmrd 50) \n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(ecr dmrd) \n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(eou dmrd 0) \n"
+      }
+    ]
+     },
+  {
+    "name": "dmrd 500",
+    "label": "dmrd 500",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(emo dmrd 500) \n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(ecr dmrd) \n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(eou dmrd 0) \n"
+      }
+    ] },
+  {
+    "name": "dmrd 20",
+    "label": "dmrd 20",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(emo dmrd 20) \n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(ecr dmrd) \n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(eou dmrd 0) \n"
+      }
+    ]
+  },
+  {
     "name": "def create-averaged-points",
     "label": "def create-averaged-points",
     "actions": [
