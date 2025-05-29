@@ -1,193 +1,5 @@
 [
   {
-    "name": "h",
-    "label": "h {{h}}"
-  },
-  {
-    "name": "p",
-    "label": "p {{p}}"
-  },
-  {
-    "name": "r",
-    "label": "r {{r}}"
-  },
-  {
-    "name": "y",
-    "label": "y {{y}}"
-  },
-  {
-    "name": "a",
-    "label": "a {{a}}"
-  },
-  {
-    "name": "g",
-    "label": "g {{g}}"
-  },
-  {
-    "name": "m",
-    "label": "m {{m}}"
-  },
-  {
-    "name": "Hide agm",
-    "label": "Hide agm",
-    "actions": [
-      {
-        "type": "HideButton",
-        "name": "h"
-      },
-      {
-        "type": "HideButton",
-        "name": "p"
-      },
-      {
-        "type": "HideButton",
-        "name": "r"
-      },
-      {
-        "type": "HideButton",
-        "name": "y"
-      },
-      {
-        "type": "HideButton",
-        "name": "a"
-      },
-      {
-        "type": "HideButton",
-        "name": "g"
-      },
-      {
-        "type": "HideButton",
-        "name": "m"
-      },
-      {
-        "type": "HideButton",
-        "name": "Hide agm"
-      },
-      {
-        "type": "UnhideButton",
-        "name": "Unhide agm"
-      }
-    ]
-  },
-  {
-    "name": "Unhide agm",
-    "label": "Unhide agm",
-    "actions": [
-      {
-        "type": "UnhideButton",
-        "name": "h"
-      },
-      {
-        "type": "UnhideButton",
-        "name": "p"
-      },
-      {
-        "type": "UnhideButton",
-        "name": "r"
-      },
-      {
-        "type": "UnhideButton",
-        "name": "y"
-      },
-      {
-        "type": "UnhideButton",
-        "name": "a"
-      },
-      {
-        "type": "UnhideButton",
-        "name": "g"
-      },
-      {
-        "type": "UnhideButton",
-        "name": "m"
-      },
-      {
-        "type": "HideButton",
-        "name": "Unhide agm"
-      },
-      {
-        "type": "UnhideButton",
-        "name": "Hide agm"
-      }
-    ]
-  },
-  {
-    "name": "dbrd",
-    "label": "dbrd {{dbrd}}",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar app-val dbrd) (eou app-val 0) \n"
-      }
-    ]
-  },
-  {
-    "name": "dbrd++",
-    "label": "dbrd++",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": " (delta-fn app-val 10) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": " (eou app-val 0) \n"
-      }
-    ]
-  },
-  {
-    "name": "delta-fn",
-    "label": "delta-fn",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun delta-fn (type delta) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (set-val \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (eval type) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (+ (cadr (eou (eval type) 0)) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "   delta))) \n"
-      }
-    ]
-  },
-  {
-    "name": "set-val",
-    "label": "set-val",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun set-val (type value) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (progn \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (emo (eval type) value) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (ecr (eval type)) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": ")) \n"
-      }
-    ]
-  },
-  {
     "name": "cr dbsm",
     "label": "cr dbsm",
     "actions": [
@@ -295,33 +107,31 @@
             }
           ]
         }
-      }
-    ]
-  },
-  {
-    "name": "mag sample",
-    "label": "read mag x50",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(mag_sample)\n"
-      }
-    ]
-  },
-  {
-    "name": "mag avg",
-    "label": "mag avg",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(mag_avg)\n"
       },
       {
-        "type": "SendStringOverNUS",
-        "value": "(defvar cal-mag-data ())\n"
+        "type": "CreateButton",
+        "button": {
+          "name": "dbsm 5",
+          "label": "delta acc",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 5) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0) \n"
+            }
+          ]
+        }
       }
     ]
   },
+  
   {
     "name": "def pub b4",
     "label": "def pub b4",
@@ -352,42 +162,7 @@
       }
     ]
   },
-  {
-    "name": "ch1",
-    "label": "ch1",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar app-val c1hb) (set-val app-val 1) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar app-val c1fi) (set-val app-val 255) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar app-val c1fr) (set-val app-val 10) \n"
-      }
-    ]
-  },
-  {
-    "name": "ch2",
-    "label": "ch2",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar app-val c2hb) (set-val app-val 1) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar app-val c2fi) (set-val app-val 255) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar app-val c2fr) (set-val app-val 10) \n"
-      }
-    ]
-  },
+
   {
     "name": "delta-fn",
     "label": "delta-fn",
