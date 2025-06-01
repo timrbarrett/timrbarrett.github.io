@@ -184,5 +184,47 @@
         "value": "(eou dmrd 0) \n"
       }
     ]
+  },
+  {
+    "name": "def send-b4",
+    "label": "def send b4",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defun send-b4 (coords)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "  (dolist (v coords)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "    (print (cons 'b4 v)))\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "  'done)\n"
+      }
+    ]
+  },
+  {
+    "name": "fib",
+    "label": "fib-patches",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(store-fib-patches)  \n"
+      }
+    ]
+  },
+  {
+    "name": "fib",
+    "label": "send fib-patches",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(send-b4 *fib-patches*)  \n"
+      }
+    ]
   }
 ]
