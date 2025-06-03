@@ -197,23 +197,25 @@
   },
   {
     "name": "init fib-acc-data",
-    "label": "init fib-acc-data",
+    "label": "init acc and mag data",
     "actions": [
       {
         "type": "SendStringOverNUS",
         "value": "(defvar *fib-acc-data* (mapcar (lambda (x) (list 0 0.0 0.0 0.0)) *fib-patches*))\n"
-      }
-    ]
-  },
-  {
-    "name": "init fib-mag-data",
-    "label": "init fib-mag-data",
-    "actions": [
+      },
       {
         "type": "SendStringOverNUS",
         "value": "(defvar *fib-mag-data* (mapcar (lambda (x) (list 0 0.0 0.0 0.0)) *fib-patches*))\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar *fib-acc-avg* (mapcar (lambda (x) (list 0.0 0.0 0.0)) *fib-patches*))\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar *fib-mag-avg* (mapcar (lambda (x) (list 0.0 0.0 0.0)) *fib-patches*))\n"
       }
-    ]
+        ]
   },
   {
     "name": "def send-b4",
@@ -311,31 +313,31 @@
       },
       {
         "type": "SendStringOverNUS",
-        "value": "        (total 0))\n"
+        "value": "  (total 0))\n"
       },
       {
         "type": "SendStringOverNUS",
-        "value": "    (dolist (entry *fib-acc-data*)\n"
+        "value": "  (dolist (entry *fib-acc-data*)\n"
       },
       {
         "type": "SendStringOverNUS",
-        "value": "      (let ((count (car entry)))\n"
+        "value": " (let ((count (car entry)))\n"
       },
       {
         "type": "SendStringOverNUS",
-        "value": "        (when (> count 0)\n"
+        "value": " (when (> count 0)\n"
       },
       {
         "type": "SendStringOverNUS",
-        "value": "          (setq filled (+ filled 1)))\n"
+        "value": "  (setq filled (+ filled 1)))\n"
       },
       {
         "type": "SendStringOverNUS",
-        "value": "        (setq total (+ total 1))))\n"
+        "value": "  (setq total (+ total 1))))\n"
       },
       {
         "type": "SendStringOverNUS",
-        "value": "    (list filled total (/ filled total))))\n"
+        "value": " (list filled total (/ filled total))))\n"
       }
     ]
   },
