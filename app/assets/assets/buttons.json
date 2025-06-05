@@ -191,7 +191,7 @@
     "actions": [
       {
         "type": "SendStringOverNUS",
-        "value": "(store-fib-patches)  \n"
+        "value": "(store-fib-patches 98 0)  \n"
       }
     ]
   },
@@ -231,7 +231,7 @@
       },
       {
         "type": "SendStringOverNUS",
-        "value": "    (print (cons 'b4 v)))\n"
+        "value": "    (print (cons 'c2 v)))\n"
       },
       {
         "type": "SendStringOverNUS",
@@ -443,7 +443,6 @@
       }
     ]
   },
-
   {
     "name": "run zip-and-update",
     "label": "zip-and-update acc→avg",
@@ -474,7 +473,6 @@
       }
     ]
   },
-
   {
     "name": "def update-average-entry",
     "label": "def update-average-entry",
@@ -563,14 +561,106 @@
       }
     ]
   },
-{
-  "name": "use compute-averages",
-  "label": "use compute-averages",
-  "actions": [
-    {
-      "type": "SendStringOverNUS",
-      "value": "(defvar *fib-acc-avg* (compute-averages *fib-acc-data*))\n"
-    }
-  ]
-}
+  {
+    "name": "use compute-averages",
+    "label": "use compute-averages",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar *fib-acc-avg* (compute-averages *fib-acc-data*))\n"
+      }
+    ]
+  },
+  {
+    "name": "def apply-mapping",
+    "label": "def apply-mapping",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defun apply-mapping (name value)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "  (emo name value)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "  (ecr name ) \n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "  (princ \"Mapped: \") (princ name) (princ \" = \") (princ value) (terpri)) \n"
+      }
+    ]
+  },
+  {
+    "name": "def load-mapped-helper",
+    "label": "def load-mapped-helper",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defun load-mapped-helper (vals names)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "  (cond\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "    ((or (null vals) (null names)) nil)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "    (t\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "     (apply-mapping (car names) (car vals))\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "     (load-mapped-helper (cdr vals) (cdr names)))))\n"
+      }
+    ]
+  },
+  {
+    "name": "def load-mapped-values",
+    "label": "def load-mapped-values",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defun load-mapped-values (data mapping)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "  (let ((values data)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "        (names  mapping))\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "    (load-mapped-helper values names)))\n"
+      }
+    ]
+  },
+  {
+    "name": "run load-mapped-values example",
+    "label": "run load-mapped-values example",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(load-mapped-values \n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "  (list -0.001 -2.531 -1.21 1.74 1.82 2.70 1.822 1.74 -0.0016 2.70 -0.0016 1.71)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "  (list dmox dmoy dmoz mm11 mm12 mm13 mm21 mm22 mm23 mm31 mm32 mm33))\n"
+      }
+    ]
+  }
 ]
