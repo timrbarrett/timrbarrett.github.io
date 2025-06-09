@@ -581,15 +581,19 @@
       },
       {
         "type": "SendStringOverNUS",
-        "value": "  (emo name value)\n"
+        "value": "  (progn\n"
       },
       {
         "type": "SendStringOverNUS",
-        "value": "  (ecr name ) \n"
+        "value": "    (emo name value)\n"
       },
       {
         "type": "SendStringOverNUS",
-        "value": "  (princ \"Mapped: \") (princ name) (princ \" = \") (princ value) (terpri)) \n"
+        "value": "    (ecr name)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "    (princ \"Result: \") (princ value) (princ \" offered \") (princ (cadr (eou name 0))) (princ \" returned \") (terpri)))\n"
       }
     ]
   },
@@ -655,7 +659,7 @@
       },
       {
         "type": "SendStringOverNUS",
-        "value": "  (list 0.50183162 0.30097153 0.48938404 1.414699 -0.056136 -0.012879 -0.056136 1.481751 -0.020246 -0.012879 -0.020246 1.342993)\n"
+        "value": "  (list 0.50654725 0.29433811 0.50369255 1.415644 -0.058119 -0.002793 -0.058119 1.471812 -0.017316 -0.002793 -0.017316 1.346888)\n"
       },
       {
         "type": "SendStringOverNUS",
@@ -832,25 +836,25 @@
     ]
   },
   {
-  "name": "defvar results",
-  "label": "defvar results",
-  "actions": [
-    {
-      "type": "SendStringOverNUS",
-      "value": "(defvar results)\n"
-    }
-  ]
-},
-{
-  "name": "defvar *cal-mag-data*",
-  "label": "defvar *cal-mag-data*",
-  "actions": [
-    {
-      "type": "SendStringOverNUS",
-      "value": "(defvar *cal-mag-data*)\n"
-    }
-  ]
-},
+    "name": "defvar results",
+    "label": "defvar results",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar results)\n"
+      }
+    ]
+  },
+  {
+    "name": "defvar *cal-mag-data*",
+    "label": "defvar *cal-mag-data*",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar *cal-mag-data*)\n"
+      }
+    ]
+  },
   {
     "name": "def process-one-raw-sample",
     "label": "def process-one-raw-sample",
@@ -863,7 +867,7 @@
         "type": "SendStringOverNUS",
         "value": "    (set-dma-values triple)\n"
       },
-            {
+      {
         "type": "SendStringOverNUS",
         "value": "    (delay waitms)\n"
       },
@@ -976,13 +980,64 @@
         "value": " (ecr dmaz)\n"
       }
     ]
-  },{
+  },
+  {
     "name": "pprintall",
     "label": "eou dmaz",
     "actions": [
       {
         "type": "SendStringOverNUS",
         "value": "(eou dmaz 0)\n"
+      }
+    ]
+  },
+  {
+    "name": "def apply-all-etl-mappings",
+    "label": "def apply-all-etl-mappings",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defun apply-all-etl-mappings ()\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "  (mapcar (lambda (name value)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "            (princ name) (princ \" = \") (princ value) (terpri)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "            (apply-mapping name value))\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "          *etl-type-names*\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "          *etl-type-values*))\n"
+      }
+    ]
+  },
+  {
+    "name": "defvar *etl-type-names*",
+    "label": "defvar *etl-type-names*",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar *etl-type-names* (list dmox dmoy dmoz mm11 mm12 mm13 mm21 mm22 mm23 mm31 mm32 mm33))\n"
+      }
+    ]
+  },
+  {
+    "name": "defvar *etl-type-values*",
+    "label": "defvar *etl-type-values*",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar *etl-type-values* (list 0.50183162 0.30097153 0.48938404 1.414699 -0.056136 -0.012879 -0.056136 1.481751 -0.020246 -0.012879 -0.020246 1.342993))\n"
       }
     ]
   }
