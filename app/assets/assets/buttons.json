@@ -128,60 +128,203 @@
             }
           ]
         }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "hide dbsm",
+          "label": "hide dbsm",
+          "actions": [
+            {
+              "type": "HideButton",
+              "name": "cr dbsm"
+            },
+            {
+              "type": "HideButton",
+              "name": "dbsm 0"
+            },
+            {
+              "type": "HideButton",
+              "name": "dbsm 1"
+            },
+            {
+              "type": "HideButton",
+              "name": "dbsm 2"
+            },
+            {
+              "type": "HideButton",
+              "name": "dbsm 3"
+            },
+            {
+              "type": "HideButton",
+              "name": "dbsm 4"
+            },
+            {
+              "type": "HideButton",
+              "name": "dbsm 5"
+            },
+            {
+              "type": "CreateButton",
+              "button": {
+                "name": "show dbsm",
+                "label": "show dbsm",
+                "actions": [
+                  {
+                    "type": "UnhideButton",
+                    "name": "cr dbsm"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dbsm 0"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dbsm 1"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dbsm 2"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dbsm 3"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dbsm 4"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dbsm 5"
+                  }
+                ]
+              }
+            }
+          ]
+        }
       }
     ]
   },
   {
-    "name": "dmrd 50",
-    "label": "dmrd 50",
+    "name": "dmrd",
+    "label": "dmrd",
     "actions": [
       {
-        "type": "SendStringOverNUS",
-        "value": "(emo dmrd 50) \n"
+        "type": "CreateButton",
+        "button": {
+          "name": "dmrd 20",
+          "label": "dmrd 20",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dmrd 20) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dmrd) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dmrd 0) \n"
+            }
+          ]
+        }
       },
       {
-        "type": "SendStringOverNUS",
-        "value": "(ecr dmrd) \n"
+        "type": "CreateButton",
+        "button": {
+          "name": "dmrd 50",
+          "label": "dmrd 50",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dmrd 50) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dmrd) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dmrd 0) \n"
+            }
+          ]
+        }
       },
       {
-        "type": "SendStringOverNUS",
-        "value": "(eou dmrd 0) \n"
-      }
-    ]
-  },
-  {
-    "name": "dmrd 500",
-    "label": "dmrd 500",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(emo dmrd 500) \n"
+        "type": "CreateButton",
+        "button": {
+          "name": "dmrd 500",
+          "label": "dmrd 500",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dmrd 500) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dmrd) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dmrd 0) \n"
+            }
+          ]
+        }
       },
       {
-        "type": "SendStringOverNUS",
-        "value": "(ecr dmrd) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(eou dmrd 0) \n"
-      }
-    ]
-  },
-  {
-    "name": "dmrd 20",
-    "label": "dmrd 20",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(emo dmrd 20) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(ecr dmrd) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(eou dmrd 0) \n"
+        "type": "CreateButton",
+        "button": {
+          "name": "hide dmrd",
+          "label": "hide dmrd",
+          "actions": [
+            {
+              "type": "HideButton",
+              "name": "dmrd"
+            },
+            {
+              "type": "HideButton",
+              "name": "dmrd 20"
+            },
+            {
+              "type": "HideButton",
+              "name": "dmrd 50"
+            },
+            {
+              "type": "HideButton",
+              "name": "dmrd 500"
+            },
+            {
+              "type": "CreateButton",
+              "button": {
+                "name": "show dmrd",
+                "label": "show dmrd",
+                "actions": [
+                  {
+                    "type": "UnhideButton",
+                    "name": "dmrd"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dmrd 20"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dmrd 50"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dmrd 500"
+                  },
+                  {
+                    "type": "HideButton",
+                    "name": "show dmrd"
+                  }
+                ]
+              }
+            }
+          ]
+        }
       }
     ]
   },
@@ -195,7 +338,6 @@
       }
     ]
   },
-  
   {
     "name": "def send-b4",
     "label": "def send b4",
@@ -228,416 +370,6 @@
       }
     ]
   },
-  {
-    "name": "sample",
-    "label": "sample",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(store-acc-and-mag) \n"
-      }
-    ]
-  },
-
-  {
-    "name": "use multi",
-    "label": "use multi",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(multi-sample-acc 50) \n"
-      }
-    ]
-  },
-  {
-    "name": "def fib-coverage",
-    "label": "def fib-coverage",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun fib-coverage ()\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (let ((filled 0)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (total 0))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (dolist (entry *fib-acc-data*)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": " (let ((count (car entry)))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": " (when (> count 0)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (setq filled (+ filled 1)))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (setq total (+ total 1))))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": " (list filled total (/ filled total))))\n"
-      }
-    ]
-  },
-  {
-    "name": "fib-coverage",
-    "label": "fib-coverage",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(fib-coverage)\n"
-      }
-    ]
-  },
-  {
-    "name": "def cadddr",
-    "label": "def cadddr",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun cadddr (x) (car (cdr (cdr (cdr x)))))\n"
-      }
-    ]
-  },
-  {
-    "name": "def average-entry v2",
-    "label": "def average-entry v2",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun average-entry (entry)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (let ((count (car entry))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        (x (cadr entry))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        (y (caddr entry))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        (z (cadddr entry)))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (if (> count 0)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        (list (/ x count) (/ y count) (/ z count))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        '(0.0 0.0 0.0))))\n"
-      }
-    ]
-  },
-  {
-    "name": "def set-avg-if-needed",
-    "label": "def set-avg-if-needed",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun set-avg-if-needed (entry dest-cell)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (let ((avg (average-entry entry)))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (when avg\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "      (setf (car dest-cell) avg))))\n"
-      }
-    ]
-  },
-  {
-    "name": "def update-avg-cell",
-    "label": "def update-avg-cell",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun update-avg-cell (entry dest-cell)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (let ((avg (average-entry entry)))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (when avg\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "      (setf (car dest-cell) avg))))\n"
-      }
-    ]
-  },
-  {
-    "name": "run zip-and-update",
-    "label": "zip-and-update acc→avg",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(zip-and-update *fib-acc-data* *fib-acc-avg*)\n"
-      }
-    ]
-  },
-  {
-    "name": "pprint fib-acc-avg",
-    "label": "pprint fib-acc-avg",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(pprint *fib-acc-avg*)\n"
-      }
-    ]
-  },
-  {
-    "name": "pprint fib-acc-data",
-    "label": "pprint fib-acc-data",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(pprint *fib-acc-data*)\n"
-      }
-    ]
-  },
-  {
-    "name": "def update-average-entry",
-    "label": "def update-average-entry",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun update-average-entry (avg-entry new-values)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (setf (car avg-entry) (car new-values))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (setf (cadr avg-entry) (cadr new-values))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (setf (caddr avg-entry) (caddr new-values)))\n"
-      }
-    ]
-  },
-  {
-    "name": "def zip-and-update v4",
-    "label": "def zip-and-update v4",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun zip-and-update (src dst)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": " (defvar dst (compute-averages src) ) ) \n"
-      }
-    ]
-  },
-  {
-    "name": "def average-from-entry v2",
-    "label": "def average-from-entry v2",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun average-from-entry (entry)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (let ((count (car entry))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        (x (cadr entry))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        (y (caddr entry))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        (z (cadddr entry)))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (if (= count 0)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        '(0 0 0)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        (list (/ x count) (/ y count) (/ z count)))))\n"
-      }
-    ]
-  },
-  {
-    "name": "def compute-averages",
-    "label": "def compute-averages",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun compute-averages (entries)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (mapcar average-from-entry entries))\n"
-      }
-    ]
-  },
-  {
-    "name": "use compute-averages",
-    "label": "use compute-averages",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar *fib-acc-avg* (compute-averages *fib-acc-data*))\n"
-      }
-    ]
-  },
-  {
-    "name": "def apply-mapping",
-    "label": "def apply-mapping",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun apply-mapping (name value)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (progn\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (emo name value)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (ecr name)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (princ \"Result: \") (princ value) (princ \" offered \") (princ (cadr (eou name 0))) (princ \" returned \") (terpri)))\n"
-      }
-    ]
-  },
-  {
-    "name": "def load-mapped-helper",
-    "label": "def load-mapped-helper",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun load-mapped-helper (vals names)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (cond\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    ((or (null vals) (null names)) nil)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (t\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "     (apply-mapping (car names) (car vals))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "     (load-mapped-helper (cdr vals) (cdr names)))))\n"
-      }
-    ]
-  },
-  {
-    "name": "def load-mapped-values",
-    "label": "def load-mapped-values",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun load-mapped-values (data mapping)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (let ((values data)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        (names  mapping))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (load-mapped-helper values names)))\n"
-      }
-    ]
-  },
-  {
-    "name": "run load-mapped-values example",
-    "label": "run load-mapped-values example",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(load-mapped-values \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (list 0.48513589 -0.30877038 -0.47896002 2.200312 -0.420147  0.059897 0.229947  2.001571  0.780123 -0.199374 -0.633106  2.205536)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (list dmox dmoy dmoz mm11 mm12 mm13 mm21 mm22 mm23 mm31 mm32 mm33))\n"
-      }
-    ]
-  },
-
-  {
-    "name": "def calibrate-all",
-    "label": "def calibrate-all",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun calibrate-all ()\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (setq *cal-mag-data* nil)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (mapcar map-mag *raw-mag-data*))\n"
-      }
-    ]
-  },
-
-
   {
     "name": "pprintall",
     "label": "pprintall",
@@ -702,7 +434,7 @@
     "actions": [
       {
         "type": "SendStringOverNUS",
-        "value": "(emo mak1 1.0)\n"
+        "value": "(emo maki 1.0)\n"
       }
     ]
   },
@@ -723,36 +455,6 @@
       {
         "type": "SendStringOverNUS",
         "value": "(eou maki 0)\n"
-      }
-    ]
-  },  
-  {
-    "name": "pprintall",
-    "label": "emo dmaz",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(emo dmaz 1.0)\n"
-      }
-    ]
-  },
-  {
-    "name": "pprintall",
-    "label": "ecr dmaz",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": " (ecr dmaz)\n"
-      }
-    ]
-  },
-  {
-    "name": "pprintall",
-    "label": "eou dmaz",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(eou dmaz 0)\n"
       }
     ]
   },
@@ -803,6 +505,42 @@
       {
         "type": "SendStringOverNUS",
         "value": "(defvar *etl-type-values* (list 0.50183162 0.30097153 0.48938404 1.414699 -0.056136 -0.012879 -0.056136 1.481751 -0.020246 -0.012879 -0.020246 1.342993))\n"
+      }
+    ]
+  },
+  {
+    "name": "def apply-mapping",
+    "label": "def apply-mapping",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defun apply-mapping (name value)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "  (progn\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "    (emo name value)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "    (ecr name)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "    (eou name 0)))\n"
+      }
+    ]
+  },
+  {
+    "name": "apply",
+    "label": "apply matrix",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(apply-all-etl-mappings)\n"
       }
     ]
   }
