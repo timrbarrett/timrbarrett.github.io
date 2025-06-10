@@ -195,28 +195,7 @@
       }
     ]
   },
-  {
-    "name": "init fib-acc-data",
-    "label": "init acc and mag data",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar *fib-acc-data* (mapcar (lambda (x) (list 0 0.0 0.0 0.0)) *fib-patches*))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar *fib-mag-data* (mapcar (lambda (x) (list 0 0.0 0.0 0.0)) *fib-patches*))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar *fib-acc-avg* (mapcar (lambda (x) (list 0.0 0.0 0.0)) *fib-patches*))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar *fib-mag-avg* (mapcar (lambda (x) (list 0.0 0.0 0.0)) *fib-patches*))\n"
-      }
-    ]
-  },
+  
   {
     "name": "def send-b4",
     "label": "def send b4",
@@ -259,36 +238,7 @@
       }
     ]
   },
-  {
-    "name": "def sample-acc",
-    "label": "def multi-sample",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun multi-sample-acc (n)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (dotimes (i n)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (store-acc-and-mag)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    ;; lightweight dummy loop to reduce tight spinning\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (dotimes (j 100) nil))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  'done)\n"
-      }
-    ]
-  },
+
   {
     "name": "use multi",
     "label": "use multi",
@@ -659,7 +609,7 @@
       },
       {
         "type": "SendStringOverNUS",
-        "value": "  (list 0.50654725 0.29433811 0.50369255 1.415644 -0.058119 -0.002793 -0.058119 1.471812 -0.017316 -0.002793 -0.017316 1.346888)\n"
+        "value": "  (list 0.48513589 -0.30877038 -0.47896002 2.200312 -0.420147  0.059897 0.229947  2.001571  0.780123 -0.199374 -0.633106  2.205536)\n"
       },
       {
         "type": "SendStringOverNUS",
@@ -667,68 +617,7 @@
       }
     ]
   },
-  {
-    "name": "def map-mag v2",
-    "label": "def map-mag v2",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun map-mag (pt)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (let ((old (cadr (eou dmcx 0)))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        (new 0)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        (count 10)) ; max 10 tries\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (apply-mapping dmax (car pt))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (apply-mapping dmay (cadr pt))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (apply-mapping dmaz (caddr pt))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (loop\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "      (setq new (cadr (eou dmcx 0)))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "      (if (or (/= old new) (= count 0)) (return nil))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "      (setq count (- count 1)))))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (list (cadr (eou dmcx 0))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        (cadr (eou dmcy 0))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        (cadr (eou dmcz 0))))\n"
-      }
-    ]
-  },
+
   {
     "name": "def calibrate-all",
     "label": "def calibrate-all",
@@ -747,192 +636,8 @@
       }
     ]
   },
-  {
-    "name": "def get-dmcz",
-    "label": "def get-dmcz",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun get-dmcz () (cadr (eou dmcz 0)))\n"
-      }
-    ]
-  },
-  {
-    "name": "def set-dma-values",
-    "label": "def set-dma-values",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun set-dma-values (triple)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (apply-mapping dmax (nth 0 triple))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (apply-mapping dmay (nth 1 triple))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (apply-mapping dmaz (nth 2 triple)))\n"
-      }
-    ]
-  },
-  {
-    "name": "def wait-for-dmcz-change",
-    "label": "def wait-for-dmcz-change",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun wait-for-dmcz-change (old-val limit)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (cond\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "   ((= limit 0) nil)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "   ((not (= (get-dmcz) old-val)) t)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "   (t (wait-for-dmcz-change old-val (- limit 1)))))\n"
-      }
-    ]
-  },
-  {
-    "name": "def read-dmc-triplet debug",
-    "label": "def read-dmc-triplet debug",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun read-dmc-triplet ()\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (let ((x (cadr (eou dmcx 0)))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        (y (cadr (eou dmcy 0)))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        (z (cadr (eou dmcz 0))))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (princ \"read-dmc-triplet: \") (princ x) (princ \" \") (princ y) (princ \" \") (princ z) (terpri)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (list x y z)))\n"
-      }
-    ]
-  },
-  {
-    "name": "defvar results",
-    "label": "defvar results",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar results)\n"
-      }
-    ]
-  },
-  {
-    "name": "defvar *cal-mag-data*",
-    "label": "defvar *cal-mag-data*",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar *cal-mag-data*)\n"
-      }
-    ]
-  },
-  {
-    "name": "def process-one-raw-sample",
-    "label": "def process-one-raw-sample",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun process-one-raw-sample (triple waitms)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (set-dma-values triple)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (delay waitms)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (let ((result (read-dmc-triplet)))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        (print \"read-dmc-triplet: \" result)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "        result))\n"
-      }
-    ]
-  },
-  {
-    "name": "def process-one-raw-sample flat",
-    "label": "def process-one-raw-sample flat",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun process-one-raw-sample (triple)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (set-dma-values triple)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (read-dmc-triplet))\n"
-      }
-    ]
-  },
-  {
-    "name": "def process-all-raw-mag-data flat",
-    "label": "def process-all-raw-mag-data flat",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun process-all-raw-mag-data ()\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (setq results nil)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (dolist (triple *raw-mag-data*)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (setq result (process-one-raw-sample triple))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (if result (setq results (cons result results))))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (setq *cal-mag-data* (reverse results)))\n"
-      }
-    ]
-  },
+
+
   {
     "name": "pprintall",
     "label": "pprintall",
@@ -961,6 +666,66 @@
       }
     ]
   },
+  {
+    "name": "mo makp",
+    "label": "emo makp",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(emo makp 1.0)\n"
+      }
+    ]
+  },
+  {
+    "name": "cr makp",
+    "label": "ecr makp",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": " (ecr makp)\n"
+      }
+    ]
+  },
+  {
+    "name": "ou makp",
+    "label": "eou makp",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(eou makp 0)\n"
+      }
+    ]
+  },
+  {
+    "name": "mo maki",
+    "label": "emo maki",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(emo mak1 1.0)\n"
+      }
+    ]
+  },
+  {
+    "name": "cr maki",
+    "label": "ecr maki",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": " (ecr maki)\n"
+      }
+    ]
+  },
+  {
+    "name": "ou maki",
+    "label": "eou maki",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(eou maki 0)\n"
+      }
+    ]
+  },  
   {
     "name": "pprintall",
     "label": "emo dmaz",
