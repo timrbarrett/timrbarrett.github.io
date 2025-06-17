@@ -3,12 +3,13 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "a11ce0a7b9fa793814c57eab6f482aa4",
-"assets/AssetManifest.bin.json": "5ec5c067f39b65efeaae941c270633d0",
-"assets/AssetManifest.json": "cca33e4cd8d270b682da4fac3bd5d147",
-"assets/assets/buttons.json": "c03ce012e50eb98d2767d3128057c8c2",
-"assets/assets/cube.mtl": "e40884ffa67a76859821c6f627c0eb04",
-"assets/assets/cube.obj": "e5a396450de740de00c19c6a5509c7ca",
+const RESOURCES = {"assets/AssetManifest.bin": "ff2d34b324db084fcabd1a49016be318",
+"assets/AssetManifest.bin.json": "a2c5501c5be3d3302aeec0eefca23e87",
+"assets/AssetManifest.json": "dfe390d2d76226d317b08b3304eff7c5",
+"assets/assets/buttons.json": "6031b7305be03fd18c048432448dca9e",
+"assets/assets/coloured_limbstim.png": "572e90bfa67a89efdef1390b87bbee01",
+"assets/assets/cube.mtl": "905f189b76776e87b764f0539d88f66b",
+"assets/assets/cube.obj": "e34c4a7e373c46c301c395be6ae13e35",
 "assets/assets/limbstim_texture.png": "e8b2f6c2dbe12dbe679e31c69da9523c",
 "assets/assets/tetrahedron_c1.mtl": "f89aeeda6cbf09bb1feacb8c3593d508",
 "assets/assets/tetrahedron_c1.obj": "5284f3e78d249f1ee22dc7685f61cda2",
@@ -47,7 +48,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "a11ce0a7b9fa793814c57eab6f482aa4
 "canvaskit/skwasm.worker.js": "bfb704a6c714a75da9ef320991e88b03",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "flutter.js": "383e55f7f3cce5be08fcf1f3881f585c",
-"flutter_bootstrap.js": "10dddf762adf9ea51dd58dd0ba720061",
+"flutter_bootstrap.js": "459646db0301baf082f113c163639ffb",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",

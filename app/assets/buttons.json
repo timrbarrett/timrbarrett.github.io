@@ -1,85 +1,25 @@
 [
   {
-    "name": "h",
-    "label": "h {{h}}"
-  },
-  {
-    "name": "p",
-    "label": "p {{p}}"
-  }, 
-  {
-    "name": "r",
-    "label": "r {{r}}"
-  },
-  {
-    "name": "y",
-    "label": "y {{y}}"
-  },
-  {
-    "name": "a",
-    "label": "a {{a}}"
-  },
-  {
-    "name": "g",
-    "label": "g {{g}}"
-  },
-  {
-    "name": "m",
-    "label": "m {{m}}"
-  },
-  {
-    "name": "dacx",
-    "label": "dacx {{dacx}}",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": [
-          "(list 'dacz (cadr (eou dacz 0)))\n"
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Hide dacx",
-    "label": "Hide dacx",
-    "actions": [
-      {
-        "type": "HideButton",
-        "name": "dacx"
-      },
-      {
-        "type": "HideButton",
-        "name": "Hide dacx"
-      }
-    ]
-  },
-  {
-    "name": "Reveal dacx",
-    "label": "Reveal dacx",
-    "actions": [
-      {
-        "type": "UnhideButton",
-        "name": "dacx"
-      },
-      {
-        "type": "UnhideButton",
-        "name": "Hide dacx"
-      }
-    ]
-  },
-  {
-    "name": "Create dacy",
-    "label": "Create dacy&z",
+    "name": "cr dbsm",
+    "label": "cr dbsm",
     "actions": [
       {
         "type": "CreateButton",
         "button": {
-          "name": "dacy",
-          "label": "dacy {{dacy}}",
+          "name": "dbsm 0",
+          "label": "stop",
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(list 'dacy (cadr (eou dacy 0)))\n"
+              "value": "(emo dbsm 0) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0) \n"
             }
           ]
         }
@@ -87,12 +27,178 @@
       {
         "type": "CreateButton",
         "button": {
-          "name": "dacz",
-          "label": "dacz {{dacz}}",
+          "name": "dbsm 1",
+          "label": "uncalibrated",
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(list 'dacz (cadr (eou dacz 0)))\n"
+              "value": "(emo dbsm 1)  \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "dbsm 2",
+          "label": "visualise",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 2) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "dbsm 3",
+          "label": "sensors",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 3) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "dbsm 4",
+          "label": "AHRS",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 4) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "dbsm 5",
+          "label": "delta acc",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 5) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "hide dbsm",
+          "label": "hide dbsm",
+          "actions": [
+            {
+              "type": "HideButton",
+              "name": "cr dbsm"
+            },
+            {
+              "type": "HideButton",
+              "name": "dbsm 0"
+            },
+            {
+              "type": "HideButton",
+              "name": "dbsm 1"
+            },
+            {
+              "type": "HideButton",
+              "name": "dbsm 2"
+            },
+            {
+              "type": "HideButton",
+              "name": "dbsm 3"
+            },
+            {
+              "type": "HideButton",
+              "name": "dbsm 4"
+            },
+            {
+              "type": "HideButton",
+              "name": "dbsm 5"
+            },
+            {
+              "type": "CreateButton",
+              "button": {
+                "name": "show dbsm",
+                "label": "show dbsm",
+                "actions": [
+                  {
+                    "type": "UnhideButton",
+                    "name": "cr dbsm"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dbsm 0"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dbsm 1"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dbsm 2"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dbsm 3"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dbsm 4"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dbsm 5"
+                  }
+                ]
+              }
             }
           ]
         }
@@ -100,162 +206,282 @@
     ]
   },
   {
-    "name": "mag sample",
-    "label": "read mag x50",
+    "name": "dmrd",
+    "label": "dmrd",
     "actions": [
       {
-        "type": "SendStringOverNUS",
-        "value": "(mag_sample)\n"
+        "type": "CreateButton",
+        "button": {
+          "name": "dmrd 20",
+          "label": "dmrd 20",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dmrd 20) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dmrd) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dmrd 0) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "dmrd 50",
+          "label": "dmrd 50",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dmrd 50) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dmrd) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dmrd 0) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "dmrd 500",
+          "label": "dmrd 500",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dmrd 500) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dmrd) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dmrd 0) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "hide dmrd",
+          "label": "hide dmrd",
+          "actions": [
+            {
+              "type": "HideButton",
+              "name": "dmrd"
+            },
+            {
+              "type": "HideButton",
+              "name": "dmrd 20"
+            },
+            {
+              "type": "HideButton",
+              "name": "dmrd 50"
+            },
+            {
+              "type": "HideButton",
+              "name": "dmrd 500"
+            },
+            {
+              "type": "CreateButton",
+              "button": {
+                "name": "show dmrd",
+                "label": "show dmrd",
+                "actions": [
+                  {
+                    "type": "UnhideButton",
+                    "name": "dmrd"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dmrd 20"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dmrd 50"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dmrd 500"
+                  },
+                  {
+                    "type": "HideButton",
+                    "name": "show dmrd"
+                  }
+                ]
+              }
+            }
+          ]
+        }
       }
     ]
   },
   {
-    "name": "mag avg",
-    "label": "mag avg",
+    "name": "fib",
+    "label": "fib-patches",
     "actions": [
       {
         "type": "SendStringOverNUS",
-        "value": "(mag_avg)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar cal-mag-data ())\n"
+        "value": "(store-fib-patches 98 0)  \n"
       }
     ]
   },
   {
-    "name": "def pub b4",
-    "label": "def pub b4",
+    "name": "def send-b4",
+    "label": "def send b4",
     "actions": [
       {
         "type": "SendStringOverNUS",
-        "value": "(defun send-b4 (coords) (mapcar (lambda (v) (cons 'b4 v)) coords))\n"
-      }
-    ]
-  },  
-  {
-    "name": "pub avg b4",
-    "label": "pub avg b4",
-    "actions": [
+        "value": "(defun send-b4 (coords)\n"
+      },
       {
         "type": "SendStringOverNUS",
-        "value": "(send-b4 cal-mag-data)\n"
-      }
-    ]
-  },
-  {
-    "name": "pub avg b4",
-    "label": "pub sum b4",
-    "actions": [
+        "value": "  (dolist (v coords)\n"
+      },
       {
         "type": "SendStringOverNUS",
-        "value": "(send-b4 mag_calib_coords)\n"
+        "value": "    (print (cons 'c2 v)))\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "  'done)\n"
       }
     ]
   },
   {
-    "name": "ch1",
-    "label": "ch1",
+    "name": "fib",
+    "label": "send fib-patches",
     "actions": [
       {
         "type": "SendStringOverNUS",
-        "value": "(defvar app-val c1hb) (set-val app-val 1)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar app-val c1fi) (set-val app-val 255)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar app-val c1fr) (set-val app-val 10)\n"
+        "value": "(send-b4 *fib-patches*)  \n"
       }
     ]
   },
   {
-    "name": "ch2",
-    "label": "ch2",
+    "name": "pprintall",
+    "label": "pprintall",
     "actions": [
       {
         "type": "SendStringOverNUS",
-        "value": "(defvar app-val c2hb) (set-val app-val 1)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar app-val c2fi) (set-val app-val 255)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar app-val c2fr) (set-val app-val 10)\n"
+        "value": "(pprintall)\n"
       }
     ]
   },
   {
-    "name": "delta-fn",
-    "label": "delta-fn",
+    "name": "stop sensors",
+    "label": "stop sensors",
     "actions": [
       {
         "type": "SendStringOverNUS",
-        "value": "(defun delta-fn (type delta) "
+        "value": "(emo dsfl 0) \n"
       },
       {
         "type": "SendStringOverNUS",
-        "value": "  (set-val "
+        "value": "(ecr dsfl) \n"
       },
       {
         "type": "SendStringOverNUS",
-        "value": "    (eval type) "
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    ( + ( cadr (etloutput (eval type) 0) ) "
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": ") ) \n"
+        "value": "(eou dsfl 0) \n"
       }
     ]
   },
   {
-    "name": "set-val",
-    "label": "set-val",
+    "name": "mo makp",
+    "label": "emo makp",
     "actions": [
       {
         "type": "SendStringOverNUS",
-        "value": "(defun set-val (type value) "
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (progn "
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (etlmock (eval type) value) "
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (etlcreate (eval type) "
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": ") ) \n"
+        "value": "(emo makp 1.0)\n"
       }
     ]
   },
   {
-    "name": "ch3",
-    "label": "ch3",
+    "name": "cr makp",
+    "label": "ecr makp",
     "actions": [
       {
         "type": "SendStringOverNUS",
-        "value": "(defvar app-val c3hb) (set-val app-val  1)\n"
+        "value": " (ecr makp)\n"
+      }
+    ]
+  },
+  {
+    "name": "ou makp",
+    "label": "eou makp",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(eou makp 0)\n"
+      }
+    ]
+  },
+  {
+    "name": "mo maki",
+    "label": "emo maki",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(emo maki 1.0)\n"
+      }
+    ]
+  },
+  {
+    "name": "cr maki",
+    "label": "ecr maki",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": " (ecr maki)\n"
+      }
+    ]
+  },
+  {
+    "name": "ou maki",
+    "label": "eou maki",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(eou maki 0)\n"
+      }
+    ]
+  },
+
+  {
+    "name": "apply-all-etl-mappings-ulisp",
+    "label": "Apply All ETL Mappings (ULISP)",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defvar *etl-type-names* (list dmox dmoy dmoz mm11 mm12 mm13 mm21 mm22 mm23 mm31 mm32 mm33))\n"
       },
       {
         "type": "SendStringOverNUS",
-        "value": "(defvar app-val c3fi) (set-val app-val  255)\n"
+        "value": "(defvar *etl-type-values* (list 0.46219187 -0.32087585 0.06892925 2.233171 -0.421197 0.038594 0.457376 1.874941 -0.615189 0.049443 0.746624 2.0873))\n"
       },
       {
         "type": "SendStringOverNUS",
-        "value": "(defvar app-val c3fr) (set-val app-val  1)\n"
+        "value": "(defun apply-mapping (name value)\n  (progn\n    (emo name value)\n    (ecr name)\n    (eou name 0)))\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defun apply-all-etl-mappings ()\n  (mapcar (lambda (name value)\n (apply-mapping name value))\n *etl-type-names*\n *etl-type-values*))\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(apply-all-etl-mappings)\n"
       }
     ]
   }

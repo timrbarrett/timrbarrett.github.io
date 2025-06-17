@@ -458,86 +458,27 @@
       }
     ]
   },
+
   {
-    "name": "def apply-all-etl-mappings",
-    "label": "def apply-all-etl-mappings",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun apply-all-etl-mappings ()\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (mapcar (lambda (name value)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "            (princ name) (princ \" = \") (princ value) (terpri)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "            (apply-mapping name value))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "          *etl-type-names*\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "          *etl-type-values*))\n"
-      }
-    ]
-  },
-  {
-    "name": "defvar *etl-type-names*",
-    "label": "defvar *etl-type-names*",
+    "name": "apply-all-etl-mappings-ulisp",
+    "label": "Apply All ETL Mappings (ULISP)",
     "actions": [
       {
         "type": "SendStringOverNUS",
         "value": "(defvar *etl-type-names* (list dmox dmoy dmoz mm11 mm12 mm13 mm21 mm22 mm23 mm31 mm32 mm33))\n"
-      }
-    ]
-  },
-  {
-    "name": "defvar *etl-type-values*",
-    "label": "defvar *etl-type-values*",
-    "actions": [
+      },
       {
         "type": "SendStringOverNUS",
         "value": "(defvar *etl-type-values* (list 0.46219187 -0.32087585 0.06892925 2.233171 -0.421197 0.038594 0.457376 1.874941 -0.615189 0.049443 0.746624 2.0873))\n"
-      }
-    ]
-  },
-  {
-    "name": "def apply-mapping",
-    "label": "def apply-mapping",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun apply-mapping (name value)\n"
       },
       {
         "type": "SendStringOverNUS",
-        "value": "  (progn\n"
+        "value": "(defun apply-mapping (name value)\n  (progn\n    (emo name value)\n    (ecr name)\n    (eou name 0)))\n"
       },
       {
         "type": "SendStringOverNUS",
-        "value": "    (emo name value)\n"
+        "value": "(defun apply-all-etl-mappings ()\n  (mapcar (lambda (name value)\n (apply-mapping name value))\n *etl-type-names*\n *etl-type-values*))\n"
       },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (ecr name)\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (eou name 0)))\n"
-      }
-    ]
-  },
-  {
-    "name": "apply",
-    "label": "apply matrix",
-    "actions": [
       {
         "type": "SendStringOverNUS",
         "value": "(apply-all-etl-mappings)\n"
