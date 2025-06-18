@@ -458,7 +458,6 @@
       }
     ]
   },
-
   {
     "name": "apply-all-etl-mappings-ulisp",
     "label": "Apply All ETL Mappings (ULISP)",
@@ -482,6 +481,24 @@
       {
         "type": "SendStringOverNUS",
         "value": "(apply-all-etl-mappings)\n"
+      }
+    ]
+  },
+  {
+    "name": "gyro calib",
+    "label": "gyro calib",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(eou dbin 0)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(emo dbin 7)\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(ecr dbin)\n"
       }
     ]
   }
