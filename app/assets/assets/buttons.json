@@ -581,5 +581,163 @@
         "value": "(eou app-val 0)\n"
       }
     ]
+  },
+  {
+    "name": "cr letters",
+    "label": "cr letters",
+    "actions": [
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "send_Y",
+          "label": "Y",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(Y)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "send_O",
+          "label": "O",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'O"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "send_M",
+          "label": "M",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'M"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "send_R",
+          "label": "R",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'R"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "send_G",
+          "label": "G",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'G"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "send_W",
+          "label": "W",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'W"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "hide letters",
+          "label": "hide letters",
+          "actions": [
+            {
+              "type": "HideButton",
+              "name": "cr letters"
+            },
+            {
+              "type": "HideButton",
+              "name": "send_Y"
+            },
+            {
+              "type": "HideButton",
+              "name": "send_O"
+            },
+            {
+              "type": "HideButton",
+              "name": "send_M"
+            },
+            {
+              "type": "HideButton",
+              "name": "send_R"
+            },
+            {
+              "type": "HideButton",
+              "name": "send_G"
+            },
+            {
+              "type": "HideButton",
+              "name": "send_W"
+            },
+            {
+              "type": "CreateButton",
+              "button": {
+                "name": "show letters",
+                "label": "show letters",
+                "actions": [
+                  {
+                    "type": "UnhideButton",
+                    "name": "cr letters"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "send_Y"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "send_O"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "send_M"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "send_R"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "send_G"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "send_W"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
   }
 ]
