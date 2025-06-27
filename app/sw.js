@@ -1,5 +1,5 @@
 // Service Worker for offline functionality
-const CACHE_NAME = 'limbstim-app-v1';
+const CACHE_NAME = 'limbstim-app-v2';
 const BASE_HREF = '/app/';
 const OFFLINE_URL = BASE_HREF + 'offline.html';
 
@@ -22,22 +22,22 @@ const ASSETS_TO_CACHE = [
   BASE_HREF + 'assets/FontManifest.json',
   BASE_HREF + 'assets/NOTICES',
   BASE_HREF + 'assets/shaders/ink_sparkle.frag',
-  BASE_HREF + 'assets/assets/buttons.json',
-  BASE_HREF + 'assets/assets/buttons-draft.json',
-  BASE_HREF + 'assets/assets/coloured_limbstim.png',
-  BASE_HREF + 'assets/assets/coloured_limbstimold.png',
-  BASE_HREF + 'assets/assets/coloured_limbstimoldish.png',
-  BASE_HREF + 'assets/assets/limbstim_texture.png',
-  BASE_HREF + 'assets/assets/cube.mtl',
-  BASE_HREF + 'assets/assets/cube.obj',
-  BASE_HREF + 'assets/assets/tetrahedron_c1.mtl',
-  BASE_HREF + 'assets/assets/tetrahedron_c1.obj',
-  BASE_HREF + 'assets/assets/tetrahedron_c2.mtl',
-  BASE_HREF + 'assets/assets/tetrahedron_c2.obj',
-  BASE_HREF + 'assets/assets/tetrahedron_c4.mtl',
-  BASE_HREF + 'assets/assets/tetrahedron_c4.obj',
-  BASE_HREF + 'assets/assets/tetrahedron_c5.mtl',
-  BASE_HREF + 'assets/assets/tetrahedron_c5.obj',
+  BASE_HREF + 'assets/buttons.json',
+  BASE_HREF + 'assets/buttons-draft.json',
+  BASE_HREF + 'assets/coloured_limbstim.png',
+  BASE_HREF + 'assets/coloured_limbstimold.png',
+  BASE_HREF + 'assets/coloured_limbstimoldish.png',
+  BASE_HREF + 'assets/limbstim_texture.png',
+  BASE_HREF + 'assets/cube.mtl',
+  BASE_HREF + 'assets/cube.obj',
+  BASE_HREF + 'assets/tetrahedron_c1.mtl',
+  BASE_HREF + 'assets/tetrahedron_c1.obj',
+  BASE_HREF + 'assets/tetrahedron_c2.mtl',
+  BASE_HREF + 'assets/tetrahedron_c2.obj',
+  BASE_HREF + 'assets/tetrahedron_c4.mtl',
+  BASE_HREF + 'assets/tetrahedron_c4.obj',
+  BASE_HREF + 'assets/tetrahedron_c5.mtl',
+  BASE_HREF + 'assets/tetrahedron_c5.obj',
   OFFLINE_URL
 ];
 
