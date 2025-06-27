@@ -82,6 +82,9 @@
           .then((registration) => {
             console.log('SW registered: ', registration);
             
+            // Track if we've already shown an update prompt
+            let updatePromptShown = false;
+            
             // Check for updates
             registration.addEventListener('updatefound', () => {
               const newWorker = registration.installing;
@@ -89,20 +92,39 @@
               
               newWorker.addEventListener('statechange', () => {
                 console.log('SW state changed to:', newWorker.state);
+                
                 if (newWorker.state === 'installed') {
-                  if (navigator.serviceWorker.controller) {
-                    // New content is available, but don't auto-prompt
-                    console.log('New service worker installed, will take effect on next page load');
-                    // Optionally show a subtle notification instead of intrusive prompt
-                    // if (confirm('New version available! Refresh to update?')) {
-                    //   window.location.reload();
-                    // }
-                  } else {
+                  if (navigator.serviceWorker.controller && !updatePromptShown) {
+                    // There's an existing service worker and a new one is ready
+                    updatePromptShown = true;
+                    console.log('New service worker ready');
+                    
+                    // Only prompt if this is a genuine update (not initial load)
+                    if (sessionStorage.getItem('sw-initial-load') === 'true') {
+                      if (confirm('New version available! Refresh to update?')) {
+                        newWorker.postMessage({ action: 'skipWaiting' });
+                        window.location.reload();
+                      }
+                    } else {
+                      console.log('Initial load, not prompting for update');
+                    }
+                  } else if (!navigator.serviceWorker.controller) {
                     // First time installation
                     console.log('Service worker installed for the first time');
+                    sessionStorage.setItem('sw-initial-load', 'true');
                   }
                 }
               });
+            });
+
+            // Listen for service worker taking control
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+              console.log('Service worker took control');
+              // Only reload if we explicitly triggered skipWaiting
+              if (sessionStorage.getItem('sw-should-reload') === 'true') {
+                sessionStorage.removeItem('sw-should-reload');
+                window.location.reload();
+              }
             });
           })
           .catch((registrationError) => {

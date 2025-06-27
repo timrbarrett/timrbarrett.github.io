@@ -1,5 +1,5 @@
 // Service Worker for offline functionality
-const CACHE_NAME = 'limbstim-app-v3';
+const CACHE_NAME = 'limbstim-app-v4';
 const BASE_HREF = '/app/';
 const OFFLINE_URL = BASE_HREF + 'offline.html';
 
@@ -97,8 +97,8 @@ self.addEventListener('install', (event) => {
         console.log('Service Worker: All available assets cached');
       })
       .then(() => {
-        console.log('Service Worker: Skip waiting on install');
-        return self.skipWaiting();
+        console.log('Service Worker: Waiting for activation signal');
+        // Don't automatically skip waiting - let the user decide
       })
       .catch((error) => {
         console.error('Service Worker: Cache failed:', error);
@@ -236,4 +236,14 @@ self.addEventListener('sync', (event) => {
 self.addEventListener('push', (event) => {
   console.log('Service Worker: Push received');
   // Handle push notifications here if needed
+});
+
+// Handle messages from the main thread
+self.addEventListener('message', (event) => {
+  console.log('Service Worker: Received message:', event.data);
+  
+  if (event.data && event.data.action === 'skipWaiting') {
+    console.log('Service Worker: Skipping waiting as requested');
+    self.skipWaiting();
+  }
 });
