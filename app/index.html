@@ -85,13 +85,21 @@
             // Check for updates
             registration.addEventListener('updatefound', () => {
               const newWorker = registration.installing;
+              console.log('SW update found, new worker installing...');
+              
               newWorker.addEventListener('statechange', () => {
+                console.log('SW state changed to:', newWorker.state);
                 if (newWorker.state === 'installed') {
                   if (navigator.serviceWorker.controller) {
-                    // New content is available, prompt user to refresh
-                    if (confirm('New version available! Refresh to update?')) {
-                      window.location.reload();
-                    }
+                    // New content is available, but don't auto-prompt
+                    console.log('New service worker installed, will take effect on next page load');
+                    // Optionally show a subtle notification instead of intrusive prompt
+                    // if (confirm('New version available! Refresh to update?')) {
+                    //   window.location.reload();
+                    // }
+                  } else {
+                    // First time installation
+                    console.log('Service worker installed for the first time');
                   }
                 }
               });

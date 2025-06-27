@@ -1,10 +1,10 @@
 // Service Worker for offline functionality
-const CACHE_NAME = 'limbstim-app-v2';
+const CACHE_NAME = 'limbstim-app-v3';
 const BASE_HREF = '/app/';
 const OFFLINE_URL = BASE_HREF + 'offline.html';
 
-// Assets to cache for offline use
-const ASSETS_TO_CACHE = [
+// Core app files that are always needed
+const CORE_ASSETS = [
   BASE_HREF,
   BASE_HREF + 'index.html',
   BASE_HREF + 'main.dart.js',
@@ -21,24 +21,36 @@ const ASSETS_TO_CACHE = [
   BASE_HREF + 'assets/AssetManifest.bin.json',
   BASE_HREF + 'assets/FontManifest.json',
   BASE_HREF + 'assets/NOTICES',
-  BASE_HREF + 'assets/shaders/ink_sparkle.frag',
-  BASE_HREF + 'assets/buttons.json',
-  BASE_HREF + 'assets/buttons-draft.json',
-  BASE_HREF + 'assets/coloured_limbstim.png',
-  BASE_HREF + 'assets/coloured_limbstimold.png',
-  BASE_HREF + 'assets/coloured_limbstimoldish.png',
-  BASE_HREF + 'assets/limbstim_texture.png',
-  BASE_HREF + 'assets/cube.mtl',
-  BASE_HREF + 'assets/cube.obj',
-  BASE_HREF + 'assets/tetrahedron_c1.mtl',
-  BASE_HREF + 'assets/tetrahedron_c1.obj',
-  BASE_HREF + 'assets/tetrahedron_c2.mtl',
-  BASE_HREF + 'assets/tetrahedron_c2.obj',
-  BASE_HREF + 'assets/tetrahedron_c4.mtl',
-  BASE_HREF + 'assets/tetrahedron_c4.obj',
-  BASE_HREF + 'assets/tetrahedron_c5.mtl',
-  BASE_HREF + 'assets/tetrahedron_c5.obj',
   OFFLINE_URL
+];
+
+// Asset files - we'll try both paths
+const ASSET_FILES = [
+  'buttons.json',
+  'buttons-draft.json',
+  'coloured_limbstim.png',
+  'coloured_limbstimold.png',
+  'coloured_limbstimoldish.png',
+  'limbstim_texture.png',
+  'cube.mtl',
+  'cube.obj',
+  'tetrahedron_c1.mtl',
+  'tetrahedron_c1.obj',
+  'tetrahedron_c2.mtl',
+  'tetrahedron_c2.obj',
+  'tetrahedron_c4.mtl',
+  'tetrahedron_c4.obj',
+  'tetrahedron_c5.mtl',
+  'tetrahedron_c5.obj'
+];
+
+// Generate asset URLs with both possible paths
+const ASSETS_TO_CACHE = [
+  ...CORE_ASSETS,
+  // Try flat asset paths first (preferred)
+  ...ASSET_FILES.map(file => BASE_HREF + 'assets/' + file),
+  // Also include nested paths as fallback
+  ...ASSET_FILES.map(file => BASE_HREF + 'assets/assets/' + file)
 ];
 
 // Install event - cache assets
@@ -46,9 +58,43 @@ self.addEventListener('install', (event) => {
   console.log('Service Worker: Installing...');
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => {
-        console.log('Service Worker: Caching App Shell');
-        return cache.addAll(ASSETS_TO_CACHE);
+      .then(async (cache) => {
+        console.log('Service Worker: Caching Core Assets');
+        
+        // Cache core assets first (these should always exist)
+        await cache.addAll(CORE_ASSETS);
+        
+        // Cache asset files with fallback logic
+        for (const assetFile of ASSET_FILES) {
+          const flatPath = BASE_HREF + 'assets/' + assetFile;
+          const nestedPath = BASE_HREF + 'assets/assets/' + assetFile;
+          
+          try {
+            // Try flat path first
+            const flatResponse = await fetch(flatPath);
+            if (flatResponse.ok) {
+              await cache.put(flatPath, flatResponse);
+              console.log('Cached flat path:', flatPath);
+            } else {
+              throw new Error('Flat path not found');
+            }
+          } catch (error) {
+            try {
+              // Fall back to nested path
+              const nestedResponse = await fetch(nestedPath);
+              if (nestedResponse.ok) {
+                await cache.put(nestedPath, nestedResponse);
+                // Also cache it under the flat path for consistency
+                await cache.put(flatPath, nestedResponse.clone());
+                console.log('Cached nested path as both:', nestedPath, flatPath);
+              }
+            } catch (nestedError) {
+              console.warn('Asset not found at either path:', assetFile);
+            }
+          }
+        }
+        
+        console.log('Service Worker: All available assets cached');
       })
       .then(() => {
         console.log('Service Worker: Skip waiting on install');
@@ -103,46 +149,74 @@ self.addEventListener('fetch', (event) => {
 
   event.respondWith(
     caches.match(event.request)
-      .then((response) => {
-        // Return cached version or fetch from network
+      .then(async (response) => {
+        // Return cached version if found
         if (response) {
           console.log('Service Worker: Serving from cache:', event.request.url);
           return response;
         }
 
+        // For asset requests, try alternative paths
+        const url = new URL(event.request.url);
+        if (url.pathname.includes('/assets/') && !url.pathname.includes('/assets/assets/')) {
+          // If requesting flat path, also try nested path in cache
+          const nestedPath = url.pathname.replace('/assets/', '/assets/assets/');
+          const nestedUrl = url.origin + nestedPath;
+          const nestedResponse = await caches.match(nestedUrl);
+          if (nestedResponse) {
+            console.log('Service Worker: Serving nested asset from cache:', nestedUrl);
+            return nestedResponse;
+          }
+        }
+
         // Try to fetch from network
-        return fetch(event.request)
-          .then((response) => {
-            // Don't cache if not a valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
+        try {
+          const networkResponse = await fetch(event.request);
+          
+          // Don't cache if not a valid response
+          if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+            return networkResponse;
+          }
+
+          // Clone the response as it can only be consumed once
+          const responseToCache = networkResponse.clone();
+
+          // Cache the fetched resource for future offline use
+          const cache = await caches.open(CACHE_NAME);
+          if (event.request.url.includes(BASE_HREF)) {
+            cache.put(event.request, responseToCache);
+          }
+
+          return networkResponse;
+        } catch (networkError) {
+          // Network failed, try alternative asset paths
+          if (event.request.url.includes('/assets/') && !event.request.url.includes('/assets/assets/')) {
+            // Try nested path
+            const url = new URL(event.request.url);
+            const nestedPath = url.pathname.replace('/assets/', '/assets/assets/');
+            const nestedUrl = url.origin + nestedPath;
+            
+            try {
+              const nestedResponse = await fetch(nestedUrl);
+              if (nestedResponse.ok) {
+                console.log('Service Worker: Found asset at nested path:', nestedUrl);
+                return nestedResponse;
+              }
+            } catch (nestedError) {
+              console.warn('Asset not found at nested path either:', nestedUrl);
             }
+          }
 
-            // Clone the response as it can only be consumed once
-            const responseToCache = response.clone();
-
-            // Cache the fetched resource for future offline use
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                // Only cache requests within our base href
-                if (event.request.url.includes(BASE_HREF)) {
-                  cache.put(event.request, responseToCache);
-                }
-              });
-
-            return response;
-          })
-          .catch(() => {
-            // Network failed, try to serve offline page for navigation requests
-            if (event.request.mode === 'navigate') {
-              return caches.match(OFFLINE_URL);
-            }
-            // For other requests, we might want to return a default asset
-            return new Response('Offline - Resource not available', {
-              status: 503,
-              statusText: 'Service Unavailable'
-            });
+          // Network failed completely
+          if (event.request.mode === 'navigate') {
+            return caches.match(OFFLINE_URL);
+          }
+          
+          return new Response('Offline - Resource not available', {
+            status: 503,
+            statusText: 'Service Unavailable'
           });
+        }
       })
   );
 });
