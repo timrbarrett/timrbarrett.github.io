@@ -399,92 +399,6 @@
     ]
   },
   {
-    "name": "mo makp",
-    "label": "emo makp",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(emo makp 1.0)\n"
-      }
-    ]
-  },
-  {
-    "name": "cr makp",
-    "label": "ecr makp",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": " (ecr makp)\n"
-      }
-    ]
-  },
-  {
-    "name": "ou makp",
-    "label": "eou makp",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(eou makp 0)\n"
-      }
-    ]
-  },
-  {
-    "name": "mo maki",
-    "label": "emo maki",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(emo maki 1.0)\n"
-      }
-    ]
-  },
-  {
-    "name": "cr maki",
-    "label": "ecr maki",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": " (ecr maki)\n"
-      }
-    ]
-  },
-  {
-    "name": "ou maki",
-    "label": "eou maki",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(eou maki 0)\n"
-      }
-    ]
-  },
-  {
-    "name": "apply-all-etl-mappings-ulisp",
-    "label": "Apply All ETL Mappings (ULISP)",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar *etl-type-names* (list dmox dmoy dmoz mm11 mm12 mm13 mm21 mm22 mm23 mm31 mm32 mm33))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defvar *etl-type-values* (list 0.46219187 -0.32087585 0.06892925 2.233171 -0.421197 0.038594 0.457376 1.874941 -0.615189 0.049443 0.746624 2.0873))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun apply-mapping (name value)\n  (progn\n    (emo name value)\n    (ecr name)\n    (eou name 0)))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun apply-all-etl-mappings ()\n  (mapcar (lambda (name value)\n (apply-mapping name value))\n *etl-type-names*\n *etl-type-values*))\n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(apply-all-etl-mappings)\n"
-      }
-    ]
-  },
-  {
     "name": "calib",
     "label": "imu calib",
     "actions": [
@@ -499,58 +413,6 @@
       {
         "type": "SendStringOverNUS",
         "value": "(ecr dcal)\n"
-      }
-    ]
-  },
-  {
-    "name": "delta-fn",
-    "label": "delta-fn",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun delta-fn (type delta) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (set-val \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (eval type) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (+ (cadr (eou (eval type) 0)) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "   delta))) \n"
-      }
-    ]
-  },
-  {
-    "name": "set-val",
-    "label": "set-val",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun set-val (type value) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (progn \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (emo (eval type) value) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (ecr (eval type)) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": ")) \n"
       }
     ]
   },
@@ -731,6 +593,204 @@
                   {
                     "type": "UnhideButton",
                     "name": "send_W"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "cr toggles",
+    "label": "cr toggles",
+    "actions": [
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle p dpit",
+          "label": "toggle p dpit",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'p 'dpit)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle r drol",
+          "label": "toggle r drol",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'r 'drol)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle y yaw",
+          "label": "toggle y yaw",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'y 'dyaw)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "set-val",
+          "label": "set-val",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defun set-val (type value) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "  (progn \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "    (emo (eval type) value) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "    (ecr (eval type)) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": ")) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "delta-fn",
+          "label": "delta-fn",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defun delta-fn (type delta) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "  (set-val \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "    (eval type) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "    (+ (cadr (eou (eval type) 0)) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "   delta))) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "app-val dbet select",
+          "label": "app-val dbet",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar app-val dbet)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou app-val 0)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "hide toggles",
+          "label": "hide toggles",
+          "actions": [
+            {
+              "type": "HideButton",
+              "name": "cr toggles"
+            },
+            {
+              "type": "HideButton",
+              "name": "toggle p dpit"
+            },
+            {
+              "type": "HideButton",
+              "name": "toggle r drol"
+            },
+            {
+              "type": "HideButton",
+              "name": "toggle y yaw"
+            },
+            {
+              "type": "HideButton",
+              "name": "sel-val"
+            },
+            {
+              "type": "HideButton",
+              "name": "delta-fn"
+            },
+            {
+              "type": "HideButton",
+              "name": "app-val dbet select"
+            },
+            {
+              "type": "HideButton",
+              "name": "hide toggles"
+            },
+            {
+              "type": "CreateButton",
+              "button": {
+                "name": "show toggles",
+                "label": "show toggles",
+                "actions": [
+                  {
+                    "type": "UnhideButton",
+                    "name": "cr toggles"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "toggle p dpit"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "toggle r drol"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "toggle y yaw"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "sel-val"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "delta-fn"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "app-val dbet select"
                   }
                 ]
               }
