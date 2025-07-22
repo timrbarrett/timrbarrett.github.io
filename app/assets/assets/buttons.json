@@ -610,11 +610,11 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle p dpit",
-          "label": "toggle p dpit",
+          "label": "acc",
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(toggle 'p 'dpit)\n"
+              "value": "(toggle 'acc)\n"
             }
           ]
         }
@@ -623,11 +623,11 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle r drol",
-          "label": "toggle r drol",
+          "label": "wacc",
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(toggle 'r 'drol)\n"
+              "value": "(toggle 'wacc)\n"
             }
           ]
         }
@@ -636,11 +636,11 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle y yaw",
-          "label": "toggle y yaw",
+          "label": "spike",
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(toggle 'y 'dyaw)\n"
+              "value": "(toggle 'spike)\n"
             }
           ]
         }
