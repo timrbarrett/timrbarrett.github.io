@@ -1,0 +1,78 @@
+[
+  {
+    "name": "Simple Condition Test",
+    "label": "Simple Condition Test",
+    "actions": [
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Condition_Test_Button",
+          "label": "Condition Test Button",
+          "colour": "#9E9E9E",
+          "condition": {
+            "operator": "EQ",
+            "left": "{{dbsm}}",
+            "right": 0
+          },
+          "actions": [
+            {
+              "type": "ChangeColour",
+              "name": "Condition_Test_Button",
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Set_DBSM_Zero",
+          "label": "Set DBSM to Zero",
+          "colour": "#2196F3",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Set_DBSM_One",
+          "label": "Set DBSM to One",
+          "colour": "#F44336",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 1)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Monitor_DBSM",
+          "label": "Show DBSM Value",
+          "colour": "#673AB7",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou 'dbsm)\n"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
