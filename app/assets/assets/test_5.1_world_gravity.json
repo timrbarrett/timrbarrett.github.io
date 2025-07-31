@@ -1,0 +1,467 @@
+[
+  {
+    "name": "Create Test 5.1 Buttons",
+    "label": "Setup T5.1 Buttons",
+    "actions": [
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Test_5.1_World_Gravity",
+          "label": "T5.1 World Grav",
+          "colour": "#2196F3",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(test_5.1:_world-gravity-vector)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dmrd 100)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dmrd)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dmrd 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'wcgx)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'wcgy)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'wcgz)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dcgx)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dcgy)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dcgz)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dpit)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'drol)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dyaw)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Orange_Up",
+          "label": "O Up",
+          "colour": "#FFA500",
+          "description": "Orange face up (Z+ up)",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{dcgx}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgx}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgy}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgy}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": 0.8 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": 1.2 }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(orange_up)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orange_Up", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Status", 
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Yellow_Up",
+          "label": "Y Up",
+          "colour": "#FFFF00",
+          "description": "Yellow face up (Z- up)",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{dcgx}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgx}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgy}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgy}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": -1.2 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": -0.8 }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(yellow_up)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Yellow_Up", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Status", 
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Green_Up",
+          "label": "G Up",
+          "colour": "#00FF00",
+          "description": "Green face up (Y+ up)",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{dcgx}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgx}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgy}}", "right": 0.8 },
+              { "operator": "LT", "left": "{{dcgy}}", "right": 1.2 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": 0.2 }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(green_up)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Green_Up", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Status", 
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Red_Up",
+          "label": "R Up",
+          "colour": "#FF0000",
+          "description": "Red face up (Y- up)",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{dcgx}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgx}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgy}}", "right": -1.2 },
+              { "operator": "LT", "left": "{{dcgy}}", "right": -0.8 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": 0.2 }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(red_up)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Red_Up", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Status", 
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "White_Up",
+          "label": "W Up",
+          "colour": "#FFFFFF",
+          "description": "White face up (X+ up)",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{dcgx}}", "right": 0.8 },
+              { "operator": "LT", "left": "{{dcgx}}", "right": 1.2 },
+              { "operator": "GT", "left": "{{dcgy}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgy}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": 0.2 }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(white_up)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "White_Up", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Status", 
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Magenta_Up",
+          "label": "M Up",
+          "colour": "#FF00FF",
+          "description": "Magenta face up (X- up)",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{dcgx}}", "right": -1.2 },
+              { "operator": "LT", "left": "{{dcgx}}", "right": -0.8 },
+              { "operator": "GT", "left": "{{dcgy}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgy}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": 0.2 }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(magenta_up)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Magenta_Up", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Status", 
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Test_Status",
+          "label": "Test Status",
+          "colour": "#FFA000"
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "End_Test",
+          "label": "End Test",
+          "colour": "#607D8B",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(end_of_test_5.1)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'wcgx)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'wcgy)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'wcgz)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dcgx)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dcgy)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dcgz)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dpit)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'drol)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dyaw)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Reset_Test",
+          "label": "Reset Test",
+          "colour": "#607D8B",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(reset_test_5.1)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orange_Up", 
+              "colour": "#FFA500"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Yellow_Up", 
+              "colour": "#FFFF00"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Green_Up", 
+              "colour": "#00FF00"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Red_Up", 
+              "colour": "#FF0000"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "White_Up", 
+              "colour": "#FFFFFF"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Magenta_Up", 
+              "colour": "#FF00FF"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Status", 
+              "colour": "#FFA000"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Show_Values",
+          "label": "Show Values",
+          "colour": "#2196F3",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(format \"DCG: %0.2f, %0.2f, %0.2f | WCG: %0.2f, %0.2f, %0.2f\" dcgx dcgy dcgz wcgx wcgy wcgz)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Orientation_Values",
+          "label": "Orientation Values",
+          "colour": "#2196F3",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(format \"Pitch: %0.2f, Roll: %0.2f, Yaw: %0.2f\" dpit drol dyaw)\n"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "Advanced_Monitor",
+    "label": "Advanced Monitor",
+    "actions": [
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Detailed_Vector_Values",
+          "label": "Detailed Vector Values",
+          "colour": "#2196F3",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(format \"Device Gravity: X=%0.4f, Y=%0.4f, Z=%0.4f\\nWorld Gravity: X=%0.4f, Y=%0.4f, Z=%0.4f\" dcgx dcgy dcgz wcgx wcgy wcgz)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Calculate_Magnitude",
+          "label": "Calculate Magnitude",
+          "colour": "#2196F3",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(format \"DCG Magnitude: %0.4f, WCG Magnitude: %0.4f\" (sqrt (+ (* dcgx dcgx) (* dcgy dcgy) (* dcgz dcgz))) (sqrt (+ (* wcgx wcgx) (* wcgy wcgy) (* wcgz wcgz))))\n"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
