@@ -1,0 +1,28 @@
+{
+  "buttons": [
+    {
+      "name": "test_red",
+      "label": "Red Button",
+      "color": "#FF0000",
+      "actions": [
+        {
+          "type": "ChangeColour",
+          "target": "test_blue",
+          "color": "#00FF00"
+        }
+      ]
+    },
+    {
+      "name": "test_blue",
+      "label": "Blue Button",
+      "color": "#0000FF",
+      "actions": [
+        {
+          "type": "ChangeColour",
+          "target": "test_red",
+          "color": "#800080"
+        }
+      ]
+    }
+  ]
+}

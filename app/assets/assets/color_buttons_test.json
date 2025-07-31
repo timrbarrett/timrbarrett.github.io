@@ -1,0 +1,62 @@
+[
+  {
+    "name": "red_button",
+    "label": "Red Button",
+    "colour": "red",
+    "actions": [
+      {
+        "type": "ChangeColour",
+        "name": "blue_button",
+        "colour": "green"
+      }
+    ]
+  },
+  {
+    "name": "blue_button",
+    "label": "Blue Button",
+    "colour": "blue",
+    "actions": [
+      {
+        "type": "ChangeColour",
+        "name": "red_button",
+        "colour": "purple"
+      }
+    ]
+  },
+  {
+    "name": "create_color_buttons",
+    "label": "Create Color Buttons",
+    "actions": [
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "yellow_button",
+          "label": "Yellow Button",
+          "colour": "#FFEB3B",
+          "actions": [
+            {
+              "type": "ChangeColour",
+              "name": "orange_button",
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "orange_button",
+          "label": "Orange Button",
+          "colour": "#FF9800",
+          "actions": [
+            {
+              "type": "ChangeColour",
+              "name": "yellow_button",
+              "colour": "#9C27B0"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

@@ -1,7 +1,6 @@
 {
     "name": "Limbstim",
-    "short_name": "Limbstim", 
-    "version": "2.0.1",
+    "short_name": "Limbstim",
     "start_url": "/app/",
     "scope": "/app/",
     "display": "standalone",
