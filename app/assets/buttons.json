@@ -636,11 +636,11 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle y yaw",
-          "label": "spike",
+          "label": "quat",
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(toggle 'spike)\n"
+              "value": "(toggle 'quat)\n"
             }
           ]
         }

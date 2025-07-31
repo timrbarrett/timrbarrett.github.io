@@ -3,12 +3,12 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "d44d7bd30284f1c3528292b22b632aed",
-"assets/AssetManifest.bin.json": "130f9d83ebb5e86750df0df6ceb69ca1",
-"assets/AssetManifest.json": "d9c0a567db3a6b6bb479ade337bba6af",
+const RESOURCES = {"assets/AssetManifest.bin": "5c94651d38fe2d9bf8f03b3473d9e0f4",
+"assets/AssetManifest.bin.json": "15828248b16c6500e58ec96faf023991",
+"assets/AssetManifest.json": "4a746e68840e850ec276f576db453bec",
 "assets/assets/buttons-draft.json": "eff9a2ab17702a8e1fb892d47985cbd0",
 "assets/assets/buttons-test.json": "11b6932a81494747fcb2456a308b9c5e",
-"assets/assets/buttons.json": "235cdba5ab86f947474b6339f18c81e1",
+"assets/assets/buttons.json": "5a9095ac8e01932b6fafcca73f94352a",
 "assets/assets/buttons_test.json": "7cb2afec51ea9f096a9148b889d8416e",
 "assets/assets/color_buttons_test.json": "08dee31feed4338ad2d834b7ae1b1ed6",
 "assets/assets/color_demo.json": "054533dd4e048482551def341c5db172",
@@ -18,6 +18,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "d44d7bd30284f1c3528292b22b632aed
 "assets/assets/cube.mtl": "905f189b76776e87b764f0539d88f66b",
 "assets/assets/cube.obj": "e34c4a7e373c46c301c395be6ae13e35",
 "assets/assets/dynamic_orientation_test.json": "0ec5cf290a3e5e39c8d36b1b5f32cc35",
+"assets/assets/level_0_six_face_test.json": "63c8517c9d44a8391d450bcba582f7fe",
 "assets/assets/limbstim_texture.png": "e8b2f6c2dbe12dbe679e31c69da9523c",
 "assets/assets/orientation_test.json": "8c1f23a6167f056cd0372c37bfad1201",
 "assets/assets/simple_condition_test.json": "6243d68c4a4f61e1e5b70a43ed00180c",
@@ -54,7 +55,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "d44d7bd30284f1c3528292b22b632aed
 "canvaskit/skwasm.worker.js": "bfb704a6c714a75da9ef320991e88b03",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "flutter.js": "383e55f7f3cce5be08fcf1f3881f585c",
-"flutter_bootstrap.js": "7e1936b7e18dcd85e633a6368298d923",
+"flutter_bootstrap.js": "085e1ebe93ba95cb1895745422707692",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
