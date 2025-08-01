@@ -28,6 +28,15 @@
             {"type": "SendStringOverNUS", "value": "(defvar orange_up_detected nil)\n"},
             {"type": "SendStringOverNUS", "value": "(defvar instruction_text \"Hold the device with Orange side up. Test tapping on Red, Green, White, and Magenta sides.\")\n"},
             
+            {"type": "SendStringOverNUS", "value": "(toggle 'dcgx)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'dcgy)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'dcgz)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'wacx)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'wacy)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'wacz)\n"},
+            
+            {"type": "PressButton", "name": "Query_Test_Status"},
+            
             {"type": "SendStringOverNUS", "value": "(toggle 'wcgx)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'wcgy)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'wcgz)\n"},
@@ -342,9 +351,6 @@
             {"type": "SendStringOverNUS", "value": "'(ending_test_7.1)\n"},
             {"type": "SendStringOverNUS", "value": "(let ((tests_sum (+ (if or_complete 1 0) (if og_complete 1 0) (if ow_complete 1 0) (if om_complete 1 0)))) (princ \"'(test_ending_manually)\\n\") (if (= tests_sum 4) (princ \"'(test_7.1_completed_successfully)\\n\") (progn (princ \"'(test_7.1_incomplete_missing_taps)\\n\") (princ \"(taps_detected \")(princ tests_sum)(princ \"/4)\\n\"))))\n"},
             {"type": "SendStringOverNUS", "value": "'(end_of_test_7.1)\n"},
-            {"type": "SendStringOverNUS", "value": "(toggle 'wcgx)\n"},
-            {"type": "SendStringOverNUS", "value": "(toggle 'wcgy)\n"},
-            {"type": "SendStringOverNUS", "value": "(toggle 'wcgz)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'dcgx)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'dcgy)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'dcgz)\n"},
