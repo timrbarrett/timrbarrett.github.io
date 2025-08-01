@@ -1,188 +1,338 @@
 [
   {
-    "name": "Test_7.1_Initialization",
-    "label": "Start Test 7.1 (Orange Up)",
-    "colour": "#2196F3",
+    "name": "Create Test 7.1 Buttons",
+    "label": "Setup T7.1 Buttons",
     "actions": [
-      {"type": "SendStringOverNUS", "value": "(defvar test_started t)\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar test_completed nil)\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar current_face \"orange\")\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar pass_count 0)\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar or_complete nil)\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar og_complete nil)\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar ow_complete nil)\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar om_complete nil)\n"},
-      
-      {"type": "SendStringOverNUS", "value": "(toggle 'wcgx)\n"},
-      {"type": "SendStringOverNUS", "value": "(toggle 'wcgy)\n"},
-      {"type": "SendStringOverNUS", "value": "(toggle 'wcgz)\n"},
-      {"type": "SendStringOverNUS", "value": "(toggle 'wacx)\n"},
-      {"type": "SendStringOverNUS", "value": "(toggle 'wacy)\n"},
-      {"type": "SendStringOverNUS", "value": "(toggle 'wacz)\n"},
-      {"type": "SendStringOverNUS", "value": "(emo dbsm 0)\n"},
-      {"type": "SendStringOverNUS", "value": "(ecr dbsm)\n"},
-      
-      {"type": "SendStringOverNUS", "value": "(princ \"(instruction_text \\\"Hold the device with Orange side up. Test tapping on Red, Green, White, and Magenta sides.\\\")\\n\")\n"}
-    ]
-  },
-  {
-    "name": "Instruction_Display",
-    "label": "{{instruction_text}}",
-    "colour": "#8E24AA",
-    "condition": {
-      "operator": "EQUALS",
-      "left": "{{test_started}}",
-      "right": "t"
-    }
-  },
-  {
-    "name": "Orange_Up",
-    "label": "Detecting Orange Up Position",
-    "colour": "#FFA000",
-    "condition": {
-      "operator": "AND",
-      "expressions": [
-        { "operator": "GT", "left": "{{wcgz}}", "right": 0.9 },
-        { "operator": "GT", "left": "{{test_started}}", "right": "nil" }
-      ]
-    },
-    "actions": [
-      {"type": "SendStringOverNUS", "value": "(princ \"(orange_up_detected)\\n\")\n"},
-      {"type": "SendStringOverNUS", "value": "(princ \"(instruction_text \\\"Orange side detected! Now tap on the Red, Green, White, and Magenta sides one by one.\\\")\\n\")\n"}
-    ]
-  },
-  {
-    "name": "Or",
-    "condition": {
-      "operator": "AND",
-      "expressions": [
-        { "operator": "GT", "left": "{{wcgz}}", "right": 0.9 },
-        { "operator": "OR", "expressions": [
-          { "operator": "GT", "left": "{{wacy}}", "right": 7.0 },
-          { "operator": "LT", "left": "{{wacz}}", "right": -25.0 }
-        ]}
-      ]
-    },
-    "actions": [
-      {"type": "SendStringOverNUS", "value": "(defvar or_complete t)\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar pass_count (+ pass_count 1))\n"},
-      {"type": "SendStringOverNUS", "value": "(princ \"(or_test_passed)\\n\")\n"},
-      {"type": "SendStringOverNUS", "value": "(princ \"(instruction_text \\\"Tap on Red side detected! \")(princ pass_count)(princ \"/4 completed.\\\")\\n\")\n"}
-    ]
-  },
-  {
-    "name": "Og",
-    "condition": {
-      "operator": "AND",
-      "expressions": [
-        { "operator": "GT", "left": "{{wcgz}}", "right": 0.9 },
-        { "operator": "OR", "expressions": [
-          { "operator": "LT", "left": "{{wacy}}", "right": 4.0 },
-          { "operator": "GT", "left": "{{wacz}}", "right": -20.0 }
-        ]}
-      ]
-    },
-    "actions": [
-      {"type": "SendStringOverNUS", "value": "(defvar og_complete t)\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar pass_count (+ pass_count 1))\n"},
-      {"type": "SendStringOverNUS", "value": "(princ \"(og_test_passed)\\n\")\n"},
-      {"type": "SendStringOverNUS", "value": "(princ \"(instruction_text \\\"Tap on Green side detected! \")(princ pass_count)(princ \"/4 completed.\\\")\\n\")\n"}
-    ]
-  },
-  {
-    "name": "Ow",
-    "condition": {
-      "operator": "AND",
-      "expressions": [
-        { "operator": "GT", "left": "{{wcgz}}", "right": 0.9 },
-        { "operator": "OR", "expressions": [
-          { "operator": "LT", "left": "{{wacx}}", "right": 1.0 },
-          { "operator": "GT", "left": "{{wacz}}", "right": -20.0 }
-        ]}
-      ]
-    },
-    "actions": [
-      {"type": "SendStringOverNUS", "value": "(defvar ow_complete t)\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar pass_count (+ pass_count 1))\n"},
-      {"type": "SendStringOverNUS", "value": "(princ \"(ow_test_passed)\\n\")\n"},
-      {"type": "SendStringOverNUS", "value": "(princ \"(instruction_text \\\"Tap on White side detected! \")(princ pass_count)(princ \"/4 completed.\\\")\\n\")\n"}
-    ]
-  },
-  {
-    "name": "Om",
-    "condition": {
-      "operator": "AND",
-      "expressions": [
-        { "operator": "GT", "left": "{{wcgz}}", "right": 0.9 },
-        { "operator": "OR", "expressions": [
-          { "operator": "GT", "left": "{{wacx}}", "right": 2.5 },
-          { "operator": "LT", "left": "{{wacz}}", "right": -25.0 }
-        ]}
-      ]
-    },
-    "actions": [
-      {"type": "SendStringOverNUS", "value": "(defvar om_complete t)\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar pass_count (+ pass_count 1))\n"},
-      {"type": "SendStringOverNUS", "value": "(princ \"(om_test_passed)\\n\")\n"},
-      {"type": "SendStringOverNUS", "value": "(princ \"(instruction_text \\\"Tap on Magenta side detected! \")(princ pass_count)(princ \"/4 completed.\\\")\\n\")\n"}
-    ]
-  },
-  {
-    "name": "Orange_Tests_Complete",
-    "condition": {
-      "operator": "AND",
-      "expressions": [
-        { "operator": "EQUALS", "left": "{{or_complete}}", "right": "t" },
-        { "operator": "EQUALS", "left": "{{og_complete}}", "right": "t" },
-        { "operator": "EQUALS", "left": "{{ow_complete}}", "right": "t" },
-        { "operator": "EQUALS", "left": "{{om_complete}}", "right": "t" }
-      ]
-    },
-    "actions": [
-      {"type": "SendStringOverNUS", "value": "(defvar test_completed t)\n"},
-      {"type": "SendStringOverNUS", "value": "(princ \"(orange_tests_completed)\\n\")\n"},
-      {"type": "SendStringOverNUS", "value": "(princ \"(instruction_text \\\"Orange side tests complete! All tests passed.\\\")\\n\")\n"}
-    ]
-  },
-  {
-    "name": "Move_To_Next_Side",
-    "label": "Complete Orange Tests",
-    "colour": "#2196F3",
-    "condition": {
-      "operator": "EQUALS",
-      "left": "{{current_face}}",
-      "right": "orange"
-    },
-    "actions": [
-      {"type": "SendStringOverNUS", "value": "(defvar test_completed t)\n"},
-      {"type": "SendStringOverNUS", "value": "(princ \"(test_summary \\\"Orange face tests completed: \")(princ pass_count)(princ \"/4 tests passed.\\\")\\n\")\n"},
-      {"type": "SendStringOverNUS", "value": "(princ \"(instruction_text \\\"Orange side tests complete. Tests completed: \")(princ pass_count)(princ \"/4\\\")\\n\")\n"}
-    ]
-  },
-  {
-    "name": "Test_Summary",
-    "label": "{{test_summary}}",
-    "colour": "#8E24AA",
-    "condition": {
-      "operator": "EQUALS",
-      "left": "{{test_completed}}",
-      "right": "t"
-    }
-  },
-  {
-    "name": "Reset_Test",
-    "label": "Reset Test",
-    "colour": "#F44336",
-    "actions": [
-      {"type": "SendStringOverNUS", "value": "(defvar test_started nil)\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar test_completed nil)\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar current_face \"orange\")\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar pass_count 0)\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar or_complete nil)\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar og_complete nil)\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar ow_complete nil)\n"},
-      {"type": "SendStringOverNUS", "value": "(defvar om_complete nil)\n"},
-      {"type": "SendStringOverNUS", "value": "(princ \"(instruction_text \\\"Test has been reset. Press Start Test to begin.\\\")\\n\")\n"}
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Test_7.1_Orange_Up",
+          "label": "T7.1 Orange Up",
+          "colour": "#2196F3",
+          "actions": [
+            {"type": "SendStringOverNUS", "value": "'(test_7.1:_orange_up_tap_tests)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar test_started t)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar test_completed nil)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar current_face \"orange\")\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar pass_count 0)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar or_complete nil)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar og_complete nil)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar ow_complete nil)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar om_complete nil)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar orange_up_detected nil)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar instruction_text \"Hold the device with Orange side up. Test tapping on Red, Green, White, and Magenta sides.\")\n"},
+            
+            {"type": "SendStringOverNUS", "value": "(toggle 'wcgx)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'wcgy)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'wcgz)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'wacx)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'wacy)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'wacz)\n"},
+            {"type": "SendStringOverNUS", "value": "(emo dbsm 0)\n"},
+            {"type": "SendStringOverNUS", "value": "(ecr dbsm)\n"},
+            
+            {"type": "PressButton", "name": "Query_Test_Status"},
+            {"type": "PressButton", "name": "Check_Status_Timer"}
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Orange_Up_Detector",
+          "label": "Orange Up",
+          "colour": "#FFA500",
+          "description": "Orange face up (Z+ up)",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{wcgz}}", "right": 0.9 },
+              { "operator": "EQUALS", "left": "{{test_started}}", "right": "t" },
+              { "operator": "NOT", "expression": { "operator": "EQUALS", "left": "{{orange_up_detected}}", "right": "t" }}
+            ]
+          },
+          "actions": [
+            {"type": "SendStringOverNUS", "value": "'(orange_up_detected)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar orange_up_detected t)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar instruction_text \"Orange side detected! Now tap on the Red, Green, White, and Magenta sides one by one.\")\n"},
+            {"type": "ChangeColour", "name": "Orange_Up_Detector", "colour": "#4CAF50"}
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Red_Tap_Detector",
+          "label": "Red Tap",
+          "colour": "#FF0000",
+          "description": "Detect tap on Red side",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{wcgz}}", "right": 0.9 },
+              { "operator": "EQUALS", "left": "{{orange_up_detected}}", "right": "t" },
+              { "operator": "NOT", "expression": { "operator": "EQUALS", "left": "{{or_complete}}", "right": "t" }},
+              { "operator": "OR", "expressions": [
+                { "operator": "GT", "left": "{{wacy}}", "right": 7.0 },
+                { "operator": "LT", "left": "{{wacz}}", "right": -25.0 }
+              ]}
+            ]
+          },
+          "actions": [
+            {"type": "SendStringOverNUS", "value": "'(red_tap_detected)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar or_complete t)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar pass_count (+ pass_count 1))\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar instruction_text (concatenate 'string \"Red side tap detected! \" (write-to-string pass_count) \"/4 completed.\"))\n"},
+            {"type": "ChangeColour", "name": "Red_Tap_Detector", "colour": "#4CAF50"}
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Green_Tap_Detector",
+          "label": "Green Tap",
+          "colour": "#00FF00",
+          "description": "Detect tap on Green side",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{wcgz}}", "right": 0.9 },
+              { "operator": "EQUALS", "left": "{{orange_up_detected}}", "right": "t" },
+              { "operator": "NOT", "expression": { "operator": "EQUALS", "left": "{{og_complete}}", "right": "t" }},
+              { "operator": "OR", "expressions": [
+                { "operator": "LT", "left": "{{wacy}}", "right": 4.0 },
+                { "operator": "GT", "left": "{{wacz}}", "right": -20.0 }
+              ]}
+            ]
+          },
+          "actions": [
+            {"type": "SendStringOverNUS", "value": "'(green_tap_detected)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar og_complete t)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar pass_count (+ pass_count 1))\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar instruction_text (concatenate 'string \"Green side tap detected! \" (write-to-string pass_count) \"/4 completed.\"))\n"},
+            {"type": "ChangeColour", "name": "Green_Tap_Detector", "colour": "#4CAF50"}
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "White_Tap_Detector",
+          "label": "White Tap",
+          "colour": "#FFFFFF",
+          "description": "Detect tap on White side",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{wcgz}}", "right": 0.9 },
+              { "operator": "EQUALS", "left": "{{orange_up_detected}}", "right": "t" },
+              { "operator": "NOT", "expression": { "operator": "EQUALS", "left": "{{ow_complete}}", "right": "t" }},
+              { "operator": "OR", "expressions": [
+                { "operator": "LT", "left": "{{wacx}}", "right": 1.0 },
+                { "operator": "GT", "left": "{{wacz}}", "right": -20.0 }
+              ]}
+            ]
+          },
+          "actions": [
+            {"type": "SendStringOverNUS", "value": "'(white_tap_detected)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar ow_complete t)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar pass_count (+ pass_count 1))\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar instruction_text (concatenate 'string \"White side tap detected! \" (write-to-string pass_count) \"/4 completed.\"))\n"},
+            {"type": "ChangeColour", "name": "White_Tap_Detector", "colour": "#4CAF50"}
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Magenta_Tap_Detector",
+          "label": "Magenta Tap",
+          "colour": "#FF00FF",
+          "description": "Detect tap on Magenta side",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{wcgz}}", "right": 0.9 },
+              { "operator": "EQUALS", "left": "{{orange_up_detected}}", "right": "t" },
+              { "operator": "NOT", "expression": { "operator": "EQUALS", "left": "{{om_complete}}", "right": "t" }},
+              { "operator": "OR", "expressions": [
+                { "operator": "GT", "left": "{{wacx}}", "right": 2.5 },
+                { "operator": "LT", "left": "{{wacz}}", "right": -25.0 }
+              ]}
+            ]
+          },
+          "actions": [
+            {"type": "SendStringOverNUS", "value": "'(magenta_tap_detected)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar om_complete t)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar pass_count (+ pass_count 1))\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar instruction_text (concatenate 'string \"Magenta side tap detected! \" (write-to-string pass_count) \"/4 completed.\"))\n"},
+            {"type": "ChangeColour", "name": "Magenta_Tap_Detector", "colour": "#4CAF50"}
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Test_Guide",
+          "label": "First connect to LimbStim via BLE, then press 'T7.1 Orange Up' button to begin",
+          "colour": "#8E24AA",
+          "condition": {
+            "operator": "NOT",
+            "expression": {
+              "operator": "EQUALS", 
+              "left": "{{test_started}}", 
+              "right": "t"
+            }
+          },
+          "actions": []
+        }
+      },
+      {
+        "type": "CreateButton", 
+        "button": {
+          "name": "Test_Guide_Position",
+          "label": "Hold device with Orange side up and wait for detection",
+          "colour": "#8E24AA",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "EQUALS", "left": "{{test_started}}", "right": "t" },
+              { "operator": "NOT", "expression": { "operator": "EQUALS", "left": "{{orange_up_detected}}", "right": "t" }}
+            ]
+          },
+          "actions": []
+        }
+      },
+      {
+        "type": "CreateButton", 
+        "button": {
+          "name": "Test_Guide_Progress",
+          "label": "{{instruction_text}}",
+          "colour": "#8E24AA",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "EQUALS", "left": "{{orange_up_detected}}", "right": "t" },
+              { "operator": "NOT", "expression": { "operator": "EQUALS", "left": "{{test_completed}}", "right": "t" }}
+            ]
+          },
+          "actions": []
+        }
+      },
+      {
+        "type": "CreateButton", 
+        "button": {
+          "name": "Test_Guide_Complete",
+          "label": "Test Complete! All orange face tap tests passed.",
+          "colour": "#4CAF50",
+          "condition": {
+            "operator": "EQUALS",
+            "left": "{{test_completed}}",
+            "right": "t"
+          },
+          "actions": []
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "All_Taps_Complete_Checker",
+          "label": "All Taps Complete",
+          "colour": "#4CAF50",
+          "visible": false,
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "EQUALS", "left": "{{test_started}}", "right": "t" },
+              { "operator": "EQUALS", "left": "{{or_complete}}", "right": "t" },
+              { "operator": "EQUALS", "left": "{{og_complete}}", "right": "t" },
+              { "operator": "EQUALS", "left": "{{ow_complete}}", "right": "t" },
+              { "operator": "EQUALS", "left": "{{om_complete}}", "right": "t" },
+              { "operator": "NOT", "expression": { "operator": "EQUALS", "left": "{{test_completed}}", "right": "t" }}
+            ]
+          },
+          "actions": [
+            {"type": "SendStringOverNUS", "value": "'(orange_tests_completed)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar test_completed t)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar instruction_text \"Test Complete! All orange face tap tests passed.\")\n"}
+          ],
+          "repeatInterval": 1000
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Query_Test_Status",
+          "label": "Query Status",
+          "colour": "#607D8B",
+          "visible": false,
+          "actions": [
+            {"type": "SendStringOverNUS", "value": "(princ test_started)\n"},
+            {"type": "SendStringOverNUS", "value": "(princ test_completed)\n"},
+            {"type": "SendStringOverNUS", "value": "(princ orange_up_detected)\n"},
+            {"type": "SendStringOverNUS", "value": "(princ pass_count)\n"}
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Check_Status_Timer",
+          "label": "Status Timer",
+          "colour": "#607D8B",
+          "visible": false,
+          "repeatInterval": 2000,
+          "actions": [
+            {"type": "PressButton", "name": "Query_Test_Status"}
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Reset_Test",
+          "label": "Reset Test",
+          "colour": "#F44336",
+          "actions": [
+            {"type": "SendStringOverNUS", "value": "'(reset_test_7.1)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar test_started nil)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar test_completed nil)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar current_face \"orange\")\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar pass_count 0)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar or_complete nil)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar og_complete nil)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar ow_complete nil)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar om_complete nil)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar orange_up_detected nil)\n"},
+            {"type": "SendStringOverNUS", "value": "(defvar instruction_text \"Test has been reset. Press Start Test to begin.\")\n"},
+            {"type": "ChangeColour", "name": "Orange_Up_Detector", "colour": "#FFA500"},
+            {"type": "ChangeColour", "name": "Red_Tap_Detector", "colour": "#FF0000"},
+            {"type": "ChangeColour", "name": "Green_Tap_Detector", "colour": "#00FF00"},
+            {"type": "ChangeColour", "name": "White_Tap_Detector", "colour": "#FFFFFF"},
+            {"type": "ChangeColour", "name": "Magenta_Tap_Detector", "colour": "#FF00FF"}
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "End_Test",
+          "label": "End Test",
+          "colour": "#607D8B",
+          "actions": [
+            {"type": "SendStringOverNUS", "value": "'(ending_test_7.1)\n"},
+            {"type": "SendStringOverNUS", "value": "(let ((tests_sum (+ (if or_complete 1 0) (if og_complete 1 0) (if ow_complete 1 0) (if om_complete 1 0)))) (princ \"'(test_ending_manually)\\n\") (if (= tests_sum 4) (princ \"'(test_7.1_completed_successfully)\\n\") (progn (princ \"'(test_7.1_incomplete_missing_taps)\\n\") (princ \"(taps_detected \")(princ tests_sum)(princ \"/4)\\n\"))))\n"},
+            {"type": "SendStringOverNUS", "value": "'(end_of_test_7.1)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'wcgx)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'wcgy)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'wcgz)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'wacx)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'wacy)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'wacz)\n"}
+          ]
+        }
+      }
     ]
   }
 ]
