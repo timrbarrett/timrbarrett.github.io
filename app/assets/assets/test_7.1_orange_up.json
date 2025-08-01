@@ -21,10 +21,6 @@
             {"type": "SendStringOverNUS", "value": "(defvar om_complete nil)\n"},
             {"type": "SendStringOverNUS", "value": "(defvar orange_up_detected nil)\n"},
             {"type": "SendStringOverNUS", "value": "(defvar instruction_text \"Hold the device with Orange side up. Test tapping on Red, Green, White, and Magenta sides.\")\n"},
-            
-            {"type": "SendStringOverNUS", "value": "(toggle 'wcgx)\n"},
-            {"type": "SendStringOverNUS", "value": "(toggle 'wcgy)\n"},
-            {"type": "SendStringOverNUS", "value": "(toggle 'wcgz)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'dcgx)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'dcgy)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'dcgz)\n"},
