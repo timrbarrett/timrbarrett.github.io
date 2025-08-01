@@ -25,6 +25,9 @@
             {"type": "SendStringOverNUS", "value": "(toggle 'wcgx)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'wcgy)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'wcgz)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'dcgx)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'dcgy)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'dcgz)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'wacx)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'wacy)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'wacz)\n"},
@@ -46,7 +49,12 @@
           "condition": {
             "operator": "AND",
             "expressions": [
-              { "operator": "GT", "left": "{{wcgz}}", "right": 0.9 },
+              { "operator": "GT", "left": "{{dcgx}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgx}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgy}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgy}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": 0.8 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": 1.2 },
               { "operator": "EQUALS", "left": "{{test_started}}", "right": "t" },
               { "operator": "NOT", "expression": { "operator": "EQUALS", "left": "{{orange_up_detected}}", "right": "t" }}
             ]
@@ -69,7 +77,8 @@
           "condition": {
             "operator": "AND",
             "expressions": [
-              { "operator": "GT", "left": "{{wcgz}}", "right": 0.9 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": 0.8 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": 1.2 },
               { "operator": "EQUALS", "left": "{{orange_up_detected}}", "right": "t" },
               { "operator": "NOT", "expression": { "operator": "EQUALS", "left": "{{or_complete}}", "right": "t" }},
               { "operator": "OR", "expressions": [
@@ -97,7 +106,8 @@
           "condition": {
             "operator": "AND",
             "expressions": [
-              { "operator": "GT", "left": "{{wcgz}}", "right": 0.9 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": 0.8 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": 1.2 },
               { "operator": "EQUALS", "left": "{{orange_up_detected}}", "right": "t" },
               { "operator": "NOT", "expression": { "operator": "EQUALS", "left": "{{og_complete}}", "right": "t" }},
               { "operator": "OR", "expressions": [
@@ -125,7 +135,8 @@
           "condition": {
             "operator": "AND",
             "expressions": [
-              { "operator": "GT", "left": "{{wcgz}}", "right": 0.9 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": 0.8 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": 1.2 },
               { "operator": "EQUALS", "left": "{{orange_up_detected}}", "right": "t" },
               { "operator": "NOT", "expression": { "operator": "EQUALS", "left": "{{ow_complete}}", "right": "t" }},
               { "operator": "OR", "expressions": [
@@ -153,7 +164,8 @@
           "condition": {
             "operator": "AND",
             "expressions": [
-              { "operator": "GT", "left": "{{wcgz}}", "right": 0.9 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": 0.8 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": 1.2 },
               { "operator": "EQUALS", "left": "{{orange_up_detected}}", "right": "t" },
               { "operator": "NOT", "expression": { "operator": "EQUALS", "left": "{{om_complete}}", "right": "t" }},
               { "operator": "OR", "expressions": [
@@ -327,6 +339,9 @@
             {"type": "SendStringOverNUS", "value": "(toggle 'wcgx)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'wcgy)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'wcgz)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'dcgx)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'dcgy)\n"},
+            {"type": "SendStringOverNUS", "value": "(toggle 'dcgz)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'wacx)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'wacy)\n"},
             {"type": "SendStringOverNUS", "value": "(toggle 'wacz)\n"}
