@@ -193,7 +193,7 @@
             },
             {
               "type": "SendStringOverNUS",
-              "value": "(princ \"(orange_side_detected \")(princ o_side)(princ \")\\n\")\n"
+              "value": "(princ \"(orange_side_detected \")(princ o_side)(princ \") DCG: \")(princ dcgx)(princ \",\")(princ dcgy)(princ \",\")(princ dcgz)(princ \"\\n\")\n"
             },
             {
               "type": "ChangeColour", 
@@ -237,7 +237,7 @@
             },
             {
               "type": "SendStringOverNUS",
-              "value": "(princ \"(yellow_side_detected \")(princ y_side)(princ \")\\n\")\n"
+              "value": "(princ \"(yellow_side_detected \")(princ y_side)(princ \") DCG: \")(princ dcgx)(princ \",\")(princ dcgy)(princ \",\")(princ dcgz)(princ \"\\n\")\n"
             },
             {
               "type": "ChangeColour", 
@@ -281,7 +281,7 @@
             },
             {
               "type": "SendStringOverNUS",
-              "value": "(princ \"(green_side_detected \")(princ g_side)(princ \")\\n\")\n"
+              "value": "(princ \"(green_side_detected \")(princ g_side)(princ \") DCG: \")(princ dcgx)(princ \",\")(princ dcgy)(princ \",\")(princ dcgz)(princ \"\\n\")\n"
             },
             {
               "type": "ChangeColour", 
@@ -325,7 +325,7 @@
             },
             {
               "type": "SendStringOverNUS",
-              "value": "(princ \"(red_side_detected \")(princ r_side)(princ \")\\n\")\n"
+              "value": "(princ \"(red_side_detected \")(princ r_side)(princ \") DCG: \")(princ dcgx)(princ \",\")(princ dcgy)(princ \",\")(princ dcgz)(princ \"\\n\")\n"
             },
             {
               "type": "ChangeColour", 
@@ -369,7 +369,7 @@
             },
             {
               "type": "SendStringOverNUS",
-              "value": "(princ \"(white_side_detected \")(princ w_side)(princ \")\\n\")\n"
+              "value": "(princ \"(white_side_detected \")(princ w_side)(princ \") DCG: \")(princ dcgx)(princ \",\")(princ dcgy)(princ \",\")(princ dcgz)(princ \"\\n\")\n"
             },
             {
               "type": "ChangeColour", 
@@ -413,7 +413,7 @@
             },
             {
               "type": "SendStringOverNUS",
-              "value": "(princ \"(magenta_side_detected \")(princ m_side)(princ \")\\n\")\n"
+              "value": "(princ \"(magenta_side_detected \")(princ m_side)(princ \") DCG: \")(princ dcgx)(princ \",\")(princ dcgy)(princ \",\")(princ dcgz)(princ \"\\n\")\n"
             },
             {
               "type": "ChangeColour", 
@@ -975,6 +975,48 @@
             }
           ],
           "repeatInterval": 2000
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Debug_Gravity_Values",
+          "label": "🔍 Debug Gravity",
+          "colour": "#9C27B0",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"===== CURRENT GRAVITY VALUES =====\\n\")\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"DCG (Device): X=\")(princ dcgx)(princ \", Y=\")(princ dcgy)(princ \", Z=\")(princ dcgz)(princ \"\\n\")\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"WCG (World): X=\")(princ wcgx)(princ \", Y=\")(princ wcgy)(princ \", Z=\")(princ wcgz)(princ \"\\n\")\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"Expected conditions:\\n\")\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"Orange(Z+): dcgz>0.8, Yellow(Z-): dcgz<-0.8\\n\")\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"Green(Y+): dcgy>0.8, Red(Y-): dcgy<-0.8\\n\")\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"White(X+): dcgx>0.8, Magenta(X-): dcgx<-0.8\\n\")\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"=====================================\\n\")\n"
+            }
+          ]
         }
       },
       {
