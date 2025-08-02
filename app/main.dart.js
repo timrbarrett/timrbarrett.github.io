@@ -89010,7 +89010,7 @@ $0(){var s=this.a
 s.w=!s.w},
 $S:0}
 A.ahk.prototype={
-$2(a,b){var s,r,q,p,o,n,m,l,k=null,j=A.b6("Web Bluetooth App 0.592 (150a104)",k,k,k,k,k,k,k),i=$.ko().cy
+$2(a,b){var s,r,q,p,o,n,m,l,k=null,j=A.b6("Web Bluetooth App 0.592 (2d8b4cf)",k,k,k,k,k,k,k),i=$.ko().cy
 i=A.aw_(new A.ahf(),!1,new A.c3(i,A.m(i).i("c3<1>")),t.y)
 s=A.cJ(k,B.I2,k,new A.ahg(a),k,"Combined Buttons Screen")
 r=this.a
