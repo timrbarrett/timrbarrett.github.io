@@ -11,6 +11,9 @@
           "colour": "#2196F3",
           "actions": [
             {
+              "type": "ClearAllButtons"
+            },
+            {
               "type": "SendStringOverNUS",
               "value": "'(test_5.1:_world-gravity-vector)\n"
             },
