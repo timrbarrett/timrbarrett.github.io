@@ -23,43 +23,7 @@
             },
             {
               "type": "SendStringOverNUS",
-              "value": "(eou dmrd)\n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(eou dbsm)\n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(eou wcgx)\n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(eou wcgy)\n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(eou wcgz)\n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(eou dcgx)\n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(eou dcgy)\n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(eou dcgz)\n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(eou gyro)\n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(eou mag)\n"
+              "value": "(off 'all)\n"
             },
             {
               "type": "SendStringOverNUS",
