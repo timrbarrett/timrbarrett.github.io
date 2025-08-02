@@ -117,6 +117,30 @@
             {
               "type": "SendStringOverNUS",
               "value": "(toggle 'dyaw)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dzupt)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dacx)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dacy)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dacz)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'gyro)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'mag)\n"
             }
           ]
         }
