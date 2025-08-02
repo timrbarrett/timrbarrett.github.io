@@ -16,6 +16,54 @@
             },
             {
               "type": "SendStringOverNUS",
+              "value": "(princ \"===== STOPPING ALL EXISTING OUTPUTS =====\\n\")\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dmrd)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou wcgx)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou wcgy)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou wcgz)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dcgx)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dcgy)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dcgz)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou gyro)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou mag)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"===== ALL OUTPUTS STOPPED =====\\n\")\n"
+            },
+            {
+              "type": "SendStringOverNUS",
               "value": "(emo dmrd 100)\n"
             },
             {
@@ -37,6 +85,10 @@
             {
               "type": "SendStringOverNUS",
               "value": "(eou dbsm 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"===== CLEARING OLD SUBSCRIPTIONS =====\\n\")\n"
             },
             {
               "type": "SendStringOverNUS",
@@ -415,6 +467,83 @@
           "name": "Test_Status",
           "label": "Test Status",
           "colour": "#FFA000"
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Reset_Device",
+          "label": "🔄 RESET DEVICE",
+          "colour": "#FF4444",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"===== DEVICE RESET STARTING =====\\n\")\n"
+            },
+            {
+              "type": "SendStringOverNUS", 
+              "value": "(defvar test_started nil)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar test_completed nil)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar auto_end_enabled nil)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dmrd 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dmrd)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"===== DEVICE RESET COMPLETE =====\\n\")\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Clear_BLE_Subscriptions",
+          "label": "🔧 Clear BLE Buffer",
+          "colour": "#FF9800",
+          "actions": [
+            {
+              "type": "ClearBleBuffer"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"===== BLE SUBSCRIPTIONS CLEARED =====\\n\")\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Clear_Echo_Buffer",
+          "label": "🧹 Clear Echo",
+          "colour": "#888888",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"ECHO_BUFFER_CLEARED\\n\")\n"
+            }
+          ]
         }
       },
       {
