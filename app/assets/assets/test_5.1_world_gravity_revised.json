@@ -31,7 +31,7 @@
             },
             {
               "type": "SendStringOverNUS",
-              "value": "(emo dmrd 100)\n"
+              "value": "(emo dmrd 2500)\n"
             },
             {
               "type": "SendStringOverNUS",
