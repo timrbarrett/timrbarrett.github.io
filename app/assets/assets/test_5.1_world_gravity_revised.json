@@ -1,0 +1,974 @@
+[
+  {
+    "name": "Create Test 5.1 Buttons",
+    "label": "Setup T5.1 Buttons",
+    "actions": [
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Test_5.1_World_Gravity",
+          "label": "T5.1 World Grav",
+          "colour": "#2196F3",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(test_5.1:_world-gravity-vector)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dmrd 100)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dmrd)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dmrd 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar test_started t)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar test_completed nil)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar auto_end_enabled t)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar o_side 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar y_side 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar g_side 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar r_side 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar w_side 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar m_side 0)\n"
+            },
+            {
+              "type": "PressButton",
+              "name": "Query_Test_Status"
+            },
+            {
+              "type": "PressButton",
+              "name": "Check_Status_Timer"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'wcgx)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'wcgy)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'wcgz)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dcgx)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dcgy)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dcgz)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dpit)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'drol)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dyaw)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dzupt)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dacx)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dacy)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dacz)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'gyro)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'mag)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Orange_Up",
+          "label": "O Up",
+          "colour": "#FFA500",
+          "description": "Orange face up (Z+ up)",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{dcgx}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgx}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgy}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgy}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": 0.8 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": 1.2 }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(orange_up)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar o_side 1)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"(orange_side_detected \")(princ o_side)(princ \")\\n\")\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orange_Up", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Status", 
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Yellow_Up",
+          "label": "Y Up",
+          "colour": "#FFFF00",
+          "description": "Yellow face up (Z- up)",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{dcgx}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgx}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgy}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgy}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": -1.2 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": -0.8 }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(yellow_up)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar y_side 1)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"(yellow_side_detected \")(princ y_side)(princ \")\\n\")\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Yellow_Up", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Status", 
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Green_Up",
+          "label": "G Up",
+          "colour": "#00FF00",
+          "description": "Green face up (Y+ up)",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{dcgx}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgx}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgy}}", "right": 0.8 },
+              { "operator": "LT", "left": "{{dcgy}}", "right": 1.2 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": 0.2 }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(green_up)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar g_side 1)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"(green_side_detected \")(princ g_side)(princ \")\\n\")\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Green_Up", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Status", 
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Red_Up",
+          "label": "R Up",
+          "colour": "#FF0000",
+          "description": "Red face up (Y- up)",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{dcgx}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgx}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgy}}", "right": -1.2 },
+              { "operator": "LT", "left": "{{dcgy}}", "right": -0.8 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": 0.2 }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(red_up)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar r_side 1)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"(red_side_detected \")(princ r_side)(princ \")\\n\")\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Red_Up", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Status", 
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "White_Up",
+          "label": "W Up",
+          "colour": "#FFFFFF",
+          "description": "White face up (X+ up)",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{dcgx}}", "right": 0.8 },
+              { "operator": "LT", "left": "{{dcgx}}", "right": 1.2 },
+              { "operator": "GT", "left": "{{dcgy}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgy}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": 0.2 }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(white_up)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar w_side 1)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"(white_side_detected \")(princ w_side)(princ \")\\n\")\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "White_Up", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Status", 
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Magenta_Up",
+          "label": "M Up",
+          "colour": "#FF00FF",
+          "description": "Magenta face up (X- up)",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{dcgx}}", "right": -1.2 },
+              { "operator": "LT", "left": "{{dcgx}}", "right": -0.8 },
+              { "operator": "GT", "left": "{{dcgy}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgy}}", "right": 0.2 },
+              { "operator": "GT", "left": "{{dcgz}}", "right": -0.2 },
+              { "operator": "LT", "left": "{{dcgz}}", "right": 0.2 }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(magenta_up)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar m_side 1)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"(magenta_side_detected \")(princ m_side)(princ \")\\n\")\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Magenta_Up", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Status", 
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Test_Status",
+          "label": "Test Status",
+          "colour": "#FFA000"
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Query_Test_Status",
+          "label": "Query Status",
+          "visible": false,
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ test_started)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ test_completed)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ auto_end_enabled)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Check_Status_Timer",
+          "label": "Status Timer",
+          "visible": false,
+          "repeatInterval": 10000,
+          "actions": [
+            {
+              "type": "PressButton",
+              "name": "Query_Test_Status"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Test_Guide",
+          "label": "First connect to LimbStim via BLE, then press 'T5.1 World Grav' button to begin",
+          "colour": "#8E24AA",
+          "condition": {
+            "operator": "NOT",
+            "expression": {
+              "operator": "EQUALS", 
+              "left": "{{test_started}}", 
+              "right": "t"
+            }
+          },
+          "actions": []
+        }
+      },
+      {
+        "type": "CreateButton", 
+        "button": {
+          "name": "Test_Guide_Progress",
+          "label": "Place the device on each face and wait for buttons to turn green",
+          "colour": "#8E24AA",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              {
+                "operator": "EQUALS", 
+                "left": "{{test_started}}", 
+                "right": "t"
+              },
+              {
+                "operator": "NOT",
+                "expression": {
+                  "operator": "AND", 
+                  "expressions": [
+                    { "operator": "EQUALS", "left": "{{Orange_Up}}", "right": "#4CAF50" },
+                    { "operator": "EQUALS", "left": "{{Yellow_Up}}", "right": "#4CAF50" },
+                    { "operator": "EQUALS", "left": "{{Green_Up}}", "right": "#4CAF50" },
+                    { "operator": "EQUALS", "left": "{{Red_Up}}", "right": "#4CAF50" },
+                    { "operator": "EQUALS", "left": "{{White_Up}}", "right": "#4CAF50" },
+                    { "operator": "EQUALS", "left": "{{Magenta_Up}}", "right": "#4CAF50" }
+                  ]
+                }
+              },
+              {
+                "operator": "NOT",
+                "expression": {
+                  "operator": "EQUALS", 
+                  "left": "{{test_completed}}", 
+                  "right": "t"
+                }
+              }
+            ]
+          },
+          "actions": []
+        }
+      },
+      {
+        "type": "CreateButton", 
+        "button": {
+          "name": "Test_Guide_Complete",
+          "label": "Test Complete! Press 'End Test' to finish or 'Reset Test' to try again",
+          "colour": "#4CAF50",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "EQUALS", "left": "{{test_started}}", "right": "t" },
+              { "operator": "EQUALS", "left": "{{test_completed}}", "right": "t" },
+              { "operator": "EQUALS", "left": "{{Orange_Up}}", "right": "#4CAF50" },
+              { "operator": "EQUALS", "left": "{{Yellow_Up}}", "right": "#4CAF50" },
+              { "operator": "EQUALS", "left": "{{Green_Up}}", "right": "#4CAF50" },
+              { "operator": "EQUALS", "left": "{{Red_Up}}", "right": "#4CAF50" },
+              { "operator": "EQUALS", "left": "{{White_Up}}", "right": "#4CAF50" },
+              { "operator": "EQUALS", "left": "{{Magenta_Up}}", "right": "#4CAF50" }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS", 
+              "value": "(princ \"'(test_summary)\\n\")\n"
+            },
+            {
+              "type": "SendStringOverNUS", 
+              "value": "(princ \"(sides_detected \")(princ (+ o_side y_side g_side r_side w_side m_side))(princ \"/6)\\n\")\n"
+            },
+            {
+              "type": "PressButton",
+              "name": "Query_Test_Status"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Auto_End_Checker",
+          "label": "Auto End Status",
+          "colour": "#607D8B",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "EQUALS", "left": "{{test_started}}", "right": "t" },
+              { "operator": "EQUALS", "left": "{{Orange_Up}}", "right": "#4CAF50" },
+              { "operator": "EQUALS", "left": "{{Yellow_Up}}", "right": "#4CAF50" },
+              { "operator": "EQUALS", "left": "{{Green_Up}}", "right": "#4CAF50" },
+              { "operator": "EQUALS", "left": "{{Red_Up}}", "right": "#4CAF50" },
+              { "operator": "EQUALS", "left": "{{White_Up}}", "right": "#4CAF50" },
+              { "operator": "EQUALS", "left": "{{Magenta_Up}}", "right": "#4CAF50" },
+              { "operator": "EQUALS", "left": "{{auto_end_enabled}}", "right": "t" },
+              { "operator": "NOT", "expression": { "operator": "EQUALS", "left": "{{test_completed}}", "right": "t" }}
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(auto_ending_test)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(test_5.1_completed_successfully)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar test_completed t)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(end_of_test_5.1)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'wcgx)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'wcgy)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'wcgz)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dcgx)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dcgy)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dcgz)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dpit)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'drol)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dyaw)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Auto_End_Toggle",
+          "label": "Toggle Auto End",
+          "colour": "#4CAF50",
+          "condition": {
+            "operator": "EQUALS",
+            "left": "{{test_started}}",
+            "right": "t"
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar auto_end_enabled (not auto_end_enabled))\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"Auto-end is now \")\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(if auto_end_enabled (princ \"enabled\") (princ \"disabled\"))\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"\\n\")\n"
+            },
+            {
+              "type": "ChangeColour",
+              "name": "Auto_End_Toggle",
+              "colour": "{{auto_end_enabled ? '#4CAF50' : '#607D8B'}}"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "End_Test",
+          "label": "End Test",
+          "colour": "#607D8B",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(let ((sides_sum (+ o_side y_side g_side r_side w_side m_side))) (princ \"'(test_ending_manually)\\n\") (if (= sides_sum 6) (princ \"'(test_5.1_completed_successfully)\\n\") (progn (princ \"'(test_5.1_incomplete_missing_sides)\\n\") (princ \"(sides_detected \")(princ sides_sum)(princ \"/6)\\n\"))))\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(end_of_test_5.1)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'wcgx)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'wcgy)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'wcgz)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dcgx)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dcgy)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dcgz)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dpit)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'drol)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dyaw)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Reset_Test",
+          "label": "Reset Test",
+          "colour": "#607D8B",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(reset_test_5.1)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar test_started nil)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar test_completed nil)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar auto_end_enabled t)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orange_Up", 
+              "colour": "#FFA500"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Yellow_Up", 
+              "colour": "#FFFF00"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Green_Up", 
+              "colour": "#00FF00"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Red_Up", 
+              "colour": "#FF0000"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "White_Up", 
+              "colour": "#FFFFFF"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Magenta_Up", 
+              "colour": "#FF00FF"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Status", 
+              "colour": "#FFA000"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Guide", 
+              "colour": "#8E24AA"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Guide_Progress", 
+              "colour": "#8E24AA"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Test_Guide_Complete", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour",
+              "name": "Auto_End_Toggle",
+              "colour": "#607D8B"
+            },
+            {
+              "type": "PressButton",
+              "name": "Query_Test_Status"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Show_Values",
+          "label": "Show Values",
+          "colour": "#2196F3",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"DCG: \")(princ dcgx)(princ \", \")(princ dcgy)(princ \", \")(princ dcgz)(princ \" | WCG: \")(princ wcgx)(princ \", \")(princ wcgy)(princ \", \")(princ wcgz)(princ \"\\n\")\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Orientation_Values",
+          "label": "Orientation Values",
+          "colour": "#2196F3",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"Pitch: \")(princ dpit)(princ \", Roll: \")(princ drol)(princ \", Yaw: \")(princ dyaw)(princ \"\\n\")\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Check_Sides",
+          "label": "Check Sides",
+          "colour": "#2196F3",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(let ((sides_sum (+ o_side y_side g_side r_side w_side m_side))) (princ \"(sides_detected \")(princ sides_sum)(princ \")\") (if (= sides_sum 6) (princ \"\\n'(all_sides_detected)\\n\") (princ \"\\n'(test_incomplete)\\n\")))\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "All_Sides_Detected_Checker",
+          "label": "All Sides Detector",
+          "colour": "#4CAF50",
+          "visible": true,
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "EQUALS", "left": "{{test_started}}", "right": "t" },
+              { "operator": "NOT", "expression": { "operator": "EQUALS", "left": "{{test_completed}}", "right": "t" }},
+              { "operator": "EQUALS", "left": "{{o_side}}", "right": "1" },
+              { "operator": "EQUALS", "left": "{{y_side}}", "right": "1" },
+              { "operator": "EQUALS", "left": "{{g_side}}", "right": "1" },
+              { "operator": "EQUALS", "left": "{{r_side}}", "right": "1" },
+              { "operator": "EQUALS", "left": "{{w_side}}", "right": "1" },
+              { "operator": "EQUALS", "left": "{{m_side}}", "right": "1" }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(test_5.1_all_sides_detected)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(defvar test_completed t)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"(all_sides_completed)\\n\")\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(congratulations_test_passed)\n"
+            }
+          ],
+          "repeatInterval": 2000
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Clear_Echo_Buffer",
+          "label": "Clear Echo",
+          "colour": "#FF5722",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"\\n===== BUFFER CLEARED =====\\n\")\n"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "Advanced_Monitor",
+    "label": "Advanced Monitor",
+    "actions": [
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Detailed_Vector_Values",
+          "label": "Detailed Vector Values",
+          "colour": "#2196F3",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"Device Gravity Vector:\\n\")\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dcgx 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dcgy 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dcgz 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"World Gravity Vector:\\n\")\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou wcgx 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou wcgy 0)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou wcgz 0)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Calculate_Magnitude",
+          "label": "Calculate Magnitude",
+          "colour": "#2196F3",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"Retrieving DCG values...\\n\")\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(let ((dcgx-val (cadr (eou dcgx 0))) \n      (dcgy-val (cadr (eou dcgy 0))) \n      (dcgz-val (cadr (eou dcgz 0)))) \n  (princ \"DCG Magnitude: \") \n  (princ (sqrt (+ (* dcgx-val dcgx-val) \n                  (* dcgy-val dcgy-val) \n                  (* dcgz-val dcgz-val)))) \n  (princ \"\\n\"))\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(princ \"Retrieving WCG values...\\n\")\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(let ((wcgx-val (cadr (eou wcgx 0))) \n      (wcgy-val (cadr (eou wcgy 0))) \n      (wcgz-val (cadr (eou wcgz 0)))) \n  (princ \"WCG Magnitude: \") \n  (princ (sqrt (+ (* wcgx-val wcgx-val) \n                  (* wcgy-val wcgy-val) \n                  (* wcgz-val wcgz-val)))) \n  (princ \"\\n\"))\n"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
