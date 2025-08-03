@@ -1,0 +1,342 @@
+[
+  {
+    "name": "Create Orientation Test",
+    "label": "Setup Orientation Test",
+    "actions": [
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Initialize_Orientation_Test",
+          "label": "Initialize Test",
+          "colour": "#2196F3",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(orientation_test_initialized)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dpit)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'drol)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dyaw)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Orange_Up_Red_North",
+          "label": "Orange Up, Red North",
+          "colour": "#FFA000", 
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{dpit}}", "right": -0.17 },
+              { "operator": "LT", "left": "{{dpit}}", "right": 0.17 },
+              { "operator": "GT", "left": "{{drol}}", "right": -0.17 },
+              { "operator": "LT", "left": "{{drol}}", "right": 0.17 },
+              { "operator": "GT", "left": "{{dyaw}}", "right": -0.17 },
+              { "operator": "LT", "left": "{{dyaw}}", "right": 0.17 }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(orange_up_red_north_achieved)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orange_Up_Red_North", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orientation_Status", 
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Orange_Up_Magenta_North",
+          "label": "Orange Up, Magenta North",
+          "colour": "#FFA000",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{dpit}}", "right": -0.17 },
+              { "operator": "LT", "left": "{{dpit}}", "right": 0.17 },
+              { "operator": "GT", "left": "{{drol}}", "right": 1.4 },
+              { "operator": "LT", "left": "{{drol}}", "right": 1.75 },
+              { "operator": "GT", "left": "{{dyaw}}", "right": -0.17 },
+              { "operator": "LT", "left": "{{dyaw}}", "right": 0.17 }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(orange_up_magenta_north_achieved)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orange_Up_Magenta_North", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orientation_Status", 
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Orange_Up_Green_North",
+          "label": "Orange Up, Green North",
+          "colour": "#FFA000",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{dpit}}", "right": -0.17 },
+              { "operator": "LT", "left": "{{dpit}}", "right": 0.17 },
+              { "operator": "GT", "left": "{{drol}}", "right": 2.97 },
+              { "operator": "LT", "left": "{{drol}}", "right": 3.32 },
+              { "operator": "GT", "left": "{{dyaw}}", "right": -0.17 },
+              { "operator": "LT", "left": "{{dyaw}}", "right": 0.17 }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(orange_up_green_north_achieved)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orange_Up_Green_North", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orientation_Status", 
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Orange_Up_White_North",
+          "label": "Orange Up, White North",
+          "colour": "#FFA000",
+          "condition": {
+            "operator": "AND",
+            "expressions": [
+              { "operator": "GT", "left": "{{dpit}}", "right": -0.17 },
+              { "operator": "LT", "left": "{{dpit}}", "right": 0.17 },
+              { "operator": "GT", "left": "{{drol}}", "right": 4.54 },
+              { "operator": "LT", "left": "{{drol}}", "right": 4.89 },
+              { "operator": "GT", "left": "{{dyaw}}", "right": -0.17 },
+              { "operator": "LT", "left": "{{dyaw}}", "right": 0.17 }
+            ]
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(orange_up_white_north_achieved)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orange_Up_White_North", 
+              "colour": "#4CAF50"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orientation_Status", 
+              "colour": "#4CAF50"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Orientation_Status",
+          "label": "Orientation Status",
+          "colour": "#FFA000"
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Push_Red_Direction",
+          "label": "Push Red Direction",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(push_red_direction)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Direction_Status", 
+              "colour": "red"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Push_Green_Direction",
+          "label": "Push Green Direction",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(push_green_direction)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Direction_Status", 
+              "colour": "green"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Push_White_Direction",
+          "label": "Push White Direction",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(push_white_direction)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Direction_Status", 
+              "colour": "white"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Push_Magenta_Direction",
+          "label": "Push Magenta Direction",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(push_magenta_direction)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Direction_Status", 
+              "colour": "purple"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Direction_Status",
+          "label": "Direction Status",
+          "colour": "#607D8B"
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Reset_Orientation_Test",
+          "label": "Reset Test",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "'(reset_orientation_test)\n"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orange_Up_Red_North", 
+              "colour": "#FFA000"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orange_Up_Magenta_North", 
+              "colour": "#FFA000"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orange_Up_Green_North", 
+              "colour": "#FFA000"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orange_Up_White_North", 
+              "colour": "#FFA000"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Orientation_Status", 
+              "colour": "#FFA000"
+            },
+            {
+              "type": "ChangeColour", 
+              "name": "Direction_Status", 
+              "colour": "#607D8B"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Orientation_Monitor",
+          "label": "Orientation Values",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(values 'dpit 'drol 'dyaw)\n"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "Advanced_Orientation_Monitor",
+    "label": "Advanced Monitor",
+    "actions": [
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Show_Orientation_Debug",
+          "label": "Show Orientation Debug",
+          "condition": {
+            "operator": "GT",
+            "left": 1,
+            "right": 0
+          },
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(format \"Pitch: %f, Roll: %f, Yaw: %f\" dpit drol dyaw)\n"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
