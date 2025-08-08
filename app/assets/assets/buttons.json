@@ -653,7 +653,7 @@
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(toggle-group '3d)\n"
+              "value": "(toggle '3d)\n"
             }
           ]
         }
@@ -666,7 +666,7 @@
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(toggle-group 'uacc)\n"
+              "value": "(toggle 'uacc)\n"
             }
           ]
         }
@@ -679,7 +679,7 @@
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(toggle-group 'gyro)\n"
+              "value": "(toggle 'gyro)\n"
             }
           ]
         }
@@ -692,7 +692,7 @@
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(toggle-group 'mag)\n"
+              "value": "(toggle 'mag)\n"
             }
           ]
         }
@@ -705,7 +705,7 @@
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(toggle-group 'viz)\n"
+              "value": "(toggle 'viz)\n"
             }
           ]
         }
@@ -718,7 +718,7 @@
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(toggle-group 'vizd)\n"
+              "value": "(toggle 'vizd)\n"
             }
           ]
         }
@@ -731,7 +731,7 @@
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(toggle-group 'wvel)\n"
+              "value": "(toggle 'wvel)\n"
             }
           ]
         }
@@ -744,7 +744,7 @@
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(toggle-group 'wpos)\n"
+              "value": "(toggle 'wpos)\n"
             }
           ]
         }
@@ -757,7 +757,7 @@
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(toggle-group 'smooth)\n"
+              "value": "(toggle 'smooth)\n"
             }
           ]
         }
@@ -770,7 +770,7 @@
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(toggle-group 'spike)\n"
+              "value": "(toggle 'spike)\n"
             }
           ]
         }
