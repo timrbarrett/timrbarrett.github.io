@@ -609,7 +609,7 @@
       {
         "type": "CreateButton",
         "button": {
-          "name": "toggle p dpit",
+          "name": "toggle acc",
           "label": "acc",
           "actions": [
             {
@@ -622,7 +622,7 @@
       {
         "type": "CreateButton",
         "button": {
-          "name": "toggle r drol",
+          "name": "toggle wacc",
           "label": "wacc",
           "actions": [
             {
@@ -641,6 +641,149 @@
             {
               "type": "SendStringOverNUS",
               "value": "(toggle 'quat)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle 3d",
+          "label": "3d",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle-group '3d)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle uacc",
+          "label": "uacc",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle-group 'uacc)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle gyro",
+          "label": "gyro",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle-group 'gyro)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle mag",
+          "label": "mag",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle-group 'mag)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle viz",
+          "label": "viz",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle-group 'viz)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle vizd",
+          "label": "vizd",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle-group 'vizd)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle wvel",
+          "label": "wvel",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle-group 'wvel)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle wpos",
+          "label": "wpos",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle-group 'wpos)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle smooth",
+          "label": "smooth",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle-group 'smooth)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle spike",
+          "label": "spike",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle-group 'spike)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "status",
+          "label": "status",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(status)\n"
             }
           ]
         }
@@ -732,11 +875,11 @@
             },
             {
               "type": "HideButton",
-              "name": "toggle p dpit"
+              "name": "toggle acc"
             },
             {
               "type": "HideButton",
-              "name": "toggle r drol"
+              "name": "toggle wacc"
             },
             {
               "type": "HideButton",
@@ -744,7 +887,51 @@
             },
             {
               "type": "HideButton",
-              "name": "sel-val"
+              "name": "toggle 3d"
+            },
+            {
+              "type": "HideButton",
+              "name": "toggle uacc"
+            },
+            {
+              "type": "HideButton",
+              "name": "toggle gyro"
+            },
+            {
+              "type": "HideButton",
+              "name": "toggle mag"
+            },
+            {
+              "type": "HideButton",
+              "name": "toggle viz"
+            },
+            {
+              "type": "HideButton",
+              "name": "toggle vizd"
+            },
+            {
+              "type": "HideButton",
+              "name": "toggle wvel"
+            },
+            {
+              "type": "HideButton",
+              "name": "toggle wpos"
+            },
+            {
+              "type": "HideButton",
+              "name": "toggle smooth"
+            },
+            {
+              "type": "HideButton",
+              "name": "toggle spike"
+            },
+            {
+              "type": "HideButton",
+              "name": "status"
+            },
+            {
+              "type": "HideButton",
+              "name": "set-val"
             },
             {
               "type": "HideButton",
@@ -770,11 +957,11 @@
                   },
                   {
                     "type": "UnhideButton",
-                    "name": "toggle p dpit"
+                    "name": "toggle acc"
                   },
                   {
                     "type": "UnhideButton",
-                    "name": "toggle r drol"
+                    "name": "toggle wacc"
                   },
                   {
                     "type": "UnhideButton",
@@ -782,7 +969,51 @@
                   },
                   {
                     "type": "UnhideButton",
-                    "name": "sel-val"
+                    "name": "toggle 3d"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "toggle uacc"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "toggle gyro"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "toggle mag"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "toggle viz"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "toggle vizd"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "toggle wvel"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "toggle wpos"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "toggle smooth"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "toggle spike"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "status"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "set-val"
                   },
                   {
                     "type": "UnhideButton",
