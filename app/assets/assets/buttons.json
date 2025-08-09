@@ -791,6 +791,19 @@
       {
         "type": "CreateButton",
         "button": {
+          "name": "store-readings",
+          "label": "store readings",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(store-readings 200 'motion-analysis)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
           "name": "set-val",
           "label": "set-val",
           "actions": [
@@ -931,6 +944,10 @@
             },
             {
               "type": "HideButton",
+              "name": "store-readings"
+            },
+            {
+              "type": "HideButton",
               "name": "set-val"
             },
             {
@@ -1010,6 +1027,10 @@
                   {
                     "type": "UnhideButton",
                     "name": "status"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "store-readings"
                   },
                   {
                     "type": "UnhideButton",
