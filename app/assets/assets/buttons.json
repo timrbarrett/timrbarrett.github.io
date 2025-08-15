@@ -674,6 +674,19 @@
       {
         "type": "CreateButton",
         "button": {
+          "name": "toggle zupt",
+          "label": "zupt",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'zupt)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
           "name": "toggle gyro",
           "label": "gyro",
           "actions": [
@@ -908,6 +921,10 @@
             },
             {
               "type": "HideButton",
+              "name": "toggle zupt"
+            },
+            {
+              "type": "HideButton",
               "name": "toggle gyro"
             },
             {
@@ -991,6 +1008,10 @@
                   {
                     "type": "UnhideButton",
                     "name": "toggle uacc"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "toggle zupt"
                   },
                   {
                     "type": "UnhideButton",
