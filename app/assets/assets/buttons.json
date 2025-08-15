@@ -804,6 +804,23 @@
       {
         "type": "CreateButton",
         "button": {
+          "name": "set ddce",
+          "label": "ddce 1",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo ddce 1)\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr ddce)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
           "name": "store-readings",
           "label": "store readings",
           "actions": [
@@ -961,6 +978,10 @@
             },
             {
               "type": "HideButton",
+              "name": "set ddce"
+            },
+            {
+              "type": "HideButton",
               "name": "store-readings"
             },
             {
@@ -1048,6 +1069,10 @@
                   {
                     "type": "UnhideButton",
                     "name": "status"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "set ddce"
                   },
                   {
                     "type": "UnhideButton",
