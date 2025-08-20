@@ -648,12 +648,12 @@
       {
         "type": "CreateButton",
         "button": {
-          "name": "toggle 3d",
+          "name": "toggle staps",
           "label": "3d",
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(toggle '3d)\n"
+              "value": "(toggle 'steps)\n"
             }
           ]
         }
@@ -930,7 +930,7 @@
             },
             {
               "type": "HideButton",
-              "name": "toggle 3d"
+              "name": "toggle steps"
             },
             {
               "type": "HideButton",
@@ -1024,7 +1024,7 @@
                   },
                   {
                     "type": "UnhideButton",
-                    "name": "toggle 3d"
+                    "name": "toggle steps"
                   },
                   {
                     "type": "UnhideButton",
