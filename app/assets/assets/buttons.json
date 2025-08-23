@@ -826,7 +826,7 @@
           "actions": [
             {
               "type": "SendStringOverNUS",
-              "value": "(store-readings 200 'motion-analysis)\n"
+              "value": "(store-readings 2000 'acc)\n"
             }
           ]
         }
