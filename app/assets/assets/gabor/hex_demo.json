@@ -1,0 +1,48 @@
+{
+  "defaults": {
+    "size_px": 160,
+    "sigma_px": 40,
+    "contrast": 0.6,
+    "orientation_deg": 0,
+    "phase_deg": 0,
+    "cycles_per_px": 0.02,
+    "color": "#000000",
+    "background": "#FFFFFF",
+    "window": "gaussian"
+  },
+  "layout": {
+    "pattern": "hex",
+    "rings": 2,
+    "separation_px": 8,
+    "grid_rotation_deg": 0
+  },
+  "patches": [
+    { "id": "center", "orientation_deg": 0 },
+    { "id": "p1", "orientation_deg": 30 },
+    { "id": "p2", "orientation_deg": 60 },
+    { "id": "p3", "orientation_deg": 90 },
+    { "id": "p4", "orientation_deg": 120 },
+    { "id": "p5", "orientation_deg": 150 },
+    { "id": "p6", "orientation_deg": 180 }
+  ],
+  "test": {
+    "mode": "afc",
+    "staircase": { "type": "1up-2down", "start": 0.4, "step": 0.05, "min": 0.01, "max": 1.0 },
+    "trial_order": "fixed",
+    "prompt": "Tap the patch you can see best. If none, tap 'None'.",
+    "trials": 24,
+    "strategy": "interleaved",
+    "controls": [
+      { "param": "contrast", "start": 0.4, "step": 0.05, "min": 0.01, "max": 1.0, "mode": "add" },
+      { "param": "size_px", "start": 160, "step": 8, "min": 64, "max": 256, "mode": "add" }
+    ]
+  },
+  "variants": [
+    { "id": "base" },
+    { "id": "contrast_down", "contrast": 0.3 },
+    { "id": "contrast_up", "contrast": 0.8 },
+    { "id": "rotate_45", "orientation_deg": 45 },
+    { "id": "higher_sf", "spatial_freq_cpd": 4.0, "pixels_per_degree": 50 },
+    { "id": "lower_sf", "spatial_freq_cpd": 1.0, "pixels_per_degree": 50 }
+  ]
+}
