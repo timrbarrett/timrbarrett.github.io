@@ -98217,7 +98217,7 @@ r.qQ(!0)},
 $S:0}
 A.aB2.prototype={
 $0(){var s=this.a
-s.dx=Math.max(0.4,s.dx*0.92)},
+s.dx=Math.max(0.1,s.dx*0.92)},
 $S:0}
 A.aAA.prototype={
 $0(){var s,r,q,p,o,n,m=this.a,l=m.p3
