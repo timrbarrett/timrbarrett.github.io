@@ -389,58 +389,6 @@
     ]
   },
   {
-    "name": "delta-fn",
-    "label": "delta-fn",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun delta-fn (type delta) "
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (set-val "
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (eval type) "
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    ( + ( cadr (etloutput (eval type) 0) ) "
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": ") ) \n"
-      }
-    ]
-  },
-  {
-    "name": "set-val",
-    "label": "set-val",
-    "actions": [
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun set-val (type value) "
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (progn "
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (etlmock (eval type) value) "
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (etlcreate (eval type) "
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": ") ) \n"
-      }
-    ]
-  },
-  {
     "name": "def send-b4",
     "label": "def send b4",
     "actions": [
@@ -463,7 +411,7 @@
     ]
   },
   {
-    "name": "fib",
+    "name": "fib-patches",
     "label": "fib-patches",
     "actions": [
       {
@@ -473,7 +421,7 @@
     ]
   },
   {
-    "name": "fib",
+    "name": "send fib-patches",
     "label": "send fib-patches",
     "actions": [
       {
