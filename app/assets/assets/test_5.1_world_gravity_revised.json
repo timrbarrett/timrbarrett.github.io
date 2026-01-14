@@ -1125,43 +1125,11 @@
     "actions": [
       {
         "type": "SendStringOverNUS",
-        "value": "(defun set-val (type value) \n"
+        "value": "(defun set-val (type value)\n  (progn\n    (emo (eval type) value)\n    (ecr (eval type))))\n"
       },
       {
         "type": "SendStringOverNUS",
-        "value": "  (progn \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (emo (eval type) value) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (ecr (eval type)) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": ")) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "(defun delta-fn (type delta) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "  (set-val \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (eval type) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "    (+ (cadr (eou (eval type) 0)) \n"
-      },
-      {
-        "type": "SendStringOverNUS",
-        "value": "   delta))) \n"
+        "value": "(defun delta-fn (type delta)\n  (set-val\n    (eval type)\n    (+ (cadr (eou (eval type) 0))\n       delta)))\n"
       },
 
       {
