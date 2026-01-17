@@ -1137,7 +1137,6 @@
           "name": "Tuning_dfsi_watch",
           "label": "dfsi:{{dfsi}}",
           "colour": "#BDFFBD",
-          "startNewLine": false,
           "actions": [
             { "type": "SendStringOverNUS", "value": "(eou dfsi 0)\n" }
           ]
@@ -1163,7 +1162,6 @@
           "name": "Tuning_dmrd_watch",
           "label": "dmrd:{{dmrd}}",
           "colour": "#BDFFBD",
-          "startNewLine": false,
           "actions": [
             { "type": "SendStringOverNUS", "value": "(eou dmrd 0)\n" }
           ]
