@@ -1144,6 +1144,18 @@
           ]
         }
       },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Tuning_dfsi_watch",
+          "label": "dfsi:{{dfsi}}",
+          "colour": "#BDFFBD",
+          "startNewLine": true,
+          "actions": [
+            { "type": "SendStringOverNUS", "value": "(eou dfsi 0)\n" }
+          ]
+        }
+      },
       { "type": "CreateButton", "button": { "name": "Tuning_dmrd_p1", "label": "dmrd +1", "actions": [ { "type": "SendStringOverNUS", "value": "(defvar app-val dmrd)\n" }, { "type": "SendStringOverNUS", "value": "(delta-fn app-val 1)\n" }, { "type": "SendStringOverNUS", "value": "(eou dmrd 0)\n" } ] } },
       { "type": "CreateButton", "button": { "name": "Tuning_dmrd_m1", "label": "dmrd -1", "actions": [ { "type": "SendStringOverNUS", "value": "(defvar app-val dmrd)\n" }, { "type": "SendStringOverNUS", "value": "(delta-fn app-val -1)\n" }, { "type": "SendStringOverNUS", "value": "(eou dmrd 0)\n" } ] } },
       { "type": "CreateButton", "button": { "name": "Tuning_dmrd_p5", "label": "dmrd +5", "actions": [ { "type": "SendStringOverNUS", "value": "(defvar app-val dmrd)\n" }, { "type": "SendStringOverNUS", "value": "(delta-fn app-val 5)\n" }, { "type": "SendStringOverNUS", "value": "(eou dmrd 0)\n" } ] } },

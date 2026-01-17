@@ -296,6 +296,29 @@
           ]
         }
       }
+      ,
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "steve algorithm",
+          "label": "steve algorithm",
+          "colour": "#607D8B",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 7) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0) \n"
+            }
+          ]
+        }
+      }
     ]
   },
   {
