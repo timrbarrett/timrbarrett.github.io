@@ -1163,7 +1163,7 @@
           "name": "Tuning_dmrd_watch",
           "label": "dmrd:{{dmrd}}",
           "colour": "#BDFFBD",
-          "startNewLine": true,
+          "startNewLine": false,
           "actions": [
             { "type": "SendStringOverNUS", "value": "(eou dmrd 0)\n" }
           ]
