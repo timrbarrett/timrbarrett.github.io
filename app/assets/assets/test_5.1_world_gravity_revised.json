@@ -1137,7 +1137,7 @@
           "name": "Tuning_dfsi_watch",
           "label": "dfsi:{{dfsi}}",
           "colour": "#BDFFBD",
-          "startNewLine": true,
+          "startNewLine": false,
           "actions": [
             { "type": "SendStringOverNUS", "value": "(eou dfsi 0)\n" }
           ]
