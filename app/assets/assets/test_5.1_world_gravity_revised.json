@@ -1156,6 +1156,20 @@
           ]
         }
       },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Tuning_steve_algorithm",
+          "label": "steve algorithm",
+          "colour": "#607D8B",
+          "startNewLine": true,
+          "actions": [
+            { "type": "SendStringOverNUS", "value": "(emo dbsm 7)\n" },
+            { "type": "SendStringOverNUS", "value": "(ecr dbsm)\n" },
+            { "type": "SendStringOverNUS", "value": "(eou dbsm 0)\n" }
+          ]
+        }
+      },
       { "type": "CreateButton", "button": { "name": "Tuning_dmrd_p1", "label": "dmrd +1", "actions": [ { "type": "SendStringOverNUS", "value": "(defvar app-val dmrd)\n" }, { "type": "SendStringOverNUS", "value": "(delta-fn app-val 1)\n" }, { "type": "SendStringOverNUS", "value": "(eou dmrd 0)\n" } ] } },
       { "type": "CreateButton", "button": { "name": "Tuning_dmrd_m1", "label": "dmrd -1", "actions": [ { "type": "SendStringOverNUS", "value": "(defvar app-val dmrd)\n" }, { "type": "SendStringOverNUS", "value": "(delta-fn app-val -1)\n" }, { "type": "SendStringOverNUS", "value": "(eou dmrd 0)\n" } ] } },
       { "type": "CreateButton", "button": { "name": "Tuning_dmrd_p5", "label": "dmrd +5", "actions": [ { "type": "SendStringOverNUS", "value": "(defvar app-val dmrd)\n" }, { "type": "SendStringOverNUS", "value": "(delta-fn app-val 5)\n" }, { "type": "SendStringOverNUS", "value": "(eou dmrd 0)\n" } ] } },
@@ -1200,6 +1214,8 @@
           "label": "show tuning",
           "actions": [
             { "type": "UnhideButton", "name": "Tuning_dmrd_watch" },
+            { "type": "UnhideButton", "name": "Tuning_dfsi_watch" },
+            { "type": "UnhideButton", "name": "Tuning_steve_algorithm" },
             { "type": "UnhideButton", "name": "Tuning_dmrd_p1" },
             { "type": "UnhideButton", "name": "Tuning_dmrd_m1" },
             { "type": "UnhideButton", "name": "Tuning_dmrd_p5" },
@@ -1243,6 +1259,8 @@
           "label": "hide tuning",
           "actions": [
             { "type": "HideButton", "name": "Tuning_dmrd_watch" },
+            { "type": "HideButton", "name": "Tuning_dfsi_watch" },
+            { "type": "HideButton", "name": "Tuning_steve_algorithm" },
             { "type": "HideButton", "name": "Tuning_dmrd_p1" },
             { "type": "HideButton", "name": "Tuning_dmrd_m1" },
             { "type": "HideButton", "name": "Tuning_dmrd_p5" },

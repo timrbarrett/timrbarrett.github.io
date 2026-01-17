@@ -132,6 +132,27 @@
       {
         "type": "CreateButton",
         "button": {
+          "name": "dbsm 7",
+          "label": "Steve's algorithm",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 7) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
           "name": "hide dbsm",
           "label": "hide dbsm",
           "actions": [
