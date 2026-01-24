@@ -1118,5 +1118,41 @@
         }
       }
     ]
+  },
+  {
+    "name": "phase1-unframed",
+    "label": "Phase1 Unframed (print 123)",
+    "color": "#2E7D32",
+    "textColor": "#FFFFFF",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "(print 123)\n"
+      }
+    ]
+  },
+  {
+    "name": "phase1-priority-status",
+    "label": "Phase1 !status",
+    "color": "#1565C0",
+    "textColor": "#FFFFFF",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "!status\n"
+      }
+    ]
+  },
+  {
+    "name": "phase1-framed-route",
+    "label": "Phase1 @route",
+    "color": "#6A1B9A",
+    "textColor": "#FFFFFF",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "@route\n"
+      }
+    ]
   }
 ]
