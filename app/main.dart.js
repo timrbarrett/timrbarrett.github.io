@@ -98800,7 +98800,7 @@ j=p.f;++j.x
 j.EY()
 q=!1
 s=1
-break}if(!B.d.n(k,"dmrd"))p.apo()
+break}if(!B.d.n(k,"dmrd"))p.apo(!0)
 j=p.db
 if(j.gA(0)>=200){j=p.f;++j.x
 j.EY()
@@ -98902,7 +98902,7 @@ if(n==null)n=l.a(n)
 p.wF(new A.JP(n,new A.bi(new A.ap($.an,r),q),new A.bC(Date.now(),0,!1)));++o.x
 n=(p.c-p.b&p.a.length-1)>>>0
 if(n>o.cy)o.cy=n}m.B7()},
-apo(){var s,r,q,p,o,n=this
+apo(a){var s,r,q,p,o,n=this
 if(!n.at)return
 s=$.eb()
 r=n.Vm(J.M(s.a,"dmrd"))
@@ -98911,13 +98911,13 @@ q=n.Vm(J.M(s.a,"dmrd"))
 if(q==null)q=n.id
 s=q==null
 if(s)n.dP("\u26a0\ufe0f dmrd unknown; throttling without restore value")
-if(!s&&q>=2000)return
-if(!n.fy){n.go=q
+if(!n.fy&&!s&&q<2000)n.go=q
 n.fy=!0
 p=n.w2("(ecr dmrd)")
 o=n.w2("(emo dmrd 2000)")
-n.dP("\ud83d\udcc9 Throttling dmrd to 2000")
-n.SO(A.b([p,o],t.s))}s=n.fx
+n.dP("\ud83d\udcc9 Throttling dmrd to 2000 (forced)")
+n.SO(A.b([p,o],t.s))
+s=n.fx
 if(s!=null)s.aE(0)
 n.fx=A.c5(B.av,new A.a8w(n))},
 H3(){var s=this.y
