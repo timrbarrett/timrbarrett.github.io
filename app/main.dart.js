@@ -32872,8 +32872,8 @@ bdL(a){var s,r,q,p,o
 for(s=a.length,r=65535,q=0;q<s;++q){r^=a[q]<<8&65535
 for(p=0;p<8;++p){o=r<<1
 r=(r&32768)!==0?(o^4129)&65535:o&65535}}return r&65535},
-aT2(a,b,c,d,e){var s=new Uint8Array(A.hb(B.kd.dc(e))),r=new Uint8Array(A.hb(B.kd.dc(b==null?e:b))),q=d==null?s.length+c:d,p="@"+q+":"+e+B.d.hF(B.f.iq(A.bdL(r),16).toUpperCase(),4,"0")
-return a?p+"\n":p},
+aT2(a,b,c,d,e){var s=new Uint8Array(A.hb(B.kd.dc(e))),r=new Uint8Array(A.hb(B.kd.dc(b==null?e:b))),q=d==null?s.length+c:d,p=B.d.hF(B.f.iq(A.bdL(r),16).toUpperCase(),4,"0"),o="\n"+("@"+q+":"+e+p)
+return a?o+"\n":o},
 bhF(){$.aTT().KT("promptInstall")},
 aOb(a,b){return A.bg8(a,b)},
 bg8(a,b){var s=0,r=A.t(t.kp),q,p,o,n
@@ -103955,7 +103955,7 @@ $0(){var s=this.a
 s.x=!s.x},
 $S:0}
 A.awn.prototype={
-$2(a,b){var s,r,q,p,o,n,m,l,k=null,j=A.V("Web Bluetooth App 0.592 (f13d408)",k,k,k,k,k,k,k),i=$.fl().a0
+$2(a,b){var s,r,q,p,o,n,m,l,k=null,j=A.V("Web Bluetooth App 0.592 (3069244)",k,k,k,k,k,k,k),i=$.fl().a0
 i=A.aRX(new A.awh(),!1,new A.bV(i,A.m(i).i("bV<1>")),t.y)
 s=A.c0(k,k,k,B.MH,k,k,new A.awi(a),k,k,k,"Combined Buttons Screen")
 r=this.a
