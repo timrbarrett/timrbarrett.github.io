@@ -1154,5 +1154,60 @@
         "value": "@route\n"
       }
     ]
+  },
+  {
+    "name": "phase2-framed-ok",
+    "label": "Phase2 Framed OK",
+    "color": "#2E7D32",
+    "textColor": "#FFFFFF",
+    "actions": [
+      {
+        "type": "SendFramedOverNUS",
+        "payload": "(id 1) (nop)",
+        "newline": true
+      }
+    ]
+  },
+  {
+    "name": "phase2-framed-crc-fail",
+    "label": "Phase2 CRC Fail",
+    "color": "#C62828",
+    "textColor": "#FFFFFF",
+    "actions": [
+      {
+        "type": "SendFramedOverNUS",
+        "payload": "(id 1) (n0p)",
+        "crcPayload": "(id 1) (nop)",
+        "newline": true
+      }
+    ]
+  },
+  {
+    "name": "phase2-framed-len-plus1",
+    "label": "Phase2 Len +1",
+    "color": "#EF6C00",
+    "textColor": "#FFFFFF",
+    "actions": [
+      {
+        "type": "SendFramedOverNUS",
+        "payload": "(id 1) (nop)",
+        "lenDelta": 1,
+        "newline": true
+      }
+    ]
+  },
+  {
+    "name": "phase2-framed-len-minus1",
+    "label": "Phase2 Len -1",
+    "color": "#EF6C00",
+    "textColor": "#FFFFFF",
+    "actions": [
+      {
+        "type": "SendFramedOverNUS",
+        "payload": "(id 1) (nop)",
+        "lenDelta": -1,
+        "newline": true
+      }
+    ]
   }
 ]
