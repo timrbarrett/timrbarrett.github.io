@@ -1197,20 +1197,6 @@
     ]
   },
   {
-    "name": "phase2-framed-len-minus1",
-    "label": "Phase2 Len -1",
-    "color": "#EF6C00",
-    "textColor": "#FFFFFF",
-    "actions": [
-      {
-        "type": "SendFramedOverNUS",
-        "payload": "(id 1) (nop)",
-        "lenDelta": -1,
-        "newline": true
-      }
-    ]
-  },
-  {
     "name": "phase3-priority-id-status",
     "label": "Phase3 !123 status",
     "color": "#1565C0",
@@ -1295,6 +1281,20 @@
       {
         "type": "SendStringOverNUS",
         "value": "!104 status\n"
+      }
+    ]
+  },
+  {
+    "name": "phase2-framed-len-minus1",
+    "label": "Phase2 Len -1",
+    "color": "#EF6C00",
+    "textColor": "#FFFFFF",
+    "actions": [
+      {
+        "type": "SendFramedOverNUS",
+        "payload": "(id 1) (nop)",
+        "lenDelta": -1,
+        "newline": true
       }
     ]
   }
