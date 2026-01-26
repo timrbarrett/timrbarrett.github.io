@@ -546,6 +546,106 @@
       {
         "type": "CreateButton",
         "button": {
+          "name": "Phase3_Priority_Status",
+          "label": "Phase3 !123 status",
+          "colour": "#1565C0",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "!123 status\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Phase3_Priority_Pause",
+          "label": "Phase3 !7 pause",
+          "colour": "#1565C0",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "!7 pause-reporting\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Phase3_Priority_Resume",
+          "label": "Phase3 !9 resume",
+          "colour": "#1565C0",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "!9 resume-reporting\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Phase3_Ack_Only_On",
+          "label": "Phase3 !42 ack-only on",
+          "colour": "#00897B",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "!42 ack-only on\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Phase3_Ack_Only_Off",
+          "label": "Phase3 !42 ack-only off",
+          "colour": "#00897B",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "!42 ack-only off\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "Phase3_Status_Burst",
+          "label": "Phase3 !status x5",
+          "colour": "#6D4C41",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "!100 status\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "!101 status\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "!102 status\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "!103 status\n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "!104 status\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
           "name": "Check_Status_Timer",
           "label": "Status Timer",
           "visible": false,
