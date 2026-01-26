@@ -98963,32 +98963,33 @@ this.as=A.c5(B.kZ,new A.a8x(this))},
 vr(){var s=this.as
 if(s!=null)s.aE(0)
 this.as=null},
-aj4(a){var s,r,q,p,o,n,m,l,k,j,i,h=this
-h.ch=new A.br(Date.now(),0,!1)
-q=h.f
+aj4(a){var s,r,q,p,o,n,m,l,k,j,i,h,g=this
+g.ch=new A.br(Date.now(),0,!1)
+q=g.f
 q.ax+=a.byteLength
 q.go=new A.br(Date.now(),0,!1)
 p=J.j8(B.aC.gbK(a),a.byteOffset,a.byteLength)
 o=B.af.a_A(0,p,!0)
-if(!B.P.gac(p)){n=h.afX(p)
-m=A.dt(o,"\r","\\\\r")
-h.dP("\ud83d\udce5 RX notify "+p.length+" bytes | hex: "+n+" | utf8: "+A.dt(m,"\n","\\\\n"))}n=A.dt(o,"\r\n","\n")
-l=A.dt(n,"\r","\n")
-n=h.z+=l
-m=n.length
-if(m>q.db)q.db=m
-if(m>4096){++q.CW
-h.dP("\u26a0\ufe0f RX buffer overflow; trimming to last 4096 bytes")
-n=h.z
-n=h.z=B.d.bF(n,n.length-4096)}if(B.d.n(n,"\n")){k=n.split("\n")
-for(n=h.d,j=0;j<k.length-1;++j){s=B.d.aW(k[j])
-if(J.as(s)!==0){if(!n.gpe())A.a9(n.oV())
-n.kU(s);++q.ay
-if(h.X3(s))try{A.b0H(s)}catch(i){r=A.Z(i)
-A.M().$1("\u274c RX parse error: "+A.h(r));++q.ch}}}q=B.b.gan(k)
-h.z=q
-if(q.length!==0)h.Wr()
-else h.vr()}else h.Wr()},
+if(!B.P.gac(p)){n=o.toLowerCase()
+if(B.d.n(n,"!ack")||B.d.n(n,"!nak")){m=g.afX(p)
+l=A.dt(o,"\r","\\\\r")
+g.dP("\ud83d\udce5 RX notify "+p.length+" bytes | hex: "+m+" | utf8: "+A.dt(l,"\n","\\\\n"))}}m=A.dt(o,"\r\n","\n")
+k=A.dt(m,"\r","\n")
+m=g.z+=k
+l=m.length
+if(l>q.db)q.db=l
+if(l>4096){++q.CW
+g.dP("\u26a0\ufe0f RX buffer overflow; trimming to last 4096 bytes")
+m=g.z
+m=g.z=B.d.bF(m,m.length-4096)}if(B.d.n(m,"\n")){j=m.split("\n")
+for(m=g.d,i=0;i<j.length-1;++i){s=B.d.aW(j[i])
+if(J.as(s)!==0){if(!m.gpe())A.a9(m.oV())
+m.kU(s);++q.ay
+if(g.X3(s))try{A.b0H(s)}catch(h){r=A.Z(h)
+A.M().$1("\u274c RX parse error: "+A.h(r));++q.ch}}}q=B.b.gan(j)
+g.z=q
+if(q.length!==0)g.Wr()
+else g.vr()}else g.Wr()},
 ayf(a){this.aj4(a)},
 X3(a){var s
 if(a.length===0)return!1
