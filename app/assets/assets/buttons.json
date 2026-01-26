@@ -1209,5 +1209,93 @@
         "newline": true
       }
     ]
+  },
+  {
+    "name": "phase3-priority-id-status",
+    "label": "Phase3 !123 status",
+    "color": "#1565C0",
+    "textColor": "#FFFFFF",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "!123 status\n"
+      }
+    ]
+  },
+  {
+    "name": "phase3-priority-id-pause",
+    "label": "Phase3 !7 pause",
+    "color": "#1565C0",
+    "textColor": "#FFFFFF",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "!7 pause-reporting\n"
+      }
+    ]
+  },
+  {
+    "name": "phase3-priority-id-resume",
+    "label": "Phase3 !9 resume",
+    "color": "#1565C0",
+    "textColor": "#FFFFFF",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "!9 resume-reporting\n"
+      }
+    ]
+  },
+  {
+    "name": "phase3-ack-only-on",
+    "label": "Phase3 !42 ack-only on",
+    "color": "#00897B",
+    "textColor": "#FFFFFF",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "!42 ack-only on\n"
+      }
+    ]
+  },
+  {
+    "name": "phase3-ack-only-off",
+    "label": "Phase3 !42 ack-only off",
+    "color": "#00897B",
+    "textColor": "#FFFFFF",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "!42 ack-only off\n"
+      }
+    ]
+  },
+  {
+    "name": "phase3-status-burst",
+    "label": "Phase3 !status x5",
+    "color": "#6D4C41",
+    "textColor": "#FFFFFF",
+    "actions": [
+      {
+        "type": "SendStringOverNUS",
+        "value": "!100 status\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "!101 status\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "!102 status\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "!103 status\n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "!104 status\n"
+      }
+    ]
   }
 ]
