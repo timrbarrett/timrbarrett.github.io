@@ -79,6 +79,7 @@
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         const updateBannerKey = 'sw-update-banner-shown';
+        let reloadInProgress = false;
         const showUpdateBanner = (registration) => {
           if (document.getElementById('sw-update-banner')) return;
           if (sessionStorage.getItem(updateBannerKey) === 'true') return;
@@ -154,11 +155,6 @@
           .then((registration) => {
             console.log('SW registered: ', registration);
 
-            // If there's already a waiting SW, show update banner immediately
-            if (registration.waiting) {
-              showUpdateBanner(registration);
-            }
-
             // Check for updates on load
             registration.update();
 
@@ -186,6 +182,8 @@
           });
 
         navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (reloadInProgress) return;
+          reloadInProgress = true;
           sessionStorage.removeItem(updateBannerKey);
           const banner = document.getElementById('sw-update-banner');
           if (banner) banner.remove();
