@@ -125,31 +125,25 @@
 
             await registration.update();
 
-            const checkForUpdate = async () => {
-              const reg = await navigator.serviceWorker.getRegistration('/app/');
-              if (!reg) return;
-
-              if (reg.waiting && navigator.serviceWorker.controller) {
-                showStatusToast('Update available', '#6b21a8');
-              } else {
-                showStatusToast('Up to date', '#1f2937');
-              }
-            };
+            let updateNotified = false;
 
             registration.addEventListener('updatefound', () => {
               const newWorker = registration.installing;
               if (!newWorker) return;
               newWorker.addEventListener('statechange', () => {
                 if (newWorker.state === 'installed') {
-                  checkForUpdate();
+                  updateNotified = true;
+                  showStatusToast('Update available', '#6b21a8');
                 }
               });
             });
 
-            // Initial check shortly after load/update call
+            // If no update is found shortly after load, show "Up to date"
             setTimeout(() => {
-              checkForUpdate();
-            }, 500);
+              if (!updateNotified) {
+                showStatusToast('Up to date', '#1f2937');
+              }
+            }, 1200);
           })
           .catch((registrationError) => {
             console.log('SW registration failed: ', registrationError);
