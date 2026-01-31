@@ -111,11 +111,32 @@
           button.style.cursor = 'pointer';
 
           button.addEventListener('click', () => {
+            button.disabled = true;
+            button.textContent = 'Updating…';
+
             if (registration.waiting) {
               registration.waiting.postMessage({ action: 'skipWaiting' });
             } else {
               registration.update();
             }
+
+            const start = Date.now();
+            const maxWaitMs = 8000;
+
+            const poll = setInterval(async () => {
+              const now = Date.now();
+              if (now - start > maxWaitMs) {
+                clearInterval(poll);
+                window.location.reload();
+                return;
+              }
+
+              const reg = await navigator.serviceWorker.getRegistration('/app/');
+              if (reg && !reg.waiting && navigator.serviceWorker.controller) {
+                clearInterval(poll);
+                window.location.reload();
+              }
+            }, 500);
           });
 
           const right = document.createElement('div');
