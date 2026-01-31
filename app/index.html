@@ -80,10 +80,16 @@
       window.addEventListener('load', () => {
         const updateBannerKey = 'sw-update-banner-shown';
         const updateRequestedKey = 'sw-update-requested';
+        const updateSuppressUntilKey = 'sw-update-suppress-until';
         let reloadInProgress = false;
         const showUpdateBanner = (registration) => {
           if (document.getElementById('sw-update-banner')) return;
           if (sessionStorage.getItem(updateBannerKey) === 'true') return;
+          if (sessionStorage.getItem(updateRequestedKey) === 'true') return;
+
+          const suppressUntil = parseInt(localStorage.getItem(updateSuppressUntilKey) || '0', 10);
+          if (suppressUntil && Date.now() < suppressUntil) return;
+
           if (!registration || !registration.waiting) return;
 
           const banner = document.createElement('div');
@@ -121,9 +127,19 @@
 
             sessionStorage.setItem(updateBannerKey, 'true');
             sessionStorage.setItem(updateRequestedKey, 'true');
+            localStorage.setItem(updateSuppressUntilKey, String(Date.now() + 5 * 60 * 1000));
+
+            const bannerEl = document.getElementById('sw-update-banner');
+            if (bannerEl) bannerEl.remove();
 
             if (registration.waiting) {
-              registration.waiting.postMessage({ action: 'skipWaiting' });
+              const waitingWorker = registration.waiting;
+              waitingWorker.addEventListener('statechange', () => {
+                if (waitingWorker.state === 'activated') {
+                  window.location.reload();
+                }
+              });
+              waitingWorker.postMessage({ action: 'skipWaiting' });
             } else {
               registration.update();
             }
@@ -190,6 +206,7 @@
           reloadInProgress = true;
           sessionStorage.removeItem(updateBannerKey);
           sessionStorage.removeItem(updateRequestedKey);
+          localStorage.removeItem(updateSuppressUntilKey);
           const banner = document.getElementById('sw-update-banner');
           if (banner) banner.remove();
           window.location.reload();
