@@ -79,10 +79,12 @@
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         const updateBannerKey = 'sw-update-banner-shown';
+        const updateRequestedKey = 'sw-update-requested';
         let reloadInProgress = false;
         const showUpdateBanner = (registration) => {
           if (document.getElementById('sw-update-banner')) return;
           if (sessionStorage.getItem(updateBannerKey) === 'true') return;
+          if (!registration || !registration.waiting) return;
 
           const banner = document.createElement('div');
           banner.id = 'sw-update-banner';
@@ -118,6 +120,7 @@
             button.textContent = 'Updating…';
 
             sessionStorage.setItem(updateBannerKey, 'true');
+            sessionStorage.setItem(updateRequestedKey, 'true');
 
             if (registration.waiting) {
               registration.waiting.postMessage({ action: 'skipWaiting' });
@@ -183,8 +186,10 @@
 
         navigator.serviceWorker.addEventListener('controllerchange', () => {
           if (reloadInProgress) return;
+          if (sessionStorage.getItem(updateRequestedKey) !== 'true') return;
           reloadInProgress = true;
           sessionStorage.removeItem(updateBannerKey);
+          sessionStorage.removeItem(updateRequestedKey);
           const banner = document.getElementById('sw-update-banner');
           if (banner) banner.remove();
           window.location.reload();
