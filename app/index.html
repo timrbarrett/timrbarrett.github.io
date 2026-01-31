@@ -78,8 +78,10 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
+        const updateBannerKey = 'sw-update-banner-shown';
         const showUpdateBanner = (registration) => {
           if (document.getElementById('sw-update-banner')) return;
+          if (sessionStorage.getItem(updateBannerKey) === 'true') return;
 
           const banner = document.createElement('div');
           banner.id = 'sw-update-banner';
@@ -113,6 +115,8 @@
           button.addEventListener('click', () => {
             button.disabled = true;
             button.textContent = 'Updating…';
+
+            sessionStorage.setItem(updateBannerKey, 'true');
 
             if (registration.waiting) {
               registration.waiting.postMessage({ action: 'skipWaiting' });
@@ -182,6 +186,9 @@
           });
 
         navigator.serviceWorker.addEventListener('controllerchange', () => {
+          sessionStorage.removeItem(updateBannerKey);
+          const banner = document.getElementById('sw-update-banner');
+          if (banner) banner.remove();
           window.location.reload();
         });
       });
