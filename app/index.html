@@ -81,6 +81,10 @@
         const updateBannerKey = 'sw-update-banner-shown';
         const updateRequestedKey = 'sw-update-requested';
         const updateSuppressUntilKey = 'sw-update-suppress-until';
+        const updatePendingKey = 'sw-update-pending-url';
+        const updatePendingTimeKey = 'sw-update-pending-time';
+        const updatePendingTimeoutMs = 10 * 60 * 1000;
+        const updateAutoDismissMs = 60 * 1000;
         let reloadInProgress = false;
         const showUpdateBanner = (registration) => {
           if (document.getElementById('sw-update-banner')) return;
@@ -91,6 +95,17 @@
           if (suppressUntil && Date.now() < suppressUntil) return;
 
           if (!registration || !registration.waiting) return;
+
+          const waitingUrl = registration.waiting.scriptURL || 'unknown';
+          const pendingUrl = localStorage.getItem(updatePendingKey);
+          const pendingTime = parseInt(localStorage.getItem(updatePendingTimeKey) || '0', 10);
+          if (pendingUrl === waitingUrl) {
+            if (pendingTime && Date.now() - pendingTime < updatePendingTimeoutMs) {
+              return;
+            }
+            localStorage.removeItem(updatePendingKey);
+            localStorage.removeItem(updatePendingTimeKey);
+          }
 
           const banner = document.createElement('div');
           banner.id = 'sw-update-banner';
@@ -128,9 +143,17 @@
             sessionStorage.setItem(updateBannerKey, 'true');
             sessionStorage.setItem(updateRequestedKey, 'true');
             localStorage.setItem(updateSuppressUntilKey, String(Date.now() + 5 * 60 * 1000));
+            localStorage.setItem(updatePendingKey, waitingUrl);
+            localStorage.setItem(updatePendingTimeKey, String(Date.now()));
 
             const bannerEl = document.getElementById('sw-update-banner');
             if (bannerEl) bannerEl.remove();
+
+            if (!registration.waiting) {
+              sessionStorage.removeItem(updateRequestedKey);
+              localStorage.setItem(updateSuppressUntilKey, String(Date.now() + updateAutoDismissMs));
+              return;
+            }
 
             if (registration.waiting) {
               const waitingWorker = registration.waiting;
@@ -168,6 +191,19 @@
           banner.appendChild(text);
           banner.appendChild(right);
           document.body.appendChild(banner);
+
+          const autoDismissStart = Date.now();
+          const autoDismiss = setInterval(() => {
+            if (!registration.waiting) {
+              clearInterval(autoDismiss);
+              sessionStorage.removeItem(updateBannerKey);
+              localStorage.setItem(updateSuppressUntilKey, String(Date.now() + updateAutoDismissMs));
+              const existing = document.getElementById('sw-update-banner');
+              if (existing) existing.remove();
+            } else if (Date.now() - autoDismissStart > updatePendingTimeoutMs) {
+              clearInterval(autoDismiss);
+            }
+          }, 500);
         };
 
         navigator.serviceWorker.register('/app/sw.js')
@@ -207,6 +243,8 @@
           sessionStorage.removeItem(updateBannerKey);
           sessionStorage.removeItem(updateRequestedKey);
           localStorage.removeItem(updateSuppressUntilKey);
+          localStorage.removeItem(updatePendingKey);
+          localStorage.removeItem(updatePendingTimeKey);
           const banner = document.getElementById('sw-update-banner');
           if (banner) banner.remove();
           window.location.reload();
