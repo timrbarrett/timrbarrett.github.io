@@ -125,25 +125,43 @@
 
             await registration.update();
 
-            let updateNotified = false;
-
-            registration.addEventListener('updatefound', () => {
-              const newWorker = registration.installing;
-              if (!newWorker) return;
-              newWorker.addEventListener('statechange', () => {
-                if (newWorker.state === 'installed') {
-                  updateNotified = true;
-                  showStatusToast('Update available', '#6b21a8');
-                }
-              });
-            });
-
-            // If no update is found shortly after load, show "Up to date"
-            setTimeout(() => {
-              if (!updateNotified) {
-                showStatusToast('Up to date', '#1f2937');
+            const getVersionJson = async (url, cacheMode) => {
+              try {
+                const response = await fetch(url, { cache: cacheMode });
+                if (!response.ok) return null;
+                return await response.json();
+              } catch (_) {
+                return null;
               }
-            }, 1200);
+            };
+
+            const checkBuildVersion = async () => {
+              const local = await getVersionJson('/app/version.json', 'default');
+              const remote = await getVersionJson(`/app/version.json?ts=${Date.now()}`, 'no-store');
+
+              if (!local || !remote) {
+                showStatusToast('Up to date', '#1f2937');
+                return;
+              }
+
+              const localHash = local.commitHash || '';
+              const remoteHash = remote.commitHash || '';
+              const localBuild = Date.parse(local.buildDate || '');
+              const remoteBuild = Date.parse(remote.buildDate || '');
+
+              const sameVersion = (localHash && remoteHash && localHash === remoteHash) ||
+                (!isNaN(localBuild) && !isNaN(remoteBuild) && localBuild === remoteBuild);
+
+              if (sameVersion) {
+                showStatusToast('Up to date', '#1f2937');
+              } else {
+                showStatusToast('Update available', '#6b21a8');
+              }
+            };
+
+            setTimeout(() => {
+              checkBuildVersion();
+            }, 600);
           })
           .catch((registrationError) => {
             console.log('SW registration failed: ', registrationError);
