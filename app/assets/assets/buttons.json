@@ -1139,7 +1139,7 @@
     "actions": [
       {
         "type": "SendStringOverNUS",
-        "value": "!status\n"
+        "value": "!status"
       }
     ]
   },
