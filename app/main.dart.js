@@ -98989,7 +98989,7 @@ a53(a){var s=0,r=A.t(t.y),q,p=this,o,n,m,l,k,j,i,h,g
 var $async$eA=A.o(function(b,c){if(b===1)return A.p(c,r)
 while(true)switch(s){case 0:h=A.dT(a,"\r\n","\n")
 g=A.dT(h,"\r","\n")
-if(B.d.h1(g,"\n"))g=B.d.lt(g,A.bi("\\n+$",!1),"\n")
+g=B.d.h1(g,"\n")?B.d.lt(g,A.bi("\\n+$",!1),"\n"):g+"\n"
 h=A.dT(g,"\r","\\\\r")
 A.M().$1("\ud83d\udce4 Request to send: "+A.dT(h,"\n","\\\\n"))
 if(!p.at){A.M().$1(u.g)
