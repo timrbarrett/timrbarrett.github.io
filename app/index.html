@@ -78,90 +78,29 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        const statusShownKey = 'sw-status-shown';
-        const statusShownTsKey = 'sw-status-shown-ts';
-        const statusRepeatWindowMs = 10 * 1000;
-
-        const showStatusToast = (message, color = '#1f2937') => {
-          const now = Date.now();
-          const lastTs = parseInt(sessionStorage.getItem(statusShownTsKey) || '0', 10);
-          if (sessionStorage.getItem(statusShownKey) === 'true' && now - lastTs < statusRepeatWindowMs) {
-            return;
-          }
-
-          sessionStorage.setItem(statusShownKey, 'true');
-          sessionStorage.setItem(statusShownTsKey, String(now));
-
-          const toast = document.createElement('div');
-          toast.id = 'sw-status-toast';
-          toast.style.position = 'fixed';
-          toast.style.bottom = '16px';
-          toast.style.left = '16px';
-          toast.style.right = '16px';
-          toast.style.zIndex = '9999';
-          toast.style.padding = '10px 14px';
-          toast.style.background = color;
-          toast.style.color = '#fff';
-          toast.style.borderRadius = '8px';
-          toast.style.display = 'flex';
-          toast.style.alignItems = 'center';
-          toast.style.justifyContent = 'center';
-          toast.style.boxShadow = '0 8px 24px rgba(0,0,0,0.25)';
-          toast.textContent = message;
-
-          const existing = document.getElementById('sw-status-toast');
-          if (existing) existing.remove();
-
-          document.body.appendChild(toast);
-          setTimeout(() => {
-            const el = document.getElementById('sw-status-toast');
-            if (el) el.remove();
-          }, 1800);
-        };
-
         navigator.serviceWorker.register('/app/sw.js')
-          .then(async (registration) => {
+          .then((registration) => {
             console.log('SW registered: ', registration);
-
-            await registration.update();
-
-            const getVersionJson = async (url, cacheMode) => {
-              try {
-                const response = await fetch(url, { cache: cacheMode });
-                if (!response.ok) return null;
-                return await response.json();
-              } catch (_) {
-                return null;
-              }
-            };
-
-            const checkBuildVersion = async () => {
-              const local = await getVersionJson('/app/version.json', 'default');
-              const remote = await getVersionJson(`/app/version.json?ts=${Date.now()}`, 'no-store');
-
-              if (!local || !remote) {
-                showStatusToast('Up to date', '#1f2937');
-                return;
-              }
-
-              const localHash = local.commitHash || '';
-              const remoteHash = remote.commitHash || '';
-              const localBuild = Date.parse(local.buildDate || '');
-              const remoteBuild = Date.parse(remote.buildDate || '');
-
-              const sameVersion = (localHash && remoteHash && localHash === remoteHash) ||
-                (!isNaN(localBuild) && !isNaN(remoteBuild) && localBuild === remoteBuild);
-
-              if (sameVersion) {
-                showStatusToast('Up to date', '#1f2937');
-              } else {
-                showStatusToast('Update available', '#6b21a8');
-              }
-            };
-
-            setTimeout(() => {
-              checkBuildVersion();
-            }, 600);
+            
+            // Simply log service worker events without prompting
+            registration.addEventListener('updatefound', () => {
+              const newWorker = registration.installing;
+              console.log('SW update found, new worker installing...');
+              
+              newWorker.addEventListener('statechange', () => {
+                console.log('SW state changed to:', newWorker.state);
+                
+                if (newWorker.state === 'installed') {
+                  if (navigator.serviceWorker.controller) {
+                    // New service worker is ready, but don't prompt
+                    console.log('New service worker ready, will take effect on next page load');
+                  } else {
+                    // First time installation
+                    console.log('Service worker installed for the first time');
+                  }
+                }
+              });
+            });
           })
           .catch((registrationError) => {
             console.log('SW registration failed: ', registrationError);
