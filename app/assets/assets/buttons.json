@@ -132,27 +132,6 @@
       {
         "type": "CreateButton",
         "button": {
-          "name": "dbsm 7",
-          "label": "Steve's algorithm",
-          "actions": [
-            {
-              "type": "SendStringOverNUS",
-              "value": "(emo dbsm 7) \n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(ecr dbsm) \n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(eou dbsm 0) \n"
-            }
-          ]
-        }
-      },
-      {
-        "type": "CreateButton",
-        "button": {
           "name": "hide dbsm",
           "label": "hide dbsm",
           "actions": [
@@ -1113,6 +1092,168 @@
                   }
                 ]
               }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "cr toggles 2",
+    "label": "cr toggles 2",
+    "actions": [
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle dfza",
+          "label": "dfza",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dfza)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle dfgr",
+          "label": "dfgr",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dfgr)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle dfzg",
+          "label": "dfzg",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dfzg)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle dfzm",
+          "label": "dfzm",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dfzm)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle dfzv",
+          "label": "dfzv",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dfzv)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle dfvn",
+          "label": "dfvn",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dfvn)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle dfvf",
+          "label": "dfvf",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dfvf)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle dfvd",
+          "label": "dfvd",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dfvd)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle dfzs",
+          "label": "dfzs",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dfzs)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle dfup",
+          "label": "dfup",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dfup)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle dfdn",
+          "label": "dfdn",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dfdn)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "toggle dfrp",
+          "label": "dfrp",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(toggle 'dfrp)\n"
             }
           ]
         }

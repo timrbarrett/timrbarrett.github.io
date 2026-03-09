@@ -1125,49 +1125,57 @@
     "actions": [
       {
         "type": "SendStringOverNUS",
-        "value": "(defun set-val (type value)\n  (progn\n    (emo (eval type) value)\n    (ecr (eval type))))\n"
+        "value": "(defun set-val (type value) \n"
       },
       {
         "type": "SendStringOverNUS",
-        "value": "(defun delta-fn (type delta)\n  (set-val\n    (eval type)\n    (+ (cadr (eou (eval type) 0))\n       delta)))\n"
-      },
- {
-        "type": "CreateButton",
-        "button": {
-          "name": "Tuning_dfsi_watch",
-          "label": "dfsi:{{dfsi}}",
-          "colour": "#BDFFBD",
-          "actions": [
-            { "type": "SendStringOverNUS", "value": "(eou dfsi 0)\n" }
-          ]
-        }
+        "value": "  (progn \n"
       },
       {
-        "type": "CreateButton",
-        "button": {
-          "name": "Tuning_steve_algorithm",
-          "label": "steve algorithm",
-          "colour": "#607D8B",
-          "startNewLine": true,
-          "actions": [
-            { "type": "SendStringOverNUS", "value": "(emo dbsm 7)\n" },
-            { "type": "SendStringOverNUS", "value": "(ecr dbsm)\n" },
-            { "type": "SendStringOverNUS", "value": "(eou dbsm 0)\n" }
-          ]
-        }
+        "type": "SendStringOverNUS",
+        "value": "    (emo (eval type) value) \n"
       },
+      {
+        "type": "SendStringOverNUS",
+        "value": "    (ecr (eval type)) \n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": ")) \n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "(defun delta-fn (type delta) \n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "  (set-val \n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "    (eval type) \n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "    (+ (cadr (eou (eval type) 0)) \n"
+      },
+      {
+        "type": "SendStringOverNUS",
+        "value": "   delta))) \n"
+      },
+
       {
         "type": "CreateButton",
         "button": {
           "name": "Tuning_dmrd_watch",
           "label": "dmrd:{{dmrd}}",
           "colour": "#BDFFBD",
+          "startNewLine": true,
           "actions": [
             { "type": "SendStringOverNUS", "value": "(eou dmrd 0)\n" }
           ]
         }
       },
-     
       { "type": "CreateButton", "button": { "name": "Tuning_dmrd_p1", "label": "dmrd +1", "actions": [ { "type": "SendStringOverNUS", "value": "(defvar app-val dmrd)\n" }, { "type": "SendStringOverNUS", "value": "(delta-fn app-val 1)\n" }, { "type": "SendStringOverNUS", "value": "(eou dmrd 0)\n" } ] } },
       { "type": "CreateButton", "button": { "name": "Tuning_dmrd_m1", "label": "dmrd -1", "actions": [ { "type": "SendStringOverNUS", "value": "(defvar app-val dmrd)\n" }, { "type": "SendStringOverNUS", "value": "(delta-fn app-val -1)\n" }, { "type": "SendStringOverNUS", "value": "(eou dmrd 0)\n" } ] } },
       { "type": "CreateButton", "button": { "name": "Tuning_dmrd_p5", "label": "dmrd +5", "actions": [ { "type": "SendStringOverNUS", "value": "(defvar app-val dmrd)\n" }, { "type": "SendStringOverNUS", "value": "(delta-fn app-val 5)\n" }, { "type": "SendStringOverNUS", "value": "(eou dmrd 0)\n" } ] } },
@@ -1194,10 +1202,10 @@
       { "type": "CreateButton", "button": { "name": "Tuning_dupli_m001", "label": "dupli -0.001", "actions": [ { "type": "SendStringOverNUS", "value": "(defvar app-val dupli)\n" }, { "type": "SendStringOverNUS", "value": "(delta-fn app-val -0.001)\n" }, { "type": "SendStringOverNUS", "value": "(eou dupli 0)\n" } ] } },
 
   { "type": "CreateButton", "button": { "name": "Tuning_ddnli_watch", "label": "ddnli:{{ddnli}}", "colour": "#BDFFBD", "startNewLine": true, "actions": [ { "type": "SendStringOverNUS", "value": "(eou ddnli 0)\n" } ] } },
-        { "type": "CreateButton", "button": { "name": "Tuning_ddnli_p1e6", "label": "ddnli +0.000001", "actions": [ { "type": "SendStringOverNUS", "value": "(emo ddnli (+ (cadr (eou ddnli 0)) 0.000001))\n" }, { "type": "SendStringOverNUS", "value": "(ecr ddnli)\n" }, { "type": "SendStringOverNUS", "value": "(eou ddnli 0)\n" } ] } },
-        { "type": "CreateButton", "button": { "name": "Tuning_ddnli_m1e6", "label": "ddnli -0.000001", "actions": [ { "type": "SendStringOverNUS", "value": "(emo ddnli (+ (cadr (eou ddnli 0)) -0.000001))\n" }, { "type": "SendStringOverNUS", "value": "(ecr ddnli)\n" }, { "type": "SendStringOverNUS", "value": "(eou ddnli 0)\n" } ] } },
-        { "type": "CreateButton", "button": { "name": "Tuning_ddnli_p1e5", "label": "ddnli +0.00001", "actions": [ { "type": "SendStringOverNUS", "value": "(emo ddnli (+ (cadr (eou ddnli 0)) 0.00001))\n" }, { "type": "SendStringOverNUS", "value": "(ecr ddnli)\n" }, { "type": "SendStringOverNUS", "value": "(eou ddnli 0)\n" } ] } },
-        { "type": "CreateButton", "button": { "name": "Tuning_ddnli_m1e5", "label": "ddnli -0.00001", "actions": [ { "type": "SendStringOverNUS", "value": "(emo ddnli (+ (cadr (eou ddnli 0)) -0.00001))\n" }, { "type": "SendStringOverNUS", "value": "(ecr ddnli)\n" }, { "type": "SendStringOverNUS", "value": "(eou ddnli 0)\n" } ] } },
+      { "type": "CreateButton", "button": { "name": "Tuning_ddnli_p1e6", "label": "ddnli +0.000001", "actions": [ { "type": "SendStringOverNUS", "value": "(defvar app-val ddnli)\n" }, { "type": "SendStringOverNUS", "value": "(delta-fn app-val 0.000001)\n" }, { "type": "SendStringOverNUS", "value": "(eou ddnli 0)\n" } ] } },
+      { "type": "CreateButton", "button": { "name": "Tuning_ddnli_m1e6", "label": "ddnli -0.000001", "actions": [ { "type": "SendStringOverNUS", "value": "(defvar app-val ddnli)\n" }, { "type": "SendStringOverNUS", "value": "(delta-fn app-val -0.000001)\n" }, { "type": "SendStringOverNUS", "value": "(eou ddnli 0)\n" } ] } },
+      { "type": "CreateButton", "button": { "name": "Tuning_ddnli_p1e5", "label": "ddnli +0.00001", "actions": [ { "type": "SendStringOverNUS", "value": "(defvar app-val ddnli)\n" }, { "type": "SendStringOverNUS", "value": "(delta-fn app-val 0.00001)\n" }, { "type": "SendStringOverNUS", "value": "(eou ddnli 0)\n" } ] } },
+      { "type": "CreateButton", "button": { "name": "Tuning_ddnli_m1e5", "label": "ddnli -0.00001", "actions": [ { "type": "SendStringOverNUS", "value": "(defvar app-val ddnli)\n" }, { "type": "SendStringOverNUS", "value": "(delta-fn app-val -0.00001)\n" }, { "type": "SendStringOverNUS", "value": "(eou ddnli 0)\n" } ] } },
 
   { "type": "CreateButton", "button": { "name": "Tuning_dgrct_watch", "label": "dgrct:{{dgrct}}", "colour": "#BDFFBD", "startNewLine": true, "actions": [ { "type": "SendStringOverNUS", "value": "(eou dgrct 0)\n" } ] } },
       { "type": "CreateButton", "button": { "name": "Tuning_dgrct_p1", "label": "dgrct +1", "actions": [ { "type": "SendStringOverNUS", "value": "(defvar app-val dgrct)\n" }, { "type": "SendStringOverNUS", "value": "(delta-fn app-val 1)\n" }, { "type": "SendStringOverNUS", "value": "(eou dgrct 0)\n" } ] } },
@@ -1212,8 +1220,6 @@
           "label": "show tuning",
           "actions": [
             { "type": "UnhideButton", "name": "Tuning_dmrd_watch" },
-            { "type": "UnhideButton", "name": "Tuning_dfsi_watch" },
-            { "type": "UnhideButton", "name": "Tuning_steve_algorithm" },
             { "type": "UnhideButton", "name": "Tuning_dmrd_p1" },
             { "type": "UnhideButton", "name": "Tuning_dmrd_m1" },
             { "type": "UnhideButton", "name": "Tuning_dmrd_p5" },
@@ -1257,8 +1263,6 @@
           "label": "hide tuning",
           "actions": [
             { "type": "HideButton", "name": "Tuning_dmrd_watch" },
-            { "type": "HideButton", "name": "Tuning_dfsi_watch" },
-            { "type": "HideButton", "name": "Tuning_steve_algorithm" },
             { "type": "HideButton", "name": "Tuning_dmrd_p1" },
             { "type": "HideButton", "name": "Tuning_dmrd_m1" },
             { "type": "HideButton", "name": "Tuning_dmrd_p5" },
