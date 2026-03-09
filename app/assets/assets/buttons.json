@@ -1106,7 +1106,7 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle dfza",
-          "label": "dfza",
+          "label": "dfza {{dfza}}",
           "actions": [
             {
               "type": "SendStringOverNUS",
@@ -1119,7 +1119,7 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle dfgr",
-          "label": "dfgr",
+          "label": "dfgr {{dfgr}}",
           "actions": [
             {
               "type": "SendStringOverNUS",
@@ -1132,7 +1132,7 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle dfzg",
-          "label": "dfzg",
+          "label": "dfzg {{dfzg}}",
           "actions": [
             {
               "type": "SendStringOverNUS",
@@ -1145,7 +1145,7 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle dfzm",
-          "label": "dfzm",
+          "label": "dfzm {{dfzm}}",
           "actions": [
             {
               "type": "SendStringOverNUS",
@@ -1158,7 +1158,7 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle dfzv",
-          "label": "dfzv",
+          "label": "dfzv {{dfzv}}",
           "actions": [
             {
               "type": "SendStringOverNUS",
@@ -1171,7 +1171,7 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle dfvn",
-          "label": "dfvn",
+          "label": "dfvn {{dfvn}}",
           "actions": [
             {
               "type": "SendStringOverNUS",
@@ -1184,7 +1184,7 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle dfvf",
-          "label": "dfvf",
+          "label": "dfvf {{dfvf}}",
           "actions": [
             {
               "type": "SendStringOverNUS",
@@ -1197,7 +1197,7 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle dfvd",
-          "label": "dfvd",
+          "label": "dfvd {{dfvd}}",
           "actions": [
             {
               "type": "SendStringOverNUS",
@@ -1210,7 +1210,7 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle dfzs",
-          "label": "dfzs",
+          "label": "dfzs {{dfzs}}",
           "actions": [
             {
               "type": "SendStringOverNUS",
@@ -1223,7 +1223,7 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle dfup",
-          "label": "dfup",
+          "label": "dfup {{dfup}}",
           "actions": [
             {
               "type": "SendStringOverNUS",
@@ -1236,7 +1236,7 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle dfdn",
-          "label": "dfdn",
+          "label": "dfdn {{dfdn}}",
           "actions": [
             {
               "type": "SendStringOverNUS",
@@ -1249,7 +1249,7 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle dfrp",
-          "label": "dfrp",
+          "label": "dfrp {{dfrp}}",
           "actions": [
             {
               "type": "SendStringOverNUS",
