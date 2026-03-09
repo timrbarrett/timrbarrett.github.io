@@ -27859,15 +27859,14 @@ _.y="Unknown Device"
 _.Q=_.z=!1
 _.ay=_.ax=_.at=_.as=null
 _.ch=0
-_.CW=1
-_.cx=d
-_.cy=!1
-_.db=e
-_.dy=_.dx=0
-_.fr=null
-_.fx=!1
-_.fy=!0
-_.go=f},
+_.CW=d
+_.cx=!1
+_.cy=e
+_.dx=_.db=0
+_.dy=null
+_.fr=!1
+_.fx=!0
+_.fy=f},
 a8s:function a8s(a){this.a=a},
 a8t:function a8t(a){this.a=a},
 a8r:function a8r(a){this.a=a},
@@ -98198,9 +98197,9 @@ apR(){var s=this,r=document
 r.toString
 B.Lm.Kh(r,"visibilitychange",new A.a8r(s))
 r=r.hidden!==!0
-s.fy=r
-s.go.D(0,r)
-A.O().$1("\ud83d\udc41\ufe0f Initial page visibility: "+(s.fy?"Visible":"Hidden"))},
+s.fx=r
+s.fy.D(0,r)
+A.O().$1("\ud83d\udc41\ufe0f Initial page visibility: "+(s.fx?"Visible":"Hidden"))},
 aaZ(){var s=this.at
 if(s!=null)s.aE(0)
 this.at=A.Hj(B.Kn,new A.a8h(this))},
@@ -98213,30 +98212,30 @@ r=""+B.f.cE(new A.cs(s,0,!1).er(r).a,1e6)+"s ago"
 s=r}else s="No data received"
 q.kP("Unexpected disconnection",A.a9(["lastDataReceived",s],t.N,t.z))
 q.z=!1
-s=q.db
+s=q.cy
 s.D(0,!1)
 q.BB()
 q.zG()
 q.r=q.f=null
 q.x=""
 s.D(0,!1)
-if(q.fy){A.O().$1("\ud83d\udd04 Will attempt reconnection in 2 seconds")
-s=q.fr
+if(q.fx){A.O().$1("\ud83d\udd04 Will attempt reconnection in 2 seconds")
+s=q.dy
 if(s!=null)s.aE(0)
-q.fr=A.cc(B.aT,new A.a8k(q))}},
-QL(){var s,r,q=this,p=q.fr
+q.dy=A.cc(B.aT,new A.a8k(q))}},
+QL(){var s,r,q=this,p=q.dy
 if(p!=null)p.aE(0)
-p=q.fx
-if(!p&&q.dy>=10){A.O().$1("\u26a0\ufe0f Maximum total reconnection attempts reached for this session. User-initiated reconnection required.")
-q.db.D(0,!1)
-q.dy=q.dx=0
-return}s=q.dx
+p=q.fr
+if(!p&&q.dx>=10){A.O().$1("\u26a0\ufe0f Maximum total reconnection attempts reached for this session. User-initiated reconnection required.")
+q.cy.D(0,!1)
+q.dx=q.db=0
+return}s=q.db
 if(s>=5){A.O().$1("\u26a0\ufe0f Maximum consecutive reconnection attempts reached. Manual reconnection required.")
-q.dx=0
-q.db.D(0,!1)
+q.db=0
+q.cy.D(0,!1)
 return}r=A.du(0,0,p?1:B.c.bT(Math.pow(2,Math.min(s,3))))
-A.O().$1("\ud83d\udd04 Will attempt reconnection in "+B.f.cE(r.a,1e6)+" seconds (attempt "+(q.dx+1)+"/5)")
-q.fr=A.cc(r,new A.a8i(q))},
+A.O().$1("\ud83d\udd04 Will attempt reconnection in "+B.f.cE(r.a,1e6)+" seconds (attempt "+(q.db+1)+"/5)")
+q.dy=A.cc(r,new A.a8i(q))},
 ni(){var s=0,r=A.t(t.H),q,p=this,o,n,m
 var $async$ni=A.o(function(a,b){if(a===1)return A.p(b,r)
 while(true)switch(s){case 0:if(p.e==null){s=1
@@ -98259,7 +98258,7 @@ return A.m(t.R.b(n)?n:A.en(n,t.H),$async$ni)
 case 6:n=p.r
 p.w=n==null?null:n.c.glL(0).kD(p.ga0g(),new A.a8o(p),new A.a8p(p))
 p.z=!0
-n=p.db
+n=p.cy
 n.D(0,!0)
 p.WM()
 n.D(0,!0)
@@ -98302,11 +98301,11 @@ case 9:s=4
 break
 case 12:case 8:s=m.e==null?14:15
 break
-case 14:j="wants to pair #"+m.CW
+case 14:j="wants to pair 0.592 (d0be1ab)"
 window.alert(j)
 f=t.N
 e=t.z
-m.kP("Pair prompt marker shown",A.a9(["marker",j],f,e));++m.CW
+m.kP("Pair prompt marker shown",A.a9(["marker",j],f,e))
 c=$.adw
 if(c==null)c=$.adw=new A.Qj(A.auf(A.aI(t.iD),t.Pg))
 s=16
@@ -98352,7 +98351,7 @@ case 21:m.rv("RX notifications started")
 f=m.r
 m.w=f==null?null:f.c.glL(0).kD(m.ga0g(),new A.a8v(m),new A.a8w(m))
 m.z=!0
-f=m.db
+f=m.cy
 f.D(0,!0)
 m.WM()
 f.D(0,!0)
@@ -98372,7 +98371,7 @@ g=A.Z(a)
 A.O().$1("\u274c Failed to connect: "+A.i(g))
 m.kP("Connection failed",A.a9(["error",J.aB(g)],t.N,t.z))
 m.z=!1
-m.db.D(0,!1)
+m.cy.D(0,!1)
 m.BB()
 throw a
 n.push(6)
@@ -98398,7 +98397,7 @@ return A.m(t.R.b(m)?m:A.en(m,t.H),$async$nF)
 case 6:m=o.e
 if(m!=null)m.nF(0)
 o.z=!1
-o.db.D(0,!1)
+o.cy.D(0,!1)
 o.r=o.f=o.e=null
 o.x=""
 q=1
@@ -98427,8 +98426,8 @@ break}if(n.e==null){A.O().$1("\u26a0\ufe0f No previous device found, need to con
 q=!1
 s=1
 break}A.O().$1("\ud83d\udd04 User initiated reconnection to "+n.y)
-n.fx=!0
-n.dx=0
+n.fr=!0
+n.db=0
 n.Q=!0
 p=4
 s=7
@@ -98463,7 +98462,7 @@ fi(a){return this.a4v(a)},
 a4v(a){var s=0,r=A.t(t.y),q,p=this,o
 var $async$fi=A.o(function(b,c){if(b===1)return A.p(c,r)
 while(true)switch(s){case 0:A.O().$1("\ud83d\udce4 Request to send: "+a)
-o=p.cx
+o=p.CW
 if(o.length>3||!p.z){o.push(a)
 p.anG()
 q=!0
@@ -98476,8 +98475,8 @@ break
 case 1:return A.q(q,r)}})
 return A.r($async$fi,r)},
 anG(){var s=this
-if(s.cy||s.cx.length===0||!s.z)return
-s.cy=!0
+if(s.cx||s.CW.length===0||!s.z)return
+s.cx=!0
 A.b6E(new A.a8l(s),t.a)},
 wc(a){return this.apv(a)},
 apv(a){var s=0,r=A.t(t.y),q,p=this
@@ -98544,10 +98543,10 @@ A.a8t.prototype={
 $1(a){this.a.rE()},
 $S:67}
 A.a8r.prototype={
-$1(a){var s=this.a,r=s.fy,q=s.fy=document.hidden!==!0
-if(r!==q){s.go.D(0,q)
-A.O().$1("\ud83d\udc41\ufe0f Page visibility changed to: "+(s.fy?"Visible":"Hidden"))
-if(s.fy){if(s.z){A.O().$1("\ud83d\udd0d Page visible again, verifying connection...")
+$1(a){var s=this.a,r=s.fx,q=s.fx=document.hidden!==!0
+if(r!==q){s.fy.D(0,q)
+A.O().$1("\ud83d\udc41\ufe0f Page visibility changed to: "+(s.fx?"Visible":"Hidden"))
+if(s.fx){if(s.z){A.O().$1("\ud83d\udd0d Page visible again, verifying connection...")
 s.rE()}}else{A.O().$1("\ud83d\udca4 Page hidden, adjusting connection monitoring")
 s.aaZ()}}},
 $S:72}
@@ -98571,8 +98570,8 @@ s=9
 return A.m(l.e.ep(),$async$$0)
 case 9:s=10
 return A.m(l.ni(),$async$$0)
-case 10:l.dx=0
-l.fx=!1
+case 10:l.db=0
+l.fr=!1
 A.O().$1("\u2705 Reconnection successful")
 q=1
 s=8
@@ -98580,7 +98579,7 @@ break
 case 6:q=5
 k=p.pop()
 n=A.Z(k)
-A.O().$1("\u274c Reconnection attempt failed: "+A.i(n));++l.dx;++l.dy
+A.O().$1("\u274c Reconnection attempt failed: "+A.i(n));++l.db;++l.dx
 l.QL()
 s=8
 break
@@ -98589,8 +98588,8 @@ break
 case 8:s=3
 break
 case 4:A.O().$1("\u274c No device reference available for reconnection")
-l.dx=0
-l.fx=!1
+l.db=0
+l.fr=!1
 case 3:return A.q(null,r)
 case 1:return A.p(p.at(-1),r)}})
 return A.r($async$$0,r)},
@@ -98629,7 +98628,7 @@ A.a8l.prototype={
 $0(){var s=0,r=A.t(t.a),q=this,p,o,n
 var $async$$0=A.o(function(a,b){if(a===1)return A.p(b,r)
 while(true)switch(s){case 0:p=q.a
-o=p.cx
+o=p.CW
 n=t.z
 case 2:if(!!0){s=3
 break}if(!(o.length!==0&&p.z)){s=3
@@ -98639,7 +98638,7 @@ case 4:s=5
 return A.m(A.fl(B.aS,null,n),$async$$0)
 case 5:s=2
 break
-case 3:p.cy=!1
+case 3:p.cx=!1
 return A.q(null,r)}})
 return A.r($async$$0,r)},
 $S:183}
@@ -103010,7 +103009,7 @@ s=$.fS()
 r=s.d
 q.d=new A.c6(r,A.l(r).i("c6<1>")).h_(new A.awc(q))
 q.DX()
-s=s.db
+s=s.cy
 new A.c6(s,A.l(s).i("c6<1>")).h_(new A.awd(q))},
 l(){var s=this.d
 if(s!=null)s.aE(0)
@@ -103259,7 +103258,7 @@ $0(){var s=this.a
 s.w=!s.w},
 $S:0}
 A.awa.prototype={
-$2(a,b){var s,r,q,p,o,n,m,l,k=null,j=A.W("Web Bluetooth App 0.592 (d0be1ab)",k,k,k,k,k,k,k),i=$.fS().db
+$2(a,b){var s,r,q,p,o,n,m,l,k=null,j=A.W("Web Bluetooth App 0.592 (d0be1ab)",k,k,k,k,k,k,k),i=$.fS().cy
 i=A.aRp(new A.aw4(),!1,new A.c6(i,A.l(i).i("c6<1>")),t.y)
 s=A.bY(k,k,k,B.MD,k,k,new A.aw5(a),k,k,k,"Combined Buttons Screen")
 r=this.a
@@ -104017,7 +104016,7 @@ $0(){var s=this.a
 s.y=!s.y},
 $S:0}
 A.ay2.prototype={
-$2(a,b){var s,r,q=null,p=A.bY(q,q,q,B.Lk,q,q,new A.axR(a),q,q,q,"Gabor Hex"),o=A.bY(q,q,q,B.Mz,q,q,new A.axS(a),q,q,q,"WebRTC Viewer"),n=this.a,m=A.bY(q,q,q,B.Mp,q,q,new A.axT(n,a),q,q,q,"Load Simple Condition Test"),l=A.bY(q,q,q,B.MF,q,q,new A.axV(n,a),q,q,q,"Load Test 7.1"),k=A.bY(q,q,q,B.MR,q,q,new A.axW(n,a),q,q,q,"Load Test 1.1 Self-Testing"),j=A.bY(q,q,q,B.MJ,q,q,new A.axX(n,a),q,q,q,"Load Orientation Test"),i=A.bY(q,q,q,B.Ms,q,q,new A.axY(n,a),q,q,q,"Load Dynamic Orientation Test"),h=A.bY(q,q,q,B.N2,q,q,new A.axZ(a),q,q,q,"Simulate Velocity"),g=n.f.db
+$2(a,b){var s,r,q=null,p=A.bY(q,q,q,B.Lk,q,q,new A.axR(a),q,q,q,"Gabor Hex"),o=A.bY(q,q,q,B.Mz,q,q,new A.axS(a),q,q,q,"WebRTC Viewer"),n=this.a,m=A.bY(q,q,q,B.Mp,q,q,new A.axT(n,a),q,q,q,"Load Simple Condition Test"),l=A.bY(q,q,q,B.MF,q,q,new A.axV(n,a),q,q,q,"Load Test 7.1"),k=A.bY(q,q,q,B.MR,q,q,new A.axW(n,a),q,q,q,"Load Test 1.1 Self-Testing"),j=A.bY(q,q,q,B.MJ,q,q,new A.axX(n,a),q,q,q,"Load Orientation Test"),i=A.bY(q,q,q,B.Ms,q,q,new A.axY(n,a),q,q,q,"Load Dynamic Orientation Test"),h=A.bY(q,q,q,B.N2,q,q,new A.axZ(a),q,q,q,"Simulate Velocity"),g=n.f.cy
 g=A.aRp(new A.ay_(n),!1,new A.c6(g,A.l(g).i("c6<1>")),t.y)
 s=n.y
 r=A.fm(s?B.Md:B.Mi,q,q,q)
@@ -104151,7 +104150,7 @@ A.axr.prototype={
 $3(a,b,c){return new A.ef($.eh(),new A.axq(this.a,b),null,null,t.vb)},
 $S:116}
 A.axq.prototype={
-$3(a,b,c){var s,r,q,p,o=null,n=this.a,m=A.cg(new A.bc(B.b7,A.i2(A.iV(n.QR(this.b,b),B.bD,8,8),o,o,B.ab),o),2),l=n.f.db
+$3(a,b,c){var s,r,q,p,o=null,n=this.a,m=A.cg(new A.bc(B.b7,A.i2(A.iV(n.QR(this.b,b),B.bD,8,8),o,o,B.ab),o),2),l=n.f.cy
 l=A.aRp(new A.axp(),!1,new A.c6(l,A.l(l).i("c6<1>")),t.y)
 s=n.y
 r=A.fm(s?B.lC:B.lD,o,o,o)
