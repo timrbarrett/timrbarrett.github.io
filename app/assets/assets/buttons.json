@@ -1119,7 +1119,7 @@
         "type": "CreateButton",
         "button": {
           "name": "toggle dfgr",
-          "label": "dfgr {{dfgr}}",
+          "label": "dfgr {{dfgr}}",  
           "actions": [
             {
               "type": "SendStringOverNUS",
