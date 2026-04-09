@@ -103124,7 +103124,7 @@ $0(){var s=this.a
 s.w=!s.w},
 $S:0}
 A.aw3.prototype={
-$2(a,b){var s,r,q,p,o,n,m,l,k=null,j=A.U("Web Bluetooth App 0.592 (6127b23)",k,k,k,k,k,k,k),i=$.fT().c
+$2(a,b){var s,r,q,p,o,n,m,l,k=null,j=A.U("Web Bluetooth App 0.592 (afd3544)",k,k,k,k,k,k,k),i=$.fT().c
 i=A.aRo(new A.avY(),!1,new A.c6(i,A.l(i).i("c6<1>")),t.y)
 s=A.bZ(k,k,k,B.MG,k,k,new A.avZ(a),k,k,k,"Combined Buttons Screen")
 r=this.a
@@ -103334,7 +103334,7 @@ r.Q=A.b41(!0,new A.ay_(r))},
 aq9(){var s=this,r=null
 if(s.as||s.c==null)return
 s.as=!0
-s.c.S(t.q).f.aQ(A.c7(r,r,r,r,r,B.k,r,A.U("App version: 0.592 (6127b23)",r,r,r,r,r,r,r),r,B.I,r,r,r,r,r,r,r,r,r))},
+s.c.S(t.q).f.aQ(A.c7(r,r,r,r,r,B.k,r,A.U("App version: 0.592 (afd3544)",r,r,r,r,r,r,r),r,B.I,r,r,r,r,r,r,r,r,r))},
 l(){var s=this.z
 if(s!=null)s.aJ(0)
 s=this.Q
