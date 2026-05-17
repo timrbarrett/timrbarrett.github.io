@@ -138,13 +138,49 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  const requestUrl = new URL(event.request.url);
+  const isAppShellRequest =
+    requestUrl.pathname === BASE_HREF ||
+    requestUrl.pathname === BASE_HREF + 'index.html' ||
+    requestUrl.pathname === BASE_HREF + 'main.dart.js' ||
+    requestUrl.pathname === BASE_HREF + 'flutter.js' ||
+    requestUrl.pathname === BASE_HREF + 'flutter_bootstrap.js';
+
   // For navigation requests that don't start with BASE_HREF, redirect to BASE_HREF
   if (event.request.mode === 'navigate' && !event.request.url.includes(BASE_HREF)) {
-    const url = new URL(event.request.url);
-    if (url.pathname === '/' || url.pathname === '') {
+    if (requestUrl.pathname === '/' || requestUrl.pathname === '') {
       event.respondWith(Response.redirect(BASE_HREF, 302));
       return;
     }
+  }
+
+  if (isAppShellRequest) {
+    event.respondWith(
+      fetch(event.request)
+        .then(async (networkResponse) => {
+          if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+            const cache = await caches.open(CACHE_NAME);
+            cache.put(event.request, networkResponse.clone());
+          }
+          return networkResponse;
+        })
+        .catch(async () => {
+          const cachedResponse = await caches.match(event.request);
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+
+          if (event.request.mode === 'navigate') {
+            return caches.match(OFFLINE_URL);
+          }
+
+          return new Response('Offline - Resource not available', {
+            status: 503,
+            statusText: 'Service Unavailable'
+          });
+        })
+    );
+    return;
   }
 
   event.respondWith(
