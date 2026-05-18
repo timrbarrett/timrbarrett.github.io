@@ -1,5 +1,5 @@
 // Service Worker for offline functionality
-const CACHE_NAME = 'limbstim-app-v5';
+const CACHE_NAME = 'limbstim-app-v6';
 const BASE_HREF = '/app/';
 const OFFLINE_URL = BASE_HREF + 'offline.html';
 
@@ -97,8 +97,8 @@ self.addEventListener('install', (event) => {
         console.log('Service Worker: All available assets cached');
       })
       .then(() => {
-        console.log('Service Worker: Waiting for activation signal');
-        // Don't automatically skip waiting - let the user decide
+        console.log('Service Worker: Activating updated worker immediately');
+        return self.skipWaiting();
       })
       .catch((error) => {
         console.error('Service Worker: Cache failed:', error);

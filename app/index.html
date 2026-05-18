@@ -81,6 +81,7 @@
         navigator.serviceWorker.register('/app/sw.js')
           .then((registration) => {
             console.log('SW registered: ', registration);
+            registration.update();
             
             // Simply log service worker events without prompting
             registration.addEventListener('updatefound', () => {
@@ -92,8 +93,8 @@
                 
                 if (newWorker.state === 'installed') {
                   if (navigator.serviceWorker.controller) {
-                    // New service worker is ready, but don't prompt
-                    console.log('New service worker ready, will take effect on next page load');
+                    console.log('New service worker ready, activating immediately');
+                    newWorker.postMessage({ action: 'skipWaiting' });
                   } else {
                     // First time installation
                     console.log('Service worker installed for the first time');
@@ -105,6 +106,13 @@
           .catch((registrationError) => {
             console.log('SW registration failed: ', registrationError);
           });
+      });
+
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (refreshing) return;
+        refreshing = true;
+        window.location.reload();
       });
     }
 
