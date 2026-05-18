@@ -36,9 +36,23 @@
 </head>
 
 <body>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations()
+        .then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
+        .then(() => console.log('Service workers unregistered for fresh app load'))
+        .catch((error) => console.log('Service worker unregister failed:', error));
+    }
+
+    if ('caches' in window) {
+      caches.keys()
+        .then((keys) => Promise.all(keys.map((key) => caches.delete(key))))
+        .then(() => console.log('PWA caches cleared for fresh app load'))
+        .catch((error) => console.log('Cache clear failed:', error));
+    }
+  </script>
   <script src="flutter.js" defer></script>
   <script src="flutter_bootstrap.js" defer></script>
-  <script src="main.dart.js" defer></script>
 
   
   <script>
@@ -74,48 +88,7 @@
     }
   </script>
 
-  <!-- Service Worker Registration -->
   <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/app/sw.js')
-          .then((registration) => {
-            console.log('SW registered: ', registration);
-            registration.update();
-            
-            // Simply log service worker events without prompting
-            registration.addEventListener('updatefound', () => {
-              const newWorker = registration.installing;
-              console.log('SW update found, new worker installing...');
-              
-              newWorker.addEventListener('statechange', () => {
-                console.log('SW state changed to:', newWorker.state);
-                
-                if (newWorker.state === 'installed') {
-                  if (navigator.serviceWorker.controller) {
-                    console.log('New service worker ready, activating immediately');
-                    newWorker.postMessage({ action: 'skipWaiting' });
-                  } else {
-                    // First time installation
-                    console.log('Service worker installed for the first time');
-                  }
-                }
-              });
-            });
-          })
-          .catch((registrationError) => {
-            console.log('SW registration failed: ', registrationError);
-          });
-      });
-
-      let refreshing = false;
-      navigator.serviceWorker.addEventListener('controllerchange', () => {
-        if (refreshing) return;
-        refreshing = true;
-        window.location.reload();
-      });
-    }
-
     // Handle connection status
     function updateOnlineStatus() {
       const status = navigator.onLine ? 'online' : 'offline';
