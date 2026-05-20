@@ -29159,7 +29159,7 @@ s=2
 return A.l(o.rm(q==null?B.rR:q),$async$aRI)
 case 2:n=d
 m=Date.now()
-A.bhW(A.a7(["run_id",a,"type","ble_smoke","started_at",new A.ca(p,0,!1).h0(),"finished_at",new A.ca(m,0,!1).h0(),"app_version","0.598 (6e526b6)","result",n.GL(),"connection_stats",o.QZ(),"connection_log",A.d0(o.r,!0,t.P)],t.N,t.K))
+A.bhW(A.a7(["run_id",a,"type","ble_smoke","started_at",new A.ca(p,0,!1).h0(),"finished_at",new A.ca(m,0,!1).h0(),"app_version","0.598 (21a75a5)","result",n.GL(),"connection_stats",o.QZ(),"connection_log",A.d0(o.r,!0,t.P)],t.N,t.K))
 return A.p(null,r)}})
 return A.q($async$aRI,r)},
 bjw(a){var s,r,q,p,o,n,m,l
@@ -102655,7 +102655,7 @@ return!0},
 $S:44}
 A.aTj.prototype={
 $0(){var s=new A.ca(Date.now(),0,!1).h0(),r=$.fh()
-return B.C.ea(A.a7(["timestamp",s,"app_version","0.598 (6e526b6)","connected",r.ay,"device_name",r.ax,"stats",r.QZ(),"connection_log",A.d0(r.r,!0,t.P)],t.N,t.X),null)},
+return B.C.ea(A.a7(["timestamp",s,"app_version","0.598 (21a75a5)","connected",r.ay,"device_name",r.ax,"stats",r.QZ(),"connection_log",A.d0(r.r,!0,t.P)],t.N,t.X),null)},
 $S:50}
 A.aRA.prototype={
 $1(a){return J.ap(a)},
@@ -108541,7 +108541,7 @@ $0(){var s=this.a
 s.as=!s.as},
 $S:0}
 A.azA.prototype={
-$2(a,b){var s,r,q,p,o,n,m,l,k=null,j=A.V("Web Bluetooth App 0.598 (6e526b6)",k,k,k,k,k,k,k),i=$.fh(),h=i.e,g=this.a
+$2(a,b){var s,r,q,p,o,n,m,l,k=null,j=A.V("Web Bluetooth App 0.598 (21a75a5)",k,k,k,k,k,k,k),i=$.fh(),h=i.e,g=this.a
 h=A.aVN(new A.azt(g),i.ay,new A.bK(h,A.m(h).i("bK<1>")),t.y)
 i=A.bW(k,k,k,B.NG,k,k,new A.azu(a),k,k,k,"Combined Buttons Screen")
 s=A.bW(k,k,k,B.mh,k,k,g.gatp(),k,k,k,"Save Console Data")
@@ -108787,7 +108787,7 @@ q.ch=A.b9h(!0,new A.aBK(q))},
 auN(){var s=this,r=null
 if(s.CW||s.c==null)return
 s.CW=!0
-s.c.O(t.q).f.aU(A.c9(r,r,r,r,r,B.k,r,A.V("App version: 0.598 (6e526b6)",r,r,r,r,r,r,r),r,B.J,r,r,r,r,r,r,r,r,r,r))},
+s.c.O(t.q).f.aU(A.c9(r,r,r,r,r,B.k,r,A.V("App version: 0.598 (21a75a5)",r,r,r,r,r,r,r),r,B.J,r,r,r,r,r,r,r,r,r,r))},
 l(){var s=this,r=s.at
 if(r!=null)r.aI(0)
 r=s.ax

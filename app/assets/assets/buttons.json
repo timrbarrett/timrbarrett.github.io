@@ -153,6 +153,27 @@
       {
         "type": "CreateButton",
         "button": {
+          "name": "dbsm 9",
+          "label": "raw IMU",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 9) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
           "name": "hide dbsm",
           "label": "hide dbsm",
           "actions": [
@@ -187,6 +208,10 @@
             {
               "type": "HideButton",
               "name": "dbsm 8"
+            },
+            {
+              "type": "HideButton",
+              "name": "dbsm 9"
             },
             {
               "type": "CreateButton",
@@ -225,6 +250,10 @@
                   {
                     "type": "UnhideButton",
                     "name": "dbsm 8"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dbsm 9"
                   }
                 ]
               }
