@@ -138,14 +138,6 @@
             {
               "type": "SendStringOverNUS",
               "value": "(emo dbsm 8) \n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(ecr dbsm) \n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(eou dbsm 0) \n"
             }
           ]
         }
@@ -159,14 +151,6 @@
             {
               "type": "SendStringOverNUS",
               "value": "(emo dbsm 9) \n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(ecr dbsm) \n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(eou dbsm 0) \n"
             }
           ]
         }
@@ -276,14 +260,6 @@
             {
               "type": "SendStringOverNUS",
               "value": "(emo dmrd 20) \n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(ecr dmrd) \n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(eou dmrd 0) \n"
             }
           ]
         }
@@ -297,14 +273,6 @@
             {
               "type": "SendStringOverNUS",
               "value": "(emo dmrd 50) \n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(ecr dmrd) \n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(eou dmrd 0) \n"
             }
           ]
         }
@@ -318,14 +286,6 @@
             {
               "type": "SendStringOverNUS",
               "value": "(emo dmrd 500) \n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(ecr dmrd) \n"
-            },
-            {
-              "type": "SendStringOverNUS",
-              "value": "(eou dmrd 0) \n"
             }
           ]
         }
