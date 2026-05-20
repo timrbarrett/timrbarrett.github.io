@@ -132,6 +132,27 @@
       {
         "type": "CreateButton",
         "button": {
+          "name": "dbsm 8",
+          "label": "DBSM motion",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(emo dbsm 8) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(ecr dbsm) \n"
+            },
+            {
+              "type": "SendStringOverNUS",
+              "value": "(eou dbsm 0) \n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
           "name": "hide dbsm",
           "label": "hide dbsm",
           "actions": [
@@ -162,6 +183,10 @@
             {
               "type": "HideButton",
               "name": "dbsm 5"
+            },
+            {
+              "type": "HideButton",
+              "name": "dbsm 8"
             },
             {
               "type": "CreateButton",
@@ -196,6 +221,10 @@
                   {
                     "type": "UnhideButton",
                     "name": "dbsm 5"
+                  },
+                  {
+                    "type": "UnhideButton",
+                    "name": "dbsm 8"
                   }
                 ]
               }
