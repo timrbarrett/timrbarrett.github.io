@@ -29281,10 +29281,10 @@ for(s=c,r=65535;s<o;++s){r=(r^a[s]<<8)>>>0
 for(q=0;q<8;++q){p=r<<1
 r=(r&32768)!==0?(p^4129)&65535:p&65535}}return r},
 arZ:function arZ(){var _=this
-_.d=_.c=_.b=_.a=0},
+_.e=_.d=_.c=_.b=_.a=0},
 qi:function qi(a,b){this.a=a
 this.b=b},
-o3:function o3(a,b,c,d,e,f,g,h,i,j,k,l,m,n){var _=this
+o3:function o3(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o){var _=this
 _.a=a
 _.b=b
 _.c=c
@@ -29298,7 +29298,8 @@ _.y=j
 _.z=k
 _.Q=l
 _.as=m
-_.at=n},
+_.at=n
+_.ax=o},
 as_:function as_(a,b){this.a=a
 this.b=b},
 we(a,b){var s,r,q,p
@@ -103422,12 +103423,12 @@ r.kP(o)
 if(!s.go_())A.a8(s.nM())
 s.kP(o)
 A.b5b(o)}}},
-asg(a3){var s,r,q,p,o,n="r4_kind",m="r4_accel_x_mg",l="r4_accel_y_mg",k="r4_accel_z_mg",j="r4_accel_x_mps2",i="r4_accel_y_mps2",h="r4_accel_z_mps2",g="r4_gyro_x_mdps",f="r4_gyro_y_mdps",e="r4_gyro_z_mdps",d="r4_gyro_x_radps",c="r4_gyro_y_radps",b="r4_gyro_z_radps",a="r4_valid_bits",a0=t.N,a1=A.a5(["r4_schema_version",B.f.j(a3.b),"r4_msg_type",B.f.j(a3.c),"r4_flags",B.f.j(a3.d),"r4_sequence",B.f.j(a3.e),"r4_timestamp_ms",B.f.j(a3.f)],a0,a0),a2=a3.a
-switch(a2.a){case 0:case 1:s=a3.r
+asg(a3){var s,r,q,p,o,n="r4_kind",m="r4_accel_x_mg",l="r4_accel_y_mg",k="r4_accel_z_mg",j="r4_accel_x_mps2",i="r4_accel_y_mps2",h="r4_accel_z_mps2",g="r4_gyro_x_mdps",f="r4_gyro_y_mdps",e="r4_gyro_z_mdps",d="r4_gyro_x_radps",c="r4_gyro_y_radps",b="r4_gyro_z_radps",a="r4_valid_bits",a0=t.N,a1=A.a5(["r4_schema_version",B.f.j(a3.b),"r4_msg_type",B.f.j(a3.c),"r4_frame_bytes",B.f.j(a3.r),"r4_flags",B.f.j(a3.d),"r4_sequence",B.f.j(a3.e),"r4_timestamp_ms",B.f.j(a3.f)],a0,a0),a2=a3.a
+switch(a2.a){case 0:case 1:s=a3.w
 s.toString
-r=a3.w
+r=a3.x
 r.toString
-q=a3.x
+q=a3.y
 q.toString
 a1.m(0,n,a2===B.Cl?"raw_imu_v1":"cal_imu_v1")
 a1.m(0,m,B.f.j(s[0]))
@@ -103448,12 +103449,12 @@ a1.m(0,"r4_mag_z_x10ut",B.f.j(q[2]))
 a1.m(0,"r4_mag_x_ut",B.c.G(q[0]/10,1))
 a1.m(0,"r4_mag_y_ut",B.c.G(q[1]/10,1))
 a1.m(0,"r4_mag_z_ut",B.c.G(q[2]/10,1))
-s=a3.y
+s=a3.z
 a1.m(0,a,B.f.j(s==null?0:s))
 break
-case 2:a2=a3.z
+case 2:a2=a3.Q
 a2.toString
-s=a3.Q
+s=a3.as
 s.toString
 a1.m(0,n,"orient_v1")
 a1.m(0,"r4_quat_w_q14",B.f.j(a2[0]))
@@ -103476,14 +103477,14 @@ a1.m(0,"r4_euler_yaw_deg",s)
 s=a1.h(0,"drol")
 s.toString
 a1.m(0,"r4_euler_roll_deg",s)
-s=a3.as
+s=a3.at
 a1.m(0,"r4_quality_bits",B.f.j(s==null?0:s))
 break
-case 3:case 4:s=a3.r
+case 3:case 4:s=a3.w
 s.toString
-r=a3.w
+r=a3.x
 r.toString
-p=a3.at
+p=a3.ax
 if(p==null)p=0
 a1.m(0,n,a2===B.Cm?"compact_motion_v1":"dbsm_motion_v1")
 a1.m(0,m,B.f.j(s[0]))
@@ -103518,7 +103519,7 @@ r.toString
 a1.m(0,b,r)
 a1.m(0,"r4_pressure_pa_x10",B.f.j(p))
 a1.m(0,"pressure_pa",B.c.G(p*0.1,1))
-r=a3.y
+r=a3.z
 a1.m(0,a,B.f.j(r==null?0:r))
 break
 case 5:a1.m(0,n,"unknown")
@@ -103532,7 +103533,7 @@ s=p.db
 s=s==null?null:s.fe()
 r=p.at.b
 q=t.N
-return A.a5(["connected",o,"consecutiveFailures",n,"lastDataReceived",m,"lastSuccessfulSend",s,"deviceName",p.ax,"queuedCommands",p.w.length,"processingCommands",p.CW,"pageVisible",p.cx,"ring4",A.a5(["framesAccepted",r.a,"malformedFrames",r.b,"crcFailures",r.c,"unknownMsgType",r.d],q,t.S)],q,t.z)},
+return A.a5(["connected",o,"consecutiveFailures",n,"lastDataReceived",m,"lastSuccessfulSend",s,"deviceName",p.ax,"queuedCommands",p.w.length,"processingCommands",p.CW,"pageVisible",p.cx,"ring4",A.a5(["framesAccepted",r.a,"malformedFrames",r.b,"crcFailures",r.c,"unknownMsgType",r.d,"lastFrameBytes",r.e],q,t.S)],q,t.z)},
 kN(a,b,c){return this.al2(a,b,c)},
 al1(a,b){return this.kN(a,null,b)},
 al2(a,b,c){var s=0,r=A.r(t.H),q,p=this
@@ -103741,8 +103742,10 @@ break}m=l+20
 g=A.ax8(r,l,m)
 if((g[18]|g[19]<<8)>>>0!==A.b4C(g,16,2)){++o.c
 m=l+1
-continue}f=A.abM(g)
-q.push(new A.o3(B.Cm,1,132,0,0,f.getUint8(3),A.b([f.getInt16(4,!0),f.getInt16(6,!0),f.getInt16(8,!0)],n),A.b([f.getInt16(10,!0),f.getInt16(12,!0),f.getInt16(14,!0)],n),a1,7,a1,a1,a1,f.getInt16(16,!0)));++o.a
+continue}++o.a
+o.e=20
+f=A.abM(g)
+q.push(new A.o3(B.Cm,1,132,0,0,f.getUint8(3),20,A.b([f.getInt16(4,!0),f.getInt16(6,!0),f.getInt16(8,!0)],n),A.b([f.getInt16(10,!0),f.getInt16(12,!0),f.getInt16(14,!0)],n),a1,7,a1,a1,a1,f.getInt16(16,!0)))
 if(m>=p){s.U(0)
 break}continue}e=r[l+3]
 d=(r[l+4]|r[l+5]<<8)>>>0
@@ -103758,11 +103761,13 @@ b=j+d
 if((r[b]|r[b+1]<<8)>>>0!==A.b4C(r,d+4,i)){++o.c
 m=l+1
 continue}a=a0.ahP(new Uint8Array(r.subarray(j,A.iK(j,b,p))))
-if(a!=null){q.push(a);++o.a}m=l+c
+if(a!=null){++o.a
+o.e=c
+q.push(a)}m=l+c
 if(m>=p){s.U(0)
 break}}return q},
-ahP(a){var s,r,q,p,o,n,m,l,k,j,i,h,g,f=this,e=null
-if(a.length!==32){++f.b.b
+ahP(a){var s,r,q,p,o,n,m,l,k,j,i,h,g,f=this,e=null,d=a.length
+if(d!==32){++f.b.b
 return e}s=A.abM(a)
 r=s.getUint8(0)
 q=s.getUint8(1)
@@ -103770,22 +103775,23 @@ p=s.getUint16(2,!0)
 o=s.getUint32(4,!0)
 n=s.getUint32(8,!0)
 if(r!==1){++f.b.d
-return new A.o3(B.Cn,r,q,p,o,n,e,e,e,e,e,e,e,e)}m=q===1
+return new A.o3(B.Cn,r,q,p,o,n,d+8,e,e,e,e,e,e,e,e)}m=q===1
 if(m||q===2){l=t.t
 k=A.b([s.getInt16(12,!0),s.getInt16(14,!0),s.getInt16(16,!0)],l)
 j=A.b([s.getInt16(18,!0),s.getInt16(20,!0),s.getInt16(22,!0)],l)
 i=A.b([s.getInt16(24,!0),s.getInt16(26,!0),s.getInt16(28,!0)],l)
 h=s.getUint8(30)
 if(s.getUint8(31)!==0)++f.b.b
-return new A.o3(m?B.Cl:B.X8,r,q,p,o,n,k,j,i,h,e,e,e,e)}if(q===3){m=t.t
-return new A.o3(B.X9,r,q,p,o,n,e,e,e,e,A.b([s.getInt16(12,!0),s.getInt16(14,!0),s.getInt16(16,!0),s.getInt16(18,!0)],m),A.b([s.getInt16(20,!0),s.getInt16(22,!0),s.getInt16(24,!0)],m),s.getUint16(26,!0),e)}if(q===4){m=t.t
+m=m?B.Cl:B.X8
+return new A.o3(m,r,q,p,o,n,d+8,k,j,i,h,e,e,e,e)}if(q===3){m=t.t
+return new A.o3(B.X9,r,q,p,o,n,d+8,e,e,e,e,A.b([s.getInt16(12,!0),s.getInt16(14,!0),s.getInt16(16,!0),s.getInt16(18,!0)],m),A.b([s.getInt16(20,!0),s.getInt16(22,!0),s.getInt16(24,!0)],m),s.getUint16(26,!0),e)}if(q===4){m=t.t
 k=A.b([s.getInt16(12,!0),s.getInt16(14,!0),s.getInt16(16,!0)],m)
 j=A.b([s.getInt16(18,!0),s.getInt16(20,!0),s.getInt16(22,!0)],m)
 g=s.getInt32(24,!0)
 h=s.getUint8(28)
 if((s.getUint8(29)|s.getUint8(30)|s.getUint8(31))>>>0!==0)++f.b.b
-return new A.o3(B.Xa,r,q,p,o,n,k,j,e,h,e,e,e,g)}++f.b.d
-return new A.o3(B.Cn,r,q,p,o,n,e,e,e,e,e,e,e,e)},
+return new A.o3(B.Xa,r,q,p,o,n,d+8,k,j,e,h,e,e,e,g)}++f.b.d
+return new A.o3(B.Cn,r,q,p,o,n,d+8,e,e,e,e,e,e,e,e)},
 ajn(a,b){var s,r
 for(s=a.length-1,r=b;r<s;++r)if(a[r]===165&&a[r+1]===90)return r
 return-1}}
