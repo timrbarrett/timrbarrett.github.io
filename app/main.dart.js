@@ -29254,14 +29254,14 @@ j=k.w
 i=t.P
 h=t.N
 g=t.z
-A.aYo(A.a3(["run_id",a0,"type","ble_smoke_started","started_at",c,"app_version","0.598 (883b21d)","commands",b,"connection_stats",k.zX(),"connection_log",A.cW(j,!0,i)],h,g))
+A.aYo(A.a3(["run_id",a0,"type","ble_smoke_started","started_at",c,"app_version","0.598 (0aae27a)","commands",b,"connection_stats",k.zX(),"connection_log",A.cW(j,!0,i)],h,g))
 q=3
 c=e
 s=6
 return A.l(k.ru(c==null?B.mF:c).jz(0,B.Ms),$async$aTz)
 case 6:o=a3
 n=new A.c6(Date.now(),0,!1)
-A.aYo(A.a3(["run_id",a0,"type","ble_smoke","started_at",d.fi(),"finished_at",n.fi(),"app_version","0.598 (883b21d)","result",o.H_(),"connection_stats",k.zX(),"connection_log",A.cW(j,!0,i)],h,g))
+A.aYo(A.a3(["run_id",a0,"type","ble_smoke","started_at",d.fi(),"finished_at",n.fi(),"app_version","0.598 (0aae27a)","result",o.H_(),"connection_stats",k.zX(),"connection_log",A.cW(j,!0,i)],h,g))
 q=1
 s=5
 break
@@ -29273,7 +29273,7 @@ c=d.fi()
 l=l.fi()
 b=J.al(m)
 k=$.f2()
-A.aYo(A.a3(["run_id",a0,"type","ble_smoke_error","started_at",c,"finished_at",l,"app_version","0.598 (883b21d)","error",b,"connection_stats",k.zX(),"connection_log",A.cW(k.w,!0,i)],h,g))
+A.aYo(A.a3(["run_id",a0,"type","ble_smoke_error","started_at",c,"finished_at",l,"app_version","0.598 (0aae27a)","error",b,"connection_stats",k.zX(),"connection_log",A.cW(k.w,!0,i)],h,g))
 s=5
 break
 case 2:s=1
@@ -103219,7 +103219,7 @@ return!0},
 $S:43}
 A.aVa.prototype={
 $0(){var s=new A.c6(Date.now(),0,!1).fi(),r=$.f2()
-return B.C.eb(A.a3(["timestamp",s,"app_version","0.598 (883b21d)","connected",r.ch,"device_name",r.ay,"stats",r.zX(),"connection_log",A.cW(r.w,!0,t.P)],t.N,t.X),null)},
+return B.C.eb(A.a3(["timestamp",s,"app_version","0.598 (0aae27a)","connected",r.ch,"device_name",r.ay,"stats",r.zX(),"connection_log",A.cW(r.w,!0,t.P)],t.N,t.X),null)},
 $S:52}
 A.aTr.prototype={
 $1(a){return J.al(a)},
@@ -109333,7 +109333,7 @@ $0(){var s=this.a
 s.as=!s.as},
 $S:0}
 A.aAf.prototype={
-$2(a,b){var s,r,q,p,o,n,m,l,k=null,j=A.R("Web Bluetooth App 0.598 (883b21d)",k,k,k,k,k,k,k),i=$.f2(),h=i.f,g=this.a
+$2(a,b){var s,r,q,p,o,n,m,l,k=null,j=A.R("Web Bluetooth App 0.598 (0aae27a)",k,k,k,k,k,k,k),i=$.f2(),h=i.f,g=this.a
 h=A.aXA(new A.aA8(g),i.ch,new A.bD(h,A.m(h).i("bD<1>")),t.y)
 i=A.bE(k,k,k,B.OM,k,k,new A.aA9(a),k,k,k,"Combined Buttons Screen")
 s=A.bE(k,k,k,B.mv,k,k,g.gau1(),k,k,k,"Save Console Data")
@@ -109581,7 +109581,7 @@ q.ch=A.bb4(!0,new A.aCq(q))},
 avs(){var s=this,r=null
 if(s.CW||s.c==null)return
 s.CW=!0
-s.c.O(t.q).f.aR(A.bY(r,r,r,r,r,B.j,r,A.R("App version: 0.598 (883b21d)",r,r,r,r,r,r,r),r,B.G,r,r,r,r,r,r,r,r,r,r))},
+s.c.O(t.q).f.aR(A.bY(r,r,r,r,r,B.j,r,A.R("App version: 0.598 (0aae27a)",r,r,r,r,r,r,r),r,B.G,r,r,r,r,r,r,r,r,r,r))},
 l(){var s=this,r=s.at
 if(r!=null)r.aG(0)
 r=s.ax
