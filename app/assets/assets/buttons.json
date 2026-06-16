@@ -351,6 +351,168 @@
     ]
   },
   {
+    "name": "pubsub trace",
+    "label": "pubsub trace",
+    "actions": [
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "trace node 1",
+          "label": "trace n1",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(trace-node 1 2 5000)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "trace node 3",
+          "label": "trace n3",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(trace-node 3 2 5000)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "trace value 1001",
+          "label": "trace v1001",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(trace-value 1001 1 5000)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "explain value 2001",
+          "label": "explain v2001",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(explain-value 2001)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "probes node 3",
+          "label": "probes n3",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(probes-node 3)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "probes value 2001",
+          "label": "probes v2001",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(probes-value 2001)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "probes node 3 on",
+          "label": "probes on",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(probes-enable 3 1)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "probes node 3 off",
+          "label": "probes off",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(probes-enable 3 0)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "probes value 2001 on",
+          "label": "v probes on",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(probes-enable-value 2001 1)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "probes value 2001 off",
+          "label": "v probes off",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(probes-enable-value 2001 0)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "trace read",
+          "label": "trace read",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(trace-read)\n"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CreateButton",
+        "button": {
+          "name": "trace stop",
+          "label": "trace stop",
+          "actions": [
+            {
+              "type": "SendStringOverNUS",
+              "value": "(trace-stop)\n"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
     "name": "stop sensors",
     "label": "stop sensors",
     "actions": [
