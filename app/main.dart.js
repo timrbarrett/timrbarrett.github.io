@@ -30706,6 +30706,7 @@ _.CW=m
 _.cx="Unknown Device"
 _.dx=_.db=_.cy=!1
 _.dy=!0
+_.fr=!1
 _.id=_.go=_.fy=_.fx=null
 _.k4=_.k3=_.k2=_.k1=0
 _.ok=null
@@ -113912,7 +113913,7 @@ s=J.jg(B.bd.gcb(a),a.byteOffset,a.byteLength)
 if(i.axy(s)){i.d.A(0,new Uint8Array(A.eQ(s)))
 return}r=i.f
 q=r.d!=null&&i.r.d==null&&i.e.d==null
-if(q){p=i.CW.a7b(s)
+if(i.fr||q){p=i.CW.a7b(s)
 i.Oe(p.length)
 for(o=p.length,n=0;n<p.length;p.length===o||(0,A.l)(p),++n){m=p[n]
 i.a20()
@@ -130897,13 +130898,15 @@ q.w=new A.b6(r,A.v(r).i("b6<1>")).dd(q.gayV())
 s=s.w
 q.x=new A.b6(s,A.v(s).i("b6<1>")).dd(new A.b2M(q))
 q.y=A.Dp(B.dE,new A.b2N(q))},
-m(){var s=this,r=s.w
-if(r!=null)r.an(0)
-r=s.x
-if(r!=null)r.an(0)
-r=s.y
-if(r!=null)r.an(0)
-s.aE()},
+m(){var s,r=this
+r.d.fr=!1
+s=r.w
+if(s!=null)s.an(0)
+s=r.x
+if(s!=null)s.an(0)
+s=r.y
+if(s!=null)s.an(0)
+r.aE()},
 ayW(a){var s,r,q,p,o,n=this
 if(!n.Q)return
 s=n.r
@@ -130950,10 +130953,13 @@ break
 case 6:case 1:return A.r(q,r)
 case 2:return A.q(o.at(-1),r)}})
 return A.t($async$EF,r)},
-EH(a){var s=0,r=A.u(t.H),q,p=2,o=[],n=[],m=this,l,k,j
+EH(a){var s=0,r=A.u(t.H),q,p=2,o=[],n=[],m=this,l,k,j,i
 var $async$EH=A.p(function(b,c){if(b===1){o.push(c)
 s=p}for(;;)switch(s){case 0:m.p(new A.b2B(m))
 p=4
+k=m.d
+k.fr=!0
+k.to=""
 s=7
 return A.k(m.ga1V().nm(8,B.qB),$async$EH)
 case 7:if(m.c==null){n=[1]
@@ -130963,8 +130969,8 @@ n.push(6)
 s=5
 break
 case 4:p=3
-j=o.pop()
-l=A.Z(j)
+i=o.pop()
+l=A.Z(i)
 if(m.c==null){n=[1]
 s=5
 break}m.p(new A.b2D(m,l))
@@ -130985,7 +130991,8 @@ s=p}for(;;)switch(s){case 0:m.p(new A.b2F(m))
 p=4
 s=7
 return A.k(m.ga1V().i3("(emo dbsm 0)","stop DBSM stream",B.cq),$async$z1)
-case 7:if(m.c==null){n=[1]
+case 7:m.d.fr=!1
+if(m.c==null){n=[1]
 s=5
 break}m.p(new A.b2G(m))
 s=8
@@ -131166,7 +131173,8 @@ $1(a){var s,r=this.a
 if(r.c==null)return
 s=r.Q
 r.p(new A.b2L(r,a))
-if(!a&&s&&r.db>0)r.uW(!0,"disconnect")},
+if(!a&&s&&r.db>0){r.d.fr=!1
+r.uW(!0,"disconnect")}},
 $S:3}
 A.b2L.prototype={
 $0(){var s=this.a,r=this.b
