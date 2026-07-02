@@ -33653,14 +33653,16 @@ arh:function arh(){},
 arj:function arj(){},
 ark:function ark(){},
 ari:function ari(){},
-bNp(){var s,r,q,p="/combined-buttons",o=A.o7().gac7().h(0,"route"),n=o==null?null:B.d.aG(o)
-if(n!=null&&B.d.aX(n,"/"))return n
+bNp(){var s,r,q,p,o="/combined-buttons",n=A.o7().gac7().h(0,"route"),m=n==null?null:B.d.aG(n)
+if(m!=null&&B.d.aX(m,"/"))return m
 s=B.d.aG(A.o7().glD())
 if(B.d.aX(s,"/")){r=B.d.dQ(s,"?")
-return r===-1?s:B.d.a9(s,0,r)}o=A.o7()
-q=B.d.aG(o.gfn(o))
-if(B.d.aX(q,"/debug/")||q===p)return q
-return p},
+return r===-1?s:B.d.a9(s,0,r)}n=A.o7()
+q=B.d.aG(n.gfn(n))
+if(B.d.aX(q,"/debug/")||q===o||q==="/mobile/stream")return q
+p=window.navigator.userAgent.toLowerCase()
+if(B.d.n(p,"android")||B.d.n(p,"iphone")||B.d.n(p,"ipad")||B.d.n(p,"ipod")||B.d.n(p,"mobile"))return"/mobile/stream"
+return o},
 bNV(){var s,r,q,p,o,n,m,l=null
 if($.an==null)A.bsi()
 $.an.toString
