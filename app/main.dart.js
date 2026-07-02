@@ -30709,10 +30709,10 @@ _.dx=_.db=_.cy=!1
 _.dy=!0
 _.fr=!1
 _.id=_.go=_.fy=_.fx=null
-_.k4=_.k3=_.k2=_.k1=0
-_.ok=null
-_.ry=_.rx=_.RG=_.R8=_.p4=_.p3=_.p2=_.p1=0
-_.to=""},
+_.ok=_.k4=_.k3=_.k2=_.k1=0
+_.p1=null
+_.to=_.ry=_.rx=_.RG=_.R8=_.p4=_.p3=_.p2=0
+_.x1=""},
 aiL:function aiL(a){this.a=a},
 aiD:function aiD(){},
 aiE:function aiE(){},
@@ -113340,7 +113340,7 @@ case 30:case 28:s=31
 return A.k(m.me(k),$async$hl)
 case 31:m.Qc(k)
 m.cy=!0
-m.ry=0
+m.to=0
 m.K1(!0)
 m.dZ("Connection successful",A.M(["deviceName",m.cx],t.N,t.z))
 m.EX()
@@ -113531,7 +113531,7 @@ case 11:s=12
 return A.k(m.me(l),$async$nX)
 case 12:m.Qc(l)
 m.cy=!0
-m.ry=0
+m.to=0
 m.K1(!0)
 m.dZ("Connection successful",A.M(["deviceName",m.cx],j,i))
 m.EX()
@@ -113638,7 +113638,7 @@ case 9:s=10
 return A.k(m.me(k),$async$iC)
 case 10:m.Qc(k)
 m.cy=!0
-m.ry=0
+m.to=0
 m.K1(!0)
 m.dZ("Connection successful",A.M(["deviceName",m.cx],h,g))
 m.EX()
@@ -113911,9 +113911,9 @@ r=s.CW
 r.a.V(0)
 r.b.fH(0)
 s.id=s.go=null
-s.k4=s.k3=s.k2=s.k1=0
-s.ok=null
-s.rx=s.RG=s.R8=s.p4=s.p3=s.p2=s.p1=0},
+s.ok=s.k4=s.k3=s.k2=s.k1=0
+s.p1=null
+s.ry=s.rx=s.RG=s.R8=s.p4=s.p3=s.p2=0},
 aOO(a){var s,r,q,p,o,n,m,l,k,j,i=this
 i.fx=new A.by(Date.now(),0,!1)
 s=J.jg(B.bd.gcb(a),a.byteOffset,a.byteLength)
@@ -113942,34 +113942,34 @@ s=a[0]
 return s>>>4===1&&(s&15)<=3},
 a20(){var s,r,q=this,p=new A.by(Date.now(),0,!1),o=q.go
 if(q.id==null)q.id=p
-q.go=p
+q.go=p;++q.k1
 if(o==null)return
 s=p.e8(o).a
-if(s<=0)return;++q.k1
-q.k2+=s
-r=q.k3
-if(r===0||s<r)q.k3=s
-if(s>q.k4)q.k4=s},
+if(s<=0)return;++q.k2
+q.k3+=s
+r=q.k4
+if(r===0||s<r)q.k4=s
+if(s>q.ok)q.ok=s},
 Oe(a){var s,r,q,p=this
 if(a<=0)return
 s=new A.by(Date.now(),0,!1)
-r=p.ok
-p.ok=s;++p.p1
-p.p2+=a
-if(a>p.p3)p.p3=a
-if(a>1)++p.p4
+r=p.p1
+p.p1=s;++p.p2
+p.p3+=a
+if(a>p.p4)p.p4=a
+if(a>1)++p.R8
 if(r==null)return
 q=B.e.cq(s.e8(r).a,1000)
-if(q>16)++p.R8
-if(q>32)++p.RG
-if(q>64)++p.rx},
+if(q>16)++p.RG
+if(q>32)++p.rx
+if(q>64)++p.ry},
 awj(a){var s,r,q,p,o,n=this,m=A.iZ(a,0,null)
-n.to+=m
-for(s=n.b,r=n.c;;){q=n.to
+n.x1+=m
+for(s=n.b,r=n.c;;){q=n.x1
 p=B.d.dS(q,"\n")
 if(p<0)break
 o=B.d.aG(B.d.a9(q,0,p))
-n.to=B.d.bA(q,p+1)
+n.x1=B.d.bA(q,p+1)
 if(o.length===0)continue
 if(B.d.aX(o,"(")&&B.d.eq(o,")")){if(!r.gmd())A.aa(r.m2())
 r.jR(o)
@@ -114137,41 +114137,40 @@ break}p=q.$ti.i("bM<1,2>")
 k=A.hU(new A.bM(q,p),new A.aiJ(),p.i("B.E"),r).b_(0," ")
 s.A(0,k)
 A.bvF(k)},
-kg(){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4=this,a5=a4.k1,a6=a5>0?a4.k2/a5:0,a7=a4.id,a8=a4.go,a9=a7!=null&&a8!=null?a8.e8(a7).a:0
-a5=a4.ch.b
-s=a5.a
-r=a9>0&&s>1?(s-1)*1e6/a9:0
-q=a4.cy
-p=a4.ry
-o=a4.fx
-o=o==null?null:o.dz()
-n=a4.fy
-n=n==null?null:n.dz()
-m=a4.cx
-l=a4.z.length
-k=a4.dx
-j=a4.dy
-i=a5.a
-h=a5.b
-g=a5.c
-f=a5.d
-e=a5.e
-d=a5.f
-c=a5.r
-b=a5.w
-a=a5.x
-a0=a5.y
-a1=a5.z
-a2=a1>0?B.e.fs(a5.Q,a1):0
-a3=t.N
-a5=A.M(["framesAccepted",i,"malformedFrames",h,"crcFailures",g,"unknownMsgType",f,"lastFrameBytes",e,"compactFrames",d,"compactLow8Gaps",c,"compactLow8Duplicates",b,"compactLow8MissingFrames",a,"compactLow8CadenceAnomalies",a0,"compactLow8DeltaCount",a1,"compactLow8DeltaAvg",a2,"compactLow8DeltaMin",a5.as,"compactLow8DeltaMax",a5.at],a3,t.S)
-a2=a4.k1
-a1=a4.k3
-a0=a4.k4
-i=a0>a1?a0-a1:0
-h=a4.p1
-g=h>0?a4.p2/h:0
-return A.M(["connected",q,"consecutiveFailures",p,"lastDataReceived",o,"lastSuccessfulSend",n,"deviceName",m,"queuedCommands",l,"processingCommands",k,"pageVisible",j,"ring4",a5,"ring4Timing",A.M(["interArrivalCount",a2,"interArrivalAvgUs",a6,"interArrivalMinUs",a1,"interArrivalMaxUs",a0,"interArrivalJitterUs",i,"rxWindowUs",a9,"rxHz",r,"batchCount",h,"batchFrameAvg",g,"batchFrameMax",a4.p3,"multiFrameBatchCount",a4.p4,"batchGapOver16Ms",a4.R8,"batchGapOver32Ms",a4.RG,"batchGapOver64Ms",a4.rx],a3,t.Ci)],a3,t.z)},
+kg(){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2=this,a3=a2.k2,a4=a3>0?a2.k3/a3:0,a5=a2.id,a6=a2.go,a7=a5!=null&&a6!=null?a6.e8(a5).a:0,a8=a2.k1,a9=a7>0&&a8>1?(a8-1)*1e6/a7:0
+a3=a2.cy
+s=a2.to
+r=a2.fx
+r=r==null?null:r.dz()
+q=a2.fy
+q=q==null?null:q.dz()
+p=a2.cx
+o=a2.z.length
+n=a2.dx
+m=a2.dy
+l=a2.ch.b
+k=l.a
+j=l.b
+i=l.c
+h=l.d
+g=l.e
+f=l.f
+e=l.r
+d=l.w
+c=l.x
+b=l.y
+a=l.z
+a0=a>0?B.e.fs(l.Q,a):0
+a1=t.N
+l=A.M(["framesAccepted",k,"malformedFrames",j,"crcFailures",i,"unknownMsgType",h,"lastFrameBytes",g,"compactFrames",f,"compactLow8Gaps",e,"compactLow8Duplicates",d,"compactLow8MissingFrames",c,"compactLow8CadenceAnomalies",b,"compactLow8DeltaCount",a,"compactLow8DeltaAvg",a0,"compactLow8DeltaMin",l.as,"compactLow8DeltaMax",l.at],a1,t.S)
+a0=a2.k1
+a=a2.k2
+b=a2.k4
+c=a2.ok
+k=c>b?c-b:0
+j=a2.p2
+i=j>0?a2.p3/j:0
+return A.M(["connected",a3,"consecutiveFailures",s,"lastDataReceived",r,"lastSuccessfulSend",q,"deviceName",p,"queuedCommands",o,"processingCommands",n,"pageVisible",m,"ring4",l,"ring4Timing",A.M(["frameCount",a0,"interArrivalCount",a,"interArrivalAvgUs",a4,"interArrivalMinUs",b,"interArrivalMaxUs",c,"interArrivalJitterUs",k,"rxWindowUs",a7,"rxHz",a9,"batchCount",j,"batchFrameAvg",i,"batchFrameMax",a2.p4,"multiFrameBatchCount",a2.R8,"batchGapOver16Ms",a2.RG,"batchGapOver32Ms",a2.rx,"batchGapOver64Ms",a2.ry],a1,t.Ci)],a1,t.z)},
 lm(a,b,c){return this.atr(a,b,c)},
 atq(a,b){return this.lm(a,null,b)},
 atr(a,b,c){var s=0,r=A.u(t.H),q,p=this
@@ -114216,7 +114215,7 @@ k.b.fH(0)
 k=o.CW
 k.a.V(0)
 k.b.fH(0)
-o.to=""
+o.x1=""
 for(k=o.z;k.length!==0;){i=B.b.dv(k,0).b.a
 if((i.a&30)===0)i.hE(!1)}if(b)o.K1(!1)
 return A.r(null,r)
@@ -114328,7 +114327,7 @@ k=h.as
 k.toString
 s=7
 return A.k(A.zD(k,m).l9(0,B.cP),$async$$0)
-case 7:h.ry=0
+case 7:h.to=0
 h.fy=new A.by(Date.now(),0,!1)
 k=B.d.BT(m)
 k=A.d0(k,"\\","\\\\")
@@ -114341,7 +114340,7 @@ s=6
 break
 case 4:p=3
 g=o.pop()
-l=A.Z(g);++h.ry
+l=A.Z(g);++h.to
 s=8
 return A.k(h.lm("Command send failed",A.M(["error",J.a6(l)],t.N,t.z),!1),$async$$0)
 case 8:q=!1
@@ -130969,7 +130968,7 @@ s=7
 return A.k(m.ga1V().nm(8,B.qC),$async$EH)
 case 7:k=m.d
 k.fr=!0
-k.to=""
+k.x1=""
 if(m.c!=null)m.p(new A.b2D(m))
 if(m.c==null){n=[1]
 s=5
