@@ -37,22 +37,16 @@
 
 <body>
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations()
-        .then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
-        .then(() => console.log('Service workers unregistered for fresh app load'))
-        .catch((error) => console.log('Service worker unregister failed:', error));
-    }
-
-    if ('caches' in window) {
-      caches.keys()
-        .then((keys) => Promise.all(keys.map((key) => caches.delete(key))))
-        .then(() => console.log('PWA caches cleared for fresh app load'))
-        .catch((error) => console.log('Cache clear failed:', error));
-    }
+    window.addEventListener('load', () => {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+          .then(() => console.log('Limbstim offline cache registered'))
+          .catch((error) => console.log('Offline cache registration failed:', error));
+      }
+    });
   </script>
   <script src="flutter.js" defer></script>
-  <script src="flutter_bootstrap.js?v=0.598-226bb67-20260727-160509" defer></script>
+  <script src="flutter_bootstrap.js?v=0.598-dcf8c63-20260728-152948" defer></script>
 
   
   <script>
