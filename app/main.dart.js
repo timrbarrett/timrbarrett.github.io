@@ -30723,7 +30723,7 @@ a9=t.N
 b0=t.z
 a4=A.F(["observed_missing_frames",a4,"boundary_coalesced",a5.h(a3,"coal")-a6,"boundary_control_drops",a5.h(a3,"ctrl")-a7,"observable_coalesced",a6,"observable_control_drops",a7,"send_errors",a5.h(a3,"senderr"),"notify_errors",a5.h(a3,"notifyerr"),"expected_missing_frames",a8,"exact_match",a4===a8],a9,b0)
 g=b7||g.a
-e.setItem("limbstim.ring4V3Evidence.v1",B.D.ed(A.F(["run_id",b4,"success",!0,"started_at",d,"finished_at",c,"app_version","0.598 (57ca136)","continuity_decoder_version",u.B,"gray_leds",b6,"clean_capture",b7,"dbsm_mode",b,"elapsed_us",a.a,"record_count",a0.length,"diagnostics",a1,"parser_metrics",a2,"firmware_ledger",j,"loss_reconciliation",a4,"command_check_passed",g,"connection_stats",f.jd()],a9,b0),null))
+e.setItem("limbstim.ring4V3Evidence.v1",B.D.ed(A.F(["run_id",b4,"success",!0,"started_at",d,"finished_at",c,"app_version","0.598 (65d1741)","continuity_decoder_version",u.B,"gray_leds",b6,"clean_capture",b7,"dbsm_mode",b,"elapsed_us",a.a,"record_count",a0.length,"diagnostics",a1,"parser_metrics",a2,"firmware_ledger",j,"loss_reconciliation",a4,"command_check_passed",g,"connection_stats",f.jd()],a9,b0),null))
 q=1
 s=5
 break
@@ -30732,7 +30732,7 @@ b3=p.pop()
 h=A.a0(b3)
 g=window.localStorage
 g.toString
-g.setItem("limbstim.ring4V3Evidence.v1",B.D.ed(A.F(["run_id",b4,"success",!1,"started_at",b2.cS(),"finished_at",new A.bl(Date.now(),0,!1).cS(),"app_version","0.598 (57ca136)","continuity_decoder_version",u.B,"gray_leds",b6,"error",J.K(h),"connection_stats",$.d6().jd()],t.N,t.z),null))
+g.setItem("limbstim.ring4V3Evidence.v1",B.D.ed(A.F(["run_id",b4,"success",!1,"started_at",b2.cS(),"finished_at",new A.bl(Date.now(),0,!1).cS(),"app_version","0.598 (65d1741)","continuity_decoder_version",u.B,"gray_leds",b6,"error",J.K(h),"connection_stats",$.d6().jd()],t.N,t.z),null))
 s=5
 break
 case 2:s=1
@@ -30779,14 +30779,14 @@ j=k.y
 i=t.P
 h=t.N
 g=t.z
-A.bp6(A.F(["run_id",a0,"type","ble_smoke_started","started_at",c,"app_version","0.598 (57ca136)","commands",b,"connection_stats",k.jd(),"connection_log",A.bC(j,!0,i)],h,g))
+A.bp6(A.F(["run_id",a0,"type","ble_smoke_started","started_at",c,"app_version","0.598 (65d1741)","commands",b,"connection_stats",k.jd(),"connection_log",A.bC(j,!0,i)],h,g))
 q=3
 c=e
 s=6
 return A.k(k.tV(c==null?B.pk:c).i8(0,B.Te),$async$bjI)
 case 6:o=a3
 n=new A.bl(Date.now(),0,!1)
-A.bp6(A.F(["run_id",a0,"type","ble_smoke","started_at",d.cS(),"finished_at",n.cS(),"app_version","0.598 (57ca136)","result",o.hG(),"connection_stats",k.jd(),"connection_log",A.bC(j,!0,i)],h,g))
+A.bp6(A.F(["run_id",a0,"type","ble_smoke","started_at",d.cS(),"finished_at",n.cS(),"app_version","0.598 (65d1741)","result",o.hG(),"connection_stats",k.jd(),"connection_log",A.bC(j,!0,i)],h,g))
 q=1
 s=5
 break
@@ -30798,7 +30798,7 @@ c=d.cS()
 l=l.cS()
 b=J.K(m)
 k=$.d6()
-A.bp6(A.F(["run_id",a0,"type","ble_smoke_error","started_at",c,"finished_at",l,"app_version","0.598 (57ca136)","error",b,"connection_stats",k.jd(),"connection_log",A.bC(k.y,!0,i)],h,g))
+A.bp6(A.F(["run_id",a0,"type","ble_smoke_error","started_at",c,"finished_at",l,"app_version","0.598 (65d1741)","error",b,"connection_stats",k.jd(),"connection_log",A.bC(k.y,!0,i)],h,g))
 s=5
 break
 case 2:s=1
@@ -38410,9 +38410,12 @@ ayP:function ayP(){},
 od:function od(a,b,c){this.a=a
 this.b=b
 this.c=c},
-oe:function oe(a,b,c){this.a=a
-this.w=b
-this.x=c},
+oe:function oe(a,b,c,d,e){var _=this
+_.a=a
+_.r=b
+_.w=c
+_.y=d
+_.z=e},
 mN:function mN(a,b,c){this.a=a
 this.b=b
 this.c=c},
@@ -115081,7 +115084,7 @@ return!0},
 $S:45}
 A.blu.prototype={
 $0(){var s=new A.bl(Date.now(),0,!1).cS(),r=$.d6()
-return B.D.ed(A.F(["timestamp",s,"app_version","0.598 (57ca136)","connected",r.db,"device_name",r.cy,"stats",r.jd(),"connection_log",A.bC(r.y,!0,t.P)],t.N,t.X),null)},
+return B.D.ed(A.F(["timestamp",s,"app_version","0.598 (65d1741)","connected",r.db,"device_name",r.cy,"stats",r.jd(),"connection_log",A.bC(r.y,!0,t.P)],t.N,t.X),null)},
 $S:38}
 A.blv.prototype={
 $0(){$.d6().kd()
@@ -122012,7 +122015,7 @@ $0(){var s=this.a
 s.as=!s.as},
 $S:0}
 A.aMV.prototype={
-$2(a,b){var s,r,q,p,o,n,m,l,k,j,i=null,h=A.n("Web Bluetooth App 0.598 (57ca136)",i,i,i,i,i,i,i,i),g=$.d6(),f=g.w,e=this.a
+$2(a,b){var s,r,q,p,o,n,m,l,k,j,i=null,h=A.n("Web Bluetooth App 0.598 (65d1741)",i,i,i,i,i,i,i,i),g=$.d6(),f=g.w,e=this.a
 f=A.bof(new A.aMM(e),g.db,new A.b4(f,A.p(f).i("b4<1>")),t.y)
 g=A.ay(i,i,i,B.Z6,i,i,new A.aMN(a),i,i,i,"Combined Buttons Screen",i)
 s=A.ay(i,i,i,B.pa,i,i,new A.aMO(a),i,i,i,"Explain PubSub Node",i)
@@ -122276,7 +122279,7 @@ q.ch=A.bEe(!0,new A.aPt(q))},
 aHP(){var s=this,r=null
 if(s.CW||s.c==null)return
 s.CW=!0
-s.c.V(t.q).f.bb(A.cy(r,r,r,r,r,B.m,r,A.n("App version: 0.598 (57ca136)",r,r,r,r,r,r,r,r),r,B.Z,r,r,r,r,r,r,r,r,r,r))},
+s.c.V(t.q).f.bb(A.cy(r,r,r,r,r,B.m,r,A.n("App version: 0.598 (65d1741)",r,r,r,r,r,r,r,r),r,B.Z,r,r,r,r,r,r,r,r,r,r))},
 m(){var s=this,r=s.at
 if(r!=null)r.ai(0)
 r=s.ax
@@ -127905,26 +127908,28 @@ $1(a){var s=this.a,r=s.a,q=s.b
 return new A.j(r+a.b*(s.c-r),q+a.c*(s.d-q))},
 $S:178}
 A.ae8.prototype={
-am(a,b){var s,r,q,p,o,n,m=null,l=b.a,k=b.b
+am(a,b){var s,r,q,p,o,n,m,l=null,k=b.a,j=b.b
 $.a4()
 s=A.ag()
 s.r=B.Qa.gq(0)
-a.dR(new A.C(0,0,0+l,0+k),s)
+a.dR(new A.C(0,0,0+k,0+j),s)
 r=this.b
-if(r==null){q=A.hf(m,m,m,m,B.agh,B.ev,B.W,m,B.bs,B.ad)
-q.oz(Math.max(0,l-24))
+if(r==null){q=A.hf(l,l,l,l,B.agh,B.ev,B.W,l,B.bs,B.ad)
+q.oz(Math.max(0,k-24))
 s=q.b
 p=s.c
 s=s.a.c
-q.am(a,new A.j((l-p)/2,(k-s.gbe(s))/2))
-return}o=Math.min(l/1,k/1)
-s=(l-o)/2
-k=(k-o)/2
-this.arT(a,new A.C(s,k,s+o,k+o).d6(-12),r.w,B.nb,B.PB,3)
-k=r.x
-n=new A.a9(k,new A.bfv(),A.N(k).i("a9<1>")).gB(0)
-q=A.hf(m,m,m,m,A.dO(m,m,m,m,m,m,m,m,m,B.agV,"t "+B.c.E(r.a/1e6,2)+"s  secondary evidence "+n),B.O,B.W,m,B.bs,B.ad)
-q.oz(l)
+q.am(a,new A.j((k-p)/2,(j-s.gbe(s))/2))
+return}o=Math.min(k/1,j/1)
+s=(k-o)/2
+j=(j-o)/2
+this.arT(a,new A.C(s,j,s+o,j+o).d6(-12),r.y,B.nb,B.PB,3)
+j=r.z
+n=new A.a9(j,new A.bfv(),A.N(j).i("a9<1>")).gB(0)
+if(r.r)m=r.w?"geometry accepted":"geometry rejected"
+else m="geometry pending"
+q=A.hf(l,l,l,l,A.dO(l,l,l,l,l,l,l,l,l,B.agV,"t "+B.c.E(r.a/1e6,2)+"s  knee-down secondary "+n+"  "+m),B.O,B.W,l,B.bs,B.ad)
+q.oz(k)
 q.am(a,B.a9_)},
 arT(a,b,c,d,e,f){var s,r,q,p,o,n,m,l,k,j,i,h,g=A.w(t.S,t.Qe)
 for(s=c.length,r=0;r<c.length;c.length===s||(0,A.l)(c),++r){q=c[r]
@@ -130347,7 +130352,7 @@ case 6:case 1:return A.t(q,r)
 case 2:return A.r(o.at(-1),r)}})
 return A.u($async$vD,r)},
 Zb(){var s=new A.bl(Date.now(),0,!1).cS(),r=this.e,q=r.length,p=$.hW(),o=t.N,n=t.K
-p=A.F(["saved_at",s,"app_version","0.598 (57ca136)","app_commit","57ca136cec2f401346b3ef28a666a23e5fbc8e98","sample_count",q,"ble_connection_stats",p.jd(),"ble_connection_log",A.bC(p.y,!0,t.P)],o,n)
+p=A.F(["saved_at",s,"app_version","0.598 (65d1741)","app_commit","65d17418644adb5e617bc6ca59d52a79e3c43345","sample_count",q,"ble_connection_stats",p.jd(),"ble_connection_log",A.bC(p.y,!0,t.P)],o,n)
 q=A.N(r).i("G<1,Z<f,@>>")
 s=A.M(new A.G(r,new A.aXZ(),q),q.i("a1.E"))
 return A.fN(A.F(["format","limbstim.dfsi_replay_input.v1","metadata",p,"samples",s],o,n),null,"  ")},
@@ -135504,7 +135509,7 @@ s=p.to
 if(s==null){s=p.v
 if(s==null)s=p.k3}s=A.co(s,1)
 r=A.bg(6)
-return A.cg(q,A.aG(A.a([A.bJ(B.Xs,p.b,q,18),B.V,A.aV(A.i8("PWA build 0.598 (commit: 57ca136, built: 2026-08-16 13:42:38 UTC)",A.o(a).ok.Q),1)],t.p),B.l,B.h,B.i,0,q),B.t,q,q,new A.b8(o,q,s,r,q,q,B.w),q,q,q,q,B.ks,q,q,1/0)}}
+return A.cg(q,A.aG(A.a([A.bJ(B.Xs,p.b,q,18),B.V,A.aV(A.i8("PWA build 0.598 (commit: 65d1741, built: 2026-08-16 14:35:36 UTC)",A.o(a).ok.Q),1)],t.p),B.l,B.h,B.i,0,q),B.t,q,q,new A.b8(o,q,s,r,q,q,B.w),q,q,q,q,B.ks,q,q,1/0)}}
 A.zK.prototype={}
 A.a7h.prototype={
 C(a){var s,r,q,p,o=null,n=this.c,m=n.a,l=A.byn(m).f,k=l.h(0,300)
@@ -138941,7 +138946,7 @@ s=p.to
 if(s==null){s=p.v
 if(s==null)s=p.k3}s=A.co(s,1)
 r=A.bg(6)
-return A.cg(q,A.aG(A.a([A.bJ(B.Y6,p.b,q,18),B.V,A.aV(A.n("PWA build 0.598 (commit: 57ca136, built: 2026-08-16 13:42:38 UTC) \xb7 "+this.c+" file(s) loaded",q,q,q,q,q,q,q,q),1)],t.p),B.l,B.h,B.i,0,q),B.t,q,q,new A.b8(o,q,s,r,q,q,B.w),q,q,q,q,B.ks,q,q,1/0)}}
+return A.cg(q,A.aG(A.a([A.bJ(B.Y6,p.b,q,18),B.V,A.aV(A.n("PWA build 0.598 (commit: 65d1741, built: 2026-08-16 14:35:36 UTC) \xb7 "+this.c+" file(s) loaded",q,q,q,q,q,q,q,q),1)],t.p),B.l,B.h,B.i,0,q),B.t,q,q,new A.b8(o,q,s,r,q,q,B.w),q,q,q,q,B.ks,q,q,1/0)}}
 A.ae0.prototype={
 C(a5){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e=null,d="?",c=this.c,b=c.d,a=b.id,a0=b.c,a1=t.N,a2=t.z,a3=b.e,a4=t.f.a(new A.a1j().aQg(c,A.F(["capture_id",a0,"schema","limbstim.gaitcam_capture_manifest.v0"],a1,a2),A.F(["captureId",a3,"schema","limbstim.gaitcam0.sagittal_manifest.v1"],a1,a2),A.F(["captureId",a3,"schema","limbstim.gaitcam0.sagittal_sidecar.v1"],a1,a2)).h(0,"alignment"))
 a2=J.a_(a4)
@@ -140064,22 +140069,24 @@ A.bjs.prototype={
 $2(a,b){return B.e.aM(a.a,b.a)},
 $S:909}
 A.bjB.prototype={
-$1(a){var s,r=J.a_(a),q=A.aU(r.h(a,"tUs"))
-q=q==null?null:B.c.a4(q)
-if(q==null)q=0
-s=A.aU(r.h(a,"primaryMp4Us"))
+$1(a){var s,r,q,p=J.a_(a),o=A.aU(p.h(a,"tUs"))
+o=o==null?null:B.c.a4(o)
+if(o==null)o=0
+s=A.aU(p.h(a,"primaryMp4Us"))
 if(s!=null)B.c.a4(s)
-s=A.aU(r.h(a,"phoneMp4Us"))
+s=A.aU(p.h(a,"phoneMp4Us"))
 if(s!=null)B.c.a4(s)
-s=A.aU(r.h(a,"primaryFrame"))
+s=A.aU(p.h(a,"primaryFrame"))
 if(s!=null)B.c.a4(s)
-s=A.aU(r.h(a,"phoneFrame"))
+s=A.aU(p.h(a,"phoneFrame"))
 if(s!=null)B.c.a4(s)
-s=r.h(a,"strategy")
+s=p.h(a,"strategy")
 if(s!=null)J.K(s)
-s=r.h(a,"confidence")
-if(s!=null)J.K(s)
-return new A.oe(q,A.bjv(r.h(a,"primaryLm")),A.bjv(r.h(a,"secondaryLowerLm")))},
+s=J.d(p.h(a,"cameraGeometryGated"),!0)
+r=J.d(p.h(a,"cameraGeometryAcceptedSecondary"),!0)
+q=p.h(a,"confidence")
+if(q!=null)J.K(q)
+return new A.oe(o,s,r,A.bjv(p.h(a,"primaryLm")),A.bjv(p.h(a,"secondaryLowerLm")))},
 $S:910}
 A.bjC.prototype={
 $2(a,b){return B.e.aM(a.a,b.a)},
