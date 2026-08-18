@@ -135523,7 +135523,7 @@ s=p.to
 if(s==null){s=p.v
 if(s==null)s=p.k3}s=A.co(s,1)
 r=A.be(6)
-return A.cg(q,A.aG(A.b([A.bJ(B.Xj,p.b,q,18),B.V,A.aV(A.i8("PWA build 0.598 (commit: 4f4c5fd, built: 2026-08-18 09:45:01 UTC)",A.o(a).ok.Q),1)],t.p),B.l,B.h,B.i,0,q),B.t,q,q,new A.b8(o,q,s,r,q,q,B.w),q,q,q,q,B.ks,q,q,1/0)}}
+return A.cg(q,A.aG(A.b([A.bJ(B.Xj,p.b,q,18),B.V,A.aV(A.i8("PWA build 0.598 (commit: 4f4c5fd, built: 2026-08-18 10:06:28 UTC)",A.o(a).ok.Q),1)],t.p),B.l,B.h,B.i,0,q),B.t,q,q,new A.b8(o,q,s,r,q,q,B.w),q,q,q,q,B.ks,q,q,1/0)}}
 A.zG.prototype={}
 A.a7e.prototype={
 C(a){var s,r,q,p,o=null,n=this.c,m=n.a,l=A.byk(m).f,k=l.h(0,300)
@@ -138960,7 +138960,7 @@ s=p.to
 if(s==null){s=p.v
 if(s==null)s=p.k3}s=A.co(s,1)
 r=A.be(6)
-return A.cg(q,A.aG(A.b([A.bJ(B.XX,p.b,q,18),B.V,A.aV(A.n("PWA build 0.598 (commit: 4f4c5fd, built: 2026-08-18 09:45:01 UTC) \xb7 "+this.c+" file(s) loaded",q,q,q,q,q,q,q,q),1)],t.p),B.l,B.h,B.i,0,q),B.t,q,q,new A.b8(o,q,s,r,q,q,B.w),q,q,q,q,B.ks,q,q,1/0)}}
+return A.cg(q,A.aG(A.b([A.bJ(B.XX,p.b,q,18),B.V,A.aV(A.n("PWA build 0.598 (commit: 4f4c5fd, built: 2026-08-18 10:06:28 UTC) \xb7 "+this.c+" file(s) loaded",q,q,q,q,q,q,q,q),1)],t.p),B.l,B.h,B.i,0,q),B.t,q,q,new A.b8(o,q,s,r,q,q,B.w),q,q,q,q,B.ks,q,q,1/0)}}
 A.adZ.prototype={
 C(a5){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e=null,d="?",c=this.c,b=c.d,a=b.id,a0=b.c,a1=t.N,a2=t.z,a3=b.e,a4=t.f.a(new A.a1h().aQf(c,A.E(["capture_id",a0,"schema","limbstim.gaitcam_capture_manifest.v0"],a1,a2),A.E(["captureId",a3,"schema","limbstim.gaitcam0.sagittal_manifest.v1"],a1,a2),A.E(["captureId",a3,"schema","limbstim.gaitcam0.sagittal_sidecar.v1"],a1,a2)).h(0,"alignment"))
 a2=J.a_(a4)
