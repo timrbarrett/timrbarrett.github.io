@@ -1,11 +1,11 @@
 {
     "base_href":  "/app/",
     "source":  "github_pages_deploy",
-    "built_at_utc":  "2026-08-24T15:02:03.2384271Z",
-    "cache_buster":  "0.598-3117c4e-20260824-160121",
-    "build_stamp":  "20260824-160121",
-    "full_commit":  "3117c4eeeac554012b4a624278d4509c6969071f",
-    "commit":  "3117c4e",
+    "built_at_utc":  "2026-08-25T08:34:33.3461520Z",
+    "cache_buster":  "0.598-5770173-20260825-093327",
+    "build_stamp":  "20260825-093327",
+    "full_commit":  "5770173d92d5f958a74ee46102c8a2b8d9fcc38a",
+    "commit":  "5770173",
     "schema":  "limbstim.pwa_offline_bundle.v1",
     "app_version":  "0.598"
 }
