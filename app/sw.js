@@ -1,5 +1,5 @@
 // Service Worker for offline functionality
-const CACHE_NAME = 'limbstim-app-0.598-ac63b83-20260903-153955';
+const CACHE_NAME = 'limbstim-app-0.598-88f8d3c-20260903-164108';
 const BASE_HREF = '/app/';
 const OFFLINE_URL = BASE_HREF + 'offline.html';
 
