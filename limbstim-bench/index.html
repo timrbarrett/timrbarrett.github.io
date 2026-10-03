@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LimbStim Bench Control</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --bg: #f5f6f8;
+      --panel: #ffffff;
+      --line: #d8dde5;
+      --text: #18202a;
+      --muted: #667085;
+      --accent: #006c67;
+      --danger: #b42318;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      padding: 16px 20px 10px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    h1 {
+      font-size: 20px;
+      margin: 0 0 8px;
+      font-weight: 650;
+    }
+    .status {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    main {
+      display: grid;
+      grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr);
+      gap: 14px;
+      padding: 14px;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+    section, .log-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    h2 {
+      font-size: 16px;
+      margin: 0 0 10px;
+    }
+    .toolbar, .row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .toolbar { margin-top: 10px; }
+    button, select, input {
+      font: inherit;
+    }
+    button {
+      min-height: 38px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    button.danger {
+      color: var(--danger);
+      border-color: #f1b7b2;
+    }
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin: 10px 0 4px;
+    }
+    input[type="number"] {
+      width: 96px;
+      min-height: 34px;
+      padding: 5px 7px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+    input[type="range"] {
+      width: 100%;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 12px;
+    }
+    .slider-row {
+      display: grid;
+      grid-template-columns: 46px minmax(160px, 1fr) 54px;
+      gap: 8px;
+      align-items: center;
+      margin: 8px 0;
+    }
+    .readback {
+      color: var(--muted);
+      font-size: 12px;
+      min-height: 17px;
+    }
+    .log-panel {
+      grid-column: 1 / -1;
+    }
+    pre {
+      margin: 0;
+      height: 280px;
+      overflow: auto;
+      white-space: pre-wrap;
+      font-size: 12px;
+      line-height: 1.35;
+      background: #101828;
+      color: #e6edf3;
+      border-radius: 6px;
+      padding: 10px;
+    }
+    .hint {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 8px 0 0;
+    }
+    @media (max-width: 760px) {
+      main { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>LimbStim Bench Control</h1>
+    <div class="status">
+      <button id="connect" class="primary">Connect LimbStim</button>
+      <button id="disconnect">Disconnect</button>
+      <span id="connectionState">Disconnected</span>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>CH1 Setup</h2>
+      <div class="grid">
+        <div>
+          <label for="ch1fr">Frequency Hz</label>
+          <input id="ch1fr" type="number" min="1" max="100" value="10">
+        </div>
+        <div>
+          <label for="ch1pu">Pulse width us</label>
+          <input id="ch1pu" type="number" min="20" max="2000" value="300">
+        </div>
+        <div>
+          <label for="ch1pc">Pulse count</label>
+          <input id="ch1pc" type="number" min="1" max="20" value="1">
+        </div>
+        <div>
+          <label for="ch1hb">H-bridge</label>
+          <select id="ch1hb">
+            <option value="1">Forward / positive</option>
+            <option value="2">Reverse / negative</option>
+            <option value="0">Safe off</option>
+          </select>
+        </div>
+      </div>
+      <div class="toolbar">
+        <button id="ch1setup" class="primary">Setup and run CH1</button>
+        <button id="ch1stop" class="danger">Stop CH1</button>
+        <button id="ch1status">Read CH1 status</button>
+      </div>
+      <div class="slider-row">
+        <strong>c1mx</strong>
+        <input id="c1mx" type="range" min="0" max="255" value="127">
+        <input id="c1mxNum" type="number" min="0" max="255" value="127">
+      </div>
+      <div id="c1mxReadback" class="readback"></div>
+      <div class="slider-row">
+        <strong>c1fi</strong>
+        <input id="c1fi" type="range" min="0" max="255" value="255">
+        <input id="c1fiNum" type="number" min="0" max="255" value="255">
+      </div>
+      <div id="c1fiReadback" class="readback"></div>
+    </section>
+
+    <section>
+      <h2>CH2 Setup</h2>
+      <div class="grid">
+        <div>
+          <label for="ch2fr">Frequency Hz</label>
+          <input id="ch2fr" type="number" min="1" max="100" value="10">
+        </div>
+        <div>
+          <label for="ch2pu">Pulse width us</label>
+          <input id="ch2pu" type="number" min="20" max="2000" value="300">
+        </div>
+        <div>
+          <label for="ch2pc">Pulse count</label>
+          <input id="ch2pc" type="number" min="1" max="20" value="1">
+        </div>
+        <div>
+          <label for="ch2hb">H-bridge</label>
+          <select id="ch2hb">
+            <option value="1">Forward / positive</option>
+            <option value="2">Reverse / negative</option>
+            <option value="0">Safe off</option>
+          </select>
+        </div>
+      </div>
+      <div class="toolbar">
+        <button id="ch2setup" class="primary">Setup and run CH2</button>
+        <button id="ch2stop" class="danger">Stop CH2</button>
+        <button id="ch2status">Read CH2 status</button>
+      </div>
+      <div class="slider-row">
+        <strong>c2mx</strong>
+        <input id="c2mx" type="range" min="0" max="255" value="127">
+        <input id="c2mxNum" type="number" min="0" max="255" value="127">
+      </div>
+      <div id="c2mxReadback" class="readback"></div>
+      <div class="slider-row">
+        <strong>c2fi</strong>
+        <input id="c2fi" type="range" min="0" max="255" value="255">
+        <input id="c2fiNum" type="number" min="0" max="255" value="255">
+      </div>
+      <div id="c2fiReadback" class="readback"></div>
+    </section>
+
+    <section class="log-panel">
+      <h2>Command Log</h2>
+      <div class="toolbar">
+        <button id="allSafe" class="danger">All channels safe off</button>
+        <button id="clearLog">Clear log</button>
+      </div>
+      <p class="hint">Use Chrome/Edge with Web Bluetooth. Sliders send <code>emo</code>, <code>ecr</code>, then AD5254 readback.</p>
+      <pre id="log"></pre>
+    </section>
+  </main>
+
+  <script>
+    const NUS_SERVICE = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
+    const NUS_RX = '6e400002-b5a3-f393-e0a9-e50e24dcca9e';
+    const NUS_TX = '6e400003-b5a3-f393-e0a9-e50e24dcca9e';
+
+    let device;
+    let server;
+    let rxCharacteristic;
+    let txCharacteristic;
+    let notificationBuffer = '';
+    let commandQueue = Promise.resolve();
+    const encoder = new TextEncoder();
+    const decoder = new TextDecoder();
+
+    const $ = (id) => document.getElementById(id);
+
+    function log(line) {
+      const now = new Date().toLocaleTimeString();
+      $('log').textContent += `[${now}] ${line}\n`;
+      $('log').scrollTop = $('log').scrollHeight;
+    }
+
+    function setConnectedState(text) {
+      $('connectionState').textContent = text;
+      const connected = Boolean(rxCharacteristic);
+      document.querySelectorAll('button:not(#connect):not(#clearLog)').forEach((button) => {
+        button.disabled = !connected;
+      });
+    }
+
+    function clampByte(value) {
+      const parsed = Number.parseInt(value, 10);
+      if (Number.isNaN(parsed)) return 0;
+      return Math.max(0, Math.min(255, parsed));
+    }
+
+    function clampNumber(value, min, max) {
+      const parsed = Number.parseInt(value, 10);
+      if (Number.isNaN(parsed)) return min;
+      return Math.max(min, Math.min(max, parsed));
+    }
+
+    function onDisconnected() {
+      rxCharacteristic = undefined;
+      txCharacteristic = undefined;
+      server = undefined;
+      setConnectedState('Disconnected');
+      log('Disconnected');
+    }
+
+    async function connect() {
+      if (!navigator.bluetooth) {
+        log('Web Bluetooth is not available in this browser.');
+        return;
+      }
+      device = await navigator.bluetooth.requestDevice({
+        filters: [{ namePrefix: 'LimbStim' }],
+        optionalServices: [NUS_SERVICE],
+      });
+      device.addEventListener('gattserverdisconnected', onDisconnected);
+      setConnectedState(`Connecting to ${device.name || device.id}...`);
+      server = await device.gatt.connect();
+      const service = await server.getPrimaryService(NUS_SERVICE);
+      rxCharacteristic = await service.getCharacteristic(NUS_RX);
+      txCharacteristic = await service.getCharacteristic(NUS_TX);
+      await txCharacteristic.startNotifications();
+      txCharacteristic.addEventListener('characteristicvaluechanged', onNotify);
+      setConnectedState(`Connected to ${device.name || device.id}`);
+      log(`Connected to ${device.name || device.id}`);
+    }
+
+    function disconnect() {
+      if (device?.gatt?.connected) device.gatt.disconnect();
+      onDisconnected();
+    }
+
+    function onNotify(event) {
+      const chunk = decoder.decode(event.target.value);
+      notificationBuffer += chunk;
+      let index;
+      while ((index = notificationBuffer.indexOf('\n')) >= 0) {
+        const line = notificationBuffer.slice(0, index).trim();
+        notificationBuffer = notificationBuffer.slice(index + 1);
+        if (line) log(`RX ${line}`);
+      }
+    }
+
+    async function writeLine(command) {
+      if (!rxCharacteristic) throw new Error('Not connected');
+      log(`TX ${command}`);
+      await rxCharacteristic.writeValue(encoder.encode(`${command}\n`));
+      await new Promise((resolve) => setTimeout(resolve, 130));
+    }
+
+    function enqueue(commands) {
+      const list = Array.isArray(commands) ? commands : [commands];
+      commandQueue = commandQueue
+        .then(async () => {
+          for (const command of list) await writeLine(command);
+        })
+        .catch((error) => log(`ERROR ${error.message || error}`));
+      return commandQueue;
+    }
+
+    function channelCommands(ch) {
+      const fr = clampNumber($(`ch${ch}fr`).value, 1, 100);
+      const pu = clampNumber($(`ch${ch}pu`).value, 20, 2000);
+      const pc = clampNumber($(`ch${ch}pc`).value, 1, 20);
+      const hb = clampNumber($(`ch${ch}hb`).value, 0, 2);
+      return [
+        '(emo dbsm 0)',
+        '(ecr dbsm)',
+        `(emo c${ch}mx ${clampByte($(`c${ch}mx`).value)})`,
+        `(ecr c${ch}mx)`,
+        `(emo c${ch}fi ${clampByte($(`c${ch}fi`).value)})`,
+        `(ecr c${ch}fi)`,
+        `(emo c${ch}hb ${hb})`,
+        `(ecr c${ch}hb)`,
+        `(emo c${ch}pu ${pu})`,
+        `(ecr c${ch}pu)`,
+        `(emo c${ch}fr ${fr})`,
+        `(ecr c${ch}fr)`,
+        `(emo c${ch}pc ${pc})`,
+        `(ecr c${ch}pc)`,
+        `(emo c${ch}pm 1)`,
+        `(ecr c${ch}pm)`,
+        `(emo c${ch}wr 1)`,
+        `(ecr c${ch}wr)`,
+        `(emo c${ch}nb 1)`,
+        `(ecr c${ch}nb)`,
+        `(emo c${ch}run 1)`,
+        `(ecr c${ch}run)`,
+        `(pwm-status ${ch})`,
+        `(adr ${ch} 3)`,
+        `(adr ${ch} 2)`,
+      ];
+    }
+
+    function stopCommands(ch) {
+      return [
+        `(emo c${ch}stop 1)`,
+        `(ecr c${ch}stop)`,
+        `(emo c${ch}mx 0)`,
+        `(ecr c${ch}mx)`,
+        `(emo c${ch}fi 0)`,
+        `(ecr c${ch}fi)`,
+        `(pwm-status ${ch})`,
+      ];
+    }
+
+    function potReadbackCommand(ch, kind) {
+      const rdac = kind === 'mx' ? 3 : 2;
+      return `(adr ${ch} ${rdac})`;
+    }
+
+    function potSetCommands(ch, kind, value) {
+      const v = clampByte(value);
+      return [
+        `(emo c${ch}${kind} ${v})`,
+        `(ecr c${ch}${kind})`,
+        potReadbackCommand(ch, kind),
+      ];
+    }
+
+    function bindSlider(id, ch, kind) {
+      const slider = $(id);
+      const number = $(`${id}Num`);
+      let timer;
+      const send = () => {
+        const value = clampByte(slider.value);
+        number.value = value;
+        clearTimeout(timer);
+        timer = setTimeout(() => enqueue(potSetCommands(ch, kind, value)), 180);
+      };
+      slider.addEventListener('input', () => {
+        number.value = clampByte(slider.value);
+        send();
+      });
+      number.addEventListener('change', () => {
+        const value = clampByte(number.value);
+        number.value = value;
+        slider.value = value;
+        enqueue(potSetCommands(ch, kind, value));
+      });
+    }
+
+    $('connect').addEventListener('click', () => connect().catch((error) => log(`ERROR ${error.message || error}`)));
+    $('disconnect').addEventListener('click', disconnect);
+    $('clearLog').addEventListener('click', () => { $('log').textContent = ''; });
+    $('ch1setup').addEventListener('click', () => enqueue(channelCommands(1)));
+    $('ch2setup').addEventListener('click', () => enqueue(channelCommands(2)));
+    $('ch1stop').addEventListener('click', () => enqueue(stopCommands(1)));
+    $('ch2stop').addEventListener('click', () => enqueue(stopCommands(2)));
+    $('ch1status').addEventListener('click', () => enqueue(['(pwm-status 1)', '(adr 1 3)', '(adr 1 2)']));
+    $('ch2status').addEventListener('click', () => enqueue(['(pwm-status 2)', '(adr 2 3)', '(adr 2 2)']));
+    $('allSafe').addEventListener('click', () => enqueue([...stopCommands(1), ...stopCommands(2)]));
+
+    bindSlider('c1mx', 1, 'mx');
+    bindSlider('c1fi', 1, 'fi');
+    bindSlider('c2mx', 2, 'mx');
+    bindSlider('c2fi', 2, 'fi');
+    setConnectedState('Disconnected');
+  </script>
+</body>
+</html>
