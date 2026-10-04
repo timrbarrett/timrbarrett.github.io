@@ -125,6 +125,15 @@
       font-size: 12px;
       min-height: 17px;
     }
+    .wide {
+      grid-column: 1 / -1;
+    }
+    .progress {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 8px;
+      min-height: 18px;
+    }
     .log-panel {
       grid-column: 1 / -1;
     }
@@ -249,6 +258,55 @@
     </section>
 
     <section class="log-panel">
+      <h2>Sweep Runner</h2>
+      <div class="grid">
+        <div>
+          <label for="sweepCh">Channel</label>
+          <select id="sweepCh">
+            <option value="1">CH1</option>
+            <option value="2">CH2</option>
+          </select>
+        </div>
+        <div>
+          <label for="sweepPoints">Points per axis</label>
+          <input id="sweepPoints" type="number" min="2" max="16" value="8">
+        </div>
+        <div>
+          <label for="mxStart">mx start</label>
+          <input id="mxStart" type="number" min="0" max="255" value="109">
+        </div>
+        <div>
+          <label for="mxEnd">mx end</label>
+          <input id="mxEnd" type="number" min="0" max="255" value="255">
+        </div>
+        <div>
+          <label for="fiStart">fi start</label>
+          <input id="fiStart" type="number" min="0" max="255" value="109">
+        </div>
+        <div>
+          <label for="fiEnd">fi end</label>
+          <input id="fiEnd" type="number" min="0" max="255" value="255">
+        </div>
+        <div>
+          <label for="sweepRepeats">Repeats per cell</label>
+          <input id="sweepRepeats" type="number" min="1" max="20" value="3">
+        </div>
+        <div>
+          <label for="sweepDelay">Settle delay ms</label>
+          <input id="sweepDelay" type="number" min="0" max="10000" value="800">
+        </div>
+      </div>
+      <div class="toolbar">
+        <button id="runSweep" class="primary">Run mx/fi sweep</button>
+        <button id="stopSweep" class="danger">Stop sweep</button>
+        <button id="downloadSweep">Download sweep CSV</button>
+        <button id="clearSweep">Clear sweep rows</button>
+      </div>
+      <div id="sweepProgress" class="progress"></div>
+      <p class="hint">The browser records command/readback responses and timestamps. Enter scope readings separately, or pair this CSV with scope captures by time.</p>
+    </section>
+
+    <section class="log-panel">
       <h2>Command Log</h2>
       <div class="toolbar">
         <button id="allSafe" class="danger">All channels safe off</button>
@@ -270,6 +328,9 @@
     let txCharacteristic;
     let notificationBuffer = '';
     let commandQueue = Promise.resolve();
+    let sweepRows = [];
+    let sweepAbort = false;
+    let pendingResponse;
     const encoder = new TextEncoder();
     const decoder = new TextDecoder();
 
@@ -342,15 +403,42 @@
       while ((index = notificationBuffer.indexOf('\n')) >= 0) {
         const line = notificationBuffer.slice(0, index).trim();
         notificationBuffer = notificationBuffer.slice(index + 1);
-        if (line) log(`RX ${line}`);
+        if (line) {
+          log(`RX ${line}`);
+          if (pendingResponse && line.includes('r4_cmd_result')) {
+            const resolve = pendingResponse;
+            pendingResponse = undefined;
+            resolve(line);
+          }
+        }
       }
     }
 
-    async function writeLine(command) {
+    async function writeLine(command, waitForResult = false) {
       if (!rxCharacteristic) throw new Error('Not connected');
       log(`TX ${command}`);
+      if (waitForResult) {
+        const responsePromise = new Promise((resolve) => {
+          const timeout = setTimeout(() => {
+            if (pendingResponse === wrappedResolve) {
+              pendingResponse = undefined;
+              resolve('');
+            }
+          }, 1600);
+          const wrappedResolve = (line) => {
+            clearTimeout(timeout);
+            resolve(line);
+          };
+          pendingResponse = wrappedResolve;
+        });
+        await rxCharacteristic.writeValue(encoder.encode(`${command}\n`));
+        const response = await responsePromise;
+        await new Promise((resolve) => setTimeout(resolve, 40));
+        return response;
+      }
       await rxCharacteristic.writeValue(encoder.encode(`${command}\n`));
       await new Promise((resolve) => setTimeout(resolve, 130));
+      return '';
     }
 
     function enqueue(commands) {
@@ -445,6 +533,107 @@
       });
     }
 
+    function sleep(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    function linspaceBytes(start, end, points) {
+      const n = clampNumber(points, 2, 16);
+      const a = clampByte(start);
+      const b = clampByte(end);
+      if (n === 1) return [a];
+      return Array.from({ length: n }, (_, index) => {
+        return Math.round(a + ((b - a) * index) / (n - 1));
+      });
+    }
+
+    function csvEscape(value) {
+      const text = String(value ?? '');
+      if (/[",\n\r]/.test(text)) return `"${text.replaceAll('"', '""')}"`;
+      return text;
+    }
+
+    function downloadCsv(filename, rows) {
+      const headers = [
+        'timestamp_iso',
+        'channel',
+        'mx',
+        'fi',
+        'repeat',
+        'mx_ecr_response',
+        'fi_ecr_response',
+        'mx_adr_response',
+        'fi_adr_response',
+      ];
+      const lines = [headers.join(',')];
+      for (const row of rows) {
+        lines.push(headers.map((header) => csvEscape(row[header])).join(','));
+      }
+      const blob = new Blob([`${lines.join('\n')}\n`], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    async function runSweep() {
+      if (!rxCharacteristic) {
+        log('ERROR Not connected');
+        return;
+      }
+      sweepAbort = false;
+      const ch = clampNumber($('sweepCh').value, 1, 2);
+      const points = clampNumber($('sweepPoints').value, 2, 16);
+      const repeats = clampNumber($('sweepRepeats').value, 1, 20);
+      const delayMs = clampNumber($('sweepDelay').value, 0, 10000);
+      const mxValues = linspaceBytes($('mxStart').value, $('mxEnd').value, points);
+      const fiValues = linspaceBytes($('fiStart').value, $('fiEnd').value, points);
+      const total = mxValues.length * fiValues.length * repeats;
+      let done = 0;
+      $('sweepProgress').textContent = `Running 0 / ${total}`;
+      await enqueue(channelCommands(ch));
+      commandQueue = commandQueue.then(async () => {
+        for (const mx of mxValues) {
+          for (const fi of fiValues) {
+            if (sweepAbort) break;
+            await writeLine(`(emo c${ch}mx ${mx})`, true);
+            const mxEcr = await writeLine(`(ecr c${ch}mx)`, true);
+            await writeLine(`(emo c${ch}fi ${fi})`, true);
+            const fiEcr = await writeLine(`(ecr c${ch}fi)`, true);
+            const mxAdr = await writeLine(`(adr ${ch} 3)`, true);
+            const fiAdr = await writeLine(`(adr ${ch} 2)`, true);
+            await sleep(delayMs);
+            for (let rep = 1; rep <= repeats; rep += 1) {
+              if (sweepAbort) break;
+              const row = {
+                timestamp_iso: new Date().toISOString(),
+                channel: ch,
+                mx,
+                fi,
+                repeat: rep,
+                mx_ecr_response: mxEcr,
+                fi_ecr_response: fiEcr,
+                mx_adr_response: mxAdr,
+                fi_adr_response: fiAdr,
+              };
+              sweepRows.push(row);
+              done += 1;
+              $('sweepProgress').textContent = `Running ${done} / ${total}: ch${ch} mx=${mx} fi=${fi} repeat=${rep}`;
+              log(`SWEEP ch${ch} mx=${mx} fi=${fi} repeat=${rep}`);
+              if (rep < repeats) await sleep(delayMs);
+            }
+          }
+          if (sweepAbort) break;
+        }
+        $('sweepProgress').textContent = sweepAbort
+          ? `Stopped after ${done} / ${total}`
+          : `Finished ${done} / ${total}`;
+      }).catch((error) => log(`ERROR ${error.message || error}`));
+      return commandQueue;
+    }
+
     $('connect').addEventListener('click', () => connect().catch((error) => log(`ERROR ${error.message || error}`)));
     $('disconnect').addEventListener('click', disconnect);
     $('clearLog').addEventListener('click', () => { $('log').textContent = ''; });
@@ -455,6 +644,16 @@
     $('ch1status').addEventListener('click', () => enqueue(['(pwm-status 1)', '(adr 1 3)', '(adr 1 2)']));
     $('ch2status').addEventListener('click', () => enqueue(['(pwm-status 2)', '(adr 2 3)', '(adr 2 2)']));
     $('allSafe').addEventListener('click', () => enqueue([...stopCommands(1), ...stopCommands(2)]));
+    $('runSweep').addEventListener('click', () => runSweep());
+    $('stopSweep').addEventListener('click', () => { sweepAbort = true; });
+    $('clearSweep').addEventListener('click', () => {
+      sweepRows = [];
+      $('sweepProgress').textContent = 'Sweep rows cleared';
+    });
+    $('downloadSweep').addEventListener('click', () => {
+      const stamp = new Date().toISOString().replaceAll(':', '-').replaceAll('.', '-');
+      downloadCsv(`limbstim-sweep-${stamp}.csv`, sweepRows);
+    });
 
     bindSlider('c1mx', 1, 'mx');
     bindSlider('c1fi', 1, 'fi');
