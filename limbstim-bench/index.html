@@ -164,9 +164,13 @@
   <header>
     <h1>LimbStim Bench Control</h1>
     <div class="status">
-      <button id="connect" class="primary">Connect LimbStim</button>
-      <button id="disconnect">Disconnect</button>
-      <span id="connectionState">Disconnected</span>
+      <select id="transportMode" aria-label="LimbStim transport">
+        <option value="microfit" selected>MicroFit Android bridge</option>
+        <option value="webbluetooth">Direct Web Bluetooth</option>
+      </select>
+      <button id="connect" class="primary">Attach to MicroFit</button>
+      <button id="disconnect">Detach</button>
+      <span id="connectionState">Detached</span>
     </div>
   </header>
 
@@ -312,7 +316,7 @@
         <button id="allSafe" class="danger">All channels safe off</button>
         <button id="clearLog">Clear log</button>
       </div>
-      <p class="hint">Use Chrome/Edge with Web Bluetooth. Sliders send <code>emo</code>, <code>ecr</code>, then AD5254 readback.</p>
+      <p class="hint">Default transport: MicroFit owns the Zephyr BLE connection and this page talks to its localhost bridge. Direct Web Bluetooth remains available as a fallback. Sliders send <code>emo</code>, <code>ecr</code>, then AD5254 readback.</p>
       <pre id="log"></pre>
     </section>
   </main>
@@ -331,6 +335,8 @@
     let sweepRows = [];
     let sweepAbort = false;
     let pendingResponse;
+    let bridgeConnected = false;
+    const BRIDGE_BASE = 'http://127.0.0.1:8765';
     const encoder = new TextEncoder();
     const decoder = new TextDecoder();
 
@@ -342,12 +348,27 @@
       $('log').scrollTop = $('log').scrollHeight;
     }
 
+    function currentTransport() {
+      return $('transportMode').value;
+    }
+
+    function isConnected() {
+      return currentTransport() === 'microfit' ? bridgeConnected : Boolean(rxCharacteristic);
+    }
+
+    function updateConnectLabel() {
+      const bridge = currentTransport() === 'microfit';
+      $('connect').textContent = bridge ? 'Attach to MicroFit' : 'Connect LimbStim';
+      $('disconnect').textContent = bridge ? 'Detach' : 'Disconnect';
+    }
+
     function setConnectedState(text) {
       $('connectionState').textContent = text;
-      const connected = Boolean(rxCharacteristic);
+      const connected = isConnected();
       document.querySelectorAll('button:not(#connect):not(#clearLog)').forEach((button) => {
         button.disabled = !connected;
       });
+      $('transportMode').disabled = connected;
     }
 
     function clampByte(value) {
@@ -367,10 +388,46 @@
       txCharacteristic = undefined;
       server = undefined;
       setConnectedState('Disconnected');
-      log('Disconnected');
+      log('Direct Web Bluetooth disconnected');
     }
 
-    async function connect() {
+    async function bridgeFetch(path, options = {}) {
+      const response = await fetch(`${BRIDGE_BASE}${path}`, {
+        cache: 'no-store',
+        ...options,
+        headers: {
+          'Accept': 'application/json',
+          ...(options.body ? { 'Content-Type': 'application/json' } : {}),
+          ...(options.headers || {}),
+        },
+      });
+      if (!response.ok) {
+        const body = await response.text().catch(() => '');
+        throw new Error(`MicroFit bridge ${path} returned HTTP ${response.status}${body ? `: ${body}` : ''}`);
+      }
+      const text = await response.text();
+      return text ? JSON.parse(text) : {};
+    }
+
+    async function connectBridge() {
+      setConnectedState('Finding MicroFit on this phone...');
+      const health = await bridgeFetch('/debug/health');
+      if (health.ok === false) throw new Error('MicroFit bridge health check failed');
+      const status = await bridgeFetch('/limbstim/status');
+      bridgeConnected = true;
+      const device = status.deviceName || status.device_name || status.deviceId || status.device_id || 'Zephyr LimbStim';
+      const state = status.state || (status.connected ? 'connected' : 'ready');
+      setConnectedState(`MicroFit: ${device} (${state})`);
+      log(`Attached to MicroFit bridge at ${BRIDGE_BASE}; BLE remains owned by MicroFit`);
+    }
+
+    function disconnectBridge() {
+      bridgeConnected = false;
+      setConnectedState('Detached');
+      log('Detached website from MicroFit; LimbStim BLE ownership remains with MicroFit');
+    }
+
+    async function connectWebBluetooth() {
       if (!navigator.bluetooth) {
         log('Web Bluetooth is not available in this browser.');
         return;
@@ -391,9 +448,24 @@
       log(`Connected to ${device.name || device.id}`);
     }
 
-    function disconnect() {
+    function disconnectWebBluetooth() {
       if (device?.gatt?.connected) device.gatt.disconnect();
       onDisconnected();
+    }
+
+    async function connect() {
+      if (currentTransport() === 'microfit') {
+        return connectBridge();
+      }
+      return connectWebBluetooth();
+    }
+
+    function disconnect() {
+      if (currentTransport() === 'microfit') {
+        disconnectBridge();
+        return;
+      }
+      disconnectWebBluetooth();
     }
 
     function onNotify(event) {
@@ -414,7 +486,22 @@
       }
     }
 
-    async function writeLine(command, waitForResult = false) {
+    async function writeLineBridge(command, waitForResult = false) {
+      if (!bridgeConnected) throw new Error('Not attached to MicroFit');
+      log(`TX ${command}`);
+      const result = await bridgeFetch('/limbstim/send', {
+        method: 'POST',
+        body: JSON.stringify({ command, waitForResult }),
+      });
+      if (result.ok === false) {
+        throw new Error(result.error || 'MicroFit rejected LimbStim command');
+      }
+      const response = String(result.response || result.result || '');
+      if (response) log(`RX ${response}`);
+      return response;
+    }
+
+    async function writeLineWebBluetooth(command, waitForResult = false) {
       if (!rxCharacteristic) throw new Error('Not connected');
       log(`TX ${command}`);
       if (waitForResult) {
@@ -439,6 +526,13 @@
       await rxCharacteristic.writeValue(encoder.encode(`${command}\n`));
       await new Promise((resolve) => setTimeout(resolve, 130));
       return '';
+    }
+
+    async function writeLine(command, waitForResult = false) {
+      if (currentTransport() === 'microfit') {
+        return writeLineBridge(command, waitForResult);
+      }
+      return writeLineWebBluetooth(command, waitForResult);
     }
 
     function enqueue(commands) {
@@ -579,7 +673,7 @@
     }
 
     async function runSweep() {
-      if (!rxCharacteristic) {
+      if (!isConnected()) {
         log('ERROR Not connected');
         return;
       }
@@ -634,8 +728,16 @@
       return commandQueue;
     }
 
-    $('connect').addEventListener('click', () => connect().catch((error) => log(`ERROR ${error.message || error}`)));
+    $('connect').addEventListener('click', () => connect().catch((error) => {
+      bridgeConnected = false;
+      setConnectedState(currentTransport() === 'microfit' ? 'MicroFit unavailable' : 'Disconnected');
+      log(`ERROR ${error.message || error}`);
+    }));
     $('disconnect').addEventListener('click', disconnect);
+    $('transportMode').addEventListener('change', () => {
+      updateConnectLabel();
+      setConnectedState(currentTransport() === 'microfit' ? 'Detached' : 'Disconnected');
+    });
     $('clearLog').addEventListener('click', () => { $('log').textContent = ''; });
     $('ch1setup').addEventListener('click', () => enqueue(channelCommands(1)));
     $('ch2setup').addEventListener('click', () => enqueue(channelCommands(2)));
@@ -659,7 +761,8 @@
     bindSlider('c1fi', 1, 'fi');
     bindSlider('c2mx', 2, 'mx');
     bindSlider('c2fi', 2, 'fi');
-    setConnectedState('Disconnected');
+    updateConnectLabel();
+    setConnectedState('Detached');
   </script>
 </body>
 </html>
