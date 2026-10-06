@@ -165,8 +165,8 @@
     <h1>LimbStim Bench Control</h1>
     <div class="status">
       <select id="transportMode" aria-label="LimbStim transport">
-        <option value="microfit" selected>MicroFit Android bridge</option>
-        <option value="webbluetooth">Direct Web Bluetooth</option>
+        <option value="microfit">MicroFit Android bridge</option>
+        <option value="webbluetooth" selected>Direct Web Bluetooth</option>
       </select>
       <button id="connect" class="primary">Attach to MicroFit</button>
       <button id="disconnect">Detach</button>
@@ -394,6 +394,7 @@
     async function bridgeFetch(path, options = {}) {
       const response = await fetch(`${BRIDGE_BASE}${path}`, {
         cache: 'no-store',
+        targetAddressSpace: 'loopback',
         ...options,
         headers: {
           'Accept': 'application/json',
@@ -762,7 +763,7 @@
     bindSlider('c2mx', 2, 'mx');
     bindSlider('c2fi', 2, 'fi');
     updateConnectLabel();
-    setConnectedState('Detached');
+    setConnectedState(currentTransport() === 'microfit' ? 'Detached' : 'Disconnected');
   </script>
 </body>
 </html>
